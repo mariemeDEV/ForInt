@@ -1,0 +1,89 @@
+body{
+    margin:0;
+    padding:0;
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-image: url("../../img/OE9S3V0-min.jpg");
+    font-family: 'Ubuntu', sans-serif;
+}
+.panel-info>.panel-heading {
+    background-color: #062945 !important ;
+    border: 1px solid;
+    color: #f7ba00!important;
+    font-weight: bolder !important;
+    border-radius: 5px;
+}
+.panel-title>a:hover{
+    text-decoration:none !important
+}
+.panel-title a, .panel-heading h4{
+    font-weight: bolder !important;
+}
+.panel-title a:hover{
+    color:#f7ba00;
+    text-decoration:underline !important
+}
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab, .validate-btn {
+    background:#062945 !important;
+    color: #f7ba00 !important;
+    font-size: 10px;
+    margin-left: 56px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 0 !important;
+}
+.buttons{
+    width: 40%;
+    margin-left: 80vh;
+    margin-top:-20px !important
+}
+.mdl-layout__header .mdl-layout__drawer-button{
+    background: #f7ba00 !important;
+    color: #062945 !important;
+    margin-left: 19px;
+    height: 43px;
+    margin-top: 11px;
+}
+.mdl-layout__header-row{
+    background: #062945 !important
+}
+.mdl-js-button{
+    background: #062945 !important;
+    color: #f7ba00
+}
+.panel-info {
+    border: none;
+}
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+    color: #062945 !important;
+}
+.mdl-layout-title  img{
+    width:55% !important
+}
+.select-garanties select{
+    width: 266px !important
+}
+.mdl-layout--large-screen-only button{
+    background:#f7ba00; 
+    color:#06273a !important;
+    font-weight:lighter !important
+}
+tbody input[type="text"]{
+    font-weight: bolder;
+    width: 122px;
+    height: 28px;
+    text-align: center !important
+}
+.taxes-sup{
+    width: 47px !important
+}
+.form-check-label {
+    padding-left: 0;
+    margin-bottom: 0;
+    width: 139px !important;
+}
+.mdl-layout__header-row .mdl-navigation {
+    margin-right: -29px !important
+   
+}
