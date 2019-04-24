@@ -12,10 +12,10 @@ require_once 'mapping/Police.php';
 require_once 'model/PoliceDao.php';
 
 $usdao=new PoliceDao();
-$us=new Police('','',$_SESSION['pdf_debt'],'','','',$_SESSION['matricule'],'','','','','','');
-$ds=new Police('','',$_SESSION['pdf_fin'],'','','','','','','','','','');
-$is=new Police('','','','','',$_SESSION['matricule'],'','','','','','','');
-$Resultat=$usdao->getAllProductByInt($us,$ds);
+// $us=new Police('','',$_SESSION['pdf_debt'],'','','',$_SESSION['matricule'],'','','','','','','');
+// $ds=new Police('','',$_SESSION['pdf_fin'],'','','','','','','','','','','');
+// $is=new Police('','','','','',$_SESSION['matricule'],'','','','','','','','');
+$Resultat=$usdao->getAllProductByInt($_SESSION['matricule'],$_SESSION['pdf_debt'],$_SESSION['pdf_fin']);
 ?>
 <page backtop="1%" backbottom="1%" backright="5%" backleft="1%" >
 
@@ -55,6 +55,7 @@ $Resultat=$usdao->getAllProductByInt($us,$ds);
     </table>
 </page>
 <?php
+ob_end_clean();
 $content = ob_get_clean();
 require __DIR__.'/vendor/autoload.php';
 use Spipu\Html2Pdf\Html2Pdf;

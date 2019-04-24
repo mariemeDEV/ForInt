@@ -9,7 +9,6 @@
 </head>
 <body onload="write.print()">
 <div id="wb_Image1" style="position:absolute;left:0px;top:0px;width:369px;height:1371px;z-index:17;">
-   <!--  <img src="../../img/images3/attest1.JPG" id="Image1" alt=""> </div> -->
 <div id="wb_Heading8" style="position:absolute;left:571px;top:30px;width:210px;height:20px;text-align:center;z-index:18;">
     <h6 id="Heading8">ASSURANCE AUTOMOBILE</h6></div>
 <img src="../../img/images3/img0001.jpg" id="Banner1" alt="CONDITIONS PARTICULIERES" style="border-width:0;position:absolute;left:386px;top:50px;width:580px;height:14px;z-index:19;">

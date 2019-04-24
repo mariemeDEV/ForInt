@@ -9,18 +9,15 @@ require_once 'Dbao.php';
  */
 class VehiculeDao extends DBao
 {
-    function __construct()
-    {
-
-    }
-
     public function insererVehicule(Vehicule $us)
     {
-        $sql="insert into `vehicule` values ('".$us->getIdVehicule()."','".$us->getMarque()."','".$us->getType()."','".$us->getImmatriculation()."','".$us->getPuissance()."',
-        '".$us->getEnergie()."','".$us->getChargeUtile()."','".$us->getPlaces()."','".$us->getGenre()."','".$us->getChassis()."','".$us->getCylindre()."',
-        '".$us->getDateMec()."','".$us->getValeurNeuve()."','".$us->getValeurVenale()."','".$us->getNomChauffeur()."','".$us->getCategorie()."')";
-
-        return $this->executeMAJ($sql);
+            $sql="INSERT INTO `vehicule` VALUES('".$us->getIdVehicule()."', '".$us->getMarque()."', '".$us->getType()."', '".$us->getImmatriculation()."','".$us->getPuissance()."',
+            '".$us->getEnergie()."','".$us->getChargeUtile()."','".$us->getPlaces()."','".$us->getGenre()."', '".$us->getChassis()."', '".$us->getCylindre()."',
+            '".$us->getDateMec()."', '".$us->getValeurNeuve()."','".$us->getValeurVenale()."','".$us->getNomChauffeur()."','".$us->getCategorie()."')";
+            return $this->executeMAJ($sql);
+            echo 'exception '.$e->getMessage();
+        
+       
     }
 
     public function selectVehicule(Vehicule $us)

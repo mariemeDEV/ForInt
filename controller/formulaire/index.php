@@ -1,11 +1,11 @@
 <?php
 // Démarrage ou restauration de la session
 session_start();
-//echo $_SESSION['username'];
-//echo $_SESSION['password']."<br>";
-//echo $_SESSION['mdp']."<br>";
-//echo $hash = password_hash('saham',PASSWORD_BCRYPT);
-//echo $_SESSION['matricule'];
+// echo $_SESSION['username'];
+// echo $_SESSION['password']."<br>";
+// echo $_SESSION['mdp']."<br>";
+// echo $hash = password_hash('saham',PASSWORD_BCRYPT);
+// echo $_SESSION['matricule'];
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
     header ('location: ./saham-app');
@@ -38,34 +38,32 @@ require_once '../../mapping/Conducteur_vehicule.php';
 require_once '../../model/ConducteurVehiculeDao.php';
 require_once '../../mapping/Police.php';
 require_once '../../model/PoliceDao.php';
-
 if(isset($_GET['action']))
 {
     switch ($_GET['action']) {
         case 'valider':
              require_once('../../view/user/assurance.php');
         break;
+        //Affichage des contrats
         case 'afficher':
-            $usPolao=new PoliceDao();
-            $pol=new Police('','','','','','',$_SESSION['matricule'],'','','','','','');
-            $resultat=$usPolao->listPoliceAdmn($pol);
-            $cpt1=$resultat->rowCount();
-            require_once('../../view/user/afficher.php');
+            $usPolao  = new PoliceDao();
+            $resultat = $usPolao->listPoliceValides($_SESSION['matricule'],'','','','','','','','');
+            $cpt1     = $resultat->rowCount();
+            require_once('../../view/user/afficherdevis.php');
         break;
         case 'simul':
             require_once ('../../view/user/simulation1.php');
         break;
+        //Affichage des devis
         case 'affi':
-            $usPolao=new PoliceDao();
-            $pol=new Police('','','','','','',$_SESSION['matricule'],'','','','','','');
-            $resultat=$usPolao->listPolice($pol);
-            $cpt1=$resultat->rowCount();
-            require_once ('../../view/user/afficherdevis.php');
+            $usPolao  = new PoliceDao();
+            $resultat = $usPolao->listPolicePreformant($_SESSION['matricule']);
+            $cpt1     = $resultat->rowCount();
+            require_once('../../view/user/afficher.php');
         break;
         case 'modiferDevis':
-            $uspol=new PoliceDao();
-            $int=new Police($_GET['id_police']);
-            $modifier=$uspol->getAllProduction($int);
+            $uspol     = new PoliceDao();
+            $modifier  = $uspol->getAllProduction($_GET['id_police']);
             foreach ($modifier as $item)
             {
                  $item['date_debut'];
@@ -79,14 +77,13 @@ if(isset($_GET['action']))
                  $item['energie'];
                  $item['places'];
                  $item['libelle_garantie'];
-                 $item['charge_utile'];
                  $item['chassis'];
+                 $item['id_cat'];
                  $item['libelle_categorie'];
                  $item['cylindre'];
                  $item['energie'];
                  $item['charge_utile'];
             }
-            
             require_once('../../view/user/assuranceupdate.php');
         break;
         case 'changeToValider':
@@ -95,31 +92,29 @@ if(isset($_GET['action']))
             header('Location: ./controller/formulaire/?action=affi');
         break;
         case 'lister':
-            //--------------------------------------
-            $usInt=new IntermediaireDao();
-            $int=new Intermediaire($_SESSION['matricule']);
-            $intermediaire= $usInt->getUserByMat($int);
+            $usInt         = new IntermediaireDao();
+            $int           = new Intermediaire($_SESSION['matricule']);
+            $intermediaire = $usInt->getUserByMat($_SESSION['matricule']);
             foreach($intermediaire as $ligne18)
             {
-                $codeInt=$ligne18['matricule'];
-                $nomInt=$ligne18['nom'];
-                $prenomInt=$ligne18['prenom'];
+                $codeInt   = $ligne18['matricule'];
+                $nomInt    = $ligne18['nom'];
+                $prenomInt = $ligne18['prenom'];
             }
             //-------------------------------------
-
-            $usdao=new AssureDao();
-            $us=new Assure($_GET['id'],'','','','');
-            $Resultat=$usdao->selectAssure($us);
+            $usdao         = new AssureDao();
+            $us            = new Assure($_GET['id'],'','','','');
+            $Resultat      = $usdao->selectAssure($us);
             foreach ($Resultat as $ligne)
             {
-                $nomAssure=$ligne['nom_assure'];
-                $prenomAssure=$ligne['prenom_assure'];
-                $adresseAssure=$ligne['adresse_assure'];
-                $telAssure=$ligne['tel_assure'];
+                $nomAssure     = $ligne['nom_assure'];
+                $prenomAssure  = $ligne['prenom_assure'];
+                $adresseAssure = $ligne['adresse_assure'];
+                $telAssure     = $ligne['tel_assure'];
             }
             //--------------------------------------
             $usPolao=new PoliceDao();
-            $pol=new Police($_GET['id']);
+            $pol=new Police($_GET['id'],"","","","","","","","","","","","","","");
             $podice=$usPolao->selectPolice($pol);
             foreach($podice as $ligne1)
             {
@@ -145,7 +140,6 @@ if(isset($_GET['action']))
             $cond=new Conducteur_vehicule($_GET['id'],'','','','');
             $conducteur=$Cvao->selectConducteur($cond);
             //-------------------------------------
-
             //-------------------------------------
             $Vdao=new VehiculeDao();
             $voiture=new Vehicule($_GET['id'],'','','','');
@@ -166,7 +160,6 @@ if(isset($_GET['action']))
                 $val_neuve          =$ligne10['valeur_neuve'];
                 $val_venale         =$ligne10['valeur_venale'];
             }
-
             //-------------------------------------
             $VCatdao=new VehiculeDao();
             $categorie=$VCatdao->getCatVehicule($voiture);
@@ -199,12 +192,10 @@ if(isset($_GET['action']))
                 $rc=number_format($ligne5['reduc_com']);
             }
         }
-
             //-------------------------------------
             $Decompte=new Decompte_primeDao();
             $dec_prime=new Decompte_prime($_GET['id'],'','','','');
             $Prime=$Decompte->selectDecompte($dec_prime);
-
             //-------------------------------------
             $res=new ContenirDao();
             $respons=new Contenir('','','','','','',$_GET['id']);
@@ -266,7 +257,6 @@ if(isset($_GET['action']))
             {
                 $lim4=''; $franch4='';$brute4='';$prorata4='';
             }
-
             /*************************************************************************/
             $vol=$res->getVol($respons);
             $rowVol=$vol->rowCount();
@@ -285,7 +275,6 @@ if(isset($_GET['action']))
                 $lim5=''; $franch5='';$brute5='';$prorata5='';
             }
             /*****************************************************************************/
-
             $lib_gant=$res->getLibelle_garantie($respons);
             $tc=0;$aso=0;$pto=0;
          foreach ($lib_gant as $key=>$Base)
@@ -299,7 +288,6 @@ if(isset($_GET['action']))
               if($libelle==12) {$pto=12;$titrePs="PERSONNES TRANSPORTEES OPT1";}
               if($libelle==13) {$pto=13;$titrePs="PERSONNES TRANSPORTEES OPT2";}
               if($libelle==14) {$pto=14;$titrePs="PERSONNES TRANSPORTEES OPT3";}
-
               $ert=$libelle;
           }
           /**************************************************/
@@ -410,7 +398,6 @@ if(isset($_GET['action']))
             $personne3=$res->getPersonne3($respons);
             if($pto==12)
             {
-
                 foreach ($personne1 as $ligne16)
                 {
                     if($ligne16['lim_gant']     ==0) $lim9=''       ; else $lim9        =number_format(intval($ligne16['lim_gant']));
@@ -421,7 +408,6 @@ if(isset($_GET['action']))
             }
             elseif($pto==13)
             {
-
                 foreach ($personne2 as $ligne16)
                 {
                     if($ligne16['lim_gant']     ==0) $lim9=''    ;      else $lim9      =number_format($ligne16['lim_gant']);
@@ -432,7 +418,6 @@ if(isset($_GET['action']))
             }
             elseif($pto==14)
             {
-
                 foreach ($personne3 as $ligne16)
                 {
                     if($ligne16['lim_gant']     ==0) $lim9=''    ;   else $lim9         =number_format($ligne16['lim_gant']);
@@ -446,7 +431,6 @@ if(isset($_GET['action']))
                 $titrePs="PERSONNES TRANSPORTEES";
                 $lim9=''   ;$franch9='';$brute9='';$prorata9='';
             }
-
             //****************************************************/
             $assistance=$res->getAssistance($respons);
             $rowAss=$assistance->rowCount();
@@ -479,14 +463,12 @@ if(isset($_GET['action']))
                 $lim10=''; $franch10='';$brute10='';$prorata10='';
             }
             //-------------------------------------
-
             require_once '../../view/user/etats.php';
             break;
         case 'lister1':
-
             $usInt=new IntermediaireDao();
             $int=new Intermediaire($_SESSION['matricule']);
-            $intermediaire= $usInt->getUserByMat($int);
+            $intermediaire= $usInt->getUserByMat($_SESSION['matricule']);
             foreach($intermediaire as $ligne1)
             {
                 $codeInt=$ligne1['matricule'];
@@ -496,8 +478,8 @@ if(isset($_GET['action']))
                 $telInt=$ligne1['tel'];
             }
             //--------------------------------------
-            $usPolao=new PoliceDao();
-            $pol=new Police($_GET['opli']);
+            $usPolao=new PoliceDao('','','','','','','','','','','','','','');
+            $pol=new Police($_GET['opli'],'','','','','','','','','','','','','');
             $podice=$usPolao->selectPolice($pol);
             foreach($podice as $ligne2)
             {
@@ -507,7 +489,6 @@ if(isset($_GET['action']))
                 $numFacture=$ligne2['numFacture'];
                 $attestation=$ligne2['attestation'];
             }
-
             //-------------------------------------
             $usdao=new AssureDao();
             $us=new Assure($_GET['opli'],'','','','');
@@ -534,7 +515,7 @@ if(isset($_GET['action']))
             //--------------------------------------
             $Cvao=new ConducteurVehiculeDao();
             $cond=new Conducteur_vehicule($_GET['opli'],'','','','');
-            $conducteur=$Cvao->selectConducteur($cond);
+            $conducteur=$Cvao->selectConducteur($_GET['opli']);
             foreach ($conducteur as $ligne5)
             {
                 $nomConducteur=$ligne5['nom_conducteur'];
@@ -543,7 +524,6 @@ if(isset($_GET['action']))
                 $dureeConduite=$ligne5['duree_conduite'];
             }
             //-------------------------------------
-
             $Vdao=new VehiculeDao();
             $voiture=new Vehicule($_GET['opli'],'','','','');
             $vehicule=$Vdao->selectVehicule($voiture);
@@ -671,8 +651,6 @@ if(isset($_GET['action']))
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
             {
-
-
              $libelle=$Base['id_garantie'];
                 if($libelle==7)  {$tc=7;$vri = "TIERCE COMPLETE (TCM)";}
                 if($libelle==8)  {$tc=8;$vri = "TIERCE COLLISION (TCL)";}
@@ -813,7 +791,6 @@ if(isset($_GET['action']))
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {
-                //echo "llllllllllllllllllllllllllllllllllll".$rowAss;
                 foreach ($assistance as $ligne17)
                 {
                     if($ligne17['lim_gant']     ==0) $lim10=''    ;   else $lim10     =$ligne17['lim_gant'];
@@ -866,8 +843,8 @@ if(isset($_GET['action']))
                 }
             }
             //-------------------------------------
-            $Decompte=new Decompte_primeDao();
-            $dec_prime=new Decompte_prime($_GET['opli'],'','','','');
+            $Decompte  = new Decompte_primeDao();
+            $dec_prime = new Decompte_prime($_GET['opli'],'','','','');
             $Prime=$Decompte->selectDecompte($dec_prime);
             foreach ($Prime as $ligne19)
             {
@@ -883,7 +860,7 @@ if(isset($_GET['action']))
         case 'lister2':
             $usInt=new IntermediaireDao();
             $int=new Intermediaire($_SESSION['matricule']);
-            $intermediaire= $usInt->getUserByMat($int);
+            $intermediaire= $usInt->getUserByMat($_SESSION['matricule']);
             foreach($intermediaire as $ligne1)
             {
                 $codeInt=$ligne1['matricule'];
@@ -894,7 +871,7 @@ if(isset($_GET['action']))
             }
             //--------------------------------------
             $usPolao=new PoliceDao();
-            $pol=new Police($_GET['opli']);
+            $pol=new Police($_GET['opli'],'','','','','','','','','','','','','');
             $podice=$usPolao->selectPolice($pol);
             foreach($podice as $ligne2)
             {
@@ -904,7 +881,6 @@ if(isset($_GET['action']))
                 $numFacture=$ligne2['numFacture'];
                 $attestation=$ligne2['attestation'];
             }
-
             //-------------------------------------
             $usdao=new AssureDao();
             $us=new Assure($_GET['opli'],'','','','');
@@ -931,7 +907,7 @@ if(isset($_GET['action']))
             //--------------------------------------
             $Cvao=new ConducteurVehiculeDao();
             $cond=new Conducteur_vehicule($_GET['opli'],'','','','');
-            $conducteur=$Cvao->selectConducteur($cond);
+            $conducteur=$Cvao->selectConducteur($_GET['opli']);
             foreach ($conducteur as $ligne5)
             {
                 $nomConducteur=$ligne5['nom_conducteur'];
@@ -940,7 +916,6 @@ if(isset($_GET['action']))
                 $dureeConduite=$ligne5['duree_conduite'];
             }
             //-------------------------------------
-
             $Vdao=new VehiculeDao();
             $voiture=new Vehicule($_GET['opli'],'','','','');
             $vehicule=$Vdao->selectVehicule($voiture);
@@ -1068,8 +1043,6 @@ if(isset($_GET['action']))
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
             {
-
-
              $libelle=$Base['id_garantie'];
                 if($libelle==7)  {$tc=7;$vri = "TIERCE COMPLETE (TCM)";}
                 if($libelle==8)  {$tc=8;$vri = "TIERCE COLLISION (TCL)";}
@@ -1278,10 +1251,9 @@ if(isset($_GET['action']))
             //require_once '../../view/user/etatCedeao2.php';
             break;
         case 'lister3':
-
             $usInt=new IntermediaireDao();
             $int=new Intermediaire($_SESSION['matricule']);
-            $intermediaire= $usInt->getUserByMat($int);
+            $intermediaire= $usInt->getUserByMat($_SESSION['matricule']);
             foreach($intermediaire as $ligne1)
             {
                 $codeInt=$ligne1['matricule'];
@@ -1292,7 +1264,7 @@ if(isset($_GET['action']))
             }
             //--------------------------------------
             $usPolao=new PoliceDao();
-            $pol=new Police($_GET['opli']);
+            $pol=new Police($_GET['opli'],'','','','','','','','','','','','','');
             $podice=$usPolao->selectPolice($pol);
             foreach($podice as $ligne2)
             {
@@ -1302,7 +1274,6 @@ if(isset($_GET['action']))
                 $numFacture=$ligne2['numFacture'];
                 $attestation=$ligne2['attestation'];
             }
-
             //-------------------------------------
             
             $usdao=new AssureDao();
@@ -1339,7 +1310,6 @@ if(isset($_GET['action']))
                 $dureeConduite=$ligne5['duree_conduite'];
             }
             //-------------------------------------
-
             $Vdao=new VehiculeDao();
             $voiture=new Vehicule($_GET['opli'],'','','','');
             $vehicule=$Vdao->selectVehicule($voiture);
@@ -1467,8 +1437,6 @@ if(isset($_GET['action']))
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
             {
-
-
                 $libelle=$Base['id_garantie'];
                 if($libelle==7)  {$tc=7;$vri       = "TIERCE COMPLETE (TCM)";}
                 if($libelle==8)  {$tc=8;$vri       = "TIERCE COLLISION (TCL)";}
@@ -1609,7 +1577,6 @@ if(isset($_GET['action']))
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {
-                //echo "llllllllllllllllllllllllllllllllllll".$rowAss;
                 foreach ($assistance as $ligne17)
                 {
                     if($ligne17['lim_gant']     ==0) $lim10=''    ;   else $lim10     =$ligne17['lim_gant'];
@@ -1681,79 +1648,89 @@ if(isset($_GET['action']))
             break;
     }
 }
-
-
 if(isset($_POST['action']))
 {
     switch ($_POST['action']) {
-     
-        case 'valider':
-            //if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
-               // $id_police=$_GET['id_police'];
-               // require_once 'postUpdate.php';
-           //}else{
+
+        case 'Créer contrat':
+            // echo('nouvelle insertion');
+            if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
+                $id_police=$_GET['id_police'];
+                require_once 'postUpdate.php';
+            }else{
                 require_once 'post.php';
-            //}
-                  // $post=extract($_POST);
-                  // echo $_POST['nom_assure'];
+            }
+                $post=extract($_POST);
+                echo $_POST['nom_assure'];
+                $usdao2=new ContenirDao();    
+        break;  
+
+        case 'valider':
+            if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
+               $id_police=$_GET['id_police'];
+               require_once 'postUpdate.php';
+           }else{
+                require_once 'post.php';
+            }
+                $post=extract($_POST);
+                echo $_POST['nom_assure'];
         $usdao2=new ContenirDao();    
-            break;
+        break;
+        
         case 'lister':
             require_once('../../view/user/etats.php');
-            break;
+        break;
         case 'lister1':
             require_once('../../view/user/etats3.php');
-            break;
-        
+        break;
         case 'Telecharger':
-            $_SESSION['pdf_debt']=$_POST['debut']." 00:00:00";
-            $_SESSION['pdf_fin']=$_POST['fin']." 23:59:00";
-            $debut=$_POST['debut']." 00:00:00";
-            $fin=$_POST['fin']." 00:00:00";
-            /* $_SESSION['matricule'];
+        $debut     = new DateTime($_POST['debut']);
+        $fin       = new DateTime($_POST['fin']);
+        $matricule = $_SESSION['matricule'];
+        $interval  = $debut->diff($fin);
             $usdao=new PoliceDao();
-            $us=new Police('','',$debut,'','','',$_SESSION['matricule'],'','','','','','');
-            $ds=new Police('','',$fin,'','','','','','','','','','');
-            $is=new Police('','','','','',$_SESSION['matricule'],'','','','','','','');
-            $Resultat=$usdao->getAllProductByInt($us,$ds);
+            $Resultat=$usdao->getAllProductByInt($_SESSION['matricule'],$_POST['debut'],$_POST['fin']);
             $cpt1=$Resultat->rowCount();
-            //echo $cpt1."<br>";
             $info=null;
             if($Resultat==true)
             {
                 while($row=$Resultat->fetch())
                 {
                     $info [] = array(
-                         "num police" => $row[0] ,
-                         "date creation" => $row[1] ,
-                         "attestation" => $row[2] ,
-                         "numero facture" => $row[3] ,
-                         "matricule"  => $row[4] ,
-                         "nom intermediaire"  => $row[5] ,
-                         "nom assure"  => $row[6] ,
-                         "prenom assure"  => $row[7] ,
-                         "nom conduteur"  => $row[8] ,
-                         "prenom conduteur"  => $row[9] ,
-                         "date debut"  => $row[10] ,
-                         "heure debut"  => $row[11] ,
-                         "date fin"  => $row[12] ,
-                         "heure fin"  => $row[13] ,
-                         "marque"  => $row[14] ,
-                         "immatriculation"  => $row[15] ,
-                        "genre"  => $row[16] ,
-                        "date MEC"  => $row[17] ,
-                        "valeur neuve"  => $row[18] ,
-                        "valeur vénale"  => $row[19] ,
-                        "garantie"  => $row[21] ,
-                        "bonus RC"=> $row[23],
-                        "reduction commerciale"=> $row[25],
-                        "prime nette"=> $row[26],
-                        "prime totale"=> $row[27],
-
+                         "NUMÉRO POLICE"                  => $row[0] ,
+                         "DATE DE CRÉATION"               => $row[1] ,
+                         "NUMÉRO ATTESTATION"             => $row[2] ,
+                         "NUMÉRO FACTURE"                 => $row[3] ,
+                         "MATRICULE INTERMÉDIAIRE"        => $row[4] ,
+                         "NOM INTERMÉDIAIRE"              => $row[5] ,
+                         "PRÉNOM INTERMÉDIAIRE"           => $row[6] ,
+                         "NOM ASSURÉ"                     => $row[7] ,
+                         "PRÉNOM ASSURÉ"                  => $row[8] ,
+                         "NOM CONDUCTEUR"                 => $row[9] ,
+                         "PRÉNOM CONDUCTEUR"              => $row[10] ,
+                         "DATE DÉBUT PERIODE DE GARANTIE" => $row[11] ,
+                         "HEURE DÉBUT PÉRIODE DE GARANTIE"   => $row[12] ,
+                         "DATE FIN PÉRIODE DE GARANTIE" => $row[13] ,
+                         "HEURE FIN PÉRIODE DE GARANTIE" => $row[14] ,
+                         "MARQUE VOITURE"                => $row[15] ,
+                         "IMMATRICULATION"               => $row[16] ,
+                         "GENRE"                         => $row[17] ,
+                         "DATE DE MISE EN CIRCULATION"   => $row[18] ,
+                         "VALEUR VÉNALE"                 => $row[19] ,
+                         "VALEUR À NEUVE"                => $row[20] ,
+                         "GARANTIES"                     => $row[21],
+                         "RÉCUCTION MAJORATION RC"       => $row[22],
+                         "BONUS RC"                      => $row[23],
+                         "POURCENTAGE RC"                => $row[24],
+                         "RÉDUCTION COMMERCIALE"         => $row[25],
+                         "PRIME NETTE"                   => $row[26],
+                         "ACCESSOIRES"                   => $row[27],
+                         "TAXES"                         => $row[28],
+                         "FGA"                           => $row[29],
+                         "PRIME TOTALE"                  => $row[30]
                     );
-                }*/
-//var_dump($info);
-                /*$filname='eminfo.csv';
+                }
+                $filname='production.csv';
                 header("Content-type: text/csv;charset=utf-8");
                 header("Content-Disposition: attachment; filename=$filname");
                 $output = fopen("php://output","w");
@@ -1764,73 +1741,9 @@ if(isset($_POST['action']))
                     fputcsv($output,$row);
                 }
                 fclose($output);
-
             }
-            else echo "false";*/
-            header('Location: ./saham-app/pdf.php');
-            break;
-        case 'Telecharger':
-        $_SESSION['pdf_debt']=$_POST['debut']." 00:00:00";
-            $_SESSION['pdf_fin']=$_POST['fin']." 23:59:00";
-            $debut=$_POST['debut']." 00:00:00";
-            $fin=$_POST['fin']." 00:00:00";
-            //  $_SESSION['matricule'];
-            // $usdao=new PoliceDao();
-            // $us=new Police('','',$debut,'','','',$_SESSION['matricule'],'','','','','','');
-            // $ds=new Police('','',$fin,'','','','','','','','','','');
-            // $is=new Police('','','','','',$_SESSION['matricule'],'','','','','','','');
-            // $Resultat=$usdao->getAllProductByInt($us,$ds);
-            // $cpt1=$Resultat->rowCount();
-            // //echo $cpt1."<br>";
-            // $info=null;
-            // if($Resultat==true)
-            // {
-            //     while($row=$Resultat->fetch())
-            //     {
-            //         $info [] = array(
-            //              "num police" => $row[0] ,
-            //              "date creation" => $row[1] ,
-            //              "attestation" => $row[2] ,
-            //              "numero facture" => $row[3] ,
-            //              "matricule"  => $row[4] ,
-            //              "nom intermediaire"  => $row[5] ,
-            //              "nom assure"  => $row[6] ,
-            //              "prenom assure"  => $row[7] ,
-            //              "nom conduteur"  => $row[8] ,
-            //              "prenom conduteur"  => $row[9] ,
-            //              "date debut"  => $row[10] ,
-            //              "heure debut"  => $row[11] ,
-            //              "date fin"  => $row[12] ,
-            //              "heure fin"  => $row[13] ,
-            //              "marque"  => $row[14] ,
-            //              "immatriculation"  => $row[15] ,
-            //             "genre"  => $row[16] ,
-            //             "date MEC"  => $row[17] ,
-            //             "valeur neuve"  => $row[18] ,
-            //             "valeur vénale"  => $row[19] ,
-            //             "garantie"  => $row[21] ,
-            //             "bonus RC"=> $row[23],
-            //             "reduction commerciale"=> $row[25],
-            //             "prime nette"=> $row[26],
-            //             "prime totale"=> $row[27],
-
-            //         );
-            //     }
-            //     $filname='eminfo.csv';
-            //     header("Content-type: text/csv;charset=utf-8");
-            //     header("Content-Disposition: attachment; filename=$filname");
-            //     $output = fopen("php://output","w");
-            //     $header=array_keys($info[0]);
-            //     fputcsv($output,$header);
-            //     foreach ($info as $row)
-            //     {
-            //         fputcsv($output,$row);
-            //     }
-            //     fclose($output);
-
-            // }
-            // else echo "false";
-            header('Location: ./saham-app/pdf.php');
+            else echo "Une erreur s'est produite lors de l'extraction. Veuillez réessayer.";
+            header('Location: ../../pdf.php');
             break;
             
         default:

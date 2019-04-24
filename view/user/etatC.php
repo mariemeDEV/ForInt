@@ -14,17 +14,17 @@
 
 <div id="wb_Text2" style="position:absolute;left:300px;top:850px;width:263px;height:160px;z-index:95;">
     <div style="
--moz-transform: rotate(-90deg) translate(0, 100%);
--moz-transform-origin: 0% 100%;
--o-transform: rotate(-90deg) translate(0, 100%);
--o-transform-origin: 0% 100%;
--webkit-transform: rotate(-90deg) translate(0, 100%);
--webkit-transform-origin: 0% 100%;
--ms-transform: translate(0%, 106%) rotate(-90deg);
--ms-transform-origin: 0% 0%;
-transform: translate(0%, 106%) rotate(-90deg);
-transform-origin: 0% 0%;
-"><span style="color:#000000;font-family:Arial;font-size:10px;"><?php echo $prenomAssure." "."$nomAssure"; ?><br></span>
+            -moz-transform: rotate(-90deg) translate(0, 100%);
+            -moz-transform-origin: 0% 100%;
+            -o-transform: rotate(-90deg) translate(0, 100%);
+            -o-transform-origin: 0% 100%;
+            -webkit-transform: rotate(-90deg) translate(0, 100%);
+            -webkit-transform-origin: 0% 100%;
+            -ms-transform: translate(0%, 106%) rotate(-90deg);
+            -ms-transform-origin: 0% 0%;
+            transform: translate(0%, 106%) rotate(-90deg);
+            transform-origin: 0% 0%;">
+        <span style="color:#000000;font-family:Arial;font-size:10px;"><?php echo $prenomAssure." "."$nomAssure"; ?><br></span>
         <span style="color:#000000;font-family:Arial;font-size:8px;"><br>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</span>
         <span style="color:#000000;font-family:Arial;font-size:10px;"> </span>
         <span style="color:#000000;font-family:Arial;font-size:10px;"><?php echo $codePolice ?><br>&nbsp;&nbsp;<?php echo $dateDebut->format('d/m/Y') ?><br>&nbsp;&nbsp;<?php echo $dateFin->format('d/m/Y') ?><br>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; <?php echo strtoupper($marque) ?><br></span>

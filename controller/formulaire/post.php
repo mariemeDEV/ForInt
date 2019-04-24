@@ -1,6 +1,17 @@
 <?php
     /**********************LES VALEURS DE L'ASSURE ***********************************/
-echo "unique ID: ".$unikId=uniqid();
+//echo $_SESSION['matricule'];
+ echo "unique ID: ".$unikId=uniqid();
+ function generateId($length):string{
+    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
+    $charactersLength = strlen($characters);
+    $idGenerated      = '';
+    $password         = '';
+    for ($i = 0; $i < $length; $i++) {
+        $idGenerated .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $idGenerated;
+}
 echo "<br>";
 "<br>";
 $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null;$c8=null;
@@ -8,9 +19,9 @@ $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null
 echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
 echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
 echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
-$Assuredao=new AssureDao();
+echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
+ $Assuredao=new AssureDao();
 $usAssure=new Assure($unikId,preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING)),
@@ -32,21 +43,22 @@ else
 
 echo "nom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
 echo "prenom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
-echo "annee permis: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "duree conduite: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+// echo "annee permis: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+// echo "duree conduite: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))."<br>";
 
 $conddao=new ConducteurVehiculeDao();
 $usCond=new Conducteur_vehicule($unikId,
             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING)),
-            preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_conducteur'],FILTER_SANITIZE_STRING)),
-            preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT)),
-            preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))
+            preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_conducteur'],FILTER_SANITIZE_STRING))
+            // preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT)),
+            // preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))
             );
 $okCond=$conddao->insererConducteur($usCond);
+// var_dump($usCond);
 if($okCond==true)
 {
     echo 'conducteur donnees insere'."<br>";
-    $c2=1;
+        $c2=1;
 }
 else
 {
@@ -55,11 +67,11 @@ else
 
 
 /**********************LES VALEURS DE LA PERIODE DE LA GARANTIE ***********************************/
-$date_debut  = $_POST['date_debut'];
-$heure_debut = "08:00:00";
+$date_debut=$_POST['date_debut'];
+$heure_debut="08:00:00";
 
-$date_fin    = substr($_POST['date_debut'],0, -6);
-$heure_fin   = "23:59:00";
+$date_fin=substr($_POST['date_debut'],0,-6);
+$heure_fin="23:59:00";
 echo "date debut ".$date_debut."<br>";
 echo "heure debut  ".$heure_debut."<br>";
 echo "date fin ".$date_fin."<br>";
@@ -70,8 +82,8 @@ echo "duree garantie: ".$_POST['duree_garantie']."<br>";
 
 $Gantdao = new Periode_garantieDao();
 $usGant  = new Periode_garantie($unikId,$_POST['date_debut'],$_POST['demo'],$heure_debut,$heure_fin,$_POST['duree_garantie']);
-$okGant  =$Gantdao->insererPeriode($usGant);
 
+$okGant=$Gantdao->insererPeriode($usGant);
 if($okGant==true)
   {
     echo 'Periode_garantie insere'."<br>";
@@ -98,24 +110,24 @@ echo "valeur neuve: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_n
 echo "valeur venale: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT))."<br>";
 echo "categorie: ".$_POST['categorie']."<br>";
 echo "PAck: ".$_POST['pack']."<br>";*/
-$marque          = preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['marque'],FILTER_SANITIZE_STRING));
-$type            = preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['type_vehicule'],FILTER_SANITIZE_STRING));
-$immatriculation = preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['immatriculation'],FILTER_SANITIZE_STRING));
+$marque=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['marque'],FILTER_SANITIZE_STRING));
+$type=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['type_vehicule'],FILTER_SANITIZE_STRING));
+$immatriculation=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['immatriculation'],FILTER_SANITIZE_STRING));
 if(!isset($_POST['puissance'])) $puissance="N/A";
-else $puissance  = preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['puissance'],FILTER_SANITIZE_NUMBER_INT));
-$energie         = $_POST['energie'];
-$charge_utile    = $_POST['charge'];
-$places          = filter_var($_POST['places'],FILTER_SANITIZE_NUMBER_INT)+filter_var($_POST['placeSup'],FILTER_SANITIZE_NUMBER_INT);
-$genre           = $_POST['genre'];
+else $puissance=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['puissance'],FILTER_SANITIZE_NUMBER_INT));
+$energie=$_POST['energie'];
+$charge_utile=$_POST['charge'];
+$places=filter_var($_POST['places'],FILTER_SANITIZE_NUMBER_INT)+filter_var($_POST['placeSup'],FILTER_SANITIZE_NUMBER_INT);
+$genre=$_POST['genre'];
 
 if(!isset($_POST['chassis'])) $chassis="N/A";
-else $chassis                            = $_POST['chassis'];
-if(!isset($_POST['cylindre'])) $cylindre = "N/A";
-else $cylindre                           = preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['cylindre'],FILTER_SANITIZE_NUMBER_INT));
+else $chassis=$_POST['chassis'];
+if(!isset($_POST['cylindre'])) $cylindre="N/A";
+else $cylindre=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['cylindre'],FILTER_SANITIZE_NUMBER_INT));
 $date_mec=$_POST['mec'];
-$valeur_neuve                            = preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_neuve'],FILTER_SANITIZE_NUMBER_INT));
-$valeur_venale                           = preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT));
-$nom_chauffeur                           = preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING));
+$valeur_neuve=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_neuve'],FILTER_SANITIZE_NUMBER_INT));
+$valeur_venale=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT));
+$nom_chauffeur=preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING));
 $categorie=$_POST['categorie'];
 echo $categorie."<br>";
 $Vehdao=new VehiculeDao();
@@ -136,11 +148,12 @@ $vehicule=$Vdao->getCatVehicule($voiture);
         }
 
 /***********************************INSERTION DE DECOMPTE *************************************/
-echo "taxe".$taxe                = $_POST['taxe1']."<br>";
-echo "fond de garantie".$fond    = $_POST['totalFG1']."<br>";
-echo "accessoire".$fond          = $_POST['accessoire']."<br>";
-echo "prime nette".$primeNette   = $_POST['totalPN1']."<br>";
-echo "prime totale".$primeTotale = $_POST['totalPT1']."<br>";
+
+echo "taxe".$taxe=$_POST['taxe1']."<br>";
+echo "fond de garantie".$fond=$_POST['totalFG1']."<br>";
+echo "accessoire".$fond=$_POST['accessoire']."<br>";
+echo "prime nette".$primeNette=$_POST['totalPN1']."<br>";
+echo "prime totale".$primeTotale=$_POST['totalPT1']."<br>";
 
 $Cptdao=new Decompte_primeDao();
 $usCpt=new Decompte_prime($unikId,$_POST['taxe1'],$fond=$_POST['accessoire'],$_POST['totalFG1'],$_POST['totalPN1'],$_POST['totalPT1']);
@@ -177,7 +190,7 @@ else
     echo " reduction donnee non inserer"."<br>";
 }
 $numPdao=new PoliceDao();
-$numP=$numPdao->getNumPolice(new Police('','','','','','',$_SESSION['matricule'],'','','','','',''),$categorie);
+$numP=$numPdao->getNumPolice($_SESSION['matricule'],$categorie);
 $c8=$numP->rowCount();
 if($numP==true)
 {
@@ -185,7 +198,7 @@ if($numP==true)
     {
         if($value['numPolice']=='')
         {
-            echo "<strong>il n'y a pas de police</strong><br>";
+            echo "<strong>il nya pas de police</strong><br>";
             $vaPol="4".$categorie."000001";;
             $valueNumP=$_SESSION['matricule']."/4".$categorie."000001";
 
@@ -209,8 +222,8 @@ date_default_timezone_set('UTC');
 $year=date("Y");
 /*********************************************************************************************/
 $usPolao=new PoliceDao();
-$pol=new Police('','','','','','',$_SESSION['matricule'],'','','','','','');
-$numF=$usPolao->getNumFacture($pol);
+// $pol=new Police('','','','','','',$_SESSION['matricule'],'','','','','','','');
+$numF=$usPolao->getNumFacture($_SESSION['matricule']);
 foreach ($numF as $item)
 {
     echo "facture =".$item['facture']."<br>";
@@ -227,29 +240,27 @@ else
     $numFacture=$vaPol."-".$year."-".$item['facture'];
 }
 /*****************************INSERTION DE LA POLICE*****************************************/
-//echo $dp=date("Y-m-d H:i:s");
-$dp           = date_create()->format('Y-m-d H:i:s');
-$attestation  = "NULL";
-$validation   = 1;
-if(isset($_POST['attestation']) && !empty($_POST['attestation'])){
-$attestation  = preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
- 
-    $validation=0;
-}
+
+// $dp = date_create()->format('Y-m-d');
+
+echo(date_create()->format('Y-m-d H:i:s'));
+$datePolice = date_create()->format('Y-m-d H:i:s');
+ $attestation=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
-    echo "toutes les insertions sont faites";
-    $usdao=new PoliceDao();
-    $us=new Police($unikId,$valueNumP,$dp,$attestation,$numFacture,$validation,$_SESSION['matricule'],$unikId,$unikId, $unikId,$unikId,$unikId,$unikId);
-    $ok=$usdao->insererPolice($us);
+    // echo "toutes les insertions sont faites<br>";
+    $usdao = new PoliceDao();
+    // $us = new Police($unikId,$valueNumP,$datePolice,$attestation,$attestation_cedeao,$numFacture,(int)$validation,(int)($_SESSION['matricule']),$insertedconducteur,$garantieGenerated,$vehiculeInsere,$decompteInseree,$reductioInseree,$asurreInserted);
+    $us=new Police($unikId,$valueNumP,$datePolice,$attestation,$_POST['attesta'],$numFacture,1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $ok    = $usdao->insererPolice($us);
     if($ok==true)
     {
-        echo 'Police insere'."<br>";
+        echo '<p style="backgroud:green">Police inseree</p>'."<br>";
         $c7=1;
     }
     else
     {
-        echo "Police non inserer"."<br>";
+        echo "<p style='background:red'>Police non inseree</p>"."<br>";
         if($c1 == 1)
         {
             $listAssure=$Assuredao->selectAssure(new Assure($unikId));
@@ -271,7 +282,7 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
         }
         if($c2 == 1)
         {
-            $listCond=$conddao->selectConducteur(new Conducteur_vehicule($unikId));
+            $listCond=$conddao->selectConducteur($usCond->getIdCond());
             $rowCond=$listCond->rowCount();
             if($rowCond==1)
             {
@@ -288,8 +299,8 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
         }
         if($c3==1)
         {
-            $listGant = $Gantdao->listPeriode(new Periode_garantie($unikId));
-            $rowGant  = $listGant->rowCount();
+            $listGant=$Gantdao->listPeriode(new Periode_garantie($unikId));
+            $rowGant=$listGant->rowCount();
             if($rowGant==1)
             {
                 $koGant=$Gantdao->deletePeriode(new Periode_garantie($unikId));
@@ -305,11 +316,11 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
         }
         if($c4==1)
         {
-            $listVeh = $Vehdao->selectVehicule(new Vehicule($unikId));
-            $rowVeh  = $listVeh->rowCount();
+            $listVeh=$Vehdao->selectVehicule(new Vehicule($unikId));
+            $rowVeh=$listVeh->rowCount();
             if($rowVeh==1)
             {
-                $koVeh = $Vehdao->deleteVehicule(new Vehicule($unikId));
+                $koVeh=$Vehdao->deleteVehicule(new Vehicule($unikId));
                 if($koVeh==true)
                 {
                     echo "supression Vehicule effectué<br>";
@@ -358,14 +369,15 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 }
 else
 {
-    $listAssure = $Assuredao->selectAssure(new Assure($unikId));
-    $rowAssure  = $listAssure->rowCount();
+    $listAssure=$Assuredao->selectAssure(new Assure($unikId));
+    $rowAssure=$listAssure->rowCount();
     if($rowAssure==1)
     {
         echo "<strong>le select passe</strong><br>";
-        $koAssure = $Assuredao->deleteAssure(new Assure($unikId));
+        $koAssure=$Assuredao->deleteAssure(new Assure($unikId));
         if($koAssure==true)
         {
+
             echo "supression Assure effectué<br>";
         }
         else
@@ -373,8 +385,8 @@ else
             echo "supression Assure non effectué<br>";
         }
     }
-    $listCond = $conddao->selectConducteur(new Conducteur_vehicule($unikId));
-    $rowCond  = $listCond->rowCount();
+    $listCond=$conddao->selectConducteur(new Conducteur_vehicule($unikId));
+    $rowCond=$listCond->rowCount();
     if($rowCond==1)
     {
         $koCond=$conddao->deleteConducteur(new Conducteur_vehicule($unikId));
@@ -388,8 +400,8 @@ else
         }
     }
 
-    $listGant = $Gantdao->listPeriode(new Periode_garantie($unikId));
-    $rowGant  = $listGant->rowCount();
+    $listGant=$Gantdao->listPeriode(new Periode_garantie($unikId));
+    $rowGant=$listGant->rowCount();
     if($rowGant==1)
     {
         $koGant=$Gantdao->deletePeriode(new Periode_garantie($unikId));
@@ -402,8 +414,8 @@ else
             echo "supression Periode non effectué<br>";
         }
     }
-    $listVeh = $Vehdao->selectVehicule(new Vehicule($unikId));
-    $rowVeh  = $listVeh->rowCount();
+    $listVeh=$Vehdao->selectVehicule(new Vehicule($unikId));
+    $rowVeh=$listVeh->rowCount();
     if($rowVeh==1)
     {
         $koVeh=$Vehdao->deleteVehicule(new Vehicule($unikId));
@@ -881,38 +893,36 @@ if ($c7==1)
    // header('Location: http://saham-app.com/controller/formulaire/?action=lister2&opli='.$unikId.'');
     print "
     <!doctype html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta http-equiv=\"refresh\" content=\"5; URL=javascript:window.open('http://google.com','_parent');\">
-    <meta name=\"viewport\"
-          content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
-    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
-    <title>Document</title>
-    <script>
-    function redict(){
-    var a ='../../controller/formulaire/?action=lister1&opli=$unikId';
-    window.location.href='../../controller/formulaire/?action=valider';
-    window.open(a);
-    }
-    </script>
-    <script>
-    function redict1(){
-    var a ='../../controller/formulaire/?action=lister2&opli=$unikId';
-    window.location.href='../../controller/formulaire/?action=valider';
-    window.open(a);
-    }
-    </script>
-    <script>
-    function redict2(){
-    var a ='../../controller/formulaire/?action=lister3&opli=$unikId';
-    window.location.href='../../controller/formulaire/?action=valider';
-    window.open(a);
-    }
-    </script>
+    <html lang=\"en\">
+        <head>
+        <meta charset=\"UTF-8\">
+        <meta http-equiv=\"refresh\" content=\"5; URL=javascript:window.open('http://google.com','_parent');\">
+        <meta name=\"viewport\"content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
+        <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
+        <title>Document</title>
+            <script>
+                function redict(){
+                    var a ='../../controller/formulaire/?action=lister1&opli=$unikId';
+                    window.location.href='../../controller/formulaire/?action=valider';
+                    window.open(a);
+                }
+            </script>
+            <script>
+            function redict1(){
+                var b ='../../controller/formulaire/?action=lister2&opli=$unikId';
+                window.location.href='../../controller/formulaire/?action=valider';
+                window.open(b);
+            }
+            </script>
+            <script>
+            function redict2(){
+                var b ='../../controller/formulaire/?action=lister2&opli=$unikId';
+                window.location.href='../../controller/formulaire/?action=valider';
+                window.open(b);
+            }
+            </script>
 </head>
 <body onload='redict();redict1();redict2()'>
-
 </body>
 </html>
     ";

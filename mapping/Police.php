@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: mouha
+ * User: mouhaf
  * Date: 06/08/2017
  * Time: 00:10
  */
@@ -12,6 +12,7 @@ class Police
     private $num_police;
     private $date_police;
     private $attestation;
+    private $attestation_cedeao;
     private $numFacture;
     private $validation;
     private $intermediaire;
@@ -23,12 +24,13 @@ class Police
     private $assure;
 
 
-    function __construct($id_police='',$num_police='',$date_police='',$attestation='',$numFacture='',$validation='',$intermediaire='',$conducteur_vehicule='',$periode_garantie='',$vehicule='',$decompte_prime='',$red_maj='',$assure='')
+    function __construct($id_police,$num_police,$date_police,$attestation,$attestation_cedeao,$numFacture,$validation,$intermediaire,$conducteur_vehicule,$periode_garantie,$vehicule,$decompte_prime,$red_maj,$assure)
     {
         $this->id_police=$id_police;
         $this->num_police=$num_police;
         $this->date_police=$date_police;
         $this->attestation=$attestation;
+        $this->attestation_cedeao=$attestation_cedeao;
         $this->numFacture=$numFacture;
         $this->validation=$validation;
         $this->intermediaire=$intermediaire;
@@ -74,7 +76,7 @@ class Police
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getIntermediaire()
     {
@@ -82,7 +84,7 @@ class Police
     }
 
     /**
-     * @param string $intermediaire
+     * @param int $intermediaire
      */
     public function setIntermediaire($intermediaire)
     {
@@ -186,7 +188,7 @@ class Police
     }
 
     /**
-     * @return string
+     * @return datetime
      */
     public function getDatePolice()
     {
@@ -194,7 +196,7 @@ class Police
     }
 
     /**
-     * @param string $date_police
+     * @param datetime $date_police
      */
     public function setDatePolice($date_police)
     {
@@ -235,7 +237,7 @@ class Police
 
 
     /**
-     * @return string
+     * @return int
      */
     public function getValidation()
     {
@@ -243,12 +245,28 @@ class Police
     }
 
     /**
-     * @param string $validation
+     * @param int $validation
      */
     public function setValidation(string $validation)
     {
         $this->validation = $validation;
     }
 
+    /**
+     *  @return string
+     */ 
+    public function getAttestation_cedeao()
+    {
+        return $this->attestation_cedeao;
+    }
 
+    /**
+     * @param string $validation
+     */ 
+    public function setAttestation_cedeao($attestation_cedeao)
+    {
+        $this->attestation_cedeao = $attestation_cedeao;
+
+        return $this;
+    }
 }

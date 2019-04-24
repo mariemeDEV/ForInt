@@ -1,11 +1,5 @@
-/*
-* creation d"une seule fonction pour pouvoir effectue les calculs
-* c'est ce script qui est appelé dans la page assurance
-* premiere etape:
-* recuperer les valeurs dont j'aurai besoins pour effectuer les calculs
-* la puissance, le cylindre, la valeur venale, la valeur neuve, le genre,le mois la date de mise en circulation etc.
-*
-**/
+
+document.getElementById('date_debut').valueAsDate = new Date();
 function CalculeBC()
 {
     var varDate       =   null;
@@ -15,6 +9,15 @@ function CalculeBC()
     var valeur_neuve  = document.getElementById('val_neuve').value;
     var genre_v       = document.getElementById('categorie').value;
     var mois          = document.getElementById('duree').value;
+    var x             = document.getElementById("energie").selectedIndex;
+    var option        = document.getElementsByTagName("option")[x].value
+    var nrj
+    if(option=="essence"){
+        nrj="Essence"
+    }if(option=="diesel"){
+        nrj="Diesel"
+    }
+    alert
     var xD            = document.getElementById("date_debut").value;
     var xF            = document.getElementById("date_fin").value;
     var xMEC          = document.getElementById("mec").value;
@@ -26,10 +29,9 @@ function CalculeBC()
     var ynew2         = new Date(DateDebut);
     var d             = new Date(DateDebut);
     var demain        = new Date();
-    document.getElementById("nom_conducteur").value=document.getElementById("nom_assure").value;
-    document.getElementById("prenom_conducteur").value=document.getElementById("prenom_assure").value;
-   // alert("demain"+demain.getTime()+"en date : "+demain);
-    //alert("choix"+ynew2.getTime()+"en date:  "+ynew2);
+    document.getElementById("nom_conducteur").value    = document.getElementById("nom_assure").value;
+    document.getElementById("prenom_conducteur").value = document.getElementById("prenom_assure").value;
+ 
 
     if((demain.getTime()-ynew2.getTime())>86400000)
    {
@@ -73,6 +75,8 @@ function CalculeBC()
     var today1       = new Date();
     var today2       = today1.getFullYear();
     var annee        = Number(DiffAn)+1; //a changer et recuperer l'année
+    var e = document.getElementById("energie");
+    var strUser = e.options[e.selectedIndex].value;
     var nrj          = document.getElementById('energie').value;
     var charge_utile = document.getElementById('charge').value;
 
@@ -107,9 +111,6 @@ function CalculeBC()
         document.getElementById("Checkbox101").checked  = true;
         $("#pack").fadeOut();
         $("#charge").fadeIn();
-       /* $("#places").fadeIn();
-        $("#places1").fadeOut();
-        $("#placeSup").fadeOut();*/
         document.getElementById("places").disabled          = false;
         document.getElementById("places1").disabled         = true;
         document.getElementById("pack").options[0].selected = true;
@@ -410,60 +411,50 @@ function CalculeBC()
             }
             var primebrute_prorata_1=parseInt(primebrute_1*(taux/100));
         }
-        if(genre_v==2)
-        {
-           // alert("checked2");
+        if(genre_v==2){
+            console.log(places+' '+varDate + ' ' + puissance + ' '+ cylindre+' '+valeur_venale+' '+valeur_neuve+' '+genre_v+' '+mois+' '+nrj+' '+charge_utile)
+
             if(nrj=='essence')
             {
-               // alert('energie='+nrj);
-
                 if(charge_utile=='Break')
                 {
-                 //   alert('charge_utile='+charge_utile);
                     if (puissance<=2) {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=56958     //prime brute
-                        // alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                     if(puissance==3 || puissance==4 || puissance==5 || puissance==6) {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=67644;     //prime brute
-                        // alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                     if (puissance==7 || puissance==8 ||puissance==9 ||  puissance==10)
                     {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=78974;     //prime brute
-                        //alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                     if (puissance==11 || puissance==12 || puissance==13 || puissance==14)
                     {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=113944;//prime brute
-                        //  alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                     if (puissance>=15 || puissance==16 || puissance==17 || puissance==18 || puissance==19 || puissance==20 || puissance==21 || puissance==22 || puissance==23 || puissance==24)
                     {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=146969;     //prime brute
-                        //  alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                     if (puissance>24 )
                     {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
                         var primebrute_1=174491;    //prime brute
-                        //  alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
                     }
                 }
                 if(charge_utile=='Moins de 3,5T')
                 {
-                  //  alert('charge_utile='+charge_utile);
                     if (puissance<=2) {
                         var lim_gant_ck1='ILLIMITE' // garantie
                         var franch_1=0;             //franchise
@@ -907,7 +898,8 @@ function CalculeBC()
         }
         if(genre_v==4)
         {
-            var placeSup=(document.getElementById('placeSup').value)*589;
+            console.log(places+' '+varDate + ' ' + puissance + ' '+ cylindre+' '+valeur_venale+' '+valeur_neuve+' '+genre_v+' '+mois+' '+nrj+' '+charge_utile)
+            
             var lim_gant_ck1='ILLIMITE' // garantie
             var franch_1=0;             //franchise
            // document.getElementById('puissance').style.backgroundColor='#ff1309';
@@ -915,16 +907,17 @@ function CalculeBC()
             {
                 if(places==4)
                 {
-                    if(puissance>=7 && puissance<=10)
-                    {
-                        //alert('allo papa');
-                        var primebrute_1=12772;    //prime brute
-                    }
-                    if (puissance>=11 && puissance<=14)
-                    {
-                       // alert("nooooooooo");
-                        var primebrute_1=17162;    //prime brute
-                    }
+                    alert("ok")
+                    // if(puissance>=7 && puissance<=10)
+                    // {
+                    //     //alert('allo papa');
+                    //     var primebrute_1=12772;    //prime brute
+                    // }
+                    // if (puissance>=11 && puissance<=14)
+                    // {
+                    //    // alert("nooooooooo");
+                    //     var primebrute_1=17162;    //prime brute
+                    // }
 
                    // var primebrute_1=34021;    //prime brute
                 }
@@ -1105,7 +1098,7 @@ function CalculeBC()
                     }
                 }
             }
-            var primebrute_prorata_1=parseInt(primebrute_1+placeSup);
+            var primebrute_prorata_1=parseInt(primebrute_1);
         }
 
        // var primebrute_prorata_1=parseInt(primebrute_1*(taux/100));
@@ -1168,14 +1161,7 @@ function CalculeBC()
             var  primebrute_prorata_3=parseInt(primebrute_3*(taux/100));
             //alert("pb"+primebrute_3);
         }
-        /* if (genre_v==5 )
-         {
-             var lim_gant_ck3=200000;
-             var franch_3=0;
-             var primebrute_3=3000;
-
-             //alert("pb"+primebrute_3);
-         }*/
+       
         if (genre_v==4 )
         {
             var lim_gant_ck3=0;
@@ -2176,7 +2162,3 @@ function myFunction() {
     $("#charge").fadeOut();
 }
 
-var test =  setTimeout(function()
-{
-    document.getElementById('errorMSG').style.display = "none";
-},10000);

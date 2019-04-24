@@ -20,8 +20,7 @@ class Vehicule{
 
 
 
-    function __construct($id_vehicule='',$marque='',$type='',$immatriculation='',$puissance='',$energie='',$charge_utile='',$places='',$genre='',$chassis='',
-                            $cylindre='',$date_mec='',$valeur_neuve='',$valeur_venale='',$nom_chauffeur='',$categorie='')
+    function __construct($id_vehicule='',$marque='',$type='',$immatriculation='',$puissance='',$energie='',$charge_utile='',$places='',$genre='',$chassis='',$cylindre='',$date_mec='',$valeur_neuve='',$valeur_venale='',$nom_chauffeur='',$categorie='')
     {
         $this->id_vehicule=$id_vehicule;
         $this->marque=$marque;
@@ -155,7 +154,7 @@ class Vehicule{
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getPlaces()
     {
@@ -163,7 +162,7 @@ class Vehicule{
     }
 
     /**
-     * @param string $places
+     * @param int $places
      */
     public function setPlaces($places)
     {
@@ -187,7 +186,7 @@ class Vehicule{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getCategorie()
     {
@@ -195,7 +194,7 @@ class Vehicule{
     }
 
     /**
-     * @param mixed $categorie
+     * @param int $categorie
      */
     public function setCategorie($categorie)
     {
@@ -235,7 +234,7 @@ class Vehicule{
     }
 
     /**
-     * @return mixed
+     * @return date
      */
     public function getDateMec()
     {
@@ -243,7 +242,7 @@ class Vehicule{
     }
 
     /**
-     * @param mixed $date_mec
+     * @param date $date_mec
      */
     public function setDateMec($date_mec)
     {
@@ -251,7 +250,7 @@ class Vehicule{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getValeurNeuve()
     {
@@ -259,7 +258,7 @@ class Vehicule{
     }
 
     /**
-     * @param mixed $valeur_neuve
+     * @param int $valeur_neuve
      */
     public function setValeurNeuve($valeur_neuve)
     {
@@ -267,7 +266,7 @@ class Vehicule{
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getValeurVenale()
     {
@@ -275,7 +274,7 @@ class Vehicule{
     }
 
     /**
-     * @param mixed $valeur_venale
+     * @param int $valeur_venale
      */
     public function setValeurVenale($valeur_venale)
     {
@@ -283,7 +282,7 @@ class Vehicule{
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getNomChauffeur()
     {
@@ -291,7 +290,7 @@ class Vehicule{
     }
 
     /**
-     * @param mixed $nom_chauffeur
+     * @param string $nom_chauffeur
      */
     public function setNomChauffeur($nom_chauffeur)
     {

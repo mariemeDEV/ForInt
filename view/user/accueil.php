@@ -30,8 +30,8 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <?php include "header.php"; ?>
         <main class="mdl-layout__content">
-             <hr></hr>
             <h1 class='top-title'>ASSURANCE AUTOMOBILE</h1>
+            <hr></hr>
             <div class="mdl-content">
                 <div class="mdl-grid animated fadeInLeft animation-delay-900">
                     <div class="mdl-cell mdl-cell---col">
@@ -51,9 +51,7 @@
                     </div>
                 </div>
             </div>
-           
         </main>
-
     </div>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </body>

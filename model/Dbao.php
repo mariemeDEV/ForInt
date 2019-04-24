@@ -9,7 +9,7 @@
        // $instance=new DBao();
     }
     public  function  getConnection(){
-        $dns="mysql:host=localhost;dbname=saham_app_1";
+        $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
         $user="root";
         $password="passer";
         try{

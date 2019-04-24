@@ -13,11 +13,11 @@ $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null
     //-Autre
 
 $categorie=$_POST['categorie'];
-echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
+// echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
+// echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
+// echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
+// echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+// echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
     //--modification police
     $us=new Police($id_police,'','','','','',$_SESSION['matricule'],'','','','','','',$categorie);
     $usdao->update($us);// creer si elle n y a pas
@@ -32,10 +32,10 @@ echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'
 
 
 //--------------------------------modification conducteur-----------------
-echo "nom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
-echo "prenom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
-echo "annee permis: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "duree conduite: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+// echo "nom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
+// echo "prenom conducteur: ".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_conducteur'],FILTER_SANITIZE_STRING))."<br>";
+// echo "annee permis: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['annee_permis'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+// echo "duree conduite: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['duree_conduite'],FILTER_SANITIZE_NUMBER_INT))."<br>";
 $conddao=new ConducteurVehiculeDao();
 $usCond=new Conducteur_vehicule($us->getConducteurVehicule(),
             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING)),
@@ -59,13 +59,13 @@ $heure_debut="08:00:00";
 
 $date_fin=substr($_POST['date_debut'],0, -6);
 $heure_fin="23:59:00";
-echo "date debut ".$date_debut."<br>";
-echo "heure debut  ".$heure_debut."<br>";
-echo "date fin ".$date_fin."<br>";
-echo "debut debut ".$heure_fin."<br>";
-echo "date debut: ".$_POST['date_debut']."<br>";
-echo "date fin: ".$_POST['demo']."<br>";
-echo "duree garantie: ".$_POST['duree_garantie']."<br>";
+// echo "date debut ".$date_debut."<br>";
+// echo "heure debut  ".$heure_debut."<br>";
+// echo "date fin ".$date_fin."<br>";
+// echo "debut debut ".$heure_fin."<br>";
+// echo "date debut: ".$_POST['date_debut']."<br>";
+// echo "date fin: ".$_POST['demo']."<br>";
+// echo "duree garantie: ".$_POST['duree_garantie']."<br>";
 $Gantdao=new Periode_garantieDao();
 $usGant=new Periode_garantie($us->getPeriodeGarantie(),$_POST['date_debut'],$_POST['demo'],$heure_debut,$heure_fin,$_POST['duree_garantie']);
 
@@ -117,11 +117,11 @@ $Vdao=new VehiculeDao('','','','','','','','','','','','','','','',$categorie);
             echo "VEHICULE non modifier"."<br>";
         }
 //---------------------Modification decompte-----------------------------
-echo "taxe".$taxe=$_POST['taxe1']."<br>";
-echo "fond de garantie".$fond=$_POST['totalFG1']."<br>";
-echo "accessoire".$fond=$_POST['accessoire']."<br>";
-echo "prime nette".$primeNette=$_POST['totalPN1']."<br>";
-echo "prime totale".$primeTotale=$_POST['totalPT1']."<br>";
+// echo "taxe".$taxe=$_POST['taxe1']."<br>";
+// echo "fond de garantie".$fond=$_POST['totalFG1']."<br>";
+// echo "accessoire".$fond=$_POST['accessoire']."<br>";
+// echo "prime nette".$primeNette=$_POST['totalPN1']."<br>";
+// echo "prime totale".$primeTotale=$_POST['totalPT1']."<br>";
 
 $Cptdao=new Decompte_primeDao();
 $usCpt=new Decompte_prime($us->getDecomptePrime(),$_POST['taxe1'],$fond=$_POST['accessoire'],$_POST['totalFG1'],$_POST['totalPN1'],$_POST['totalPT1']);
@@ -137,11 +137,11 @@ else
     echo "Decompte donnee non modifier"."<br>";
 }
 //-------------------Modification DE LA REDUCTION MAJORATION------------------------
-echo "bonus commerciale".$_POST['totalBC1']."<br>";
-echo "Reduction commerciale".$_POST['totalRC1']."<br>";
-echo "Reduction commerciale".$_POST['accessoire']."<br>";
-echo "Pourcentage Bonus BC".$_POST['chiffre3']."<br>";
-echo "Pourcentage Reduction RC".$_POST['sel1']."<br>";
+// echo "bonus commerciale".$_POST['totalBC1']."<br>";
+// echo "Reduction commerciale".$_POST['totalRC1']."<br>";
+// echo "Reduction commerciale".$_POST['accessoire']."<br>";
+// echo "Pourcentage Bonus BC".$_POST['chiffre3']."<br>";
+// echo "Pourcentage Reduction RC".$_POST['sel1']."<br>";
 
 $Rejdao=new RedMajDao();
 $usRej=new RedMaj($us->getRedMaj(),$_POST['chiffre3'],$_POST['totalBC1'],$_POST['sel1'],$_POST['totalRC1']);
@@ -411,7 +411,7 @@ else
         }
     }
     $listRej=$Rejdao->selectRedMaj(new RedMaj($unikId));
-    var_dump($Rejdao);
+    // var_dump($Rejdao);
     $rowRed=$listRej->rowCount();
     if($rowRed==1)
     {

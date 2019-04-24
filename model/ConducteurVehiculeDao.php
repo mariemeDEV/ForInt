@@ -9,9 +9,9 @@ class ConducteurVehiculeDao extends DBao
         return $this->executeMAJ($sql);
     }
 
-    public function selectConducteur(Conducteur_vehicule $us)
+    public function selectConducteur(string $conducteurId)
     {
-        $sql="select * from conducteur_vehicule where id_cond='".$us->getIdCond()."'";
+        $sql="select * from conducteur_vehicule where id_cond='".$conducteurId."'";
         return $this->executeSELECT($sql);
     }
 

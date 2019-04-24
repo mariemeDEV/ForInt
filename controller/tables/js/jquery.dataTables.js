@@ -1762,7 +1762,7 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "No data available in table" )
+			defaults.sEmptyTable === "Aucune donnée enregistrée." )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
@@ -11607,11 +11607,11 @@
 			 *      $('#example').dataTable( {
 			 *        "language": {
 			 *          "lengthMenu": 'Display <select>'+
+			 *            '<option value="5">5</option>'+
 			 *            '<option value="10">10</option>'+
+			 *            '<option value="15">15</option>'+
 			 *            '<option value="20">20</option>'+
-			 *            '<option value="30">30</option>'+
-			 *            '<option value="40">40</option>'+
-			 *            '<option value="50">50</option>'+
+			 *            '<option value="25">25</option>'+
 			 *            '<option value="-1">All</option>'+
 			 *            '</select> records'
 			 *        }
@@ -11637,7 +11637,7 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "loadingRecords": "Please wait - loading..."
+			 *          "loadingRecords": "Patientez - loading..."
 			 *        }
 			 *      } );
 			 *    } );
@@ -11751,12 +11751,12 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "zeroRecords": "No records to display"
+			 *          "zeroRecords": "Aucun enregistrement trouvé."
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "Aucun enregistrement correspondant."
 		},
 	
 	

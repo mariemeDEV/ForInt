@@ -19,13 +19,12 @@
         <label for="" id="Label5" style="position:absolute;left:4px;top:94px;width:65px;height:18px;line-height:18px;z-index:3;">Téléphone</label>
         <input type="text" id="Editbox5" style="position:absolute;left:133px;top:94px;width:222px;height:16px;line-height:16px;z-index:4;" name="Editbox1" value="<?php echo $telAssure; ?>"  spellcheck="false">
         <label for="" id="Label1" style="position:absolute;left:3px;top:13px;width:100px;height:21px;line-height:21px;z-index:5;">Prenom et Nom</label>
-
     </form>
     </div>
     <div id='wb_Form2' style='position:absolute;left:608px;top:170px;width:365px;height:130px;z-index:47;'>
         <form name='Form1' method='post' action='mailto:yourname@yourdomain.com' enctype='text/plain' id='Form2'>
 
-            <input type="text" id="Editbox3" style="position:absolute;left:132px;top:13px;width:220px;height:19px;line-height:19px;z-index:9;" name="Editbox1" value="<?php echo $prenomAssure." ".$nomAssure; ?>" spellcheck="false">
+            <input type="text" id="Editbox3" style="position:absolute;left:132px;top:13px;width:220px;height:19px;line-height:19px;z-index:9;"  name="Editbox1" value="<?php echo $prenomAssure." ".$nomAssure; ?>" spellcheck="false">
             <input type="text" id="Editbox4" style="position:absolute;left:132px;top:53px;width:220px;height:17px;line-height:17px;z-index:10;" name="Editbox2" value="<?php echo $adresseAssure; ?>" spellcheck="false">
             <input type="text" id="Editbox6" style="position:absolute;left:132px;top:94px;width:220px;height:16px;line-height:16px;z-index:11;" name="Editbox1" value="<?php echo $telAssure; ?>" spellcheck="false">
             <label  for=""     id="Label3"   style="position:absolute;left:0px;top:12px;width:96px;height:22px;line-height:22px;z-index:12;">Prenom et Nom</label>
@@ -65,8 +64,8 @@
     $anneeConducteur=null;$dureeConduite=null;
     foreach($conducteur as $ligne3)
     {
-        if($ligne3['annee_permis']=='') $anneeConducteur='&nbsp;'; else $anneeConducteur=$ligne3['annee_permis'];
-        if($ligne3['duree_conduite']=='') $dureeConduite='&nbsp;'; else $dureeConduite=$ligne3['duree_conduite']."&nbsp;Ans";
+        // if($ligne3['annee_permis']=='') $anneeConducteur='&nbsp;'; else $anneeConducteur=$ligne3['annee_permis'];
+        // if($ligne3['duree_conduite']=='') $dureeConduite='&nbsp;'; else $dureeConduite=$ligne3['duree_conduite']."&nbsp;Ans";
         echo "
         <input type=\"text\" id=\"Editbox14\" value=".$ligne3['nom_conducteur']."&nbsp;".$ligne3['prenom_conducteur']." style=\"position:absolute;left:130px;top:430px;width:176px;height:16px;line-height:16px;z-index:39;\" name=\"Editbox9\"  spellcheck=\"false\">
         <div id=\"wb_Heading6\" style=\"position:absolute;left:420px;top:430px;width:267px;height:27px;text-align:center;z-index:40;\">

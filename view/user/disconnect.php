@@ -15,4 +15,6 @@ session_unset ();
 session_destroy ();
 
 // On redirige le visiteur vers la page d'accueil
-header ('location: http://saham-app.com/');
+// header ('location: ./connect.php');
+require_once ('../../view/user/connect.php');
+

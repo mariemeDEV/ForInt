@@ -1,7 +1,6 @@
 <?php
 // Démarrage ou restauration de la session
 session_start();
-
 //ini_set("display_errors",0);error_reporting(0);
 require_once '../../model/IntermediaireDao.php';
 require_once '../../mapping/Intermediaire.php';
@@ -11,25 +10,24 @@ require_once '../../mapping/Police.php';
 require_once '../../model/PoliceDao.php';
 require_once '../../mapping/SchemaData.php';
 require_once '../../model/SchemaDataDao.php';
-
 if(isset($_GET['action']))
 {
     switch ($_GET['action']) {
         case 'connect':
             require_once('../../view/user/connect.php');
-            break;
+        break;
         case 'disconnect':
             header('Location: ../../view/user/disconnect.php');
-            break;
+        break;
         case 'lister':
           $usdao=new IntermediaireDao();
           $resultat=$usdao->listUser();
           require_once('../../view/user/listeuser.php');
-          break;
+        break;
         case 'profil':
             $usdao=new IntermediaireDao();
             $us=new Intermediaire($_SESSION['matricule'],0,0,0,0,0,0);
-            $resultat=$usdao->getUserByMat($us);
+            $resultat=$usdao->getUserByMat($_SESSION['matricule']);
             foreach ($resultat as $item)
             {
                 $nom       = $item['prenom']." ".$item['nom'];
@@ -40,27 +38,24 @@ if(isset($_GET['action']))
                 $mdp       = $item['mdp'];
             }
             require_once('../../view/user/profil.php');
-            break;
+        break;
         default:
             require_once('../../view/error.php');
-            break;
+        break;
     }
 }
-
 if(isset($_POST['action'])){
-    switch($_POST['action'])  {
+    switch($_POST['action']) {
         case 'connect':
-               // echo extract($_POST);
                   $usdao = new IntermediaireDao();
                   $mdp   = filter_var($_POST['mdp'],FILTER_SANITIZE_STRING);
                   $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
                   if(!filter_var($email,FILTER_VALIDATE_EMAIL)==false)
                   {
                       $us=new Intermediaire(0,0,0,0,0,$email,0);
-                      $resultat=$usdao->getUserByMail($us);
+                      $resultat=$usdao->getUserByMail($_POST['email']);
                       while($row=$resultat->fetch())
                       {
-
                           $mail     = $row[5];
                           $password = $row[6];
                           $adresse  = $row[3];
@@ -68,7 +63,6 @@ if(isset($_POST['action'])){
                           $activCpt = $row[8];
                           $mat      = $row[0];
                       }
-
                       if($resultat==true)
                       {
                           if (!isset($mail) || !isset($mdp))
@@ -77,7 +71,15 @@ if(isset($_POST['action'])){
                           }
                           else
                           {
-                              if ($mail==$email && password_verify($mdp, $password) ) {
+                              if ($mail==$email && password_verify($mdp, $password))  {
+                                  echo("ça rentre<br>");
+                                //   echo($password);
+                                //   $hash = '$2y$07$BCryptRequires22Chrcte/VlQH0piJtjXl.0t1XkA8pw9dMXTpOq';
+                                //     if (password_verify($_POST['mdp'], $password)) {
+                                //         echo 'Password is valid!';
+                                //     } else {
+                                //         echo 'Invalid password.';
+                                //     }
                                   if($profil==2)
                                   {
                                       if($activCpt==1 )
@@ -130,12 +132,12 @@ if(isset($_POST['action'])){
                   {
                     echo '<body onLoad="alert(\'Adresse email non valide...\')">';
                   }
-            require_once'../../view/user/connect.php';
+            require_once('../../view/user/connect.php');
             break;
         case 'pmodif'://modification du mot de passe
             $usdao=new IntermediaireDao();
             $us=new Intermediaire( $_SESSION['matricule'],0,0,0,0, 0,  0);
-            $resultat=$usdao->getUserByMat($us);
+            $resultat=$usdao->getUserByMat($_SESSION['matricule']);
             foreach ($resultat as $item)
             {
                 $pwd=$item['mdp'];//je récupere le mot  de passe de la base de données
@@ -165,7 +167,7 @@ if(isset($_POST['action'])){
             }
             break;
         default:
-            require_once'../../view/error.php';
+            require_once('../../view/error.php');
             break;
 }
 }

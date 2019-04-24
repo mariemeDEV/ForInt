@@ -11,14 +11,14 @@
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
-    header ('location: http://saham-app.com/');
+    header ('location: ./');
 
 }
 if(time()- $_SESSION['timestamp']>600)
 {
     echo"<script>alert('15 Minutes over!');</script>";
     unset($_SESSION['username'],$_SESSION['password'],$_SESSION['matricule']);
-    header ('location: http://saham-app.com/');
+    header ('location: ./');
     exit;
 }
 else {
@@ -50,17 +50,15 @@ else {
                 <?php
                  if(isset($_GET['err']))
                  {
-                     if($_GET['err']=="1np0")
-                     {
+                    if($_GET['err']=="1np0"){
                 echo "
-                                 <div class=\"mdl-cell mdl-cell--12-col\" id='errorMSG' >
-                                    <div class=\"col-lg-8\" style='padding-left: 25%'>
-                                        <div class=\"alert alert-danger\" role=\"alert\" >
-                                            <h6>Les mots de passes ne sont pas conformes</h6>
-                                        </div>
-                                    </div>
-                                 </div>
-                            ";
+                    <div class=\"mdl-cell mdl-cell--12-col\" id='errorMSG' >
+                    <div class=\"col-lg-8\" style='padding-left: 25%'>
+                        <div class=\"alert alert-danger\" role=\"alert\" >
+                            <h6>Les mots de passes ne sont pas conformes</h6>
+                        </div>
+                    </div>
+                    </div>";
                 }
                      if($_GET['err']=="2np0")
                      {
@@ -89,59 +87,55 @@ else {
                  }
                 ?>
                 <div class="mdl-cell mdl-cell--8-col" style="margin: 0 auto">
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp" id="compteM" style="width: 100%;height: 100%;">
+                    <div class="demo-card-square mdl-card mdl-shadow--2dp account-card" id="compteM" style="width: 100%;height: 100%;background: #062945 !important;color: #f7ba00 !important;">
 
                         <div class="mdl-cell mdl-cell--12-col" >
                             <div class="col-lg-4">
-                                <img src="../../img/contacts.png" style="width: 60%;">
+                                <img src="../../img/contacts.png" style="width: 60%;margin-top: 42px;">
                             </div>
                             <div class="col-lg-8" style="padding-top: 25px">
                                 <table class="table" style="font-size: 18px">
-
                                     <tbody>
-                                    <tr>
+                                    <tr style="font-size: 14px;">
                                         <td>Matricule</td>
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $matricule ?></td>
                                     </tr>
-                                    <tr>
+                                    <tr style="font-size: 14px;">
                                         <td>Prenom et nom</td>
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $nom ?></td>
                                     </tr>
-                                    <tr>
+                                    <tr style="font-size: 14px;">
                                         <td>Adresse</td>
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $adresse ?></td>
                                     </tr>
-                                    <tr>
+                                    <tr style="font-size: 14px;">
                                         <td>Telephone</td>
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $tel ?></td>
                                     </tr>
-                                    <tr>
-                                        <td>Email</td>
+                                    <tr style="font-size: 14px;">
+                                        <td>Nom d'utilisateur</td>
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $email ?></td>
                                     </tr>
-                                  <!--  <tr>
-                                        <td>mdp</td>
+                                    <!--tr>
+                                        <td>Mot de passe</td>
                                         <td>&nbsp;</td>
-                                        <td style="text-align: right"><?php //echo $mdp ?></td>
-                                    </tr> !-->
+                                        <td style="text-align: right"><?php// echo $mdp ?></td>
+                                    </tr-->
                                     </tbody>
-
                                 </table>
-
                             </div>
                             <div style="padding-left: 50%">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn btn-primary btn-lg passWord" data-toggle="modal" data-target="#myModal" style="background: #f7ba00; color: #062945 !important;padding: 5px; position: relative;top:-6px">
                                     Modifier Mot de passe
                                 </button>
                             </div>
                             <!-- Accent-colored raised button with ripple -->
-
                         </div>  
                 </div>
 

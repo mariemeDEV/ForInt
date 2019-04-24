@@ -8,7 +8,7 @@ body{
 .panel-info>.panel-heading {
     background-color: #062945 !important ;
     border: 1px solid;
-    color: #f7ba00!important;
+    color: #f7ba00 !important;
     font-weight: bolder !important;
     border-radius: 5px;
 }
@@ -22,9 +22,9 @@ body{
     color:#f7ba00;
     text-decoration:underline !important
 }
-.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab, .validate-btn {
-    background:#062945 !important;
-    color: #f7ba00 !important;
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+    background:#f7ba00 !important;
+    color: #062945  !important;
     font-size: 10px;
     margin-left: 56px;
     font-size: 12px;
@@ -33,8 +33,30 @@ body{
 }
 .buttons{
     width: 40%;
-    margin-left: 80vh;
-    margin-top:-20px !important
+    position: absolute;
+    top: 533px;
+    left: 798px;
+    z-index: 1;
+}
+.nb{
+    background: #062944;
+    width: 24%;
+    margin-left: 18px;
+    margin-top: -23px;
+    border: 2px solid;
+    color: #f7bb3d;
+    font-weight: bolder !important;
+}
+.buttons .validate-btn{
+    background:#f7ba00 !important;
+    color: #062945  !important;
+    font-weight:bold
+}
+.buttons .mdl-button{
+    font-size: 12px !important;
+}
+.validate-btn[disabled]{
+    background:#ebece4 !important
 }
 .mdl-layout__header .mdl-layout__drawer-button{
     background: #f7ba00 !important;
@@ -73,7 +95,8 @@ tbody input[type="text"]{
     font-weight: bolder;
     width: 122px;
     height: 28px;
-    text-align: center !important
+    text-align: center !important;
+    font-size:13px !important
 }
 .taxes-sup{
     width: 47px !important
@@ -85,5 +108,257 @@ tbody input[type="text"]{
 }
 .mdl-layout__header-row .mdl-navigation {
     margin-right: -29px !important
-   
+}
+#incendie-text{
+    position: relative;
+    left: 15px;
+    top: 4px;
+}
+#totalPT{
+    width: 108px !important;
+    background: red !important;
+    color: #062944;
+    border: 2px solid green;
+}
+.t_text{
+    color:red !important
+}
+#totalPN{
+    width: 72px !important;
+    background: #00800057 !important;
+    border: 2px solid #062944;
+}
+.printer{
+    color:#06273a !important
+}
+
+.material-icons{
+    color:#062944 !important
+}
+.paginate_button{
+    background: #062945 !important;
+    padding: 10px;
+    position: relative;
+    top: 24px;
+    left: 0 !important;
+    color: #f7ba00;
+    cursor:pointer
+}
+.paginate_button :hover{
+    color:#f7ba00 !important
+}
+.dataTables_paginate{
+    margin-top: 5px !important
+}
+.dataTables_info{
+    width: 30% !important;
+    position: relative;
+    top: 46px;
+    left: 91em;
+    color: #06273a !important;
+    font-weight: bold !important;
+    font-size: 12px;    
+}
+
+.table{
+	background: #f7ba0021 !important;
+	color: #062945;
+    padding:16px !important;
+    width: 100% !important;
+    margin: auto;
+}
+.userDataTab{
+     margin-top: 13px !important;
+}
+.details_tab{
+     margin-top: 0 !important
+}
+.dataTables_wrapper{
+	padding:22px !important
+}
+.dataTables_length{
+    width: 40%;
+    position: relative;
+    top: -18px;
+    left: 6px;
+    display:none !important
+}
+.dataTables_length select{
+	width: 186px !important;
+    height: 30px !important;
+    border: 1px solid #062945 !important;
+    border-radius:5px
+}
+.dataTables_length {
+    width: 40% !important;
+    position: relative !important;
+    top: 4px !important;
+    left: 6px !important;
+}
+/* .dataTables_filter{
+	position: relative;
+	 top: -17px;
+    right: -544px;
+}
+.dataTables_filter input{
+	    height: 30px !important;
+    border: 1px solid #062945;
+    border-radius: 5px
+} */
+.production{
+    background: #f5f0db !important;
+    margin-top: 86px;
+    height: 359px !important;
+    padding: 31px 30px 0 30px !important
+
+}
+.download{
+    margin-top: 72px !important;
+    background: #062945 !important;
+    color: #f7ba00 !important;
+    font-weight:bold;
+    position: relative;
+    top: -51px !important;
+    left: 13px;
+}
+.alert-info{
+    color: #f7ba00 !important;
+    background: #062944;
+    font-weight:bold;
+    width: 101% !important
+
+}
+.action-title{
+    position: relative;
+    top: -24px;
+    text-decoration: underline;
+}
+.periode-inputs{
+    margin-left: 5%;
+    border-radius: 5px;
+    border: 1px solid #062944;
+}
+.modifier{
+    background: #062944;
+    color: #f7ba00 !important;
+    font-weight:bold;
+    border:none
+}
+.addIntermediaire{
+   /* background:red !important;  */
+   margin-top: 53px !important ;
+   padding-left: 5px!important;
+   position: relative;
+    top: -57px;
+}
+.btn_new{
+    position: relative;
+    padding: 5px;
+    left: 1273px !important;
+    top: 65px !important;
+    border: none;
+    /* border-radius: 8px; */
+    background: #062944;
+    color: #f7bb3d;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer !important;
+}
+input{
+    border:1px solid #062944 !important
+}
+
+.thead-inverse th {
+    color: #fff;
+    background-color: #062944;
+    color: #f7bb3d;
+    font-weight: bold;
+    font-size: 14px;
+}
+.blue-text {
+    color: #062843 !important;
+}
+
+/* #DataTables_Table_0_filter{
+    height: 26px !important;
+    position: relative;
+    left: 526px;
+    top: 11px !important;
+} */
+#DataTables_Table_0_wrapper{
+    margin-top: -56px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #f1f1f1 !important;
+    margin: auto;
+    padding: 17px;
+    border: 1px solid #888;
+    width: 46%;
+    height: 70%;
+    margin-top: -13px;
+  }
+  .modal-content .row {
+    padding: 37px !important;
+    margin-top: 84px !important
+}
+  .cotent_ajout{
+    height: 112% !important;
+    margin-top: -71px !important
+
+  }
+  .modal-content .row{
+    padding: 37px !important
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px 15px 0 0;
+
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .contenu 
+{
+ background-color:#FFFFFF;
+ border:1px solid #999999;
+ cursor:default;
+ display:none;
+ margin-top: 15px;
+ position:absolute;
+ text-align:left;
+ width:400px;
+ z-index:50;
+ padding: 25px 25px 20px;
+}
+a.selected {
+ background-color:#1F75CC;
+ color:white;
+ z-index:100;
 }

@@ -16,41 +16,34 @@ class IntermediaireDao extends Dbao{
         return $this->executeSELECT($sql);
     }
 
-    public  function getUserByMail(Intermediaire $us){
-        $sql="SELECT * from intermediaire where email='".$us->getEmail()."'";
-
+     public  function getUserByMail(string $email){
+        $sql="SELECT * from intermediaire where email='".$email."'";
         return $this->executeSELECT($sql);
     }
 
    public  function insererUser(Intermediaire $us){
        $sql="insert into intermediaire values ('".$us->getMatricule()."','".$us->getNom()."','".$us->getPrenom()."',
             '".$us->getAdresse()."','".$us->getTel()."','".$us->getEmail()."','".$us->getMdp()."','".$us->getRole()."','".$us->getActived()."')";
-
        return $this->executeMAJ($sql);
    }
 
-    public  function getUserByMat(Intermediaire $us){
-        $sql="SELECT * from intermediaire WHERE  matricule='".$us->getMatricule()."'";
+    public  function getUserByMat(int $matricule){
+        $sql="select * from intermediaire where matricule='".$matricule."'";
         return $this->executeSELECT($sql);
     }
 
     public  function listUser(){
         $sql="select * from intermediaire  WHERE `role`=2";
-
         return $this->executeSELECT($sql);
     }
     public  function getInterByMat(Intermediaire $us){
-        $sql="
-                SELECT * from intermediaire where matricule='".$us->getMatricule()."'";
+        $sql="SELECT * from intermediaire where matricule='".$us->getMatricule()."'";
 
         return $this->executeSELECT($sql);
     }
     public function modifUser(Intermediaire $us)
     {
-        $sql="UPDATE `intermediaire` SET `nom` = '".$us->getNom()."', `prenom` = '".$us->getPrenom()."',
-         `adresse` = '".$us->getAdresse()."', `tel` = '".$us->getTel()."', `email` = '".$us->getEmail()."',
-          `mdp` = '".$us->getMdp()."'
-         WHERE `intermediaire`.`matricule` = '".$us->getMatricule()."'";
+        $sql="UPDATE `intermediaire` SET `nom` = '".$us->getNom()."', `prenom` = '".$us->getPrenom()."',`adresse` = '".$us->getAdresse()."', `tel` = '".$us->getTel()."', `email` = '".$us->getEmail()."'WHERE `intermediaire`.`matricule` = '".$us->getMatricule()."'";
         return $this->executeMAJ($sql);
     }
     public function modifMdp(Intermediaire $us)
@@ -64,6 +57,14 @@ class IntermediaireDao extends Dbao{
         $sql="UPDATE `intermediaire` SET `actived` = '".$us->getActived()."' WHERE `intermediaire`.`matricule` = '".$us->getMatricule()."'";
         return $this->executeMAJ($sql);
 
+    }
+    public function getContrats(Intermediaire $intermediaire){
+        $sql="SELECT p.id_police, p.num_police, p.date_police,p.attestation,p.attestation_cedeao,p.numFacture, i.matricule,i.prenom,i.nom,i.adresse,i.tel, a.nom_assure, a.prenom_assure,a.adresse_assure, a.tel_assure from police p
+        JOIN intermediaire as i on p.intermediaire_matricule=i.matricule
+        JOIN assure as a on (p.assure_id_assure=a.id_assure) 
+        where p.intermediaire_matricule='".$intermediaire->getMatricule()."'";
+  return $this->executeSELECT($sql);
+        echo("ok");
     }
 
 }

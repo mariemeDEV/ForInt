@@ -10,6 +10,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <title>Saham Assurance SN</title>
     <meta name="viewport" content="initial-scale=1">
@@ -19,42 +20,35 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" rel="stylesheet"">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css">
+    <link rel="stylesheet" href="../../view/style/style_aff.css">
 </head>
-<body onchange="CalculeBC()"♥>
+
+<body onchange="CalculeBC()"♥">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header ">
     <?php include "header.php";?>
     <main class="mdl-layout__content">
         <div class="mdl-content" style="padding-top: 100px;">
             <div class="container">
                 <div class="row">
-                    <div class="col ">
-
-                    </div>
+                    <div class="col "></div>
                     <div class="col">
-
                         <!-- Card -->
-                        <div class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
-
+                        <div class="card card-image" style="background-image: url(../../img/admin.png);background-size:cover;background-repeat:no repeat;width:200%;margin-left: -161px;">
                             <!-- Content -->
                             <div class="text-white text-center d-flex align-items-center rgba-black-strong py-2 px-2">
                                 <div>
-                                    <h5 class="pink-text"><i class="fa fa-pie-chart"></i> Administrateur<br></h5>
-
-                                    <h3 class="card-title pt-2"><strong>Gestion des utilisateurs</strong></h3>
-
+                                    <h5 class="pink-text" style="    color: #f7ba00 !important;text-align: center;    position: relative;left: 13em;"><i class="fa fa-pie-chart"></i> Administrateur<br></h5>
                                     <p><br><br><br></p>
-                                    <a class="btn btn-pink" href="./controller/admin/?action=ajout"><i class="fa fa-clone left"></i> Continuer</a>
+                                    <a class="btn btn-md" style="background: #062945;color:#f7ba00 !important;font-weight: bold;" href="../../controller/admin/?action=ajout"><i class="fa fa-clone left"></i> Continuer</a>
                                 </div>
                             </div>
                             <!-- Content -->
                         </div>
                         <!-- Card -->
-
                     </div>
-                    <div class="col">
-                    </div>
+                    <div class="col"></div>
                 </div>
             </div>
 

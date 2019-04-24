@@ -8,15 +8,8 @@
     <link href="../../view/style/css_etats3.css" rel="stylesheet">
 </head>
 <body onload="write.print()">
-
-
-
-
-
-
-
     <div id="wb_Text2" style="position:absolute;left:95px;top:254px;width:263px;height:160px;z-index:104;">
-        <div  ><span style="color:#000000;font-family:Arial;font-size:12px;"> <?php echo $prenomAssure." "."$nomAssure";  ?></span>
+        <div><span style="color:#000000;font-family:Arial;font-size:12px;"> <?php echo $prenomAssure." "."$nomAssure";  ?></span>
             <br><br><span style="color:#000000;font-family:Arial;font-size:8px;"><br><br>
             &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </span>
             <span style="color:#000000;font-family:Arial;font-size:10px;"> </span>&nbsp;&nbsp;

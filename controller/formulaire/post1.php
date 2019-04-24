@@ -232,11 +232,13 @@ else
 //echo $dp=date("Y-m-d H:i:s");
 $dp = date_create()->format('Y-m-d H:i:s');
 $attestation=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
+$cedeao=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attesta'],FILTER_SANITIZE_NUMBER_INT));
+
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
     echo "toutes les insertions sont faites";
     $usdao=new PoliceDao();
-    $us=new Police($unikId,$valueNumP,$dp,$attestation,$numFacture,1,$_SESSION['matricule'],$unikId,$unikId, $unikId,$unikId,$unikId,$unikId);
+    $us=new Police($unikId,$valueNumP,$dp,$attestation,$cedeao,$numFacture,1,$_SESSION['matricule'],$unikId,$unikId, $unikId,$unikId,$unikId,$unikId);
     $ok=$usdao->insererPolice($us);
     if($ok==true)
     {
@@ -873,7 +875,7 @@ if ($c7==1)
         }
     }
     //header('Location: http://localhost/saham_4/controller/formulaire/?action=lister1&opli='.$unikId.'');
-    /*   print "
+    print "
        <!doctype html>
    <html lang=\"en\">
    <head>
@@ -896,10 +898,10 @@ if ($c7==1)
 
    </body>
    </html>
-       ";*/
+       ";
 }
 else{
-    //  header('Location: http://saham-app.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
+    header('Location: http://saham-app.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
 }
 
 //--------------------------------
