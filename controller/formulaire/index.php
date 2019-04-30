@@ -138,7 +138,7 @@ if(isset($_GET['action']))
             //--------------------------------------
             $Cvao=new ConducteurVehiculeDao();
             $cond=new Conducteur_vehicule($_GET['id'],'','','','');
-            $conducteur=$Cvao->selectConducteur($cond);
+            $conducteur=$Cvao->selectConducteur($_GET['id']);
             //-------------------------------------
             //-------------------------------------
             $Vdao=new VehiculeDao();
@@ -477,7 +477,6 @@ if(isset($_GET['action']))
                 $adresseInt=$ligne1['adresse'];
                 $telInt=$ligne1['tel'];
             }
-            //--------------------------------------
             $usPolao=new PoliceDao('','','','','','','','','','','','','','');
             $pol=new Police($_GET['opli'],'','','','','','','','','','','','','');
             $podice=$usPolao->selectPolice($pol);
@@ -854,7 +853,6 @@ if(isset($_GET['action']))
                 $totale         =$ligne19['prime_totale'];
                 $accessoire     =$ligne19['accessoire'];
             }
-            //-------------------------------------
             require_once '../../view/user/etats3.php';
             break;
         case 'lister2':
@@ -892,6 +890,7 @@ if(isset($_GET['action']))
                 $adresseAssure=$ligne3['adresse_assure'];
                 $telAssure=$ligne3['tel_assure'];
             }
+            
             //-------------------------------------
             $pdao=new Periode_garantieDao();
             $gant=new Periode_garantie($_GET['opli'],'','','','');
@@ -1644,7 +1643,7 @@ if(isset($_GET['action']))
             require_once '../../view/user/etatCedeao2.php';
             break;
         default:
-            require_once'../../view/error.php';
+            require_once '../../view/error.php';
             break;
     }
 }
@@ -1680,9 +1679,9 @@ if(isset($_POST['action']))
         case 'lister':
             require_once('../../view/user/etats.php');
         break;
-        case 'lister1':
-            require_once('../../view/user/etats3.php');
-        break;
+        // case 'lister1':
+        //     require_once('../../view/user/etats3.php');
+        // break;
         case 'Telecharger':
         $debut     = new DateTime($_POST['debut']);
         $fin       = new DateTime($_POST['fin']);

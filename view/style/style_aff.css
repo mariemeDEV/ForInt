@@ -1,8 +1,8 @@
 body{
     margin:0;
     padding:0;
-    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-    background-image: url("../../img/OE9S3V0-min.jpg");
+    background-size: cover; /* pour anciens Chrome et Safari */
+    /* background-image: url("../../img/OE9S3V0-min.jpg"); */
     font-family: 'Ubuntu', sans-serif;
 }
 .panel-info>.panel-heading {
@@ -54,6 +54,8 @@ body{
 }
 .buttons .mdl-button{
     font-size: 12px !important;
+    width: 104px !important
+
 }
 .validate-btn[disabled]{
     background:#ebece4 !important
@@ -93,7 +95,7 @@ label {
 }
 tbody input[type="text"]{
     font-weight: bolder;
-    width: 122px;
+    width: 90px;
     height: 28px;
     text-align: center !important;
     font-size:13px !important
@@ -116,7 +118,7 @@ tbody input[type="text"]{
 }
 #totalPT{
     width: 108px !important;
-    background: red !important;
+    background: #89bd50;
     color: #062944;
     border: 2px solid green;
 }
@@ -125,7 +127,7 @@ tbody input[type="text"]{
 }
 #totalPN{
     width: 72px !important;
-    background: #00800057 !important;
+    background: #89bd50 !important;
     border: 2px solid #062944;
 }
 .printer{
@@ -148,7 +150,7 @@ tbody input[type="text"]{
     color:#f7ba00 !important
 }
 .dataTables_paginate{
-    margin-top: 5px !important
+    margin-top: -22px !important
 }
 .dataTables_info{
     width: 30% !important;
@@ -161,11 +163,11 @@ tbody input[type="text"]{
 }
 
 .table{
-	background: #f7ba0021 !important;
+	/* background: #f7ba0021 !important;
 	color: #062945;
     padding:16px !important;
     width: 100% !important;
-    margin: auto;
+    margin: auto; */
 }
 .userDataTab{
      margin-top: 13px !important;
@@ -236,7 +238,8 @@ tbody input[type="text"]{
 .periode-inputs{
     margin-left: 5%;
     border-radius: 5px;
-    border: 1px solid #062944;
+    border: 1px solid #1382d0 !important
+
 }
 .modifier{
     background: #062944;
@@ -265,7 +268,7 @@ tbody input[type="text"]{
     cursor: pointer !important;
 }
 input{
-    border:1px solid #062944 !important
+    border:1px solid #bbcedc!important
 }
 
 .thead-inverse th {

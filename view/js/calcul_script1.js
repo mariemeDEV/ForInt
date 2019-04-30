@@ -5,16 +5,9 @@ function removeOptions(){
 }
 document.getElementById('date_debut').valueAsDate = new Date();
 
-
-function checkDate(){
-    var xD   = document.getElementById("date_debut").value;
-    var DateDebut = xD.substring(0, 10);
-    var ynew3     = new Date(DateDebut);
-        if(ynew3<new Date()){
-        alert("La date d'effet ne peut pas être antérieure à la date d'aujord'hui.")
-        document.getElementById('date_debut').valueAsDate = new Date();
-        }
-}
+// $('#dateEffetbtn').click(function(){
+//     $('#effetModal').fadeIn()
+// })
 
 function numberWithCommas(x) {
     x = x.toString();
@@ -24,7 +17,6 @@ function numberWithCommas(x) {
       return x;
 }
 
-console.log(numberWithCommas(50000000))
 
 function CalculeBC(){
     var varDate       = null;
@@ -34,10 +26,23 @@ function CalculeBC(){
     var valeur_neuve  = document.getElementById('val_neuve').value;
     var mois          = document.getElementById('duree').value;
     var places        = document.getElementById('places').value;
-    // console.log(places)
-    // alert("ok")
     if(valeur_venale>valeur_neuve){
-        alert("La valeur vénale ne peut etre ne peut etre supérieure à la valeur à neuve")
+        var modal_values = document.getElementById("valeursModal");
+        var span         = document.getElementsByClassName("close")[0];
+        var inputs       = document.getElementById("hidden-caracteristiques");
+            inputs.style.display='none'
+            modal_values.style.display = "block";
+            span.onclick = function() {
+                modal_values.style.display = "none";
+                inputs.style.display='block'
+            }
+            window.onclick = function(event) {
+                if (event.target == modal_values) {
+                    modal_values.style.display = "none";
+                    inputs.style.display='block'
+                }
+            }
+        document.getElementById('date_debut').valueAsDate = new Date();
         document.getElementById('val_venale').value=""
         document.getElementById('val_venale').autofocus
         document.getElementById('val_neuve').value=""
@@ -136,8 +141,9 @@ function CalculeBC(){
         document.getElementById('genre').value         = ' PAPP';
         document.getElementById("Checkbox10").checked  = true;
         document.getElementById("Checkbox101").checked = true;
-
+        $("#labelPack").fadeOut();
         $("#pack").fadeOut();
+        $("#labelChargeUtile").fadeOut();
         $("#charge").fadeOut();
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
@@ -146,12 +152,6 @@ function CalculeBC(){
     }
     if (genre_v==2)
     {
-        // removeOptions()
-        // var genre2_places = [2,3,4,5]
-        // for(var j=0; j<genre2_places.length; j++){
-        //     document.getElementById("places").innerHTML+="<option value='" + genre2_places[j] + "'>"+genre2_places[j] + "</option>"
-        //     console.log("<option value='" + genre2_places[j] + "'>"+genre2_places[j] + "</option>")
-        // }
         document.getElementById('genre2').value = 'Charge Utile';
         document.getElementById("Checkbox2").checked = true;//recours des tiers et incendie
         document.getElementById("Checkbox265").checked = true;//
@@ -160,13 +160,14 @@ function CalculeBC(){
         document.getElementById("Checkbox10").checked = false;
         document.getElementById("Checkbox101").checked = false;
         document.getElementById("Checkbox10").value = 0
-
+        $("#labelPack").fadeOut();
         $("#pack").fadeOut();
-        $("#charge").fadeIn();
-        $("#pack").fadeOut();
+        $("#labelChargeUtile").fadeIn();
         $("#charge").fadeIn();
         $("#places1").fadeIn();
         $("#placeSup").fadeIn();
+        $('#cylindreCol').fadeIn();
+
 
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
@@ -191,7 +192,7 @@ function CalculeBC(){
         document.getElementById("Checkbox101").checked = false;
         document.getElementById("Checkbox7_1").disabled = true;
         document.getElementById("Checkbox7_1").checked = false;
-
+        $("#labelPack").fadeOut();
         $("#pack").fadeOut();
         $("#charge").fadeIn();
         document.getElementById("places").disabled=false;
@@ -225,8 +226,6 @@ function CalculeBC(){
     }
     if (genre_v==5)
     {
-    //    removeOptions()
-    //     document.getElementById("places").innerHTML='<option value='+'"'+2+'"'+'>'+2+'</option>'
         document.getElementById("puissance").disabled=true;
         document.getElementById("puissance").value=null;
         document.getElementById('genre1').value = '2 roues';
@@ -285,12 +284,28 @@ function CalculeBC(){
         document.getElementById('brute5').value=0;
         document.getElementById('prorata5').value=0;
         document.getElementById('PrimeVol').value=0;
+        $("#labelPack").fadeOut();
         $("#pack").fadeOut();
+        $("#labelChargeUtile").fadeOut();
         $("#charge").fadeOut();
+        $('#cylindreLabel').fadeIn();
+        $("#cylindre").fadeIn();
+        $('#labelPuissance,#puissance,#vnLabel,#val_neuve,#vvLabel,#val_venale,#placeLabel,#places,#mecLabel,#mec,#energieLabel,#energie').fadeOut()
+        $('#cylindreLabel').css({'position':'relative','top':'-152px'})
+        $('#cylindre').css({'margin-top' : '-150px'})
+        $('#collapseFour').css('height','210px')
+        // $('#mecLabel').css({'position':'relative','top':'-106px'})
+        // $('#mec').css({'position':'relative','top':'-108px'})
+        // $('#cylindreLabel').css({'position':'relative','top':'-110px'})
+        // $('#cylindre').css({'margin-top':'-113px'})
+        
+        // $('#labelPuissance').css('position','relative','top','-106px','left','275px')
+
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
         document.getElementById("charge").options[0].selected=true;
         document.getElementById("pack").options[0].selected=true;
+       
     }
 
     if(genre_v !=5)
@@ -308,6 +323,20 @@ function CalculeBC(){
         document.getElementById('chassis').disabled = true;
         document.getElementById('cylindre').disabled = true;
         document.getElementById('cylindre').value = null;
+        $('#cylindreLabel').fadeOut()
+        $("#cylindre").fadeOut();
+        $('#labelPuissance,#puissance,#vnLabel,#val_neuve,#vvLabel,#val_venale,#placeLabel,#places,#mecLabel,#mec,#energieLabel,#energie').fadeIn()
+        $('#collapseFour').css({'height':'424px','max-height':'450px'})
+        // $('#labelPuissance,#puissance,#vnLabel,#val_neuve,#vvLabel,#val_venale,#placeLabel,#places').fadeIn()
+        // $('#energieLabel,#energie,#mecLabel,#vnLabel,#vvLabel').css({'margin-right':'1%'})
+        // $('#mecGroup').css({'position':'relative','top':'42px'})
+        // $('#energie').css({'position':'relative','top':'-106px','left':'274px'})
+        // $('#mecLabel').css({'position':'relative','top':'-106px'})
+        // $('#mec').css({'width':'247px !important','font-size':'15px','font-size': '15px','height':'32px','transition':'border-color 0.15s ease-in-out 0s box-shadow 0.15s ease-in-out 0s'})
+        // $('#cylindreLabel').css({'position':'relative','top':'-110px'})
+        // $('#cylindre').css({'margin-top':'-113px'})
+
+
         document.getElementById("puissance").disabled=false;
     }
     if(genre_v !=2)
@@ -333,7 +362,9 @@ function CalculeBC(){
         document.getElementById('genre1').value = 'Pack auto';
         document.getElementById('genre').value = 'Pack auto';
         document.getElementById('Checkbox9').options[3].selected = true
+        $("#labelPack").fadeIn();
         $("#pack").fadeIn();
+        $("#labelChargeUtile").fadeOut();
         $("#charge").fadeOut();
         document.getElementById("charge").options[0].selected=true;
         if(pack=="mini")
@@ -449,7 +480,6 @@ function CalculeBC(){
                 var franch_1=0;             //franchise
                 var primebrute_1=86456;     //prime brute
                 //  alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
-
             }
             if (puissance>24 )
             {
@@ -457,7 +487,6 @@ function CalculeBC(){
                 var franch_1=0;             //franchise
                 var primebrute_1=104143;    //prime brute
                 //  alert('garantie: '+lim_gant_ck1+" franchise: "+franch_1+" prime brute: "+primebrute_1);
-
             }
             var primebrute_prorata_1=parseInt(primebrute_1*(taux/100));
         }
@@ -1298,7 +1327,6 @@ function CalculeBC(){
             var primebrute_3='GRATUITS';
             var  primebrute_prorata_3='GRATUITS';
         }
-        //alert("lim_gant_ck3"+lim_gant_ck3+' prime brute3'+primebrute_3+' prorata3'+primebrute_prorata_3);
         document.getElementById('lim3').value=lim_gant_ck3;
         document.getElementById('franch3').value=franch_3;
         document.getElementById('brute3').value=primebrute_3;
@@ -2021,10 +2049,11 @@ function CalculeBC(){
             var primebrute_prorata_10=15000;
 
         }
-        else
+        else if(pack=="mini")
         {
             var lim_gant_ck10=0;
-            var primebrute_10='GRATUITS';
+            var primebrute_10=0;
+            document.getElementById('PrimeAuto').value='GRATUIT'
         }
         document.getElementById('lim11').value=lim_gant_ck10;
         document.getElementById('franch11').value=franch_10;
@@ -2040,9 +2069,6 @@ function CalculeBC(){
         {
             var primeProrataTotal=primebrute_prorata_1+primebrute_prorata_4+
                 primebrute_prorata_5+primebrute_prorata_6+primebrute_prorata_7+primebrute_prorata_8+primebrute_prorata_9+primebrute_prorata_10
-                // alert(primeProrataTotal)
-
-          // alert("prime primeProrataTotal clas-conf-lib="+primeProrataTotal);
         }
         else
         {
@@ -2332,12 +2358,15 @@ function fenvoi(){
         document.getElementById("val_venale").style.borderColor='#0000FF';
      }
         // Get the modal
-        var modal   = document.getElementById('myModal')
-        var inputs1 = document.getElementById("assure-infos");
-        var inputs2 = document.getElementById("hidden-caracteristiques");
-        modal.style.display   ="block";
-        inputs1.style.display ="none";
-        inputs2.style.display ="none";
+        // var modal   = document.getElementById('myModal')
+        // var inputs1 = document.getElementById("assure-infos");
+        // var inputs2 = document.getElementById("hidden-caracteristiques");
+        // modal.style.display   ="block";
+        // inputs1.style.display ="none";
+        // inputs2.style.display ="none";
+        $('#myModal').fadeIn(1000);
+        $('#assure-infos,#hidden-caracteristiques').fadeOut(1000)
+        $('.buttons').fadeOut(1000)
 
     if(document.getElementById("attestation").value == "") 
       {
@@ -2348,21 +2377,32 @@ function fenvoi(){
         document.getElementById("attestation").style.borderColor='#0000FF';
      }
 }
-
-var span = document.getElementById("close_modal");
-span.onclick = function() {
-  modal.style.display   = "none";
-  inputs1.style.display ="block";
-  inputs2.style.display ="block";
-}
-var modal   = document.getElementById('myModal')
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-    inputs1.style.display ="block";
-    inputs2.style.display ="none";
-  }
-}
+// var inputs1 = document.getElementById("assure-infos");
+// var inputs2 = document.getElementById("hidden-caracteristiques");
+$('#close_modal').click(function(){
+    $('#myModal').fadeOut(1000);
+    $('#assure-infos,#hidden-caracteristiques').fadeIn(1000)
+})
+$(window).click(function(event){
+    if (event.target == $('#myModal')) {
+    $('#myModal').fadeOut(1000);
+    $('#assure-infos,#hidden-caracteristiques').fadeIn(1000)
+    }
+})
+// var span = document.getElementById("close_modal");
+// span.onclick = function() {
+//   modal.style.display   = "none";
+//   inputs1.style.display ="block";
+//   inputs2.style.display ="block";
+// }
+// var modal   = document.getElementById('myModal')
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//     inputs1.style.display ="block";
+//     inputs2.style.display ="block";
+//   }
+// }
 $("#valider_simulation").click(function(){
     Swal.fire(
         'Good job!',
@@ -2371,17 +2411,54 @@ $("#valider_simulation").click(function(){
       )
 })
 
-$('#afficherPopup').on('click', function()
-{
-if($(this).hasClass('selected'))
-{
-deselect($(this)); 
-}
-else
-{
-$(this).addClass('selected');
-$('.pop').slideFadeToggle();
-}
-return false;
+$('#afficherPopup').on('click', function(){
+    if($(this).hasClass('selected'))
+    {
+    deselect($(this)); 
+    }
+    else
+    {
+    $(this).addClass('selected');
+    $('.pop').slideFadeToggle();
+    }
+    return false;
 });
+$('#nom_assure,#prenom_assure,#adresse_assure,#tel,#email_assure,#puissance,#val_neuve,#val_venale,#places,#mec,#energie,#categorie,#genre,#marque,#type,#immatriculation').keyup(function(){
+    // $(this).val=$(this).val().toUpperCase()
+    // alert($(this).val)
+    $(this).val($(this).val().toUpperCase())
+    // alert('ok')
+})
+
+
+function checkDate(){
+    var xD   = document.getElementById("date_debut").value;
+    var DateDebut = xD.substring(0, 10);
+    var modal_dateEffet = document.getElementById("effetModal");
+    var span = document.getElementsByClassName("close")[0];
+    var ynew3     = new Date(DateDebut);
+    if(ynew3<new Date()){
+        modal_dateEffet.style.display = "block";
+        span.onclick = function() {
+            modal_dateEffet.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal_dateEffet) {
+                modal_dateEffet.style.display = "none";
+            }
+        }
+        document.getElementById('date_debut').valueAsDate = new Date();
+        }
+}
+
+// var btn_dateEffet = document.getElementById("dateEffetbtn");
+// var modal_dateEffet = document.getElementById("effetModal");
+
+// btn_dateEffet .onclick = function() {
+//     modal_dateEffet.style.display = "block";
+//   }
+
+  // When the user clicks anywhere outside of the modal, close it
+
+
 

@@ -12,8 +12,9 @@ echo('
     <link rel="stylesheet" href="../../view/style/style_aff.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<h1 class="top-title">Modifier information</h1>
-<div class="card" style="width: 40%;margin: auto;margin-top:10%">
+<h1 class="top-title" style="position: absolute;top: 15px;left: 87px;color: #062945;">Modifier information</h1>
+<hr style="width: 9%;border: 0;border-top: 2px solid #062945;position: absolute;top: 65px;left: 86px;">
+<div class="card" style="width: 40%;margin: auto;margin-top:8%">
 <div class="card-header" style="background:#062945 !important;color: #f7ba00 !important;text-align:center;font-weight:bold"><h3>Modifications</h3></div>
 <div class="card-body">
     <form style="height:63%;width:90%;margin:auto" method="POST" action="../../controller/admin/index.php?action=updateUser" name="form_update">

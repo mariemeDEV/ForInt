@@ -41,7 +41,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
                                 <div>
                                     <h5 class="pink-text" style="    color: #f7ba00 !important;text-align: center;    position: relative;left: 13em;"><i class="fa fa-pie-chart"></i> Administrateur<br></h5>
                                     <p><br><br><br></p>
-                                    <a class="btn btn-md" style="background: #062945;color:#f7ba00 !important;font-weight: bold;" href="../../controller/admin/?action=ajout"><i class="fa fa-clone left"></i> Continuer</a>
+                                    <a class="btn btn-md" style="background: #062945;color:#f7ba00 !important;font-weight: bold;margin-left: 190%;" href="../../controller/admin/?action=ajout"><i class="fa fa-clone left"></i> Continuer</a>
                                 </div>
                             </div>
                             <!-- Content -->

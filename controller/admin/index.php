@@ -47,6 +47,8 @@ require_once '../../mapping/Contenir.php';
 require_once '../../model/ContenirDao.php';
 require_once '../../mapping/Conducteur_vehicule.php';
 require_once '../../model/ConducteurVehiculeDao.php';
+require_once '../../model/TypeAttestationDao.php';
+require_once '../../mapping/TypeAttestation.php';
 
 $choix=null;
 $usdao=new IntermediaireDao();
@@ -505,6 +507,12 @@ if(isset($_GET['action']))
             // //-------------------------------------
             require_once '../../view/user/etats.php';
         break;
+        case 'dotations' :
+        $type = new TypeAttestationDao();
+        $types = $type->listTypes();
+             require_once '../../view/admin/dotation.php';
+
+        break;
         default:
             require_once '../../view/error.php';
             break;
@@ -517,7 +525,7 @@ if(isset($_POST['action']))
         case 'ajout':
             extract($_POST);
             $ps=new Intermediaire(0,0,0,0,0,$_POST['email'],0);;
-            $resultMail= $usdao->getUserByMail($ps);
+            $resultMail= $usdao->getUserByMail($_POST['email']);
             $cpt1=$resultMail->rowCount();
             if($cpt1==0)
             {
@@ -531,7 +539,7 @@ if(isset($_POST['action']))
             }
             $resultat=$usdao->listUser();
             $intermediaireInfos = $resultMail;
-            require_once'../../view/admin/ajout_user.php';
+            require_once '../../view/admin/ajout_user.php';
 
             break;
         case 'modif':
@@ -612,6 +620,9 @@ if(isset($_POST['action']))
                 require_once('../../view/admin/etats.php');
             break;
         default:
+        case 'excelIntermediaire':
+            echo('ok');
+        break;
             require_once '../../view/error.php';
             break;
     }

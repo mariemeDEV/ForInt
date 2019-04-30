@@ -66,7 +66,7 @@ class PoliceDao extends DBao
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
               JOIN intermediaire i on (p.intermediaire_matricule=i.matricule) 
-              where i.matricule=".$p." AND p.validation=1 ORDER by p.date_police DESC ";
+              where i.matricule=".$p." AND p.validation=0 ORDER by p.date_police DESC ";
               return $this->executeSELECT($sql);
     }
     /**

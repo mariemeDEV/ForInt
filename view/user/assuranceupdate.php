@@ -212,7 +212,6 @@
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">Categorie</label>  
                                                 <div class="input-group">
-                                                <?php echo ('"'.$item['id_cat'].'"');?>
                                                     <select class="custom-select col-lg-12" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" required style="height: 35px;font-size: 15px;font-family: Times New Roman;">
                                                         <option value = 
                                                             <?php echo '"'.$item['id_cat'].'"' ?>
@@ -598,11 +597,11 @@
                             <div class="panel-body col-lg-12">
                                 <table class="table  table-bordered">
                                     <thead>
-                                    <th >Prime nette</th>
+                                    <th style='color:green !important'>Prime nette</th>
                                     <th>Accesssoire</th>
                                     <th>Taxe</th>
-                                    <th>Fond de  Garantie</th>
-                                    <th class="t_text">Prime Totale</th>
+                                    <th>FGA</th>
+                                    <th class="t_text" style='color:green !important'>Prime Totale</th>
                                     </thead>
                                     <tbody>
                                     <tr>

@@ -106,8 +106,8 @@ if(isset($_POST['action'])){
                                   }
                                   if($profil==1)
                                   {
-                                      if ($activCpt==1)
-                                      {
+                                    if ($activCpt==1)
+                                    {
                                           $_SESSION['matricule']=$mat;
                                           $_SESSION['username']=$mail;
                                           $_SESSION['password']=$password;
@@ -115,10 +115,13 @@ if(isset($_POST['action'])){
                                           $pwd= $_SESSION['password'];
                                           '<body onLoad="alert(\'admin est reconnu...\')">';
                                           header('Location: ../../view/admin/accueil.php');
-                                      }
+                                    }
                                       else{
                                         echo '<body onLoad="alert(\'Admin non reconnnu...\')">';
                                       }
+                                  }
+                                  if($profil==3){
+                                      echo 'troisiéme role';
                                   }
                               }
                               else

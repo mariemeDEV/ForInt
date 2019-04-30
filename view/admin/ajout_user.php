@@ -1,180 +1,147 @@
-
-
 <!DOCTYPE html>
 
 <html lang="fr">
 
-<head>
+    <head>
 
-    <title>Saham Assurance SN</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../view/style/search_admin.css">
-    <link rel="stylesheet" href="../../view/style/style_aff.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Saham Assurance SN</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.0/css/select.bootstrap4.min.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../../view/style/search_admin.css">
+        <link rel="stylesheet" href="../../view/style/style_aff.css">
+
+    
     <style>
-            .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        .ajout-title{
+            position: relative;
+            top: 98px;
+            left: 15px
         }
-
-        /* Modal Content */
-        .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
+        hr{
+            width: 9%;
+            border: 0;
+            border-top: 2px solid #062945;
+            position: absolute;
+            top: 134px;
+            left: 138px
         }
-
-        /* The Close Button */
-        .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
+        .dataTab{
+            position: relative;
+            top: 5px;
         }
-
-        .close:hover,
-        .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
+        .paging_simple_numbers{
+            position: relative !important;
+            top: 81px !important
         }
-        .dataTables_length{
+        .pagination li{
+            height:34px !important
+        }
+        .pagination li a{
+            padding: 1px !important;
+            background: #062944 !important;
+            color: #f7ba00 !important
+        }
+        #usersData_filter{
+            position: relative !important;
+            left: -5px !important;
+            top: 6px;
+        }
+        #usersData_filter .form-control-sm{
+            border: 0 solid #ffffff !important;
+            border-bottom: 1px solid #062944 !important;
+            width: 79%;
+        }
+        thead{
+            background: #f9d281;
+            color: #062944;
+        }
+        thead,td{
+            font-size:13px !important
+        }
+        .table td{
+            padding-bottom:0 !important
+        }
+        .dataTables_info{
             display:none !important
         }
-        #DataTables_Table_0_filter{
-            height: 26px !important;
-            position: relative !important;
-            left: 0px !important;
-            top: 49px !important;
+        .container ul{
+           display: inline-flex;
+            position: absolute;
+            top: -3px;
+            left: 55em;
+            z-index: 3;
         }
-        #DataTables_Table_0_filte label input{
-            border-bottom: 1px solid #062944 #!important
+        .container ul li{
+            padding: 1em;
+            line-height: 39px;
+            font-weight: bold;
         }
-        #myBtn{
-            margin-left: 83em !important;
-            background: #062944 !important;
-            color: #f7bb3d !important;
-            font-weight: bold !important;
-            border: none !important;
-            font-size: 14px !important;
-            padding: 4px !important;
-            margin-top: 27px !important;
+        /* .container ul li::after:not(:last-child){
+        } */
+        /* li:last-child:after{
+            content:'/';
+            padding-left:40px
+        } */
+        ul > li:not(:last-child):after{
+            content:'/';
+            padding-left:40px;
+            color: #f7bb3d !important
+
         }
-        .userDataTab{
-            margin-top: 90px !important;
+        ul li a{
+            text-decoration:none !important;
+            color: #f7bb3d !important
         }
-</style>
-</head>
+     
+    </style>
 
-<body onchange="CalculeBC()"♥>
+    </head>
 
-    <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
+    <body onchange="CalculeBC()">
+        <!--header-->
+        <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
+            <?php include "header.php";?>
+        </div>
+        <!--header-->
 
-        <?php include "header.php";?>
-
-        <main class="mdl-layout__content">
-            <div class="modal" id='intermediaire_modal'>
+        <!--container-->
+        <div class="container">
+            <div class="modal" id='intermediaire_modal'><!--extraction modal-->
                 <div class="modal-content" style="width: 45% !important">
-                    <h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3>
-                    <hr style='width:50% !important;margin:auto !important;font-weight:bold !important'>
-                    <span class="close" style="position:relative;top:-64px">&times;</span>
-                    <form method="post" action="../../controller/admin/index.php" style="margin-top: -28px;">
-                        <div class="form-group inline" style="width: 65%" >
-                            <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Début</label>
-                            <input type ="date"  name="debut" id="mec" required style="">
-                        </div>
-                        <div class="form-group" style="width: 65%">
-                            <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Fin</label>
-                            <input type ="date"  name="fin" id="mec" required style="">
-                        </div>
-                        <div class="form-group" style="width: 65%">
-                            <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
-                            <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
-                        </div>
-                        <div style="text-align: center;margin: 0 auto;">
-                            <input type="submit" name="action" value="excel" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important;">
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <button id="myBtn">Production</button>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-            <!-- Modal content -->
-            <span class="close" style="position:relative;top:-25px">&times;</span>
-            <div class="modal-content" style="width:45% !important">
-            <div>
-                <div style="margin: 0 auto;text-align: center">
-
-                    <h3 style='color: #062944;font-weight:bold'>Extraction productions</h3>
-                    <hr style='width:50% !important;margin:auto !important;font-weight:bold !important'>
-
-                </div>
-
-                <!--div class="alert alert-info" role="alert" style="margin: 0 auto;font-size: 10px;width: 100%">
-
-                    Choisissez une periode pour pouvoir télécharger les productions
-
-                </div-->
-
-                <form method="post" action="../../controller/admin/index.php" style="margin-top: 20px;">
-
-                <div class="form-group inline" style="width: 65%" >
-
-                    <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Début</label>
-
-                    <input type ="date"  name="debut" id="mec" required style="">
-
-                </div>
-
-                <div class="form-group" style="width: 65%">
-
-                    <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Fin</label>
-
-                    <input type ="date"  name="fin" id="mec" required style="">
-
-                </div>
-
-                <div style="text-align: center;margin: 0 auto;">
-
-                    <input type="submit" name="action" value="excel" class="btn btn-primary btn-lg" style="background: #062944;    color: #f7bb3d !important;">
-
-                </div>
-
-                </form>
-
-                </div>
-
-                </div>
-
-            </div>
-            </div>
-
-            <div class="mdl-content" style="padding-top: 25px;>
-
-                <div class="container">
-                <div id="formModel" class="modal">
+                        <h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3>
+                        <hr style='width:50% !important;margin:auto !important;font-weight:bold !important'>
+                        <span class="close" style="position:relative;top:-64px">&times;</span>
+                        <form method="post" action="../../controller/admin/index.php" style="margin-top: -28px;">
+                            <div class="form-group inline" style="width: 65%" >
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Début</label>
+                                <input type ="date"  name="debut" id="mec" required style="">
+                            </div>
+                            <div class="form-group" style="width: 65%">
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Fin</label>
+                                <input type ="date"  name="fin" id="mec" required style="">
+                            </div>
+                            <div class="form-group" style="width: 65%">
+                                <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
+                                <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
+                            </div>
+                            <div style="text-align: center;margin: 0 auto;">
+                                <input type="submit" name="action" value="excelIntermediaire" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important;">
+                            </div>
+                        </form>
+                    </div>
+                </div><!--extraction production-->
+                <div id="addUserModal" class="modal"><!--ajout nouvel utilisateur-->
                     <div class="modal-content cotent_ajout">
                     <span class="close">&times;</span>
-                    <h5>Ajouter un nouvel intermédiaire</h5>
+                    <h5>Ajouter un nouvel utilisateur</h5>
                           <form method="post" action="../../controller/admin/index.php" class="addIntermediaire">
                         <?php
 
@@ -206,12 +173,9 @@
                             else
 
                                 echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur modification non effectuée</div>";
-
-
-
                         }
-
                         ?>
+
                         <div class="md-form" style="height: 35px">
                             <input type="text" placeholder="Matricule" name="matricule" id="matricule" class="form-control" <?php if($choix==2) echo"value=".$item['matricule']."" ;?> required>
                         </div>
@@ -294,133 +258,116 @@
 
                         <!-- Form subscription -->
                     </div>
-                </div>
+                </div><!--ajout nouvel utilisateur-->
 
-                    <div class="row">
-                    <!--a id="target">CLICK</a-->
-                    <button id="add_new_intermediaire" class="btn_new">Nouveau</button>
-                        <div class="col-12 ">
-                            <table class="table userDataTab">
-                                <thead class="thead-inverse ">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Matricule</th>
-                                    <th>Nom</th>
-                                    <th>Prenom</th>
-                                    <th>Adresse</th>
-                                    <th>Telephone</th>
-                                    <th style='text-align: center'>Email</th>
-                                    <th>Consulter</th>
-                                    <th>Modif/Act/Desact</th>
-                                    <th>Extraire production</th>
-                                </tr>
-                                </thead>
+                <ul>
+                    <li><a href="./?action=dotations">Dotation</a></li>
+                    <li><a id="myBtn">Production</a></li>
+                    <li><a id="add_new_intermediaire">Nouveau</a></li>
+                </ul>
+          <h1 class="ajout-title">Géstion des utilisateurs</h1>
+          <hr>
+            <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Téléphone</th>
+                        <th>Adresse</th>
+                        <th>E-mail</th>
+                        <th>Consulter</th>
+                        <th>Dotation</th>
+                        <th>Modif/Act/Desact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        while($row=$resultat->fetch())
+                        {
+                            if($row[8]==0)
+                                $act="<i class=\"fa fa-lock prefix red-text\"></i>";
+                            else
+                                $act="<i class=\"fa fa-unlock prefix blue-text\" ></i>";
+                            echo "<tr>
+                                <th scope=\"row\">$act</th>
+                                <td>$row[0]</td>
+                                <td>$row[1]</td>
+                                <td>$row[2]</td>
+                                <td>$row[3]</td>
+                                <td>$row[4]</td>
+                                <td>$row[5]</td>
+                                <td style='text-align: center'>
+                                    <a href='./?action=afficher&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DÉTAILS</button></a>
+                                </td>
+                                <td style='text-align: center'>
+                                    <a href='./?action=dotations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DOTATION</button></a>
+                                </td>
+                                <td style='text-align: center'>
+                                    <a style='padding-right:16px' href='./?action=modif&mat=$row[0]&prenom=$row[1]&nom=$row[2]&adresse=$row[3]&telephone=$row[4]&email=$row[5]' onclick='if(!confirm(\"voulez - vous Modifier ? \")) return false;'><i class=\"fa fa-edit prefix blue-text\"></i></a>/
+                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=1'! onclick='if(!confirm(\"voulez - vous Activer ? \")) return false;'><i class=\"fa fa-unlock prefix blue-text\"></i></a>/
+                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=0' onclick='if(!confirm(\"voulez - vous Desactiver ? \")) return false;'><i class=\"fa fa-lock prefix red-text\"></i></a>
+                                </td>
+                            </tr>";
+                        }
 
-                                <tbody>
+                    ?>
+                </tbody>
+                </tfoot>                
+                <tfoot>
 
-                                    <?php
-
-                                    while($row=$resultat->fetch())
-                                    {
-                                        if($row[8]==0)
-                                            $act="<i class=\"fa fa-lock prefix red-text\"></i>";
-                                        else
-                                            $act="<i class=\"fa fa-unlock prefix blue-text\"></i>";
-                                        echo "<tr>
-                                                <th scope=\"row\">$act</th>
-                                                <td>$row[0]</td>
-                                                <td>$row[1]</td>
-                                                <td>$row[2]</td>
-                                                <td>$row[3]</td>
-                                                <td>$row[4]</td>
-                                                <td>$row[5]</td>
-                                                <td style='text-align: center'>
-                                                    <a href='./?action=afficher&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DÉTAILS</button></a>
-                                                </td>
-                                                <td style='text-align: center'>
-                                                    <a style='padding-right:16px' href='./?action=modif&mat=$row[0]&prenom=$row[1]&nom=$row[2]&adresse=$row[3]&telephone=$row[4]&email=$row[5]' onclick='if(!confirm(\"voulez - vous Modifier ? \")) return false;'><i class=\"fa fa-edit prefix blue-text\"></i></a>/
-                                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=1'! onclick='if(!confirm(\"voulez - vous Activer ? \")) return false;'><i class=\"fa fa-unlock prefix blue-text\"></i></a>/
-                                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=0' onclick='if(!confirm(\"voulez - vous Desactiver ? \")) return false;'><i class=\"fa fa-lock prefix red-text\"></i></a>
-                                                </td>
-                                                <td><a class='btn btn-md intermediaire_prod' id='first_prod' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>Extraire production</a></td>
-                                            </tr>";
-                                    }
-
-                                    ?>
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-            </div>
-
-        </main>
-
-    </div>
+            </table>
+        </div>
+        <!--container-->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <script src="../../controller/tables/js/jquery.js"></script>
-    <script src="../../controller/tables/js/dataTables.bootstrap.js"></script>
-    <script src="../../controller/tables/js/jquery.dataTables.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../view/js/form-script.js"></script>
-    <script >
-        $(".table").DataTable();
-    </script>
 
     <script>
-       // $('td:last-child a').click(function(){
-        //     alert('ok')
-        // })
-        var btn     = document.getElementById("myBtn")
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
+        $(document).ready(function() {
+            $('#usersData').DataTable();
+        } );
     </script>
-
+    <script>
+        $('#add_new_intermediaire').on('click',function(){
+            $('#addUserModal').fadeIn()
+        })
+    </script>
+    <script>
+        $("#myBtn").on('click',function(){
+            $('#intermediaire_modal').fadeIn()
+        })
+    </script>
+    <script>
+        var intermediaire_modal      = document.getElementById('intermediaire_modal')
+        $('#first_prod').click(function(){
+            $('#intermediaire_modal').fadeIn()
+        })
+    </script>
     <script>
         var production_intermediaire = document.getElementsByClassName('intermediaire_prod')
         var intermediaire_modal      = document.getElementById('intermediaire_modal')
-        
-        function getModalIntermediaire(){
+        $('.userDataTab td:last-child').find('button').on('click',function(){
             intermediaire_modal.style.display='block'
-        }
-        $('#first_prod').click(function(){
-            getModalIntermediaire()
         })
-        for(var e=1; e<=production_intermediaire.length; e++){
-            production_intermediaire[e].onclick=function(){
-                getModalIntermediaire()
-            }
-        }
     </script>
-
     <script>
-        var modal                    = document.getElementById('myModal')
-        var span                     = document.getElementsByClassName("close")[0]
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+        $('.close').on('click',function(){
+            $('#intermediaire_modal,#addUserModal').fadeOut()
+        })
     </script>
-
     <script>
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        $(window).on('click',function(event){
+            if (event.target == $('#intermediaire_modal')) {
+                $('#intermediaire_modal,#addUserModal').fadeOut()
             }
-        }
+        })
     </script>
-
-</body>
-
-
-
+    </body>
 </html>

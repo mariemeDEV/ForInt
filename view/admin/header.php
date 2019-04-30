@@ -5,6 +5,7 @@
         <!-- Title -->
        <!--  <span class="mdl-layout-title">SAHAM ASSURANCE</span> -->
         <!-- Add spacer, to align navigation to the right -->
+        <span class="mdl-layout-title"><img src="../../img/images/LogoSaham1.jpg" style="width:13% !important;"></span>
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">

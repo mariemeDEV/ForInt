@@ -1,11 +1,11 @@
 
 <header class="mdl-layout__header mdl-layout__header--scroll">
     <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title"><img src="../../img/images/LogoSaham1.png" style="width: 6% !important;"></span>
+        <span class="mdl-layout-title"><img src="../../img/images/LogoSaham1.jpg" style="width:13% !important;"></span>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation mdl-layout--large-screen-only ">
             <a  href="../../">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">DECONNEXION<i class="material-icons">account_circle</i></button></a>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style='position: absolute !important;left: 71rem !important;top: 14px;'>DECONNEXION<i class="material-icons">account_circle</i></button></a>
         </nav>
     </div>
 </header>

@@ -42,36 +42,21 @@ $(window, document, undefined).ready(function() {
         $('#update_modal').css('display','none')
         $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')
     })
-
-    // $('#intermediaire_prod').click(function(){
-    //   alert('ok')
-    // })
-    
-    $('#add_new_intermediaire').click(function(){
-      alert("ok")
-    })
-
-    // var modal   = $('#update_modal')
-    // window.click(function(event) {
-    //   if (event.target == modal) {
-    //       $('#update_modal').css('display','none')
-    //       $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')
-    //   }
-    // })
   
-    // function divider() {
-    //   $('.divide').divide({
-    //       delimiter:' ',
-    //       divideThousand:true
-    //   }); 
-    // }
-    // divider()
+    // $('#add_new_intermediaire').click(function(){
+    //   alert("ok")
+    //   $('#addUserModal').fadeIn()
+    // })
+   
+    function divider() {
+      $('.divide').divide({
+          delimiter:' ',
+          divideThousand:true
+      }); 
+    }
+    divider()
+     // setInterval(divider, 10);
 
- 
- 
-// // setInterval(divider, 10);
-
- 
 
 
 
