@@ -59,12 +59,12 @@ class IntermediaireDao extends Dbao{
 
     }
     public function getContrats(Intermediaire $intermediaire){
-        $sql="SELECT p.id_police, p.num_police, p.date_police,p.attestation,p.attestation_cedeao,p.numFacture, i.matricule,i.prenom,i.nom,i.adresse,i.tel, a.nom_assure, a.prenom_assure,a.adresse_assure, a.tel_assure from police p
+        $sql="SELECT  p.date_police,p.validation,a.id_assure,a.nom_assure, a.prenom_assure,a.adresse_assure, a.tel_assure,dp.prime_nette,dp.prime_totale from police p
         JOIN intermediaire as i on p.intermediaire_matricule=i.matricule
         JOIN assure as a on (p.assure_id_assure=a.id_assure) 
+        JOIN decompte_prime as dp on(p.decompte_prime_id_dp=id_dp)
         where p.intermediaire_matricule='".$intermediaire->getMatricule()."'";
-  return $this->executeSELECT($sql);
-        echo("ok");
+        return $this->executeSELECT($sql);
     }
 
 }

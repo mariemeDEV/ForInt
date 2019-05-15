@@ -11,9 +11,9 @@ class Police
     private $id_police;
     private $num_police;
     private $date_police;
-    private $attestation;
-    private $attestation_cedeao;
     private $numFacture;
+    private $attestation;
+    // private $attestation_cedeao;
     private $validation;
     private $intermediaire;
     private $conducteur_vehicule;
@@ -24,14 +24,14 @@ class Police
     private $assure;
 
 
-    function __construct($id_police,$num_police,$date_police,$attestation,$attestation_cedeao,$numFacture,$validation,$intermediaire,$conducteur_vehicule,$periode_garantie,$vehicule,$decompte_prime,$red_maj,$assure)
+    function __construct($id_police='',$num_police='',$date_police='',$numFacture='',$attestation='',$validation='',$intermediaire='',$conducteur_vehicule='',$periode_garantie='',$vehicule='',$decompte_prime='',$red_maj='',$assure='')
     {
-        $this->id_police=$id_police;
-        $this->num_police=$num_police;
-        $this->date_police=$date_police;
-        $this->attestation=$attestation;
-        $this->attestation_cedeao=$attestation_cedeao;
+        $this->id_police   = $id_police;
+        $this->num_police  = $num_police;
+        $this->date_police = $date_police;
         $this->numFacture=$numFacture;
+        $this->attestation = $attestation;
+        // $this->attestation_cedeao=$attestation_cedeao;
         $this->validation=$validation;
         $this->intermediaire=$intermediaire;
         $this->conducteur_vehicule=$conducteur_vehicule;
@@ -188,7 +188,7 @@ class Police
     }
 
     /**
-     * @return datetime
+     * @return string
      */
     public function getDatePolice()
     {
@@ -196,7 +196,7 @@ class Police
     }
 
     /**
-     * @param datetime $date_police
+     * @param string $date_police
      */
     public function setDatePolice($date_police)
     {
@@ -237,7 +237,7 @@ class Police
 
 
     /**
-     * @return int
+     * @return string
      */
     public function getValidation()
     {
@@ -245,28 +245,32 @@ class Police
     }
 
     /**
-     * @param int $validation
+     * @param string $validation
      */
     public function setValidation(string $validation)
     {
         $this->validation = $validation;
     }
 
-    /**
-     *  @return string
-     */ 
-    public function getAttestation_cedeao()
-    {
-        return $this->attestation_cedeao;
-    }
 
-    /**
-     * @param string $validation
-     */ 
-    public function setAttestation_cedeao($attestation_cedeao)
-    {
-        $this->attestation_cedeao = $attestation_cedeao;
 
-        return $this;
-    }
+    // /**
+    //  * Get the value of attestation_cedeao
+    //  */ 
+    // public function getAttestationCedeao()
+    // {
+    //     return $this->attestation_cedeao;
+    // }
+
+    // /**
+    //  * Set the value of attestation_cedeao
+    //  *
+    //  * @return  self
+    //  */ 
+    // public function setAttestationCedeao($attestation_cedeao)
+    // {
+    //     $this->attestation_cedeao = $attestation_cedeao;
+
+    //     return $this;
+    // }
 }

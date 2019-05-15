@@ -166,22 +166,22 @@
                                 </div>
                             </div>
                             
-                            <div class="panel panel-info panel-default" style=" width: 128%;" id="hidden-caracteristiques"><!--caracteristiques-->
+                            <div class="panel panel-info" style=" width: 128%;" id="hidden-caracteristiques"><!--caracteristiques-->
                                 <div class="panel-heading" >
                                     <h3 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Caracteristiques du vehicule</a>
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Caractéristiques du véhicule</a>
                                     </h3>
                                 </div>
-                                <div id="collapseFour" class="panel-collapse collapse" style="height: 200%;">
+                                <div id="collapseFour" class="panel-collapse collapse" style="height:424px !important;max-height:450px !important">
                                     <div class="panel-body">
                                     
                                         <div class="row"><!-- debut row -->
 
                                         <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">CATÉGORIE<span style="color: red;">*</span></label>  
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Catégorie<span style="color: red;">*</span></label>  
                                                 <div class="input-group">   
-                                                    <select class="custom-select col-lg-12" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;">
+                                                    <select class="custom-select col-lg-12" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
                                                         <option value="0">Categorie</option>
                                                         <option value="1">Cat 401</option>
                                                         <option value="2">Cat 402</option>
@@ -194,65 +194,62 @@
                                                 <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">GENRE</label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Genre</label>
                                                 <div class="input-group"><!-- debut input-group -->  
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="genre1" class="form-control" placeholder="Genre" title="Genre" aria-describedby="sizing-addon1" id="genre1" disabled>
                                                     <label for="genre" hidden>
-                                                        <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="genre" class="form-control" placeholder="Genre" aria-describedby="sizing-addon1" id="genre" hidden>
+                                                        <input type="text" style="font-size: 15px;font-family: Times New Roman;margin-top:-19px" name="genre" class="form-control" placeholder="Genre" aria-describedby="sizing-addon1" id="genre" hidden>
                                                     </label>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">MARQUE<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">TYPE<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;">*</span></label>
                                                 <div class="input-group"><!-- debut input-group -->          
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">MATRICULE<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Immatriculation<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">PUISSANCE <span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='labelPuissance'>Puissance<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1" required>
+                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
-
-                                          
-
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">VALEUR NEUVE<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="vnLabel">Valeur neuve<span style="color: red;">*</span></label>
                                                 <div class="input-group"><!-- debut input-group -->  
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_neuve" class="form-control divide" id="val_neuve" placeholder="valeur neuve" title="Valeur neuve" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">VALEUR VÉNALE<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control divide" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">ÉNÉRGIE<span style="color: red;">*</span></label>
+                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='energieLabel'>Énérgie<span style="color: red;">*</span></label>
                                             <div class="form-group" id="mySelect">       <!-- debut input-group -->
-                                            <select id="energie" name="energie" title="Energie" required style="height: 30%;font-size: 15px;font-family: Times New Roman;" onChange="CalculeBC()">
+                                            <select id="energie" name="energie" title="Energie" required style="height: 35px !important;width: 246px;background: #ffffff;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;" onChange="CalculeBC()">
                                             <option value="essence" selected>Essence</option>
                                                 <option value="diesel">Diesel</option>
                                             </select>
@@ -260,10 +257,9 @@
                                         </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">PLACES<span style="color: red;">*</span></label>
+                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="placeLabel">Places<span style="color: red;">*</span></label>
                                                 <div class="form-group">
-                                                    <select name="places" class="custom-select col-lg-12" id="places" title="Places" disabled  onchange="CalculeBC()" style="height: 30%;font-size: 15px;font-family: Times New Roman;">
-                                                        <option value="1">1 places</option>
+                                                    <select name="places" class="custom-select col-lg-12" id="places" title="Places" disabled  onchange="CalculeBC()" style="height:35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
                                                         <option value="2">2 places</option>
                                                         <option value="3">3 places</option>
                                                         <option value="4">4 places</option>
@@ -301,43 +297,40 @@
 
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
                                                 <fieldset>
-                                                <div class="form-group" >
-                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">M.E.C <span style="color: red;">*</span></label>
-                                                    <input type ="date" onchange="CalculeBC()" name="mec" id="mec"  style="width: 100%;font-size: 15px;height: 35%;">
+                                                <div class="form-group" id='mecGroup'>
+                                                     <label style="margin-right: 1%;margin-top:-5px;font-family: Times New Roman;font-size: 14px;" id='mecLabel'>m.e.c<span style="color: red;">*</span></label>
+                                                    <input type ="date" onchange="CalculeBC()" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;">
                                                 </div><!-- /input-group-->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">CYLINDRE<span style="color: red;">*</span></label>
-                                                <div class="form-group ">       <!-- debut input-group -->
-                                                    <!--<strong>&nbsp;</strong>-->
-                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="cylindre" onchange="CalculeBC()" id="cylindre" class="form-control" min="1" max="10000" placeholder="cylindre" title="Cylindre" aria-describedby="sizing-addon1">
+                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;display:none;position:relative;top:-6px" id='cylindreLabel'>Cylindre<span style="color: red;">*</span></label>
+                                                <div class="form-group">       <!-- debut input-group -->
+                                                    <input type="number" style="display:none !important;font-size: 15px;font-family: Times New Roman;border-radius:0 !important;margin-top:-6px;margin-left:0px;width:245px" name="cylindre" onchange="CalculeBC()" id="cylindre" class="form-control" min="1" max="10000" placeholder="cylindre" title="Cylindre" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
-                                            <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">CHASSIS<span style="color: red;">*</span></label>
+                                            <div class="col-lg-6" style="display:none">            <!-- debut col-lg-6 -->
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Cassis<span style="color: red;">*</span></label>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="chassis" class="form-control" id="chassis" placeholder="chassis" title="Chassis" aria-describedby="sizing-addon1"title="Chassis">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
-                                            <div class="col-lg-6">
-                                             <input type="text" style="font-size: 15px;font-family: Times New Roman;margin-right: 1%;margin-top: -2%;" name="pack" class="form-control" placeholder="Charge" title="Genre" aria-describedby="sizing-addon1" id="genre2" disabled>
-                                                 <!-- <label style="margin-right: 1%;font-family: Times New Roman;font-size: 15px;">Charge Utile</label>  -->
-                                                <!-- debut col-lg-6 -->
-
-                                            
+                                            <div class="col-lg-6" style="left: 274px !important;top:-17px !important">
+                                             <input type="text" style="display:none !important;font-size: 15px;font-family: Times New Roman;margin-right:1%;position:relative;top:15px !important;left: -273px;width: 519px;margin-left:0 !important" name="pack" class="form-control" placeholder="Charge" title="Genre" aria-describedby="sizing-addon1" id="genre2" disabled>
+                                                <label style="display:none !important; margin-right: 1%;font-family: Times New Roman;font-size: 14px;position:relative;top:-76px;width: 245px;" id="labelChargeUtile">Charge utile</label>
                                                 <p></p>
                                                 <div class="input-group">       <!-- debut input-group -->
-                                                    <select class="custom-select col-lg-12" style="height: 30%;font-size: 15px;font-family: Times New Roman;margin-top: -2%;" onchange="CalculeBC()" id="charge" name="charge">
-                                                        <option value="N/A" selected>CHARGE UTILE<span style="color: red;">*</span></option>
-                                                        <option value="Break">Break</option>
+                                                    <select class="custom-select col-lg-12" style="height: 30px;font-size: 15px;font-family: Times New Roman;margin-top:-89px;border-radius:0 !important;margin-left:0 !important;border:1px solid #bbcedc" onchange="CalculeBC()" id="charge" name="charge">
+                                                        <!--option value="N/A" selected>CHARGE UTILE<span style="color: red;">*</span></option-->
+                                                        <option value="Break" selected>Break</option>
                                                         <option value="Moins de 3,5T">Moins de 3,5T</option>
                                                         <option value="Plus de 3,5T">Plus de 3,5T</option>
                                                     </select>
-                                                    <select class="custom-select col-lg-12" id="pack" style="height: 30%;font-size: 15px;font-family: Times New Roman;margin-top: -2%;" onchange="CalculeBC()" name="pack">
-                                                        <option  selected>PACK</option>
-                                                        <option value="mini" >Pack Mini</option>
+                                                    <label style="display:none !important; margin-right: 1%;font-family: Times New Roman;font-size: 14px;position:relative;top:-87px" id="labelPack">Pack<span style="color: red;">*</span></label>
+                                                    <select class="custom-select col-lg-12" id="pack" style='height: 30px;border: 1px solid #bbcedc;border-radius: 0;font-size: 15px;font-family: "Times New Roman";margin-top: -25%;margin-left:-39px;' onchange="CalculeBC()" name="pack">
+                                                        <!--option  selected>PACK</option-->
+                                                        <option value="mini" selected>Pack Mini</option>
                                                         <option value="classic">Pack Classic</option>
                                                         <option value="confort">Pack Confort</option>
                                                         <option value="liberte">Pack Liberte</option>
@@ -346,6 +339,7 @@
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
+
                                                 </div>
                                             </div><!-- /.col-lg-6 -->
                                         </div><!-- /.row -->
@@ -353,7 +347,8 @@
                                 </div>
                             </div>
                             <!--fin caracteristiques du vehicule -->
-                            <div id="myModal" class="modal">
+
+                            <!--div id="myModal" class="modal">
                                 <div class="modal-content">
                                 <span class="close" id="close_modal" style="position: relative;top: -21px;color: #062944;">&times;</span>
                                 <h2 style="padding-bottom: 10px;color:#062944">Confirmez-vous la création du contrat ?<h2>
@@ -379,7 +374,7 @@
                                     <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Créer contrat" name="action" style="margin:auto !important;position: relative;top: -112px;color: #f7bb3d;" id="valider_simulation">
                                 </div>
                                 </div>
-                            </div>
+                            </div-->
                           
                            
                         </div>
@@ -892,7 +887,7 @@
                 </div>
             </div>
             <div class="buttons">
-                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="fenvoi()" value="Continuer" id="valider">
+                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Créer devis" name="action">
                 <button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button>
             </div>
 

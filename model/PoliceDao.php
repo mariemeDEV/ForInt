@@ -15,10 +15,39 @@ class PoliceDao extends DBao
      */
     public function insererPolice(Police $us)
     {
-        $sql="INSERT INTO `police` VALUES('".$us->getIdPolice()."', '".$us->getNumPolice()."', '".$us->getDatePolice()."', '".$us->getAttestation()."','".$us->getAttestation_cedeao()."',
-         '".$us->getNumFacture()."','".$us->getValidation()."','".$us->getIntermediaire()."','".$us->getConducteurVehicule()."', '".$us->getPeriodeGarantie()."',
-         '".$us->getVehicule()."', '".$us->getDecomptePrime()."','".$us->getRedMaj()."','".$us->getAssure()."')";
-        return $this->executeMAJ($sql);
+
+            try {
+                $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
+                $user="root";
+                $password="passer";
+                $pdo = new PDO($dns, $user, $password);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+                $sql = $pdo->prepare(
+                    "insert into police values
+                    (
+                    '".$us->getIdPolice()."',
+                    '".$us->getNumPolice()."',
+                    '".$us->getDatePolice()."',
+                    '".$us->getNumFacture()."',
+                    '".$us->getAttestation()."',
+                    ".$us->getValidation().",
+                    ".$us->getIntermediaire().",
+                    '".$us->getConducteurVehicule()."',
+                    '".$us->getPeriodeGarantie()."',
+                    '".$us->getVehicule()."',
+                    '".$us->getDecomptePrime()."',
+                    '".$us->getRedMaj()."',
+                    '".$us->getAssure()."'
+                    )"
+                );
+                echo "Insertion effectuée";
+                return $sql->execute();
+            }
+            catch(Exception $e) {
+                echo 'Exception -> ';
+                var_dump($e->getMessage());
+            }
     }
     public function uptadePolice(Police $us)
     {
@@ -74,11 +103,6 @@ class PoliceDao extends DBao
     */
     public function listPoliceAdmn(Police $p)
     {
-      /*  $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,i.matricule from police as p
-               JOIN periode_garantie as g on(g.id_periode=p.periode_garantie_id_periode) 
-               JOIN assure as a on (p.assure_id_assure=a.id_assure) 
-               JOIN intermediaire as i on (p.intermediaire_matricule=i.matricule) 
-              where i.matricule='".$mat."' and p.validation=0 ORDER by p.date_police DESC ";*/
         $sql  = "SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation, i.matricule from police as p JOIN periode_garantie as g on(g.id_periode=p.periode_garantie_id_periode) JOIN assure as a on (p.assure_id_assure=a.id_assure) JOIN intermediaire as i on (p.intermediaire_matricule=i.matricule) where i.matricule='".$p->getIdPolice()."' and p.validation=0 ORDER by p.date_police DESC";
         return $this->executeSELECT($sql);
     }

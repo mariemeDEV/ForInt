@@ -49,6 +49,10 @@ require_once '../../mapping/Conducteur_vehicule.php';
 require_once '../../model/ConducteurVehiculeDao.php';
 require_once '../../model/TypeAttestationDao.php';
 require_once '../../mapping/TypeAttestation.php';
+require_once '../../mapping/Attestation.php';
+require_once '../../model/AttestationDao.php';
+require_once '../../mapping/AttestationCedeao.php';
+require_once '../../model/AttestationCedeaoDao.php';
 
 $choix=null;
 $usdao=new IntermediaireDao();
@@ -96,7 +100,6 @@ if(isset($_GET['action']))
             $resultat=$usdao->listUser();
             require_once('../../view/admin/ajout_user.php');
         break;
-        
         case 'activer':
             $int=new Intermediaire($_GET['mat'],'','','','','','','',$_GET['act']);
             $activaction=$usdao->activedUser($int);
@@ -111,14 +114,14 @@ if(isset($_GET['action']))
             require_once('../../view/admin/afficher.php');
         break;
         case 'unvalidate':
-                $usPolao=new PoliceDao();
-                $val=new Police($_GET['mat'],'','','','','','','','','','','','','');
-                $unvalidate=$usPolao->unvalidate($val);
-                $usPolao=new PoliceDao();
-                $pol=new Police($_GET['mat'],'','','','','','','','','','','','','');
-                $resultat=$usPolao->listPoliceAdmn($pol);
-                $cpt1=$resultat->rowCount();
-                require_once('../../view/admin/afficher.php');
+            $usPolao=new PoliceDao();
+            $val=new Police($_GET['mat'],'','','','','','','','','','','','','');
+            $unvalidate=$usPolao->unvalidate($val);
+            $usPolao=new PoliceDao();
+            $pol=new Police($_GET['mat'],'','','','','','','','','','','','','');
+            $resultat=$usPolao->listPoliceAdmn($pol);
+            $cpt1=$resultat->rowCount();
+            require_once('../../view/admin/afficher.php');
         break;
         case 'validate':
             $usPolao    = new PoliceDao();
@@ -508,10 +511,25 @@ if(isset($_GET['action']))
             require_once '../../view/user/etats.php';
         break;
         case 'dotations' :
-        $type = new TypeAttestationDao();
-        $types = $type->listTypes();
-             require_once '../../view/admin/dotation.php';
-
+            $type           = new TypeAttestationDao();
+            $attestationDao = new AttestationDao();
+            $cedeaoDao      = new AttestationCedeaoDao();
+            // $vertes         = $attestationDao->getVertes($_SESSION['matricule']);
+            // $jaunes         = $attestationDao->getJaunes($_SESSION['matricule']);
+            // $cedeao         = $cedeaoDao->listAttestations($_SESSION['username']);
+            // $types          = $type->listTypes();
+            // // $freeAttestations =
+            // $totalJaunes    = $attestationDao->getJaunesByType();
+            // $totalVertes    = $attestationDao->getVertesByType();
+            // $cedeaos        = $cedeaoDao->getAttestations();
+            $attestations   = $attestationDao->getAttestations();
+            require_once '../../view/admin/dotation.php';
+        break;
+        case 'affectations' :
+            $type           = new TypeAttestationDao();
+            $attestationDao = new AttestationDao();
+            $types          = $type->listTypes();
+            require_once '../../view/admin/affectations.php';
         break;
         default:
             require_once '../../view/error.php';
@@ -565,7 +583,6 @@ if(isset($_POST['action']))
             {
                 while($row=$Resultat->fetch())
                 { 
-
                     $info[]  =  array( 
                         "NUMÉRO POLICE"                  => $row[0] ,
                         "DATE DE CRÉATION"               => $row[1] ,
@@ -579,7 +596,7 @@ if(isset($_POST['action']))
                         "NOM CONDUCTEUR"                 => $row[9] ,
                         "PRÉNOM CONDUCTEUR"              => $row[10] ,
                         "DATE DÉBUT PERIODE DE GARANTIE" => $row[11] ,
-                        "HEURE DÉBUT PÉRIODE DE GARANTIE"   => $row[12] ,
+                        "HEURE DÉBUT PÉRIODE DE GARANTIE" => $row[12] ,
                         "DATE FIN PÉRIODE DE GARANTIE" => $row[13] ,
                         "HEURE FIN PÉRIODE DE GARANTIE" => $row[14] ,
                         "MARQUE VOITURE"                => $row[15] ,
@@ -619,11 +636,52 @@ if(isset($_POST['action']))
             case 'lister':
                 require_once('../../view/admin/etats.php');
             break;
-        default:
-        case 'excelIntermediaire':
-            echo('ok');
-        break;
-            require_once '../../view/error.php';
+            case 'Valider dotation':
+                $type = new TypeAttestationDao();$attestationDao = new AttestationDao();$cedeaoDao= new AttestationCedeaoDao();$vertes= $attestationDao->getVertes($_SESSION['matricule']);$jaunes =$attestationDao->getJaunes($_SESSION['matricule']);$cedeao = $cedeaoDao->listAttestations($_SESSION['username']);$types = $type->listTypes();$totalJaunes = $attestationDao->getJaunesByType();$totalVertes = $attestationDao->getVertesByType();$cedeaos = $cedeaoDao->getAttestations();$attestations = $attestationDao->getAttestations();
+                function getAttestations(){
+                    $serie          = array();
+                    for($t=($_POST['debut_serie']);$t<=($_POST['fin_serie']);$t++){
+                        array_push($serie,str_pad($t, 7, '0', STR_PAD_LEFT));
+                    }
+                    return $serie;
+                }
+                // echo($_GET['mat']);
+                if(($_POST['type_attestation']=="verte")){
+                $selectedVertes = getAttestations();
+                var_dump($selectedVertes);
+                    for($v=0;$v<count($selectedVertes);$v++){
+                        // echo '<br>'.($selectedVertes[$v]).'<br>';
+                        $attestationVerte = new Attestation($selectedVertes[$v],1, 4091,'attribue','restante');
+                        $attestationDao->insertDotation($attestationVerte);
+                    }
+                }else if(($_POST['type_attestation']=="jaune")){
+                    $selectedJaunes = getAttestations();
+                    // var_dump($selectedJaunes);
+                    for($j=0;$j<count($selectedJaunes);$j++){
+                        // echo '<br>'.($selectedJaunes[$j]).'<br>';
+                        $attestationJaune = new Attestation($selectedJaunes[$j],2, 4091,'attribue','restante');
+                        $attestationDao->insertDotation($attestationJaune);
+                    }
+                }else if(($_POST['type_attestation']=="cedeao")){
+                    $selectedCedeao = getAttestations();
+                    // var_dump($selectedCedeao);
+                    for($c=0;$c<count($selectedCedeao);$c++){
+                        // echo '<br>'.($selectedCedeao[$c]).'<br>';
+                        $attestationCedeao = new Attestation($selectedCedeao[$c],3, 4091,'attribue','restante');
+                        $attestationDao->insertDotation($attestationCedeao);
+                    }
+                }
+                // if(isset($_POST['attestations-vertes']) AND isset($_POST['attestations-jaunes']) AND isset($_POST['attestations-cedeao'])){
+                //     echo($_GET['mat']);
+                //     // var_dump($attestationDao->uptadeDotation(4091,min($checkedVertes),max($checkedVertes)));
+                // }
+                require_once '../../view/admin/affectations.php';
+            break;
+            case 'excelIntermediaire':
+                echo('ok');
+            break;
+            default :
+                require_once '../../view/error.php';
             break;
     }
 }

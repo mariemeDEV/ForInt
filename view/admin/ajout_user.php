@@ -17,8 +17,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../view/style/search_admin.css">
         <link rel="stylesheet" href="../../view/style/style_aff.css">
-
-    
     <style>
         .ajout-title{
             position: relative;
@@ -37,18 +35,7 @@
             position: relative;
             top: 5px;
         }
-        .paging_simple_numbers{
-            position: relative !important;
-            top: 81px !important
-        }
-        .pagination li{
-            height:34px !important
-        }
-        .pagination li a{
-            padding: 1px !important;
-            background: #062944 !important;
-            color: #f7ba00 !important
-        }
+       
         #usersData_filter{
             position: relative !important;
             left: -5px !important;
@@ -76,30 +63,74 @@
            display: inline-flex;
             position: absolute;
             top: -3px;
-            left: 55em;
+            left: 14em;
             z-index: 3;
+            left: 26em;
         }
         .container ul li{
             padding: 1em;
             line-height: 39px;
             font-weight: bold;
         }
-        /* .container ul li::after:not(:last-child){
-        } */
-        /* li:last-child:after{
-            content:'/';
-            padding-left:40px
-        } */
         ul > li:not(:last-child):after{
-            content:'/';
             padding-left:40px;
             color: #f7bb3d !important
-
         }
         ul li a{
             text-decoration:none !important;
             color: #f7bb3d !important
         }
+        .card-body input{
+            border: 1px solid #ffffff !important;
+            border-bottom: 1px solid #062944 !important
+        }
+        .cotent_ajout {
+            height: 105% !important;
+            margin-top: -71px !important;
+        }
+        .modal{
+            top: 40px
+        }
+        .text-center{
+            margin-top: -11px !important
+        }
+        .btn-indigo{
+            background-color: #062944!important;
+            color: #f7bb3d !important;
+        }
+       /*Footer*/
+       .dataTables_info{
+            display:none !important
+        }
+        .pagination{
+            display: inline-flex;
+            position: absolute;
+            top: 11px;
+            left: 14em;
+            z-index: 3;
+            left: -32em !important
+        }
+        .pagination li a{
+            background: #062944 !important;
+            color: #f7ba00 !important
+        } 
+
+        .pagination ul li {
+            text-decoration:none !important;
+            color: #f7bb3d !important;
+            position: relative;
+        }
+        .pagination li{
+            padding:0 !important
+
+        }
+        .list-group-item{
+            padding: 5px !important;
+        } 
+        .mdl-layout__container{
+            overflow-x:hidden !important
+        }
+     
      
     </style>
 
@@ -115,155 +146,159 @@
         <!--container-->
         <div class="container">
             <div class="modal" id='intermediaire_modal'><!--extraction modal-->
-                <div class="modal-content" style="width: 45% !important">
-                        <h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3>
-                        <hr style='width:50% !important;margin:auto !important;font-weight:bold !important'>
-                        <span class="close" style="position:relative;top:-64px">&times;</span>
-                        <form method="post" action="../../controller/admin/index.php" style="margin-top: -28px;">
-                            <div class="form-group inline" style="width: 65%" >
-                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Début</label>
-                                <input type ="date"  name="debut" id="mec" required style="">
-                            </div>
-                            <div class="form-group" style="width: 65%">
-                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Fin</label>
-                                <input type ="date"  name="fin" id="mec" required style="">
-                            </div>
-                            <div class="form-group" style="width: 65%">
-                                <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
-                                <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
-                            </div>
-                            <div style="text-align: center;margin: 0 auto;">
-                                <input type="submit" name="action" value="excelIntermediaire" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important;">
-                            </div>
-                        </form>
+            <!--div class="modal-content" style="width: 45% !important"-->
+            <div class="card" style="width:42%;margin:auto  ">
+                <div class="card-header" style="background:#062944;"><span class="close" style="position:relative;top:-64px;top: -16px;color: #f7bb3d !important;">&times;</span><h3 style="color:#f7bb3d">Extraction production</h3></div>
+                <div class="card-body">
+                <form method="post" action="../../controller/admin/index.php" style="margin-top:-2px;margin-left: 160px;">
+                    <div class="form-group inline" style="width: 65%" >
+                        <label for="dtp_input2" class=" control-label" title="Mise en circulation" style="margin-left: -23%;">Période Début</label>
+                        <input type ="date"  name="debut" id="mec" required style="width: 136%;margin-left: -23%;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;margin-bottom: 11%;">
                     </div>
-                </div><!--extraction production-->
-                <div id="addUserModal" class="modal"><!--ajout nouvel utilisateur-->
-                    <div class="modal-content cotent_ajout">
-                    <span class="close">&times;</span>
-                    <h5>Ajouter un nouvel utilisateur</h5>
-                          <form method="post" action="../../controller/admin/index.php" class="addIntermediaire">
-                        <?php
+                    <div class="form-group" style="width: 65%">
+                        <label for="dtp_input2" class=" control-label" title="Mise en circulation" style="margin-left: -23%;">Période Fin</label>
+                        <input type ="date"  name="fin" id="mec" required style="width: 136%;margin-left: -23%;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;margin-bottom: 11%;">
+                    </div>
+                    <!--div class="form-group" style="width: 65%">
+                        <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
+                        <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
+                    </div-->
+                    <div style="text-align: center;margin: 0 auto;">
+                        <input type="submit" name="action" value="excel" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important; margin-left:-121px;">
+                    </div>
+                </form>
+                </div>
+            <!--/div-->
+            </div>
+        </div><!--extraction production-->
+        <div class="card modal" id="addUserModal" ><!--ajout nouvel utilisateur-->
+                <div class="modal-content cotent_ajout">
+                <div class="card-header" style="width:614px;margin-left: -16px;background: #062944;color: #f7bb3d;text-align:left;margin-top:-17px !important"><span class="close" style="color: #f7bb3d;margin-top: -14px;">&times;</span><h3>Ajout utilisateur</h3></div>
+                <div class="card-body">
+                        <form method="post" action="../../controller/admin/index.php" class="addIntermediaire">
+                    <?php
 
-                        if (isset($ok))
+                    if (isset($ok))
+                    {
+                        if ($ok==true)
+                            echo "<div class=\"alert alert-success\" role=\"alert\">Ajout effectué avec succes</div>";
+                        else
+                            echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur ajout non effectué</div>";
+                    }
+
+                    if(isset($ko))
+                    {
+                        if ($ko=="faux")
                         {
-                            if ($ok==true)
-                                echo "<div class=\"alert alert-success\" role=\"alert\">Ajout effectué avec succes</div>";
-                            else
-                                echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur ajout non effectué</div>";
+                            echo "<div class=\"alert alert-danger\" role=\"alert\">l'adresse mail existe ou code intermediaire existe déjà</div>";
                         }
 
-                        if(isset($ko))
-                        {
-                            if ($ko=="faux")
+                    }
+
+                    if (isset($modification))
+
+                    {
+
+                        if ($modification==true)
+
+                            echo "<div class=\"alert alert-success\" role=\"alert\">Modification effectué avec succes</div>";
+
+                        else
+
+                            echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur modification non effectuée</div>";
+                    }
+                    ?>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="text" placeholder="Matricule" name="matricule" id="matricule" class="form-control" <?php if($choix==2) echo"value=".$item['matricule']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="text" placeholder="Nom" name="nom" id="nom" class="form-control" <?php if($choix==2) echo"value=".$item['nom']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="text" placeholder="Prenom" name="prenom" id="prenom" class="form-control" <?php if($choix==2) echo"value=".$item['prenom']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="text"placeholder="Adresse" name="adresse" id="adresse" class="form-control" <?php if($choix==2) echo"value=".$item['adresse']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="text" placeholder="Telephone" name="tel" id="tel" class="form-control" <?php if($choix==2) echo"value=".$item['tel']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="email" placeholder="Email" name="email" id="email" class="form-control" <?php if($choix==2) echo"value=".$item['email']."" ;?> required>
+                    </div>
+
+                    <div class="md-form" style="height: 35px">
+                        <input type="password" name="mdp" id="mdp" placeholder="Mot de passe par défaut: saham" class="form-control"
+
+                            <?php if($choix==2)
+
                             {
-                                echo "<div class=\"alert alert-danger\" role=\"alert\">l'adresse mail existe ou code intermediaire existe déjà</div>";
+
+                                echo"value=".$item['mdp']."" ;
+
                             }
 
-                        }
-
-                        if (isset($modification))
-
-                        {
-
-                            if ($modification==true)
-
-                                echo "<div class=\"alert alert-success\" role=\"alert\">Modification effectué avec succes</div>";
-
                             else
 
-                                echo "<div class=\"alert alert-danger\" role=\"alert\">Erreur modification non effectuée</div>";
-                        }
+                            {
+
+                                echo "placeholder=\"Mot de passe par défaut: saham\"";
+
+                                echo "disabled";
+
+                            }?> >
+                    </div>
+
+                    <?php if ($choix!=2) {
+
+                        echo"
+
+                        <div class=\"form-group\">
+
+                        <input name=\"actived\" type=\"radio\" value=\"1\" id=\"actived\" checked=\"checked\">
+
+                        <label for=\"radio11\">Activer</label>
+
+                        <input name=\"actived\" value=\"0\" type=\"radio\" id=\"actived\" >
+
+                        <label for=\"radio11\">Desactiver</label>
+
+                    </div> ";
+
+                    }?>
+
+                    <div class="text-center">
+
+                        <?php if($choix!=2)
+                            echo "<button class=\"btn btn-indigo\"  value=\"ajout\" name=\"action\">Ajouter</button>";
                         ?>
 
-                        <div class="md-form" style="height: 35px">
-                            <input type="text" placeholder="Matricule" name="matricule" id="matricule" class="form-control" <?php if($choix==2) echo"value=".$item['matricule']."" ;?> required>
-                        </div>
+                        <?php if($choix==2) echo"<button class=\"btn btn-indigo\"  value=\"modif\" name=\"action\">Modifer <i class=\"fa fa-paper-plane-o ml-1\"></i></button>" ;
 
-                        <div class="md-form" style="height: 35px">
-                            <input type="text" placeholder="Nom" name="nom" id="nom" class="form-control" <?php if($choix==2) echo"value=".$item['nom']."" ;?> required>
-                        </div>
+                        ?>
 
-                        <div class="md-form" style="height: 35px">
-                            <input type="text" placeholder="Prenom" name="prenom" id="prenom" class="form-control" <?php if($choix==2) echo"value=".$item['prenom']."" ;?> required>
-                        </div>
+                        <!--button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button-->
 
-                        <div class="md-form" style="height: 35px">
-                            <input type="text"placeholder="Adresse" name="adresse" id="adresse" class="form-control" <?php if($choix==2) echo"value=".$item['adresse']."" ;?> required>
-                        </div>
-
-                        <div class="md-form" style="height: 35px">
-                            <input type="text" placeholder="Telephone" name="tel" id="tel" class="form-control" <?php if($choix==2) echo"value=".$item['tel']."" ;?> required>
-                        </div>
-
-                        <div class="md-form" style="height: 35px">
-                            <input type="email" placeholder="Email" name="email" id="email" class="form-control" <?php if($choix==2) echo"value=".$item['email']."" ;?> required>
-                        </div>
-
-                        <div class="md-form" style="height: 35px">
-                            <input type="password" name="mdp" id="mdp" placeholder="Mot de passe par défaut: saham" class="form-control"
-
-                                <?php if($choix==2)
-
-                                {
-
-                                    echo"value=".$item['mdp']."" ;
-
-                                }
-
-                                else
-
-                                {
-
-                                    echo "placeholder=\"Mot de passe par défaut: saham\"";
-
-                                    echo "disabled";
-
-                                }?> >
-                        </div>
-
-                        <?php if ($choix!=2) {
-
-                            echo"
-
-                            <div class=\"form-group\">
-
-                            <input name=\"actived\" type=\"radio\" value=\"1\" id=\"actived\" checked=\"checked\">
-
-                            <label for=\"radio11\">Activer</label>
-
-                            <input name=\"actived\" value=\"0\" type=\"radio\" id=\"actived\" >
-
-                            <label for=\"radio11\">Desactiver</label>
-
-                        </div> ";
-
-                        }?>
-
-                        <div class="text-center">
-
-                            <?php if($choix!=2)
-                                echo "<button class=\"btn btn-indigo\"  value=\"ajout\" name=\"action\">Ajouter <i class=\"fa fa-paper-plane-o ml-1\"></i></button>";
-                            ?>
-
-                            <?php if($choix==2) echo"<button class=\"btn btn-indigo\"  value=\"modif\" name=\"action\">Modifer <i class=\"fa fa-paper-plane-o ml-1\"></i></button>" ;
-
-                            ?>
-
-                            <button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button>
-
-                        </div>
-
-                        </form>
-
-                        <!-- Form subscription -->
                     </div>
+
+                    </form>
+
+                    <!-- Form subscription -->
+                </div>
                 </div><!--ajout nouvel utilisateur-->
+                </div>
+            
 
                 <ul>
-                    <li><a href="./?action=dotations">Dotation</a></li>
-                    <li><a id="myBtn">Production</a></li>
-                    <li><a id="add_new_intermediaire">Nouveau</a></li>
+                    <li><a href="./?action=dotations">Consultation dotations</a></li>
+                    <li><a id="myBtn">Extraire production</a></li>
+                    <li><a id="add_new_intermediaire">Nouvel intérmédiaire</a></li>
                 </ul>
           <h1 class="ajout-title">Géstion des utilisateurs</h1>
           <hr>
@@ -278,7 +313,7 @@
                         <th>Adresse</th>
                         <th>E-mail</th>
                         <th>Consulter</th>
-                        <th>Dotation</th>
+                        <th>Attestations</th>
                         <th>Modif/Act/Desact</th>
                     </tr>
                 </thead>
@@ -302,7 +337,7 @@
                                     <a href='./?action=afficher&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DÉTAILS</button></a>
                                 </td>
                                 <td style='text-align: center'>
-                                    <a href='./?action=dotations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DOTATION</button></a>
+                                    <a href='./?action=affectations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DOTATION</button></a>
                                 </td>
                                 <td style='text-align: center'>
                                     <a style='padding-right:16px' href='./?action=modif&mat=$row[0]&prenom=$row[1]&nom=$row[2]&adresse=$row[3]&telephone=$row[4]&email=$row[5]' onclick='if(!confirm(\"voulez - vous Modifier ? \")) return false;'><i class=\"fa fa-edit prefix blue-text\"></i></a>/
@@ -332,6 +367,7 @@
     <script>
         $(document).ready(function() {
             $('#usersData').DataTable();
+            $("#usersData_filter").find('input').focus()
         } );
     </script>
     <script>

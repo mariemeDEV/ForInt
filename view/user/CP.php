@@ -6,6 +6,15 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="../../view/style/form_v3.css" rel="stylesheet">
     <link href="../../view/style/css_etats3.css" rel="stylesheet">
+    <style>
+        @page {
+            size: auto;   /* auto is the initial value */
+            margin: 0;  /* this affects the margin in the printer settings */
+        }
+    #Image2{
+        height:126% !important
+    }
+    </style>
 </head>
 <body onload="write.print()">
 <div id="wb_Image1" style="position:absolute;left:-322px !important;top:0px;width:369px;height:1371px;z-index:17;">
@@ -48,14 +57,14 @@
     <h6 id="Heading10" style='position:relative;top:212px;left:-28px'>Sans tacite reconduction</h6></div>
 <img src="../../img/images3/img0004.jpg" id="Banner5" alt="SOUSCRIPTEUR" style="border-width:0;position:absolute;left:509px;top:86px;width:329px;height:14px;z-index:39;">
 <img src="../../img/images3/img0005.jpg" id="Banner6" alt="ASSURE" style="border-width:0;position:absolute;left:539px;top:232px;width:262px;height:14px;z-index:40;display:none">
-<img src="../../img/images3/img0006.jpg" id="Banner2" alt="CONDUCTEUR HABITUEL" style="border-width:0;position:absolute;left:537px;top:206px;width:281px;height:20px;z-index:41;">
+<!--img src="../../img/images3/img0006.jpg" id="Banner2" alt="CONDUCTEUR HABITUEL" style="border-width:0;position:absolute;left:537px;top:206px;width:281px;height:20px;z-index:41;"!-->
 <input type="text" id="Editbox14" style="position:absolute;left:446px;top:298px;width:128px;height:12px;line-height:12px;z-index:42;display:none" name="EditboxConducteur" value="<?php echo $prenomConducteur." ".$nomConducteur; ?>" spellcheck="false">
 <input type="text" id="Editbox15" style="position:absolute;left:734px;top:299px;width:55px;height:12px;line-height:12px;z-index:43;display:none" name="EditboxAnnee" value="<?php echo $anneeConducteur; ?>" spellcheck="false">
 <input type="text" id="Editbox16" style="position:absolute;left:910px;top:299px;width:50px;height:12px;line-height:12px;z-index:44;display:none" name="EditboxDureeCond" value="<?php echo $dureeConduite." Ans"; ?>" spellcheck="false">
 <label for="" id="Label9" style="position:absolute;left:386px;top:256px;width:63px;height:12px;line-height:12px;z-index:45;display:none">Conducteur</label>
 <label for="" id="Label10" style="position:absolute;left:590px;top:300px;width:137px;height:12px;line-height:12px;z-index:46;display:none">Année de délivrance de permis: </label>
 <label for="" id="Label11" style="position:absolute;left:810px;top:299px;width:81px;height:12px;line-height:12px;z-index:47;display:none">Durée de conduite</label>
-<hr id="Line10" style="position:absolute;left:380px;top:259px;width:163px;height:20px;z-index:48;">
+<!--hr id="Line10" style="position:absolute;left:380px;top:259px;width:163px;height:20px;z-index:48;"-->
 <div id="wb_Text1" style="position:absolute;left:53rem;top:33px;width:78px;height:11px;z-index:49;">
     <span style="color: #000000;
     font-family: Arial;
@@ -64,12 +73,13 @@
     position: relative;
     position: relative !important;
     top: -4px;"><strong>N° Attestation</strong></span></div>
-<input type="text" id="Editbox17" style="position:absolute;left:448px;top:258px;width:85px;height:14px;line-height:14px;" name="EditboxAttest" value="<?php echo $attestation; ?>" spellcheck="false">
-<img src="../../img/images3/img0007.jpg" id="Banner3" alt="CARACTERISTIQUE DU VEHICULE" style="border-width:0;position:absolute;left:570px;top:280px;width:207px;height:19px;z-index:51;">
-<hr id="Line11" style="position:absolute;left:788px;top:283px;width:94px;height:16px;z-index:52;">
-<div id="wb_Text3" style="position:absolute;left:790px;top:331px;width:100px;height:16px;z-index:53;">
-    <span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><strong style="position:relative;top:-48px">Catégorie : <?php echo strtoupper($type);?></strong></span></div>
-<table style="position:absolute;left:378px;top:307px;width:443px;height:37px;z-index:54;" id="Table1">
+<!--input type="text" id="Editbox17" style="position:absolute;left:448px;top:258px;width:85px;height:14px;line-height:14px;" name="EditboxAttest" value="<//?php echo $attestation; ?>" spellcheck="false"-->
+<div class="rest-container" style="background:green">
+<img src="../../img/images3/img0007.jpg" id="Banner3" alt="CARACTERISTIQUE DU VEHICULE" style="border-width:0;position:absolute;left:570px;top:208px;width:207px;height:19px;z-index:51;">
+<hr id="Line11" style="position:absolute;left:788px;top:210px;width:94px;height:16px;z-index:52;">
+<div id="wb_Text3" style="position:absolute;left:790px;top:257px;width:100px;height:16px;z-index:53;">
+    <span style="color:#FFFFFF;font-family:Arial;font-size:13px;"><strong style="position:relative;top:-48px">Catégorie : <?php echo strtoupper($categorie);?></strong></span></div>
+<table style="position:absolute;left:378px;top:231px;width:443px;height:37px;z-index:54;" id="Table1">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:10px;"> Marque</span></td>
         <td class="cell1"><span style="color:#000000;font-family:Arial;font-size:8px;line-height:10px;"> </span><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:10px;">Type</span></td>
@@ -89,7 +99,7 @@
         <td class="cell9"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"> <strong><?php echo $place;?></strong></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:379px;top:353px;width:441px;height:40px;z-index:55;" id="Table3">
+<table style="position:absolute;left:379px;top:269px;width:441px;height:40px;z-index:55;" id="Table3">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"> Genre</span></td>
         <td class="cell1"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"> N° Chassis</span></td>
@@ -103,17 +113,17 @@
         <td class="cell2"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"> <strong><?php echo $mec->format('d/m/Y');?></strong></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:818px;top:307px;width:152px;height:39px;z-index:56;" id="Table2">
+<table style="position:absolute;left:818px;top:231px;width:152px;height:39px;z-index:56;" id="Table2">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:11px;"><strong>Etendue territoriale des garanties</strong></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:820px;top:354px;width:150px;height:40px;z-index:57;" id="Table4">
+<table style="position:absolute;left:820px;top:269px;width:150px;height:40px;z-index:57;" id="Table4">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"><strong>RC:</strong> Etats membres de la CIMA<br><strong>Autres Garanties: </strong>Assurance</span></td>
     </tr>
 </table>
-<table style="position:absolute;left:598px;top:397px;width:372px;height:29px;z-index:58;" id="Table5">
+<table style="position:absolute;left:598px;top:307px;width:372px;height:29px;z-index:58;" id="Table5">
     <tr>
         <td class="cell0"><label for="" id="Label13" style="display:block;width:100%;;height:24px;line-height:24px;z-index:4;">Valeur Neuve: </label>
         </td>
@@ -123,7 +133,7 @@
         <td class="cell2"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> </span><span style="color:#000000;font-family:Arial;font-size:12px;line-height:16px;"><strong><?php echo number_format($val_venale);?></strong></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:380px;top:429px;width:591px;height:234px;z-index:59;" id="Table6">
+<table style="position:absolute;left:380px;top:338px;width:591px;height:234px;z-index:59;" id="Table6">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:12px;line-height:15px;"> </span><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:15px;">GARANTIES</span></td>
         <td class="cell1"><span style="color:#000000;font-family:Arial;font-size:9.3px;line-height:12px;"> LIMITATIONS DES GARANTIES (FCFA)</span></td>
@@ -210,8 +220,8 @@
     </tr>
 
 </table>
-<img src="../../img/images3/img0008.jpg" id="Banner7" alt="REDUCTION/MAJORATION" style="border-width:0;position:absolute;left:500px;top:679px;width:319px;height:20px;z-index:60;">
-<table style="position:absolute;left:500px;top:702px;width:131px;height:44px;z-index:61;" id="Table7">
+<img src="../../img/images3/img0008.jpg" id="Banner7" alt="REDUCTION/MAJORATION" style="border-width:0;position:absolute;left:500px;top:587px;width:319px;height:20px;z-index:60;">
+<table style="position:absolute;left:500px;top:610px;width:131px;height:44px;z-index:61;" id="Table7">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:19px;"><strong> </strong></span><span style="color:#000000;font-family:Arial;font-size:13px;line-height:19px;"><strong>BONUS RC</strong></span></td>
     </tr>
@@ -219,7 +229,7 @@
         <td class="cell1"><div align="justify"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;padding-left: 50% !important;"> <?php echo $percentBC ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  <?php echo $bc ?></span></div></td>
     </tr>
 </table>
-<table style="position:absolute;left:640px;top:701px;width:178px;height:46px;z-index:62;" id="Table8">
+<table style="position:absolute;left:640px;top:610px;width:178px;height:46px;z-index:62;" id="Table8">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:19px;"> </span><span style="color:#000000;font-family:Arial;font-size:16px;line-height:19px;"><strong> </strong></span><span style="color:#000000;font-family:Arial;font-size:12px;line-height:19px;"><strong>REDUCTION COMMERCIALE</strong></span></td>
     </tr>
@@ -227,38 +237,38 @@
         <td class="cell1"><div align="justify"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;padding-left: 50% !important;"><?php echo $percentRC ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $rc ?></span></div></td>
     </tr>
 </table>
-<img src="../../img/images3/img0009.jpg" id="Banner8" alt="DECOMPTE DES PRIMES" style="border-width:0;position:absolute;left:500px;top:752px;width:319px;height:17px;z-index:63;">
-<img src="../../img/images3/img0010.jpg" id="Banner9" alt="Prime nette" style="border-width:0;position:absolute;left:380px;top:777px;width:89px;height:13px;z-index:64;">
-<img src="../../img/images3/img0011.jpg" id="Banner10" alt="Accessoires" style="border-width:0;position:absolute;left:484px;top:777px;width:95px;height:13px;z-index:65;">
-<img src="../../img/images3/img0012.jpg" id="Banner11" alt="Taxe" style="border-width:0;position:absolute;left:600px;top:777px;width:88px;height:13px;z-index:66;">
-<img src="../../img/images3/img0013.jpg" id="Banner12" alt="Fond de garantie" style="border-width:0;position:absolute;left:719px;top:777px;width:125px;height:13px;z-index:67;">
-<img src="../../img/images3/img0014.jpg" id="Banner13" alt="Prime Totale" style="border-width:0;position:absolute;left:861px;top:777px;width:105px;height:12px;z-index:68;">
-<table style="position:absolute;left:483px;top:789px;width:97px;height:23px;z-index:69;" id="Table10">
+<img src="../../img/images3/img0009.jpg" id="Banner8" alt="DECOMPTE DES PRIMES" style="border-width:0;position:absolute;left:500px;top:665px;width:319px;height:17px;z-index:63;">
+<img src="../../img/images3/img0010.jpg" id="Banner9" alt="Prime nette" style="border-width:0;position:absolute;left:380px;top:689px;width:89px;height:13px;z-index:64;">
+<img src="../../img/images3/img0011.jpg" id="Banner10" alt="Accessoires" style="border-width:0;position:absolute;left:484px;top:689px;width:95px;height:13px;z-index:65;">
+<img src="../../img/images3/img0012.jpg" id="Banner11" alt="Taxe" style="border-width:0;position:absolute;left:600px;top:689px;width:88px;height:13px;z-index:66;">
+<img src="../../img/images3/img0013.jpg" id="Banner12" alt="Fond de garantie" style="border-width:0;position:absolute;left:719px;top:689px;width:125px;height:13px;z-index:67;">
+<img src="../../img/images3/img0014.jpg" id="Banner13" alt="Prime Totale" style="border-width:0;position:absolute;left:861px;top:689px;width:105px;height:12px;z-index:68;">
+<table style="position:absolute;left:483px;top:702px;width:97px;height:23px;z-index:69;" id="Table10">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <?php echo number_format($accessoire)  ?></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:599px;top:789px;width:89px;height:23px;z-index:70;" id="Table11">
+<table style="position:absolute;left:599px;top:702px;width:89px;height:23px;z-index:70;" id="Table11">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <?php echo number_format($taxe) ; ?></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:718px;top:789px;width:127px;height:23px;z-index:71;" id="Table12">
+<table style="position:absolute;left:718px;top:702px;width:127px;height:23px;z-index:71;" id="Table12">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <?php echo number_format($fond) ; ?></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:861px;top:789px;width:105px;height:23px;z-index:72;" id="Table13">
+<table style="position:absolute;left:861px;top:702px;width:105px;height:23px;z-index:72;" id="Table13">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;">  <?php echo number_format($totale); ?></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:379px;top:789px;width:92px;height:23px;z-index:73;" id="Table9">
+<table style="position:absolute;left:379px;top:702px;width:92px;height:23px;z-index:73;" id="Table9">
     <tr>
         <td class="cell0"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;">  <?php echo number_format($nette); ?></span></td>
     </tr>
 </table>
-<table style="position:absolute;left:380px;top:816px;width:584px;height:44px;z-index:74;" id="Table14">
+<table style="position:absolute;left:380px;top:734px;width:584px;height:44px;z-index:74;" id="Table14">
     <tr>
         <td class="cell0"><div id="wb_Text4">
                 <span style="color:#000000;font-family:Arial;font-size:9.3px;"><strong><em>Il n'est rien dérogé aux autres clauses et conditions de la police auxquelles le présent contrat demeure annexé. Sont nulles toutes adjonctions ou modifications matérielles non revêtues du visa de la compagnie.</em></strong></span>
@@ -266,22 +276,22 @@
         </td>
     </tr>
 </table>
-<div id="wb_Text5" style="position:absolute;left:380px;top:856px;width:579px;height:83px;z-index:75;">
+<div id="wb_Text5" style="position:absolute;left:380px;top:772px;width:579px;height:83px;z-index:75;">
     <span style="color:#000000;font-family:Arial;font-size:9.3px;">
         <strong><p style="text-decoration:none">DECLARATION DU SOUSCRIPTEUR</p></strong>
         Je soussigné, déclare que les réponses données ci-dessus sont sincères et&nbsp;à ma connaissance exactes.<br>En cas de fausses déclarations, il sera fait application des articles 18 et 19 du code CIMA.<br>Je reconnais que la prise d'effet de la garantie est subordonnée au paiement intégral de la prime et avoir reçu un exemplaire des conditions générales.
     </span>
 </div>
-<div id="wb_Checkbox1" style="position:absolute;left:391px;top:951px;width:20px;height:20px;z-index:76;">
+<div id="wb_Checkbox1" style="position:absolute;left:391px;top:864px;width:20px;height:20px;z-index:76;">
     <input type="checkbox" id="Checkbox1" name="Checkbox1" value="on" checked style="position:absolute;left:0;top:0;"><label for="Checkbox1"></label></div>
-<label for="" id="Label15" style="position:absolute;left:411px;top:948px;width:430px;height:14px;line-height:14px;z-index:77;">J'autorise Saham Sénégal à utiliser mes données personnelles à des fins commerciales.</label>
-<hr id="Line13" style="position:absolute;left:490px;top:971px;width:342px;height:22px;z-index:78;">
-<label for="" id="Label16" style="position:absolute;left:560px;top:971px;width:218px;height:14px;line-height:14px;z-index:79;">Fait en deux exemplaires à Dakar, le &nbsp; <?php echo $datePolice; ?></label>
-<div id="wb_Text7" style="position:absolute;left:396px;top:1020px;width:130px;height:14px;z-index:80;">
+<label for="" id="Label15" style="position:absolute;left:411px;top:862px;width:430px;height:14px;line-height:14px;z-index:77;">J'autorise Saham Sénégal à utiliser mes données personnelles à des fins commerciales.</label>
+<hr id="Line13" style="position:absolute;left:490px;top:889px;width:342px;height:22px;z-index:78;">
+<label for="" id="Label16" style="position:absolute;left:560px;top:889px;width:218px;height:14px;line-height:14px;z-index:79;">Fait en deux exemplaires à Dakar, le &nbsp; <?php echo $datePolice; ?></label>
+<div id="wb_Text7" style="position:absolute;left:396px;top:936px;width:130px;height:14px;z-index:80;">
     <span style="color:#000000;font-family:Arial;font-size:11px;position:relative;top:-23px"><strong><u>Pour le Souscripteur</u></strong></span></div>
-<div id="wb_Text8" style="position:absolute;left:846px;top:1020px;width:116px;height:14px;z-index:81;">
+<div id="wb_Text8" style="position:absolute;left:846px;top:936px;width:116px;height:14px;z-index:81;">
     <span style="color:#000000;font-family:Arial;font-size:11px;position:relative;top:-23px"><strong><u>Pour la Compagnie</u></strong></span></div>
-<div id="wb_Text6" style="position:absolute;left:380px;top:1070px;width:563px;height:20px;text-align:justify;z-index:82;">
+<div id="wb_Text6" style="position:absolute;left:380px;top:1062px;width:563px;height:20px;text-align:justify;z-index:82;">
     <span style="color:#000000;font-family:Arial;font-size:8px;">Siège Social : Boulevard de la Madeleine x rue Carnot BP : 21244 Dakar - Sénégal<br>Tel : +221 33 849 69 00 - Fax : +221 33 823 23 66 - Email : senegal@sahamassurance.com - www.sahamassurance.sn</span>
 </div>
 <div id="wb_Line2" style="position:absolute;left:367px;top:1106px;width:600px;height:2px;z-index:83;">
@@ -365,7 +375,7 @@ transform-origin: 0% 0%;">
             &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  VP/CI<br></span><span style="color:#000000;font-family:Arial;font-size:11px;">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <?php echo strtoupper($libCat);?></span>
     </div>
 </div>
-<div id="wb_Text10" style="position:absolute;left:45px;top:491px;width:275px;height:186px;z-index:106;">
+<div id="wb_Text10" style="position:absolute;left:-69px;top:-24px;width:275px;height:186px;z-index:106;">
     <div style="display:none;
 -moz-transform: rotate(-90deg) translate(0, 100%);
 -moz-transform-origin: 0% 100%;
@@ -399,5 +409,6 @@ transform-origin: 0% 0%;">
 <input type="text" id="Editbox22" style="position:absolute;left:866px;top:1294px;width:74px;height:16px;line-height:16px;z-index:117;display:none" name="EditboxFond" value="<?php echo number_format($fond) ; ?>" spellcheck="false">
 <input type="text" id="Editbox23" style="position:absolute;left:866px;top:1328px;width:74px;height:16px;line-height:16px;z-index:118;display:none" name="EditboxTotalPNS" value="<?php echo number_format($totale); ?>" spellcheck="false">
 <input type="text" id="Editbox24" style="position:absolute;left:870px;top:328px;width:40px;height:12px;line-height:12px;z-index:119;display:none" name="EditboxFacture" value="<?php echo strtoupper($libCat);?>" spellcheck="false">
+</div>
 </body>
 </html>

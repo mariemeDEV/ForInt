@@ -37,18 +37,6 @@
             position: relative;
             top: 5px;
         }
-        .paging_simple_numbers{
-            position: relative !important;
-            top: 81px !important
-        }
-        .pagination li{
-            height:34px !important
-        }
-        .pagination li a{
-            padding: 1px !important;
-            background: #062944 !important;
-            color: #f7ba00 !important
-        }
         #usersData_filter{
             position: relative !important;
             left: -5px !important;
@@ -72,37 +60,39 @@
         .dataTables_info{
             display:none !important
         }
-        .container ul{
-           display: inline-flex;
+        .dataTables_info{
+            display:none !important
+        }
+        .pagination{
+            display: inline-flex;
             position: absolute;
-            top: -3px;
-            left: 55em;
+            top: -74px;
+            left: -42em;
+            background: #062843;
             z-index: 3;
         }
-        .container ul li{
-            padding: 1em;
-            line-height: 39px;
-            font-weight: bold;
+        .pagination li a{
+            background: #062944 !important;
+            color: #f7ba00 !important
+        } 
+        .container ul{
+            display: inline-flex;
+            position: absolute;
+            top: 15px;
+            left: -31em;
+            z-index: 3;
         }
-        /* .container ul li::after:not(:last-child){
-        } */
-        /* li:last-child:after{
-            content:'/';
-            padding-left:40px
-        } */
-        /* ul > li:not(:last-child):after{
-            content:'/';
-            padding-left:40px;
-            color: #f7bb3d !important
-
-        } */
         ul li a{
             text-decoration:none !important;
             color: #f7bb3d !important;
             position: relative;
-            left: 118px;
         }
-     
+        .list-group-item{
+            padding: 5px !important;
+        } 
+        .mdl-layout__container{
+            overflow-x:hidden !important
+        }
     </style>
 
     </head>
@@ -162,7 +152,7 @@
                         <th>Date debut</th>
                         <th>Date Echeance</th>
                         <th>Assure</th>
-                        <th>Conditions particuliéres</th>
+                        <th>Projets</th>
                         <th style='text-align: center;'>Contrat</th>
                     </tr>
                 </thead>
@@ -206,6 +196,7 @@
     <script>
         $(document).ready(function() {
             $('#usersData').DataTable();
+            $("#usersData_filter").find('input').focus()
         } );
     </script>
     <script>

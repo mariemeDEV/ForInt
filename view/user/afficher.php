@@ -31,24 +31,13 @@
             border-top: 2px solid #062945;
             position: absolute;
             top: 134px;
-            left: 138px
+            left: 140px;
         }
         .dataTab{
             position: relative;
             top: 5px;
         }
-        .paging_simple_numbers{
-            position: relative !important;
-            top: 81px !important
-        }
-        .pagination li{
-            height:34px !important
-        }
-        .pagination li a{
-            padding: 1px !important;
-            background: #062944 !important;
-            color: #f7ba00 !important
-        }
+       
         #usersData_filter{
             position: relative !important;
             left: -5px !important;
@@ -69,38 +58,70 @@
         .table td{
             padding-bottom:0 !important
         }
+/*Footer*/
         .dataTables_info{
             display:none !important
         }
-        .container ul{
-           display: inline-flex;
+        .pagination{
+            display: inline-flex;
             position: absolute;
-            top: -3px;
-            left: 55em;
+            top: -74px;
+            left: -42em;
+            background: #062843;
             z-index: 3;
         }
-        .container ul li{
-            padding: 1em;
-            line-height: 39px;
-            font-weight: bold;
+        .pagination li a{
+            background: #062944 !important;
+            color: #f7ba00 !important
+        } 
+        .container ul{
+            display: inline-flex;
+            position: absolute;
+            top: 15px;
+            left: 10em;
+            z-index: 3;
         }
-        /* .container ul li::after:not(:last-child){
-        } */
-        /* li:last-child:after{
-            content:'/';
-            padding-left:40px
-        } */
-        /* ul > li:not(:last-child):after{
-            content:'/';
-            padding-left:40px;
-            color: #f7bb3d !important
-
-        } */
         ul li a{
             text-decoration:none !important;
             color: #f7bb3d !important;
             position: relative;
-            left: 118px;
+        }
+        .list-group-item{
+            padding: 5px !important;
+        } 
+        .mdl-layout__container{
+            overflow-x:hidden !important
+        }
+        .card-header{
+            background: #062944;
+            width: 582px;
+            margin: auto;
+            position: relative;
+            top: 74px;
+            z-index: 1;
+        }
+        .card-header h3{
+            color: #f7bb3d;
+        }
+        .close{
+            position: relative;
+            top: -20px;
+            z-index: 1;
+            left: 526px;
+            color: #f7bb3d;
+        }
+        .modal{
+            width:99% !important
+        }
+        .modal-content{
+            height: 381px !important;
+            width: 45% !important
+        }
+        .btn-lg{
+            background: #062944;
+            color: #f7bb3d !important;
+            position: relative;
+            top: 50px;
         }
      
     </style>
@@ -116,34 +137,33 @@
 
         <!--container-->
         <div class="container">
-            <div class="modal" id='intermediaire_modal'><!--extraction modal-->
-                <div class="modal-content" style="width: 45% !important">
-                        <h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3>
-                        <hr style='width:50% !important;margin:auto !important;font-weight:bold !important'>
-                        <span class="close" style="position:relative;top:-64px">&times;</span>
-                        <form method="post" action="../../controller/admin/index.php" style="margin-top: -28px;">
-                            <div class="form-group inline" style="width: 65%" >
+        <div class="card modal" id='intermediaire_modal'><!--extraction modal-->
+            <div class="card-header"><h3>Extraction production</h3></div>
+            <div class="card-body">
+            <div>
+                <div class="modal-content">
+                        <!--h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3-->
+                        <span class="close">&times;</span>
+                        <form method="post" action="../../controller/formulaire/index.php" style="margin-top: -28px;">
+                            <div class="form-group inline" style="width: 65%;margin:auto;margin-top:49px;    border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;" >
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Début</label>
                                 <input type ="date"  name="debut" id="mec" required style="">
                             </div>
-                            <div class="form-group" style="width: 65%">
+                            <div class="form-group" style="width: 65%;margin:auto;margin-top:28px;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;">
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Période Fin</label>
                                 <input type ="date"  name="fin" id="mec" required style="">
                             </div>
-                            <div class="form-group" style="width: 65%">
-                                <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
-                                <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
-                            </div>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input type="submit" name="action" value="excelIntermediaire" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important;">
+                                <input type="submit" name="action" value="EXTRAIRE" class="btn btn-primary btn-lg">
                             </div>
                         </form>
                     </div>
-                </div><!--extraction production-->
+                </div>
+            </div>
+        </div><!--extraction production-->
+           
                 <ul>
-                    <li style='display:none '><a>Dotation</a></li>
-                    <li ><a id="myBtn">Production</a></li>
-                    <li style='display:none'><a id="add_new_intermediaire">Nouveau</a></li>
+                    <li ><a id="myBtn">Éxtraire production</a></li>
                 </ul>
           <h1 class="ajout-title">Géstion des contrats</h1>
           <hr>
@@ -195,6 +215,7 @@
     <script>
         $(document).ready(function() {
             $('#usersData').DataTable();
+            $("#usersData_filter").find('input').focus()
         } );
     </script>
     <script>

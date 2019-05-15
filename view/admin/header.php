@@ -18,11 +18,11 @@
     <div class="modal" style="background:red !important">polo</div>
 </header>
 <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Saham Assurance</span>
+    <span class="mdl-layout-title" style="padding-top: 43px;padding-left: 22px;color: #010e1e;">Saham Assurance</span>
     <nav class="mdl-navigation">
         <a class="mdl-navigation__link" href="./?action=ajout">Gestion Utilisateur</a>
         <a  href="../../controller/intermediaire?action=disconnect">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">DECONNECTER<i class="material-icons">account_circle</i></button></a>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left:56px !important;margin-top: 45px;">DECONNECTER</button></a>
     </nav>
 
 

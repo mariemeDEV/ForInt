@@ -11,12 +11,13 @@ class VehiculeDao extends DBao
 {
     public function insererVehicule(Vehicule $us)
     {
+        
             $sql="INSERT INTO `vehicule` VALUES('".$us->getIdVehicule()."', '".$us->getMarque()."', '".$us->getType()."', '".$us->getImmatriculation()."','".$us->getPuissance()."',
             '".$us->getEnergie()."','".$us->getChargeUtile()."','".$us->getPlaces()."','".$us->getGenre()."', '".$us->getChassis()."', '".$us->getCylindre()."',
             '".$us->getDateMec()."', '".$us->getValeurNeuve()."','".$us->getValeurVenale()."','".$us->getNomChauffeur()."','".$us->getCategorie()."')";
             return $this->executeMAJ($sql);
             echo 'exception '.$e->getMessage();
-        
+            // ('fke80orzaaa409ak', 'kj', 'ij', '8k', '5', 'kj', 'po', '5', 'kjhgf', 'test', '55', '2019-05-01', '555555', '55555', 'lkjh', '5');
        
     }
 

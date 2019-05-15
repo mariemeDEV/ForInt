@@ -5,10 +5,6 @@ function removeOptions(){
 }
 document.getElementById('date_debut').valueAsDate = new Date();
 
-// $('#dateEffetbtn').click(function(){
-//     $('#effetModal').fadeIn()
-// })
-
 function numberWithCommas(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
@@ -16,7 +12,6 @@ function numberWithCommas(x) {
       x = x.replace(pattern, "$1,$2");
       return x;
 }
-
 
 function CalculeBC(){
     var varDate       = null;
@@ -26,7 +21,9 @@ function CalculeBC(){
     var valeur_neuve  = document.getElementById('val_neuve').value;
     var mois          = document.getElementById('duree').value;
     var places        = document.getElementById('places').value;
-    if(valeur_venale>valeur_neuve){
+    var valeurVenale  = parseFloat(valeur_venale.replace(/[^\d\.]/g,''));
+    var valeurNeuve   = parseFloat(valeur_neuve .replace(/[^\d\.]/g,''));
+    if(valeurVenale>valeurNeuve){
         var modal_values = document.getElementById("valeursModal");
         var span         = document.getElementsByClassName("close")[0];
         var inputs       = document.getElementById("hidden-caracteristiques");
@@ -426,7 +423,7 @@ function CalculeBC(){
     //------------------------FIN DETERMINATION DU GENRE DE VEHICULE--------------------
     
     //------------------------CALCUL DU TAUX------------------
-    if (mois==1)     {var taux=8.75;  }
+    if (mois==1)     {var taux=8.75}
     else if(mois==2) {var taux=2*(8.75)}
     else if(mois==3) {var taux=3*(8.75)}
     else if(mois==4) {var taux=4*(8.75)}
@@ -435,7 +432,7 @@ function CalculeBC(){
     else if(mois==7) {var taux=7*(8.75)}
     else if(mois==8) {var taux=8*(8.75)}
     else if(mois==9) {var taux=9*(8.75)}
-    else{ var taux=100}
+    else{var taux=100}
     //------------------------FIN CALCUL DU TAUX------------------
 
 
@@ -1350,31 +1347,33 @@ function CalculeBC(){
 
     //*************************CONDITION POUR LE CHECKBOX 4: INCENDIE*********************** */
 
-    if (Checkbox4.checked==1)
+    if (document.getElementById("Checkbox4").checked==1)
     {
-        // console.log(parseInt(valeur_venale))
+        var vv = parseFloat(valeur_venale.replace(/[^\d\.]/g,''));
 
         if(genre_v==1)
         {
-        //    //alert("incendie+"+genre_v);
+        // alert("incendie+"+genre_v);
             var lim_gant_ck4=0;
             var franch_4=0;
-            var primebrute_4=(parseInt(valeur_venale)*(0.5)/100);
-            var primebrute_prorata_4=parseInt(primebrute_4*(taux/100));
+            var primebrute_4=(parseInt(vv)*(0.5)/100);
+            var primebrute_prorata_4=primebrute_4*(taux/100);
             // alert("checkbox4:lim: "+lim_gant_ck4+" franchise4: "+franch_4+" primebrute"+primebrute_4+"prorata"+primebrute_prorata_4);
-
             document.getElementById('lim4').value=lim_gant_ck4;
             document.getElementById('franch4').value=franch_4;
             document.getElementById('brute4').value=primebrute_4;
             document.getElementById('prorata4').value=primebrute_prorata_4;
             document.getElementById('PrimeIncendie').value=primebrute_prorata_4;
+            console.log((primebrute_4*taux)/100)
+            console.log(primebrute_4)
+
         }
         if(genre_v==2)
         {
          //   alert("incendie+"+genre_v);
             var lim_gant_ck4=0;
             var franch_4=0;
-            var primebrute_4=parseInt(valeur_venale*(0.75)/100);
+            var primebrute_4=parseInt(vv*(0.75)/100);
             var primebrute_prorata_4=parseInt(primebrute_4*(taux/100));
             //alert("checkbox4:lim: "+lim_gant_ck4+" franchise4: "+franch_4+" primebrute"+primebrute_4+"prorata"+primebrute_prorata_4);
 
@@ -1388,7 +1387,7 @@ function CalculeBC(){
         {
             var lim_gant_ck4=0;
             var franch_4=0;
-            var primebrute_4=parseInt(valeur_venale*(1.5)/100);
+            var primebrute_4=parseInt(vv*(1.5)/100);
             var primebrute_prorata_4=parseInt(primebrute_4*(taux/100));
             //alert("checkbox4:lim: "+lim_gant_ck4+" franchise4: "+franch_4+" primebrute"+primebrute_4+"prorata"+primebrute_prorata_4);
 
@@ -1402,7 +1401,7 @@ function CalculeBC(){
         {
             var lim_gant_ck4=0;
             var franch_4=0;
-            var primebrute_4=parseInt(valeur_venale*(0.20)/100);
+            var primebrute_4=parseInt(vv*(0.20)/100);
             var primebrute_prorata_4=parseInt(primebrute_4*(taux/100));
             document.getElementById('lim4').value=lim_gant_ck4;
             document.getElementById('franch4').value=franch_4;
@@ -1428,41 +1427,43 @@ function CalculeBC(){
     }
 
     //*************************CONDITION POUR LE CHECKBOX 5: VOL*********************** */
-    if (Checkbox5.checked==1)
+    if(document.getElementById("Checkbox5").checked==1)
     {
+
+        var vv = parseFloat(valeur_venale.replace(/[^\d\.]/g,''));
         if(genre_v==1)
         {
             var lim_gant_ck5=0;
             var franch_5=36000;
-            var primebrute_5=parseInt(valeur_venale*(0.3)/100);
+            var primebrute_5=parseInt(vv*(0.3)/100);
             var primebrute_prorata_5=parseInt(primebrute_5*(taux/100));
         }
         if(genre_v==2)
         {
             var lim_gant_ck5=0;
             var franch_5=36000;
-            var primebrute_5=parseInt(valeur_venale*(0.15)/100);
+            var primebrute_5=parseInt(vv*(0.15)/100);
             var primebrute_prorata_5=parseInt(primebrute_5*(taux/100));
         }
         if(genre_v==3)
         {
             var lim_gant_ck5=0;
             var franch_5=36000;
-            var primebrute_5=parseInt(valeur_venale*(0.28)/100);
+            var primebrute_5=parseInt(vv*(0.28)/100);
             var primebrute_prorata_5=parseInt(primebrute_5*(taux/100));
         }
         if(genre_v==4)
         {
             var lim_gant_ck5=0;
             var franch_5=36000;
-            var primebrute_5=parseInt(valeur_venale*(0.42)/100);
+            var primebrute_5=parseInt(vv*(0.42)/100);
             var primebrute_prorata_5=parseInt(primebrute_5*(taux/100));
         }
         if(pack=="classic" || pack=="confort" || pack==="liberte")
         {
             var lim_gant_ck5=0;
             var franch_5=36000;
-            var primebrute_5=parseInt(valeur_venale*(0.20)/100);
+            var primebrute_5=parseInt(vv*(0.20)/100);
             var primebrute_prorata_5=parseInt(primebrute_5*(taux/100));
             // alert("checkbox5 lim: "+lim_gant_ck5+"franch: "+franch_5)
 
@@ -2281,7 +2282,6 @@ function CalculeBC(){
     {
         document.getElementById('valider').disabled=false;
     }
-/**************************************************************/
 }
 
 function myFunction() {
@@ -2292,6 +2292,13 @@ function myFunction() {
 
 //Validation du formulaire pour la création d'un contrat 
 function fenvoi(){
+    if($('#categorie').val()==4){
+        $('#j').css('display','none')
+        $('#v').css('display','inline-block')
+    }else{
+        $('#v').css('display','none')
+        $('#j').css('display','inline-block')
+    }
     if (document.getElementById("nom_assure").value == "") 
      {
         document.getElementById("nom_assure").style.borderColor='#FF0000';
@@ -2357,31 +2364,17 @@ function fenvoi(){
      {
         document.getElementById("val_venale").style.borderColor='#0000FF';
      }
-        // Get the modal
-        // var modal   = document.getElementById('myModal')
-        // var inputs1 = document.getElementById("assure-infos");
-        // var inputs2 = document.getElementById("hidden-caracteristiques");
-        // modal.style.display   ="block";
-        // inputs1.style.display ="none";
-        // inputs2.style.display ="none";
+        
         $('#myModal').fadeIn(1000);
         $('#assure-infos,#hidden-caracteristiques').fadeOut(1000)
         $('.buttons').fadeOut(1000)
 
-    if(document.getElementById("attestation").value == "") 
-      {
-            document.getElementById("attestation").style.borderColor='#FF0000';
-     }
-     else
-     {
-        document.getElementById("attestation").style.borderColor='#0000FF';
-     }
 }
-// var inputs1 = document.getElementById("assure-infos");
-// var inputs2 = document.getElementById("hidden-caracteristiques");
+
 $('#close_modal').click(function(){
     $('#myModal').fadeOut(1000);
     $('#assure-infos,#hidden-caracteristiques').fadeIn(1000)
+    $('.buttons').fadeIn(1000)
 })
 $(window).click(function(event){
     if (event.target == $('#myModal')) {
@@ -2389,45 +2382,21 @@ $(window).click(function(event){
     $('#assure-infos,#hidden-caracteristiques').fadeIn(1000)
     }
 })
-// var span = document.getElementById("close_modal");
-// span.onclick = function() {
-//   modal.style.display   = "none";
-//   inputs1.style.display ="block";
-//   inputs2.style.display ="block";
-// }
-// var modal   = document.getElementById('myModal')
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//     inputs1.style.display ="block";
-//     inputs2.style.display ="block";
-//   }
-// }
-$("#valider_simulation").click(function(){
-    Swal.fire(
-        'Good job!',
-        'You clicked the button!',
-        'success'
-      )
-})
 
 $('#afficherPopup').on('click', function(){
     if($(this).hasClass('selected'))
     {
-    deselect($(this)); 
+        deselect($(this)); 
     }
     else
     {
-    $(this).addClass('selected');
-    $('.pop').slideFadeToggle();
+        $(this).addClass('selected');
+        $('.pop').slideFadeToggle();
     }
     return false;
 });
 $('#nom_assure,#prenom_assure,#adresse_assure,#tel,#email_assure,#puissance,#val_neuve,#val_venale,#places,#mec,#energie,#categorie,#genre,#marque,#type,#immatriculation').keyup(function(){
-    // $(this).val=$(this).val().toUpperCase()
-    // alert($(this).val)
     $(this).val($(this).val().toUpperCase())
-    // alert('ok')
 })
 
 
@@ -2448,7 +2417,7 @@ function checkDate(){
             }
         }
         document.getElementById('date_debut').valueAsDate = new Date();
-        }
+    }
 }
 
 // var btn_dateEffet = document.getElementById("dateEffetbtn");

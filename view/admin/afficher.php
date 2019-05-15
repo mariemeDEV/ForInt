@@ -23,7 +23,7 @@
         .ajout-title{
             position: relative;
             top: 98px;
-            left: 15px
+            left: 38px;
         }
         hr{
             width: 9%;
@@ -31,11 +31,12 @@
             border-top: 2px solid #062945;
             position: absolute;
             top: 134px;
-            left: 138px
+            left: 40px;
         }
         .dataTab{
             position: relative;
-            top: 5px;
+            top: -47px;
+
         }
         .paging_simple_numbers{
             position: relative !important;
@@ -51,8 +52,9 @@
         }
         #usersData_filter{
             position: relative !important;
-            left: -5px !important;
-            top: 6px;
+            left: 448px !important;
+            top: -112px;
+            width: 224px;
         }
         #usersData_filter .form-control-sm{
             border: 0 solid #ffffff !important;
@@ -84,6 +86,27 @@
             line-height: 39px;
             font-weight: bold;
         }
+        /* .dataTables_paginate{
+            background: green !important;
+            width: 219px !important;
+            height: 36px !important;
+            position: relative !important;
+            left: -132px !important; 
+        }
+        .dataTables_paginate ul{
+            position: absolute !important;
+            left: -102px;
+            top: -7px;
+        }
+        .dataTables_paginate ul li{
+            left: 165px;
+            top: 6px;
+            background: yellow;
+            position: absolute;
+        } */
+      
+
+
         /* .container ul li::after:not(:last-child){
         } */
         /* li:last-child:after{
@@ -102,6 +125,12 @@
             position: relative;
             left: 118px;
         }
+        ul li span{
+            position: absolute;
+            left: 315px;
+            background: #f9d281 !important;
+            color: #062944 !important;
+        }
      
     </style>
 
@@ -118,68 +147,77 @@
         <!--container-->
         <div class="container">
             <div class="row">
-                <div class="col col-lg-8">
+                <div class="col col-lg-8" style="position: relative;left:35px;top:123px !important">
                     <?php              
                         while($row=$intermediaireData->fetch()){
                         echo '
                             <ul class="list-group intermediaire_data" style="width: 110% !important">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Matricule
-                                <span class="badge badge-primary badge-pill">'.$row[0].'</span>
+                                Contrats validés
+                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Prénom
-                                <span class="badge badge-primary badge-pill">'.$row[2].'</span>
+                                Devis
+                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Nom
-                                <span class="badge badge-primary badge-pill">'.$row[1].'</span>
+                                Attestations vertes
+                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Téléphone
-                                <span class="badge badge-primary badge-pill">'.$row[4].'</span>
+                                Attestations jaunes
+                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                E-mail
-                                <span class="badge badge-primary badge-pill">'.$row[5].'</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Etat
+                                Attestations cedeao
                                 <span class="badge badge-primary badge-pill">'.$row[8].'</span>
                             </li>
                         </ul>';
                         }
                     ?>
                 </div>
-
-                <div class="col col-lg-4">
-                    <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">
+                <div class="col col-lg-4" style="position: relative;left: -54em;top:130px;">
+                    <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%;margin-top:-63px !important">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>id Police</th>
-                                <th>Numero Police</th>
-                                <th>Date debut</th>
-                                <th>Date Echeance</th>
-                                <th>Assure</th>
-                                <th>Etat</th>
-                                <th style='text-align: center'>Condition particuliére</th>
-                                <th>Activer</th>
-                                <th>Désactiver</th>
-                                <!--th style='text-align: center'>Valider/Dévalider</th-->
+                                <th>Date contrat</th>
+                                <th>Code assuré</th>
+                                <th>Prénom assuré</th>
+                                <th>Nom assuré</th>
+                                <th>Adresse assuré</th>
+                                <th>Téléphone assuré</th>
+                                <th>Prime nette</th>
+                                <th>Prime totale</th>
+                                <th>Vlidation contrat</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                        while($row=$resultat->fetch()){
+                            $datePolice = date("d-m-Y", strtotime($row[0]));
+                            echo'
                             <tr>
-                                <td>polo</td>
-                            </tr>
+                                <td>'.$datePolice.'</td>
+                                <td>'.$row[2].'</td>
+                                <td>'.$row[4].'</td>
+                                <td>'.$row[3].'</td>
+                                <td>'.$row[5].'</td>
+                                <td>'.$row[6].'</td>
+                                <td>'.$row[7].'</td>
+                                <td>'.$row[8].'</td>';
+                            if($row[1]==1){
+                                echo '<td style="background:#9bec9b;text-align:center;font-weight:bold">Validé</td>';
+                            }else if($row[1]==0){
+                                echo '<td style="background:#e66355;text-align:center;font-weight:bold">Non validé</td>';
+                            }
+                        echo'</tr>';
+                        }
+                        ?>
                         </tbody>
                         <tfoot></tfoot>
                     </table>
                 </div>
-
             </div>
-            
         </div>
         <!--container-->
 

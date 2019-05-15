@@ -2,7 +2,7 @@
     /**********************LES VALEURS DE L'ASSURE ***********************************/
 //echo $_SESSION['matricule'];
  echo "unique ID: ".$unikId=uniqid();
- function generateId($length):string{
+ function generateIdVente($length):string{
     $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
     $charactersLength = strlen($characters);
     $idGenerated      = '';
@@ -21,7 +21,7 @@ echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_
 echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
 echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
 echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
- $Assuredao=new AssureDao();
+$Assuredao=new AssureDao();
 $usAssure=new Assure($unikId,preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING)),
@@ -97,19 +97,6 @@ else
 
 /**********************LES VALEURS DU VEHICULE ***********************************/
 
-/*echo "marque: ".$_POST['marque']."<br>";
-echo "type vehicule: ".$_POST['type_vehicule']."<br>";
-echo "immatriculation: ".$_POST['immatriculation']."<br>";
- echo "GENRE".$_POST['genre']."<br>";
-echo "puissance".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['puissance'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "energie: ".$_POST['energie']."<br>";
-echo "charge: ".$_POST['charge']."<br>";
-echo "places: ".$_POST['places']."<br>";
-echo "MEC: ".$_POST['mec']."<br>";
-echo "valeur neuve: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_neuve'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "valeur venale: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "categorie: ".$_POST['categorie']."<br>";
-echo "PAck: ".$_POST['pack']."<br>";*/
 $marque=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['marque'],FILTER_SANITIZE_STRING));
 $type=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['type_vehicule'],FILTER_SANITIZE_STRING));
 $immatriculation=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['immatriculation'],FILTER_SANITIZE_STRING));
@@ -248,14 +235,26 @@ $datePolice = date_create()->format('Y-m-d H:i:s');
  $attestation=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
-    // echo "toutes les insertions sont faites<br>";
-    $usdao = new PoliceDao();
-    // $us = new Police($unikId,$valueNumP,$datePolice,$attestation,$attestation_cedeao,$numFacture,(int)$validation,(int)($_SESSION['matricule']),$insertedconducteur,$garantieGenerated,$vehiculeInsere,$decompteInseree,$reductioInseree,$asurreInserted);
-    $us=new Police($unikId,$valueNumP,$datePolice,$attestation,$_POST['attesta'],$numFacture,1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
-    $ok    = $usdao->insererPolice($us);
+    $usdao             = new PoliceDao();
+    $attestationDao    = new AttestationDao();
+    $attestation       = $_POST['attestation'];
+    $attestationCedeao = $_POST['attesta'];
+    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,$_POST['attestation'],1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $ok                = $usdao->insererPolice($us);
+    var_dump($ok);
     if($ok==true)
     {
-        echo '<p style="backgroud:green">Police inseree</p>'."<br>";
+// echo "toutes les insertions sont faites<br>";
+// echo '<p style="backgroud:green">Police inseree</p>'."<br>";
+        if($_POST['optradio']=='verte'){
+            $attestationDao->setToSoldVertes($attestation);
+            $attestationDao->setToSoldCedeao($attestationCedeao);
+            $attestationDao->setToSoldes("fg8855K8",$attestation,$attestationCedeao);
+        }else if($_POST['optradio']=='jaune'){
+            $attestationDao->setToSoldJaunes($attestation);
+            $attestationDao->setToSoldCedeao($attestationCedeao);
+            $attestationDao->setToSoldes("fg8855K8",$attestation,$attestationCedeao);
+        }
         $c7=1;
     }
     else
@@ -365,6 +364,7 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
                 }
             }
         }
+    //Redirection vers la page d'erreur
     }
 }
 else
@@ -377,7 +377,6 @@ else
         $koAssure=$Assuredao->deleteAssure(new Assure($unikId));
         if($koAssure==true)
         {
-
             echo "supression Assure effectué<br>";
         }
         else
@@ -385,7 +384,7 @@ else
             echo "supression Assure non effectué<br>";
         }
     }
-    $listCond=$conddao->selectConducteur(new Conducteur_vehicule($unikId));
+    $listCond=$conddao->selectConducteur($unikId);
     $rowCond=$listCond->rowCount();
     if($rowCond==1)
     {
@@ -463,7 +462,6 @@ else
 
 if ($c7==1)
 {
-
 //-------------------------
 //CHECKBOX 1
 //-------------------------
@@ -916,13 +914,20 @@ if ($c7==1)
             </script>
             <script>
             function redict2(){
-                var b ='../../controller/formulaire/?action=lister2&opli=$unikId';
+                var c ='../../controller/formulaire/?action=lister3&opli=$unikId';
                 window.location.href='../../controller/formulaire/?action=valider';
-                window.open(b);
+                window.open(c);
+            }
+            </script>
+            <script>
+            function redict3(){
+                var d ='../../controller/formulaire/?action=lister4&opli=$unikId';
+                window.location.href='../../controller/formulaire/?action=valider';
+                window.open(d);
             }
             </script>
 </head>
-<body onload='redict();redict1();redict2()'>
+<body onload='redict();redict1();redict2();redict3()'>
 </body>
 </html>
     ";

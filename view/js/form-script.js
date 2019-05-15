@@ -42,12 +42,22 @@ $(window, document, undefined).ready(function() {
         $('#update_modal').css('display','none')
         $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')
     })
+    $("#jaune").click(function(){
+      // alert('jaune')
+      $('#attestation-verte').fadeOut()
+      $('#attestation-jaune').fadeIn()
+      // $("#s1").fadeOut();
+
+    })
+    $("#verte").click(function(){
+      // alert('verte')
+      $('#attestation-jaune').fadeOut()
+      $('#attestation-verte').fadeIn()
+      // $("#s2").fadeOut();
+
+    })
   
-    // $('#add_new_intermediaire').click(function(){
-    //   alert("ok")
-    //   $('#addUserModal').fadeIn()
-    // })
-   
+  
     function divider() {
       $('.divide').divide({
           delimiter:' ',
@@ -57,6 +67,22 @@ $(window, document, undefined).ready(function() {
     divider()
      // setInterval(divider, 10);
 
+      //Tel Input
+      var input = document.querySelector("#tel");
+      window.intlTelInput(input, {
+        nationalMode: false,
+        initialCountry: "sn",
+        separateDialCode: false,
+        preferredCountries: ["fr", "ml", "us"],
+        geoIpLookup: function (callback) {
+            $.get('https://ipinfo.io', function () {
+            }, "jsonp").always(function (resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "";
+                callback(countryCode);
+            });
+        },
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
+      });
 
 
 

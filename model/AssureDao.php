@@ -10,8 +10,6 @@ class AssureDao extends Dbao{
     {
        $sql="insert into assure values ('".$us->getId_assure()."','".$us->getNom_assure()."','".$us->getPrenom_assure()."',
             '".$us->getAdresse_assure()."','".$us->getTel_assure()."','".$us->getEmailAssure()."')";
-// insert into `vehicule` values ("000000",'peugeot','405','002222','9', '102','plus de 3.5tonnes','5','p','5','10', '2014/12/20','2000000','1000000','Ndongo','1')
-
        return $this->executeMAJ($sql);
 
     }

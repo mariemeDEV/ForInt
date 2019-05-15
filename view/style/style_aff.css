@@ -137,7 +137,7 @@ tbody input[type="text"]{
 .material-icons{
     color:#062944 !important
 }
-.paginate_button{
+/* .paginate_button{
     background: #062945 !important;
     padding: 10px;
     position: relative;
@@ -145,14 +145,14 @@ tbody input[type="text"]{
     left: 0 !important;
     color: #f7ba00;
     cursor:pointer
-}
-.paginate_button :hover{
+} */
+/* .paginate_button :hover{
     color:#f7ba00 !important
-}
-.dataTables_paginate{
+} */
+/* .dataTables_paginate{
     margin-top: -22px !important
-}
-.dataTables_info{
+} */
+/* .dataTables_info{
     width: 30% !important;
     position: relative;
     top: 46px;
@@ -160,7 +160,7 @@ tbody input[type="text"]{
     color: #06273a !important;
     font-weight: bold !important;
     font-size: 12px;    
-}
+} */
 
 .table{
 	/* background: #f7ba0021 !important;
@@ -365,3 +365,4 @@ a.selected {
  color:white;
  z-index:100;
 }
+

@@ -10,7 +10,31 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../../view/style/intlTelInput.css">
     <link rel="stylesheet" href="../../view/style/style_aff.css">
+    <style>
+        .selected-flag{
+            z-index: 4 !important;
+            /* background: #062944 !important; */
+            position: relative;
+            left: -3px;        
+        }
+        .country-list{
+            z-index:3 !important;
+            left:14px !important
+        }
+        .country-list{
+            width: 216px !important
+        }
+        .ui-menu{
+            overflow-y:scroll !important
+        }
+        /* #hidden-form select{
+            display:none !important
+        } */
+      
+    </style>
 </head><!--end header-->
 
 <body onload="myFunction();CalculeBC()"id="assurance">
@@ -51,33 +75,33 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="font-family: Times New Roman;margin-top: 2%;font-size: 14px;">Nom<span style="color: red;">*</span></label>
-                                                  <button class='hidden-btn' style="background:#ffffff;border:none"><input type="text" style="margin-left: 15%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control"   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure"   required="required"></button>
+                                                  <input type="text" style="margin-left:8%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control"   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure"   >
                                                </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;margin-top: 2%;">Pénom<span style="color: red;">*</span></label>
-                                                  <button class='hidden-btn' style="background:#ffffff;border:none"><input type="text" style="margin-left: 11%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" required="required"></button>
+                                                  <input type="text" style="margin-left:4%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" >
                                                 </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;margin-top: 2%;">Adresse</label></label>
-                                                    <button class='hidden-btn' style="background:#ffffff;border:none;width:104%;margin-left:14px"><input type="text" style="font-size: 15px;font-family: Times New Roman;margin-left:0;width:117% !important" name="adresse_assure" id="adresse_assure" class="form-control" placeholder="Adresse de l'assure" aria-describedby="sizing-addon1" title="Adresse de l'assure"></button>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;margin-left:5px;margin-top:-5px;width:117% !important" name="adresse_assure" id="adresse_assure" class="form-control" placeholder="Adresse de l'assure" aria-describedby="sizing-addon1" title="Adresse de l'assure">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
-                                                     <label style="margin-right: 1%;margin-top: 4%;font-family: Times New Roman;font-size: 14px;">Téléphone</label>
-                                                     <button class='hidden-btn' style="background:#ffffff;border:none;width:104%;margin-left:14px"><input type="text" id="tel" style="margin-top:-1%;margin-left:-7px;font-size: 15px;font-family: Times New Roman;width:108%" name="tel_assure" class="form-control divide" placeholder="Ex: 00 000 00 00" aria-describedby="sizing-addon1" title="Telephone de l'assure"></button>
+                                                     <label style="margin-right: 1%;margin-top: 2%;font-family: Times New Roman;font-size: 14px;position:relative;left:-12px">Téléphone</label>
+                                                     <input type="text" id="tel" style="margin-top:-2%;margin-left:-4px;font-size: 15px;font-family: Times New Roman;width:102%" name="tel_assure" class="form-control divide" placeholder="Ex: 00 000 00 00" aria-describedby="sizing-addon1" title="Telephone de l'assure">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group" style="width: 212% !important">
                                                     <!-- debut input-group -->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">E-mail</label>
-                                                    <button class='hidden-btn' style="background:#ffffff;border:none;width:104%;margin-left:14px"><input type="text" type="tel" style="margin-top:0%;margin-left:9px;font-size: 15px;font-family: Times New Roman;width:99%" name="email_assure" id="email_assure" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" title="Email de l'assure"></button>
+                                                    <input type="text" type="tel" style="margin-top:1%;margin-left:14px;font-size: 15px;font-family: Times New Roman;width:99%" name="email_assure" id="email_assure" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" title="Email de l'assure">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -163,13 +187,13 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group">
                                                 <label style="margin-right: 5%;margin-top: 2%;font-family: Times New Roman;font-size: 14px;">Nom<span style="color: red;font-size: 15px;">*</span> </label>      <!-- debut input-group -->
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" id="nom_conducteur" name="nom_conducteur" class="form-control" placeholder="Nom du conducteur" title="Nom du conducteur" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;margin-left:9px" id="nom_conducteur" name="nom_conducteur" class="form-control" placeholder="Nom du conducteur" title="Nom du conducteur" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group" style="margin-left: -4%;"> 
                                                 <label style="margin-right: 1%;margin-top: 2%;font-family: Times New Roman;font-size: 14px;">Prénom<span style="color: red;font-size: 15px;">*</span> </label>       <!-- debut input-group -->
-                                                    <input  name="prenom_conducteur" style="font-size: 15px;font-family: Times New Roman;" id="prenom_conducteur" class="form-control" placeholder="Prenom du conducteur" title="Prenom du conducteur;" aria-describedby="sizing-addon1" required>
+                                                    <input  name="prenom_conducteur" style="font-size: 15px;font-family: Times New Roman;margin-left:4%" id="prenom_conducteur" class="form-control" placeholder="Prenom du conducteur" title="Prenom du conducteur;" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
@@ -224,7 +248,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -232,14 +256,14 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;">*</span></label>
                                                 <div class="input-group"><!-- debut input-group -->          
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Immatriculation<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -247,7 +271,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='labelPuissance'>Puissance<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1" required>
+                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
@@ -260,7 +284,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control divide" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1" required>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control divide" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
@@ -320,6 +344,7 @@
                                                     <input type ="date" onchange="CalculeBC()" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;">
                                                 </div><!-- /input-group-->
                                             </div><!-- /.col-lg-6 -->
+
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
                                             <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;display:none;position:relative;top:-6px" id='cylindreLabel'>Cylindre<span style="color: red;">*</span></label>
                                                 <div class="form-group">       <!-- debut input-group -->
@@ -328,7 +353,7 @@
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6" style="display:none">            <!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Cassis<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Chassis<span style="color: red;">*</span></label>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="chassis" class="form-control" id="chassis" placeholder="chassis" title="Chassis" aria-describedby="sizing-addon1"title="Chassis">
                                                 </div><!-- /input-group -->
@@ -365,8 +390,6 @@
                                 </div>
                             </div>
                             <!--fin caracteristiques du vehicule -->
-
-                          
                             <div id="myModal" class="modal">
                                 <div class="modal-content" style='background:#fdfddc !important'>
                                 <span class="close" id="close_modal" style="position: relative;top: -21px;color: #062944;">&times;</span>
@@ -377,15 +400,26 @@
                                     <li style="color:#062944">Édition des conditions particuliéres.</li>
                                     <li style="color:#062944">Édition des attestations.</li>
                                 </ul>
-                                <div class="row" style="margin-top: -5px !important;">
+                                <div class="row" style="position:relative !important;top:-118px !important">
+                                <label class="radio-inline" id='j' style="font-size:12px">
+                                    <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important">attestation jaune
+                                </label>
+                                <label class="radio-inline" id='v' style="font-size:12px">
+                                    <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !important">attestation verte
+                                </label>
+                                </div>
+                                <div class="row" style="margin-top: -160px !important;">
                                     <div class="col-lg-6"> 
-                                        <div class="input-group ">       
-                                            <input type="text" name="attestation" id="attestation" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" required style="font-size: 15px;font-family: Times New Roman;">&nbsp;&nbsp;<span style="color: red;font-size: 15px;">*</span>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-sm attestations" type="text" name="attestation" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
+                                        </div>
+                                        <div class="input-group"> 
+                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">     
-                                        <div class="input-group ">     
-                                            <input type="text" name="attesta" id="attesta" class="form-control" placeholder="Attestation CDEAO" title="Attesta" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;margin-top: -118px !important;position: relative;top: 119px;">&nbsp;&nbsp;<span style="color: red;font-size: 15px;">*</span>
+                                        <div class="input-group "> 
+                                            <input class="form-control form-control-sm attestations" type="text" name="attesta" id="attesta" class="form-control" placeholder="Attestation CDEAO" title="Attesta" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;margin-top: -118px !important;position: relative;top: 119px;height: 34px !important;">&nbsp;&nbsp;<span style="color: red;font-size: 15px;">*</span>
                                         </div>
                                     </div>
                                 </div>
@@ -492,11 +526,11 @@
                                         <td>
                                             <font  size=1>
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input divide" name="incendie" type="checkbox" onclick="CalculeBC()"  id="Checkbox4" value="4" ><span id="incendie-text">INCENDIE</span>
+                                                    <input class="form-check-input" name="incendie" type="checkbox" onclick="CalculeBC()"  id="Checkbox4" value="4" ><span id="incendie-text">INCENDIE</span>
                                                 </label>
                                             </font>
                                         </td>
-                                        <td><input type="text" class="divide" size="6" name="PrimeIncendie" id="PrimeIncendie" style="text-align: right;" disabled="disabled" /></td>
+                                        <td><input type="text"  size="6" name="PrimeIncendie" id="PrimeIncendie" style="text-align: right;" disabled="disabled" /></td>
                                         <td>
                                             <div class="col-lg-11 select-garanties">
                                                 <font  size=1>
@@ -520,7 +554,7 @@
                                                 </label>
                                             </font>
                                         </td>
-                                        <td><input type="text" class="divide" size="6" name="PrimeVol" id="PrimeVol" style="text-align: right;" disabled="disabled" /></td>
+                                        <td><input type="text" size="6" name="PrimeVol" id="PrimeVol" style="text-align: right;" disabled="disabled" /></td>
                                         <td>
                                             <div class="col-lg-12">
                                                 <font size="1">
@@ -908,15 +942,116 @@
             </div>
         </main>
     </form><!--form-->
-    <?php //include "footer.php"; ?>
+    <form id="hidden-form">
+        <select name="" id="vertes-attestations" style="display:none !important">
+            <?php
+                while($vert=$vertes->fetch()){
+                    echo '<option>'.$vert[1].'</option>';
+                }
+            ?>
+        </select>
+        <select name="" id="jaunes-attestations" style="display:none !important">
+            <?php
+                while($jaune=$jaunes->fetch()){
+                    echo '<option>'.$jaune[1].'</option>';
+                }
+            ?>
+        </select>
+        <select name="" id="cedeao-attestations" style="display:none !important">
+            <?php
+                while($cdao=$cedeao->fetch()){
+                    echo '<option>'.$cdao[1].'</option>';
+                }
+            ?>
+        </select>
+    </form>
 </div>
 
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://tyugaev.github.io/number-divider/lib/number-divider.min.js"></script>
+<script src="../../view/js/intlTelInput.js"></script>
 <script src="../../view/js/calcul_script1.js"></script>
 <script src="../../view/js/form-script.js"></script>
+<script>
+
+$(document).ready(function(){
+// $("#creationEtat").prop('disabled', true);
+    var attestationsVertes = [];
+    var attestationsJaunes = [];
+    var attestationsCedeao = [];
+
+    function pushAttestations(selector,tab=[]){
+        $(selector).each(function(){
+            tab.push($(this).val())
+        })
+        return tab;
+    }
+
+//If the object is in the array, it will return 0, but 0 is false in Javascript 
+    function checkValue(value,tab=[]){
+        for(var t=0;t<tab.length;t++){
+            if(tab[t]==value){
+                var exist = "ok"
+                break
+            }else if(tab[t]!=value){
+                var exist = "non"
+            }
+        }
+        return exist
+    }
+    function getExist(assertion){
+        if(assertion=="ok"){}else if(assertion=="non"){
+            alert("Seuls les numéros d'attestation affichés vous sont autorisés.")
+            // $("#attestationsForm").trigger("reset");
+        }
+    }
+ 
+//Faire le controle et s'assurer que la valeur saisie est dans le plage de valeurs
+    $(".attestations").on('change',function(){
+        var idElement  = $(this).attr('id')
+        var value      = $(this).val()
+        if(idElement=="attestation-jaune"){
+            var jaunesPlage =  pushAttestations('#jaunes-attestations option',attestationsJaunes);
+            var jauneExists = checkValue(value,jaunesPlage);
+            getExist(jauneExists)
+        }else if(idElement=="attestation-verte"){
+            var vertesPlage =  pushAttestations('#vertes-attestations option',attestationsVertes);
+            var verteExists = checkValue(value,vertesPlage);
+            getExist(verteExists)
+        }else if(idElement=="attesta"){
+            var cedeaoPlage  =  pushAttestations('#cedeao-attestations option',attestationsCedeao);
+            var cedeaoExists = checkValue(value,cedeaoPlage);
+            getExist(cedeaoExists)
+        }
+      
+        if(jauneExists=="ok" || verteExists=="ok"){
+            $("#creationEtat").prop('disabled',false);
+        }
+        if(cedeaoExists!="ok"){
+            $("#creationEtat").prop('disabled',true);
+        }else{
+            $("#creationEtat").prop('disabled',false);
+        }
+    })
+
+    $(function() {
+        $("#attestation-verte").autocomplete({
+            source: pushAttestations('#vertes-attestations option',attestationsVertes)
+        });
+        $("#attestation-jaune").autocomplete({
+            source: pushAttestations('#jaunes-attestations option',attestationsJaunes)
+        });
+        $("#attesta").autocomplete({
+            source: pushAttestations('#cedeao-attestations option',attestationsCedeao )
+        });
+
+    });
+})
+
+  </script>
 
 </body>
 </html>

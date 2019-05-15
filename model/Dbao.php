@@ -29,5 +29,10 @@
         $conn=$connection->getConnection();
         return $conn->query($sql);
     }
+
+    public function getError(){
+        $conn=$this->getConnection();
+        print_r($conn->errorInfo()); 
+    }
 }
 ?>
