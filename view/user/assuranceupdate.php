@@ -27,14 +27,69 @@
         .country-list{
             width: 216px !important
         }
-      
+        .more-garanties{
+            float: right;
+            margin-top: -27px;
+            font-size: 20px;
+            cursor:pointer
+        }
+        #close-empty{
+            color: #ffc107;
+            font-size: 25px !important;
+            float: right;
+            position: relative;
+            top: -12px;
+        }
+        .empty-card{
+            width: 35%;
+            height: 23%;
+            margin: auto;
+            position: relative;
+            top: 102px;
+        }
+        .alerts{
+            color:#062944;
+            text-align:center;
+            font-size: 13px;
+            padding-top: 17px;
+        }
+        .empty-header{
+            height: 33px;
+            background: #021426;
+            color: #f7ba00 !important;
+            font-weight:bold
+        }
+        #effetModal{
+            display:none
+        }
+        .effet-card{
+            width: 33%;
+            margin: auto;
+            text-align: center;
+            color: #062944;
+            margin-top: 74px;
+        }
+        .valeurs-card{
+            display: block;
+            width: 35%;
+            margin: auto;
+            color: #062944;
+            margin-top: 101px;
+        }
+        .more-garanties{
+            float: right;
+            margin-top: -27px;
+            font-size: 20px;
+            cursor:pointer
+        }
+        
     </style>
 </head><!--end header-->
 
 <body onload="myFunction();CalculeBC()" id="assurance">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <?php include "header.php"; ?>
-    <form method="post" action="../../controller/formulaire/index.php" ><!--form-->
+    <form method="post" action="../../controller/formulaire/index.php" id="assurance-form"><!--form-->
         <main class="mdl-layout__content">
             <div class="mdl-content">
                 <div class="mdl-grid">
@@ -69,13 +124,13 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="font-family: Times New Roman;margin-top: 2%;font-size: 14px;">Nom<span style="color: red;">*</span></label>
-                                                  <input type="text" style="margin-left:8%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control"   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure"   >
+                                                  <input type="text" style="margin-left:8%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control requis "   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure">
                                                </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;margin-top: 2%;">Pénom<span style="color: red;">*</span></label>
-                                                  <input type="text" style="margin-left:4%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" >
+                                                  <input type="text" style="margin-left:4%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control requis" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" >
                                                 </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
@@ -118,7 +173,7 @@
                                             <div class="col-lg-5"><!-- debut col-lg-6 -->
                                                 <div class="form-group">
                                                     <label style="margin-right: 1%;margin-top: 5%;font-family: Times New Roman;font-size: 14px;">Durée<span style="color: red;">*</span>:</label>  
-                                                    <select onchange="CalculeBC()" class="custom-select" name="duree_garantie" id="duree" title="duree" style="height: 36%;font-size: 15px;font-family: Times New Roman;width: 60%;padding-left: 33px;" required='required'>
+                                                    <select onchange="CalculeBC()" class="form-control requis" name="duree_garantie" id="duree" title="duree" style="height: 36%;font-size: 15px;font-family: Times New Roman;width: 60%;padding-left: 33px;" required='required'>
                                                         <option value="0"><h5>DURÉE</h5></option>
                                                         <option value="1">1 mois</option>
                                                         <option value="2">2 mois</option>
@@ -134,18 +189,7 @@
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-7"><!-- debut col-lg-6 -->
-                                            <!--div id="effetAlert">
-                                                <p style='background:green !important'>La date d'effet ne peut pas être antérieure à la date d'aujord'hui.</p>
-                                            </div-->
-                                                <!-- Trigger/Open The Modal -->
-                                                <!-- The Modal -->
-                                            <div id="effetModal" class="modal">
-                                                <!-- Modal content -->
-                                                <div class="modal-content" style='height:30% !important;margin-top:102px !important;width:35% !important;background: #f7bb3df7 !important;color: #062944; font-weight: bold !important;font-size: 21px !important;text-align: center'>
-                                                    <span class="close" style='position: relative;top: 66px !important;color: #062944 !important;font-size:14px !important'>OK</span>
-                                                    <p>La date d'effet ne peut pas être antérieure à la date d'aujord'hui !</p>
-                                                </div>
-                                            </div>
+                                    
                                                 <div class="form-group">
                                                     <!--<strong>Date Effet</strong>-->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;position: absolute;top: 10px;">Date effet<span style="color: red">*</span>:</label>  
@@ -210,8 +254,9 @@
                                         <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Catégorie<span style="color: red;">*</span></label>  
+                                                <input style='display:none' type="text" value=<?php echo('"'.$item['id_police'].'"')?> name="idPolice">
                                                 <div class="input-group">   
-                                                    <select class="custom-select col-lg-12" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
+                                                    <select class="custom-select col-lg-12 requis" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
                                                     <option value = 
                                                             <?php echo '"'.$item['id_cat'].'"' ?>
                                                         >  
@@ -238,7 +283,7 @@
                                             </div><!-- /.col-lg-6 -->
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;"></span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1" <?php echo"value=".$item['marque']."";?>>
                                                 </div><!-- /input-group -->
@@ -246,7 +291,7 @@
 
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;"></span></label>
                                                 <div class="input-group"><!-- debut input-group -->          
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1" <?php echo"value=".$item['type']."";?>>
                                                 </div><!-- /input-group -->
@@ -255,33 +300,33 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Immatriculation<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1" <?php echo"value=".$item['immatriculation']."";?>>
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control requis" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1" <?php echo"value=".$item['immatriculation']."";?>>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='labelPuissance'>Puissance<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='labelPuissance'>Puissance<span style="color: red;"></span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
                                                     <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1" <?php echo"value=".$item['puissance']."";?>>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="vnLabel">Valeur neuve<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="vnLabel">Valeur neuve<span style="color: red;"></span></label>
                                                 <div class="input-group"><!-- debut input-group -->  
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_neuve" class="form-control divide" id="val_neuve" placeholder="valeur neuve" title="Valeur neuve" aria-describedby="sizing-addon1" <?php echo"value=".$item['valeur_neuve']."";?>>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale<span style="color: red;"></span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control divide" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1" <?php echo"value=".$item['valeur_venale']."";?>>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='energieLabel'>Énérgie<span style="color: red;">*</span></label>
+                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='energieLabel'>Énérgie<span style="color: red;"></span></label>
                                             <div class="form-group" id="mySelect">       <!-- debut input-group -->
                                             <select id="energie" name="energie" title="Energie" required style="height: 35px !important;width: 246px;background: #ffffff;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;" onChange="CalculeBC()">
                                             <option value="essence" selected>Essence</option>
@@ -293,7 +338,7 @@
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
                                                  <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="placeLabel">Places<span style="color: red;">*</span></label>
                                                 <div class="form-group">
-                                                    <select name="places" class="custom-select col-lg-12" id="places" title="Places" disabled  onchange="CalculeBC()" style="height:35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
+                                                    <select name="places" class="custom-select col-lg-12 requis" id="places" title="Places" disabled  onchange="CalculeBC()" style="height:35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
                                                         <option value="2">2 places</option>
                                                         <option value="3">3 places</option>
                                                         <option value="4">4 places</option>
@@ -333,19 +378,19 @@
                                                 <fieldset>
                                                 <div class="form-group" id='mecGroup'>
                                                      <label style="margin-right: 1%;margin-top:-5px;font-family: Times New Roman;font-size: 14px;" id='mecLabel'>m.e.c<span style="color: red;">*</span></label>
-                                                    <input type ="date" onchange="CalculeBC()" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;" <?php echo"value=".$item['date_mec']."";?>>
+                                                    <input type ="date" onchange="CalculeBC()" class="requis" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;" <?php echo"value=".$item['date_mec']."";?>>
                                                 </div><!-- /input-group-->
                                             </div><!-- /.col-lg-6 -->
 
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;display:none;position:relative;top:-6px" id='cylindreLabel'>Cylindre<span style="color: red;">*</span></label>
+                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;display:none;position:relative;top:-6px" id='cylindreLabel'>Cylindre<span style="color: red;"></span></label>
                                                 <div class="form-group">       <!-- debut input-group -->
                                                     <input type="number" style="display:none !important;font-size: 15px;font-family: Times New Roman;border-radius:0 !important;margin-top:-6px;margin-left:0px;width:245px" name="cylindre" onchange="CalculeBC()" id="cylindre" class="form-control" min="1" max="10000" placeholder="cylindre" title="Cylindre" aria-describedby="sizing-addon1" <?php echo"value=".$item['cylindre']."";?>>
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6" style="display:none">            <!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Chassis<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Chassis<span style="color: red;"></span></label>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="chassis" class="form-control" id="chassis" placeholder="chassis" title="Chassis" aria-describedby="sizing-addon1"title="Chassis" <?php echo"value=".$item['chassis']."";?>>
                                                 </div><!-- /input-group -->
@@ -394,20 +439,20 @@
                                     <li style="color:#062944">Édition des attestations.</li>
                                 </ul>
                                 <div class="row" style="position:relative !important;top:-118px !important">
-                                <label class="radio-inline" style="font-size:12px">
+                                <label class="radio-inline" id='j' style="font-size:12px">
                                     <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important">attestation jaune
                                 </label>
-                                <label class="radio-inline" style="font-size:12px">
+                                <label class="radio-inline" id='v' style="font-size:12px">
                                     <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !important">attestation verte
                                 </label>
                                 </div>
                                 <div class="row" style="margin-top: -160px !important;">
                                     <div class="col-lg-6"> 
                                         <div class="input-group">
-                                            <input class="form-control form-control-sm attestations" type="text" name="attestation" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
+                                            <input class="form-control form-control-sm attestations" type="text" name="attestation-j" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
                                         </div>
                                         <div class="input-group"> 
-                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
+                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation-v" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">     
@@ -417,7 +462,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Créer contrat" name="action" style="margin:auto !important;position: relative;top: -112px;color: #f7bb3d;">
+                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Valider" name="action" style="margin:auto !important;position: relative;top: -112px;color: #f7bb3d;">
                                 </div>
                                 </div>
                             </div>
@@ -427,7 +472,7 @@
 
                     <div class="mdl-cell mdl-cell--8-col" style="position: static;">
                         <div class="panel panel-info" style="margin-left: 13%;margin-right: -1%;">
-                            <div class="panel-heading"><h4>Garanties</h4></div><!--Garanties-->
+                            <div class="panel-heading"><h4>Garanties</h4><span class="more-garanties">[+]<span></div><!--Garanties-->
                             <div class="panel-body" >
                                 <table class="table  table-bordered" style="padding-left: 1%;padding-right: 1%;">
                                     <thead><!--header-->
@@ -931,11 +976,48 @@
                 </div>
             </div>
             <div class="buttons">
-                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="fenvoi()" value="Continuer" id="valider">
+                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="sendContrat()" value="Dévis" id="valider">
                 <button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button>
             </div>
         </main>
     </form><!--form-->
+
+     <!-- The Modal -->
+    
+     <div class="modal" id='effetModal'><!--Empty alert-->
+    <div class="card empty-card">
+        <div class="card-header empty-header">
+        <p>Attention !</p>
+            <!--span id='close-empty'>&times;</span-->
+        </div>
+        <div class="card-body">
+            <h3 class="alerts">Assurez-vous que tous les champs avec le caractére <span style="color:red">*</span> sont bien renseignés pour continuer.</h3>
+        </div>
+    </div>
+    </div><!--empty alert-->
+
+    <div id="valeursModal" class="modal">
+        <div class="card valeurs-card"><!--Modal valeurs-->
+        <div class="card-header empty-header"><p>Attention !</p></div>
+            <div class="card-body">
+                <p class="alerts">La valeur vénale ne peut etre supérieure à la valeur neuve !</p>
+            </div>
+        </div>
+    </div><!--Modal valeurs-->
+
+    <div class="modal" id='empty-alert'><!--Empty alert-->
+    <div class="card empty-card">
+        <div class="card-header empty-header">
+        <p>Attention !</p>
+            <!--span id='close-empty'>&times;</span-->
+        </div>
+        <div class="card-body">
+            <h3 class="alerts">Assurez-vous que tous les champs avec le caractére <span style="color:red">*</span> sont bien renseignés pour continuer.</h3>
+        </div>
+    </div>
+    </div><!--empty alert-->
+
+
     <form id="hidden-form">
         <select name="" id="vertes-attestations" style="display:none !important">
             <?php
@@ -959,6 +1041,8 @@
             ?>
         </select>
     </form>
+    <!--h2--><?php //echo($item['id_police'])?><!--/h2-->
+
 </div>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

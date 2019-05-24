@@ -1,7 +1,7 @@
 <?php
     /**********************LES VALEURS DE L'ASSURE ***********************************/
 //echo $_SESSION['matricule'];
- echo "unique ID: ".$unikId=uniqid();
+ $unikId=uniqid();
  function generateIdVente($length):string{
     $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
     $charactersLength = strlen($characters);
@@ -12,6 +12,7 @@
     }
     return $idGenerated;
 }
+
 echo "<br>";
 "<br>";
 $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null;$c8=null;
@@ -227,33 +228,35 @@ else
     $numFacture=$vaPol."-".$year."-".$item['facture'];
 }
 /*****************************INSERTION DE LA POLICE*****************************************/
-
-// $dp = date_create()->format('Y-m-d');
-
 echo(date_create()->format('Y-m-d H:i:s'));
 $datePolice = date_create()->format('Y-m-d H:i:s');
- $attestation=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
     $usdao             = new PoliceDao();
     $attestationDao    = new AttestationDao();
-    $attestation       = $_POST['attestation'];
     $attestationCedeao = $_POST['attesta'];
-    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,$_POST['attestation'],1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $option            = $_POST['optradio'];
+    if($option=='jaune'){
+        $attestation      = $_POST['attestation-j'];
+    }else if($option=='verte'){
+        $attestation       = $_POST['attestation-v'];
+    }
+    echo("<p style='background:yellow'>ATTESTATION</p> ".$attestation." ".$attestationCedeao.' '.$option);
+    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,$attestation,1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
     $ok                = $usdao->insererPolice($us);
     var_dump($ok);
     if($ok==true)
     {
-// echo "toutes les insertions sont faites<br>";
-// echo '<p style="backgroud:green">Police inseree</p>'."<br>";
+echo "toutes les insertions sont faites<br>";
+echo '<p style="backgroud:green">Police inseree</p>'."<br>";
         if($_POST['optradio']=='verte'){
-            $attestationDao->setToSoldVertes($attestation);
-            $attestationDao->setToSoldCedeao($attestationCedeao);
-            $attestationDao->setToSoldes("fg8855K8",$attestation,$attestationCedeao);
+            $idVente = generateIdVente(5);
+            $attestationDao->setToSoldVertes($_POST['attestation-v'],$idVente);
+            $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente);
         }else if($_POST['optradio']=='jaune'){
-            $attestationDao->setToSoldJaunes($attestation);
-            $attestationDao->setToSoldCedeao($attestationCedeao);
-            $attestationDao->setToSoldes("fg8855K8",$attestation,$attestationCedeao);
+            $idVente = generateIdVente(5);
+            $attestationDao->setToSoldJaunes($_POST['attestation-j'],$idVente );
+            $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente );
         }
         $c7=1;
     }
@@ -560,6 +563,7 @@ if ($c7==1)
             echo " defense donnee non inserer"."<br>";
         }
     }
+
 //-------------------------
 //CHECKBOX 4
 //-----------------------------
@@ -591,6 +595,7 @@ if ($c7==1)
             echo " incendie donnee non inserer"."<br>";
         }
     }
+
 //-------------------------
 //CHECKBOX 5
 //-----------------------------
@@ -622,11 +627,10 @@ if ($c7==1)
           }
 
     }
+
 //-------------------------
 //CHECKBOX 6
 //--------------------------------
-//echo "bris: ".$_POST['bris']."<br>";
-//-----------------------------
     if (isset($_POST['bris']))
     {
         $unikIdBRIS=uniqid();
@@ -655,6 +659,7 @@ if ($c7==1)
           }
 
     }
+
 //-------------------------
 //CHECKBOX 7
 //--------------------------------
@@ -785,6 +790,7 @@ if ($c7==1)
         }
 
     }
+
 //-------------------------
 //CHECKBOX 9
 //-----------------------------
@@ -839,7 +845,6 @@ if ($c7==1)
         }
         if($_POST['personne']=='PT_opt3')
         {
-
             $usdao9=new ContenirDao();
             $us9=new Contenir($unikIdPERS,$lim9,$franch9,$brute9,$prorata9,14, $unikId);
 
@@ -855,6 +860,7 @@ if ($c7==1)
         }
 
     }
+
 //-------------------------
 //CHECKBOX 10
 //-----------------------------
@@ -887,8 +893,6 @@ if ($c7==1)
                          echo "  assistance donnee non inserer"."<br>";
                      }
     }
-   // header('Location: http://saham-app.com/controller/formulaire/?action=lister1&opli='.$unikId.'');
-   // header('Location: http://saham-app.com/controller/formulaire/?action=lister2&opli='.$unikId.'');
     print "
     <!doctype html>
     <html lang=\"en\">
@@ -927,13 +931,9 @@ if ($c7==1)
             }
             </script>
 </head>
-<body onload='redict();redict1();redict2();redict3()'>
-</body>
-</html>
-    ";
+<body onload='redict();redict1();redict2();redict3()'></body>
+</html>";
 }
 else{
-   // header('Location: http://saham-app.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
+   header('Location: ./?action=none');
 }
-
-//--------------------------------

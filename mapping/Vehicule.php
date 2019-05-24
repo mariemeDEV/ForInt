@@ -250,7 +250,7 @@ class Vehicule{
     }
 
     /**
-     * @return int
+     * @param string 
      */
     public function getValeurNeuve()
     {
@@ -258,7 +258,7 @@ class Vehicule{
     }
 
     /**
-     * @param int $valeur_neuve
+     * @param string 
      */
     public function setValeurNeuve($valeur_neuve)
     {
@@ -266,7 +266,7 @@ class Vehicule{
     }
 
     /**
-     * @return int
+     * @param string 
      */
     public function getValeurVenale()
     {
@@ -274,7 +274,7 @@ class Vehicule{
     }
 
     /**
-     * @param int $valeur_venale
+     * @param string 
      */
     public function setValeurVenale($valeur_venale)
     {

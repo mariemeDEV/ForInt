@@ -53,15 +53,29 @@ hr{
     font-weight: bolder !important;
 }
 .d1{
-    background-image:url('../../img/souscript-min.png');
+    background-image:url('../../img/souscrire.jpg');
 }
 .d2{
-    background-image:url('../../img/prod_img_0-min.png');
+    background-image:url('../../img/simuler.jpg');
 }
 .d3{
-    background-image:url('../../img/AssurAuto-Connect_img.png');
+    background-image:url('../../img/consulter_d.jpg');
+    background-size: contain;
+    background-position-y: inherit;
+    background-repeat: no-repeat
 }
-.d1, .d2, .d3{
+.d4{
+    background-image:url('../../img/consulter_c.jpg');
+    background-position-y: center;
+}
+.d5{
+    background-image:url('../../img/commande.jpg');
+}
+.d6{
+    background-image:url('../../img/garanties.png');
+    background-position-x: center;
+}
+.d1, .d2{
     background-repeat:no-repeat;
     background-size:cover
 }

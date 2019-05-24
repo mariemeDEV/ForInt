@@ -13,6 +13,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 
 <head>
     <title>Saham Assurance SN</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <meta name="viewport" content="initial-scale=1">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">

@@ -33,14 +33,13 @@ class AttestationDao extends DBao{
         return $this->executeSELECT($sql);
     }
 
-//Sold
-    //Update attestations vertes
+//Update attestations vertes
       /**
      * @param string $us
      * @return PDOStatement
      */
-    public function setToSoldVertes(string $numero){
-        $sql="UPDATE attestation set etat_sortie='vendue' WHERE id_type=1 AND numero_attestation='".$numero."'";
+    public function setToSoldVertes(string $numero,string $idVente){
+        $sql="UPDATE attestation set etat_sortie='vendue',id_vente='".$idVente."' WHERE id_type=1 AND numero_attestation='".$numero."'";
         return $this->executeSELECT($sql);
     }
 
@@ -49,8 +48,8 @@ class AttestationDao extends DBao{
      * @param string $us
      * @return PDOStatement
      */
-    public function setToSoldJaunes(string $numero){
-        $sql="UPDATE attestation set etat_sortie='vendue' WHERE id_type=2 AND numero_attestation='".$numero."'";
+    public function setToSoldJaunes(string $numero,string $idVente){
+        $sql="UPDATE attestation set etat_sortie='vendue',id_vente='".$idVente."' WHERE id_type=2 AND numero_attestation='".$numero."'";
         return $this->executeSELECT($sql);
     }
 
@@ -59,21 +58,12 @@ class AttestationDao extends DBao{
      * @param string $us
      * @return PDOStatement
      */
-    public function setToSoldCedeao(string $numero){
-        $sql="UPDATE attestation set etat_sortie='vendue' WHERE id_type=3 AND numero_attestation='".$numero."'";
+    public function setToSoldCedeao(string $numero,string $idVente){
+        $sql="UPDATE attestation set etat_sortie='vendue',id_vente='".$idVente."' WHERE  id_type=3 AND numero_attestation='".$numero."'";
         return $this->executeSELECT($sql);
     }
 
-     /**
-     * @param string $us
-     * @return PDOStatement
-     */
-    public function setToSoldes(string $idVente,string $numero1,string $numero2){
-        $sql = "UPDATE attestation set id_vente='".$idVente."' WHERE numero_attestation='".$numero1."' OR numero_attestation='".$numero2."'";
-        // $sql="UPDATE attestation set id_vente='".$idVente."' WHERE numero_attestation='".$numero1."' OR numero_attestation='".$numero2."'";
-        return $this->executeSELECT($sql);
-        // echo($sql);
-    }
+  
 //Liste attestations 
   /**
      * @return PDOStatement
@@ -88,8 +78,7 @@ class AttestationDao extends DBao{
     }
 
 
-    //Types
-    //Liste attestations jaunes
+//Liste attestations jaunes
   /**
      * @return PDOStatement
      */
@@ -99,7 +88,8 @@ class AttestationDao extends DBao{
         return $this->executeSELECT($sql);
 
     }
-     //Liste attestations jaunes
+
+//Liste attestations jaunes
   /**
      * @return PDOStatement
      */
@@ -107,9 +97,9 @@ class AttestationDao extends DBao{
     {
         $sql="SELECT numero_attestation FROM `attestation` WHERE id_type=1 AND etat_actuel='libre'";
         return $this->executeSELECT($sql);
-
     }
-     //Liste attestations jaunes
+
+//Liste attestations jaunes
   /**
      * @return PDOStatement
      */
@@ -118,22 +108,24 @@ class AttestationDao extends DBao{
         $sql="SELECT numero_attestation FROM `attestation` WHERE id_type=3 AND etat_actuel='libre'";
         return $this->executeSELECT($sql);
     }
-
-    public function insertDotation(Attestation $verte)
+    public function insertDotation(Attestation $attestation)
     {
-        // return([$verte->getNumero_attestation(),$verte->getIdAttestation(),$verte->getIdType(),$verte->getIntermediaire(),$verte->getEtat_actuel(),$verte->getEtat_sortie()]);
         $sql="insert into attestation values 
         (
         NULL,
-        '".$verte->getNumero_attestation()."',
-        ".$verte->getIdType().",
-        ".$verte->getIntermediaire().",
-        '".$verte->getEtat_actuel()."',
-        '".$verte->getEtat_sortie()."'
+        '".$attestation->getNumero_attestation()."',
+        '".$attestation->getIdType()."',
+        ".$attestation->getId_vente().",
+        ".$attestation->getIntermediaire().",
+        '".$attestation->getEtat_actuel()."',
+        '".$attestation->getEtat_sortie()."'
         )";
-        // echo($sql);
         return $this->executeMAJ($sql);
     }
 
+    public function getAttByNum($numero){
+        $sql='select numero_attestation,id_vente from attestation where numero_attestation ="'.$numero.'"';
+        return $this->executeMAJ($sql);
+    }
 
 }

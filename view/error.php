@@ -1,46 +1,58 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html lang="fr">
+<head><!--header-->
     <title>Saham Assurance SN</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link href="../view/style/style_2.css" rel="stylesheet">
-</head>
-<body id="error">
+    <link rel="stylesheet" href="../../view/style/style_aff.css">
+    <style>
+        .error-message{
+            text-align: center; 
+            color: #ec7777;
+        }
+        .error-text{
+            color: #062944;
+            text-align:center;
+            font-size:11px
+        }
+        .error-content{
+            margin-top: 71px;
+        }
+        .retour-content{
+            width: 6%;
+            margin: auto;
+            background: #062944;
+            text-align: center;
+            padding: 16px;
+        }
+        .retour-content a{
+            color: rgb(247, 187, 61);
+            font-weight: 500;   
+        }
+    </style>
+</head><!--end header-->
+<body onload="myFunction();CalculeBC()"id="assurance">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header mdl-layout__header--scroll">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title"><img src="../img/images/LogoSaham1.jpg" style="height: 45px"></span>
-            <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
-            <!-- Navigation -->
-        </div>
-    </header>
-    <main class="mdl-layout__content">
-
-        <div class="mdl-cell mdl-cell--12-col" style="height: 180px;font-size: 40px;text-align: center" >
-            <h1>! 404 !</h1>
-            Désolé, cette page n'existe pas !
-        </div>
-        <div class="mdl-content" style="width: 100%;height: 20px">
-            <div class="mdl-grid">
-                <div class="mdl-cell mdl-cell--12-col"  >
-                    <?php// include "footer.php"; ?>
+    <?php include "user/header.php"; ?>
+        <main class="mdl-layout__content error-content">
+            <div class="mdl-content">
+                <h1 class="error-message">Requete incorrecte !</h1>
+                <p class='error-text'>Veuillez vous assurer que tous les de votre formulaire portant le signe<span style='color:red'>*</span><br> sont bien remplis avant de faire votre validation</p>
+                <div class="retour-content">
+                    <a href="./simulation1.php">RETOUR</a>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-</div>
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>

@@ -30,17 +30,109 @@
         .ui-menu{
             overflow-y:scroll !important
         }
-        /* #hidden-form select{
-            display:none !important
+        #close-empty{
+            color: #ffc107;
+            font-size: 25px !important;
+            float: right;
+            position: relative;
+            top: -12px;
+        }
+        .empty-card{
+            width: 35%;
+            height: 23%;
+            margin: auto;
+            position: relative;
+            top: 102px;
+        }
+        .alerts{
+            color:#062944;
+            text-align:center;
+            font-size: 13px;
+            padding-top: 17px;
+        }
+        .empty-header{
+            height: 33px;
+            background: #021426;
+            color: #f7ba00 !important;
+            font-weight:bold
+        }
+        #effetModal{
+            display:none
+        }
+        .effet-card{
+            width: 33%;
+            margin: auto;
+            text-align: center;
+            color: #062944;
+            margin-top: 74px;
+        }
+        .valeurs-card{
+            display: block;
+            width: 35%;
+            margin: auto;
+            color: #062944;
+            margin-top: 101px;
+        }
+        .more-garanties{
+            float: right;
+            margin-top: -27px;
+            font-size: 20px;
+            cursor:pointer
+        }
+        .more-garanties{
+            float: right;
+            margin-top: -27px;
+            font-size: 20px;
+            cursor:pointer
+        }
+        .garanties-modal{
+            width: 55%;
+            margin: auto;
+            margin-top: 2%;
+        }
+        .garantie-header{
+            background: #062944;
+            color: #f7bb3d;
+            font-size: 22px;
+            padding-top:0 !important
+        }
+        .helps li{
+            color:green !important
+        }
+        .helps{
+            list-style:none !important;
+            width: 28%;
+            position: relative;
+            right: -91px;
+        }
+        .helps li i{
+            cursor:pointer !important
+        }
+        .ui-widget-header{
+            background:#ffffff !important;
+            border:1px solid #ffffff
+        }
+        .ui-tabs{
+            padding: 0;
+            border: 1px solid #ffffff !important;
+        }
+        p{
+            font-size: 12px;
+        }
+        .ui-state-active{
+            background: #062944 !important;
+            color: #f7bb3d !important;
+        }
+        /* .ui-tabs-tab a{
+            color: #f7bb3d !important;
         } */
-      
     </style>
 </head><!--end header-->
 
 <body onload="myFunction();CalculeBC()"id="assurance">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <?php include "header.php"; ?>
-    <form method="post" action="../../controller/formulaire/index.php" ><!--form-->
+    <form method="post" action="../../controller/formulaire/index.php" id="assurance-form" ><!--form-->
         <main class="mdl-layout__content">
             <div class="mdl-content">
                 <div class="mdl-grid">
@@ -75,13 +167,13 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="font-family: Times New Roman;margin-top: 2%;font-size: 14px;">Nom<span style="color: red;">*</span></label>
-                                                  <input type="text" style="margin-left:8%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control"   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure"   >
+                                                  <input type="text" style="margin-left:8%;font-size: 15px;font-family: Times New Roman;width:100%" name="nom_assure" id="nom_assure" onchange="CalculeBC()" class="form-control requis"   placeholder="Nom de l'assure" aria-describedby="sizing-addon1" title="Nom de l'assure"   >
                                                </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                   <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;margin-top: 2%;">Pénom<span style="color: red;">*</span></label>
-                                                  <input type="text" style="margin-left:4%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" >
+                                                  <input type="text" style="margin-left:4%;font-size: 15px;font-family: Times New Roman;width:92% !important" name="prenom_assure" id="prenom_assure" class="form-control requis" onchange="CalculeBC()" placeholder="Prenom de l'assure" aria-describedby="sizing-addon1" title="Prenom de l'assure" >
                                                 </div> <!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
@@ -140,22 +232,10 @@
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-7"><!-- debut col-lg-6 -->
-                                            <!--div id="effetAlert">
-                                                <p style='background:green !important'>La date d'effet ne peut pas être antérieure à la date d'aujord'hui.</p>
-                                            </div-->
-                                                <!-- Trigger/Open The Modal -->
-                                                <!-- The Modal -->
-                                            <div id="effetModal" class="modal">
-                                                <!-- Modal content -->
-                                                <div class="modal-content" style='height:30% !important;margin-top:102px !important;width:35% !important;background: #f7bb3df7 !important;color: #062944; font-weight: bold !important;font-size: 21px !important;text-align: center'>
-                                                    <span class="close" style='position: relative;top: 66px !important;color: #062944 !important;font-size:14px !important'>OK</span>
-                                                    <p>La date d'effet ne peut pas être antérieure à la date d'aujord'hui !</p>
-                                                </div>
-                                            </div>
                                                 <div class="form-group">
                                                     <!--<strong>Date Effet</strong>-->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;position: absolute;top: 10px;">Date effet<span style="color: red">*</span>:</label>  
-                                                    <input  type ="date" onchange="CalculeBC();checkDate()" name="date_debut" id="date_debut" title="Date Effet" style="width: 60%;height:2em;font-size: 15px;font-family: Times New Roman;margin-left:78px;margin-top: 5px;padding-left:46px;border-radius:.25rem;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;" data-toggle="popover" title="Popover Header" data-content="Date non valide" data-trigger="focus" value="">
+                                                    <input  type ="date" onchange="CalculeBC();checkDate()" name="date_debut" class="form-control" id="date_debut" title="Date Effet" style="width: 60%;height:2em;font-size: 15px;font-family: Times New Roman;margin-left:78px;margin-top: 5px;padding-left:30px !important;border-radius:.25rem;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;" data-toggle="popover" title="Popover Header" data-content="Date non valide" data-trigger="focus" value="">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->    
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
@@ -201,13 +281,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="valeursModal" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content" style='height:30% !important;margin-top:102px !important;width:38% !important;background: #fdfddc !important;color: #062944; font-weight: bold !important;font-size: 21px !important;text-align: center'>
-                                    <span class="close" style='position: relative;top: 66px !important;color: #062944 !important;font-size:14px !important'>OK</span>
-                                    <p>La valeur vénale ne peut etre supérieure à la valeur neuve !</p>
-                                </div>
-                            </div>
+                          
                             <div class="panel panel-info" style=" width: 128%;" id="hidden-caracteristiques"><!--caracteristiques-->
                                 <div class="panel-heading" >
                                     <h3 class="panel-title">
@@ -223,7 +297,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Catégorie<span style="color: red;">*</span></label>  
                                                 <div class="input-group">   
-                                                    <select class="custom-select col-lg-12" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
+                                                    <select class="custom-select col-lg-12 requis" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
                                                         <option value="0">Categorie</option>
                                                         <option value="1">Cat 401</option>
                                                         <option value="2">Cat 402</option>
@@ -248,13 +322,13 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control requis" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
 
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Modéle<span style="color: red;"></label>
                                                 <div class="input-group"><!-- debut input-group -->          
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="type_vehicule" class="form-control" placeholder="Type" title="Type" id="type" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
@@ -263,7 +337,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Immatriculation<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1">
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="immatriculation" class="form-control requis" id="immatriculation" title="Immatriculation" placeholder="immatriculation" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -271,25 +345,25 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='labelPuissance'>Puissance<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group -->        
-                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control" min="1" max="10000" onchange="CalculeBC()" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1">
+                                                    <input type="number" style="font-size: 15px;font-family: Times New Roman;" name="puissance" title="Puissance" class="form-control requis" min="1" max="10000" onchange="CalculeBC()" class="form-control" id="puissance" placeholder="puissance" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="vnLabel">Valeur neuve<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="vnLabel">Valeur neuve <span style='font-size:10px;color:red'>*toujours supérieure à la vénale*</span></label>
                                                 <div class="input-group"><!-- debut input-group -->  
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_neuve" class="form-control divide" id="val_neuve" placeholder="valeur neuve" title="Valeur neuve" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale<span style="color: red;">*</span></label> 
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='vvLabel'>Valeur vénale</label> 
                                                 <div class="input-group"><!-- debut input-group --> 
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="val_venale" class="form-control divide" id="val_venale" onchange="CalculeBC()" placeholder="valeur venale" title="Valeur venale" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
-                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='energieLabel'>Énérgie<span style="color: red;">*</span></label>
+                                            <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id='energieLabel'>Énérgie</label>
                                             <div class="form-group" id="mySelect">       <!-- debut input-group -->
                                             <select id="energie" name="energie" title="Energie" required style="height: 35px !important;width: 246px;background: #ffffff;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;" onChange="CalculeBC()">
                                             <option value="essence" selected>Essence</option>
@@ -301,11 +375,11 @@
                                             <div class="col-lg-6">            <!-- debut col-lg-6 -->
                                                  <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;" id="placeLabel">Places<span style="color: red;">*</span></label>
                                                 <div class="form-group">
-                                                    <select name="places" class="custom-select col-lg-12" id="places" title="Places" disabled  onchange="CalculeBC()" style="height:35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
-                                                        <option value="2">2 places</option>
+                                                    <select name="places" class="custom-select col-lg-12 requis" id="places" title="Places" disabled  onchange="CalculeBC()" style="height:35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
+                                                        <option value="5">5 places</option>
                                                         <option value="3">3 places</option>
                                                         <option value="4">4 places</option>
-                                                        <option value="5">5 places</option>
+                                                        <option value="2">2 places</option>
                                                         <option value="6">6 places</option>
                                                         <option value="7">7 places</option>
                                                         <option value="8">8 places</option>
@@ -341,7 +415,7 @@
                                                 <fieldset>
                                                 <div class="form-group" id='mecGroup'>
                                                      <label style="margin-right: 1%;margin-top:-5px;font-family: Times New Roman;font-size: 14px;" id='mecLabel'>m.e.c<span style="color: red;">*</span></label>
-                                                    <input type ="date" onchange="CalculeBC()" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;">
+                                                    <input class='form-control requis' type ="date" onkeydown="return true" onchange="CalculeBC()" name="mec" id="mec"  style="width:247px !important;;font-size:15px;font-size: 15px;height:32px;transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;">
                                                 </div><!-- /input-group-->
                                             </div><!-- /.col-lg-6 -->
 
@@ -353,7 +427,7 @@
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
                                             <div class="col-lg-6" style="display:none">            <!-- debut col-lg-6 -->
-                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Chassis<span style="color: red;">*</span></label>
+                                                <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Chassis</label>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <input type="text" style="font-size: 15px;font-family: Times New Roman;" name="chassis" class="form-control" id="chassis" placeholder="chassis" title="Chassis" aria-describedby="sizing-addon1"title="Chassis">
                                                 </div><!-- /input-group -->
@@ -392,7 +466,7 @@
                             <!--fin caracteristiques du vehicule -->
                             <div id="myModal" class="modal">
                                 <div class="modal-content" style='background:#fdfddc !important'>
-                                <span class="close" id="close_modal" style="position: relative;top: -21px;color: #062944;">&times;</span>
+                                <span class="close" id="close_modal" style="position: relative;top: -21px;color: #062944;left: 550px;">&times;</span>
                                 <h2 style="padding-bottom: 10px;color:#062944;text-align: center;text-decoration: underline">Confirmez-vous la création du contrat ?<h2>
                                 <h3 style="color:#062944">Les actions suivantes seront éxecutées</h3>
                                 <ul>
@@ -411,10 +485,10 @@
                                 <div class="row" style="margin-top: -160px !important;">
                                     <div class="col-lg-6"> 
                                         <div class="input-group">
-                                            <input class="form-control form-control-sm attestations" type="text" name="attestation" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
+                                            <input class="form-control form-control-sm attestations" type="text" name="attestation-j" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
                                         </div>
                                         <div class="input-group"> 
-                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
+                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation-v" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">     
@@ -424,8 +498,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Créer contrat" name="action" style="margin:auto !important;position: relative;top: -112px;color: #f7bb3d;">
+                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Créer contrat" name="action" style="margin:auto !important;position: relative;top: -90px;color: #f7bb3d;" id='contrat-create'>
                                 </div>
+                                <p class="update-attestations" id='stockEtat'><a href="../../controller/formulaire/?action=commande">Vous devez mettre à jour votre stock</a> pour continuer !</p>
                                 </div>
                             </div>
                         </div>
@@ -433,7 +508,7 @@
 
                     <div class="mdl-cell mdl-cell--8-col" style="position: static;">
                         <div class="panel panel-info" style="margin-left: 13%;margin-right: -1%;">
-                            <div class="panel-heading"><h4>Garanties</h4></div><!--Garanties-->
+                            <div class="panel-heading"><h4>Garanties</h4><span class="more-garanties">[+]<span></div><!--Garanties-->
                             <div class="panel-body" >
                                 <table class="table  table-bordered" style="padding-left: 1%;padding-right: 1%;">
                                     <thead><!--header-->
@@ -489,12 +564,6 @@
                                                     <input class="form-check-input" name="TierceCol"  onclick="CalculeBC()"  type="checkbox" id="Checkbox7_2" value=""> TIERCE COLLISION (TCL)
                                                 </label>
                                             </font>
-                                            <!--font  size=1>
-                                                <label class="form-check-label" style="padding-left: 1%;">
-                                                    <input class="form-check-input" name="TierceAgr"  onclick="CalculeBC()"  type="checkbox" id="Checkbox7_3" value=""> TIERCE AGRÉE (TAG)
-                                                </label>
-                                            </font-->
-
                                         </td>
                                         <td><input type="text"  class="divide" size="6" name="PrimeTierce" id="PrimeTierce" style="text-align: right;" disabled="disabled" /></td>
                                     </tr>
@@ -937,11 +1006,97 @@
                 </div>
             </div>
             <div class="buttons">
-                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="fenvoi()" value="Continuer" id="valider">
+                <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="sendContrat()" value="Continuer" id="">
                 <button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button>
             </div>
         </main>
     </form><!--form-->
+
+    <div class="modal" id="effetModal">
+    <div class="card effet-card"><!-- Modal date d'effet -->
+        <div class="card-header empty-header"><p>Attention !<p></div>
+        <div class="card-body">
+            <!--span class="close"  id='close-effet' style='position: relative;top: 66px !important;color: #062944 !important;font-size:14px !important'>OK</span-->
+            <p>La date d'effet ne peut pas être antérieure à la date d'aujord'hui !</p>
+        </div>
+    </div>
+    </div><!--Modal date d'effet-->
+    
+    <div id="valeursModal" class="modal">
+        <div class="card valeurs-card"><!--Modal valeurs-->
+        <div class="card-header empty-header"><p>Attention !</p></div>
+            <div class="card-body">
+                <p class="alerts">La <span style='color:red'><b>valeur vénale</b></span>  ne peut etre supérieure à la valeur neuve !</p>
+            </div>
+        </div>
+    </div><!--Modal valeurs-->
+  
+    <div class="modal" id='empty-alert'><!--Empty alert-->
+    <div class="card empty-card">
+        <div class="card-header empty-header"><p>Attention !</p></div>
+        <div class="card-body">
+            <h3 class="alerts">Assurez-vous que tous les champs avec le caractére <span style="color:red">*</span> sont bien renseignés pour continuer.</h3>
+        </div>
+    </div>
+    </div><!--empty alert-->
+
+    <div class="modal" id="alert-garanties"><!--garanties-->
+        <div class="card  garanties-modal">
+        <div class="card-header garantie-header">Les garanties<span id='close-garanties' style='position: relative;left:26em;cursor:pointer'>&times;</span></div>
+        <div class="card-body">
+        <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Responsabilité civile</a></li>
+                    <li><a href="#tabs-2">Recours des tiers incendie</a></li>
+                    <li><a href="#tabs-3">Défense et recours</a></li>
+                    <li><a href="#tabs-4">Incendie</a></li>
+                    <li><a href="#tabs-5">Vol</a></li>
+                    <li><a href="#tabs-6">Bris de glace</a></li>
+                    <li><a href="#tabs-7">Tiérce compléte</a></li>
+                    <li><a href="#tabs-8">Tiérce collision</a></li>
+                    <li><a href="#tabs-9">Avance sur recours</a></li>
+                    <li><a href="#tabs-10">Personnes ransportées</a></li>
+                    <li><a href="#tabs-11">Assistance</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-2">
+                    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+                </div>
+                <div id="tabs-3">
+                    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                </div>
+                <div id="tabs-4">
+                    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-5">
+                    <p>kroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-6">
+                    <p>lroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-7">
+                    <p>jroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-8">
+                    <p>oroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-9">
+                    <p>broin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-10">
+                    <p>sroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+                <div id="tabs-11">
+                    <p>hroin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+                </div>
+            </div>
+        </div>  
+        </div>
+        </div>
+    </div><!--garanties-->
+
     <form id="hidden-form">
         <select name="" id="vertes-attestations" style="display:none !important">
             <?php
@@ -972,16 +1127,19 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://tyugaev.github.io/number-divider/lib/number-divider.min.js"></script>
+<script src="../../view/js/ui.js"></script>
 <script src="../../view/js/intlTelInput.js"></script>
 <script src="../../view/js/calcul_script1.js"></script>
 <script src="../../view/js/form-script.js"></script>
 <script>
 
 $(document).ready(function(){
-// $("#creationEtat").prop('disabled', true);
+
+    $('#contrat-create').prop("disabled",true);
     var attestationsVertes = [];
     var attestationsJaunes = [];
     var attestationsCedeao = [];
+    var checkCedeao        = false
 
     function pushAttestations(selector,tab=[]){
         $(selector).each(function(){
@@ -989,67 +1147,112 @@ $(document).ready(function(){
         })
         return tab;
     }
+  
+    function getStockState(){
+        $('#stockEtat').fadeIn(1000)
+    }
 
-//If the object is in the array, it will return 0, but 0 is false in Javascript 
-    function checkValue(value,tab=[]){
-        for(var t=0;t<tab.length;t++){
-            if(tab[t]==value){
-                var exist = "ok"
-                break
-            }else if(tab[t]!=value){
-                var exist = "non"
-            }
-        }
-        return exist
-    }
+    // function getAttestations(){
+    //     var jaunesPlage =  pushAttestations('#jaunes-attestations option',attestationsJaunes);
+    //     var vertesPlage =  pushAttestations('#vertes-attestations option',attestationsVertes);
+    //     var cedeaoPlage =  pushAttestations('#cedeao-attestations option',attestationsCedeao);
+    //     var idElement   =  $(".attestations").attr('id')
+    //     var value       =  $(".attestations").val()
+    //     if(idElement=="attestation-jaune"){
+    //         if(jaunesPlage.length==0){
+    //             getStockState()
+    //         }else{
+    //             var jauneExists = checkValue(value,jaunesPlage);
+    //             getExist(jauneExists)
+    //         }
+
+    //     }else if(idElement=="attestation-verte"){
+    //         if(vertesPlage==0){
+    //             getStockState()
+    //         }else{
+    //             var verteExists = checkValue(value,vertesPlage);
+    //             getExist(verteExists)
+    //         }
+           
+    //     }else if(idElement=="attesta"){
+    //         if(cedeaoPlage.length==0){
+    //             getStockState()
+    //         }else{
+    //             var cedeaoExists = checkValue(value,cedeaoPlage);
+    //             getExist(cedeaoExists)
+    //         }
+    //     }
+    // }
+    // function test(){
+    //     alert('ok')
+    // }
+
     function getExist(assertion){
-        if(assertion=="ok"){}else if(assertion=="non"){
+        if(assertion=="non"){
             alert("Seuls les numéros d'attestation affichés vous sont autorisés.")
-            // $("#attestationsForm").trigger("reset");
+            $('#attestation-jaune,#attestation-verte,#attesta').val("")
+            $('#contrat-create').prop("disabled",true);
+        }else{
+            $('#contrat-create').prop("disabled",false);
         }
     }
- 
-//Faire le controle et s'assurer que la valeur saisie est dans le plage de valeurs
-    $(".attestations").on('change',function(){
-        var idElement  = $(this).attr('id')
-        var value      = $(this).val()
-        if(idElement=="attestation-jaune"){
-            var jaunesPlage =  pushAttestations('#jaunes-attestations option',attestationsJaunes);
-            var jauneExists = checkValue(value,jaunesPlage);
-            getExist(jauneExists)
-        }else if(idElement=="attestation-verte"){
-            var vertesPlage =  pushAttestations('#vertes-attestations option',attestationsVertes);
-            var verteExists = checkValue(value,vertesPlage);
-            getExist(verteExists)
-        }else if(idElement=="attesta"){
-            var cedeaoPlage  =  pushAttestations('#cedeao-attestations option',attestationsCedeao);
-            var cedeaoExists = checkValue(value,cedeaoPlage);
-            getExist(cedeaoExists)
-        }
-      
-        if(jauneExists=="ok" || verteExists=="ok"){
-            $("#creationEtat").prop('disabled',false);
-        }
-        if(cedeaoExists!="ok"){
-            $("#creationEtat").prop('disabled',true);
-        }else{
-            $("#creationEtat").prop('disabled',false);
-        }
-    })
 
     $(function() {
+        var vertes = pushAttestations('#vertes-attestations option',attestationsVertes)
+        var jaunes = pushAttestations('#jaunes-attestations option',attestationsJaunes)
+        var cedeao = pushAttestations('#cedeao-attestations option',attestationsCedeao )
+
         $("#attestation-verte").autocomplete({
-            source: pushAttestations('#vertes-attestations option',attestationsVertes)
+            source : vertes,
+            change : function(event,ui){
+                if(!ui.item){
+                    var assertion='non'
+                    getExist(assertion)
+                }else{
+                    $('#contrat-create').prop("disabled",false);
+                }
+            }
         });
         $("#attestation-jaune").autocomplete({
-            source: pushAttestations('#jaunes-attestations option',attestationsJaunes)
+            source: jaunes,
+            change : function(event,ui){
+                if(!ui.item){
+                    var assertion='non'
+                    getExist(assertion)
+                }else{
+                    $('#contrat-create').prop("disabled",false);
+                }
+            }
         });
         $("#attesta").autocomplete({
-            source: pushAttestations('#cedeao-attestations option',attestationsCedeao )
+            source: cedeao,
+            change : function(event,ui){
+                if(!ui.item){
+                    var assertion='non'
+                    getExist(assertion)
+                }else{
+                    $('#contrat-create').prop("disabled",false);
+                }
+            }
         });
-
     });
+
+    // if($('#attestation-verte').val()!='' || $('#attestation-jaune').val()!=''){
+    //         alert('ok')
+    //     if(('#attesta').val()!=''){
+    //         alert('yes yes')
+    //     }
+    // }
+
+    $(".more-garanties").on('click',function(){
+        $('#alert-garanties').fadeIn(1000)
+    })
+    $('#close-garanties').on('click',function(){
+        $('#alert-garanties').fadeOut(1000)
+    })
+    $( "#tabs" ).tabs();
 })
+
 
   </script>
 

@@ -42,6 +42,9 @@ require_once '../../mapping/Attestation.php';
 require_once '../../model/AttestationDao.php';
 require_once '../../mapping/AttestationCedeao.php';
 require_once '../../model/AttestationCedeaoDao.php';
+require_once '../../mapping/commandes.php';
+require_once '../../model/CommandesDao.php';
+
 if(isset($_GET['action']))
 {
     switch ($_GET['action']) {
@@ -80,6 +83,7 @@ if(isset($_GET['action']))
             $cedeao         = $attestationDao->getCedeao($_SESSION['matricule']);
             foreach ($modifier as $item)
             {
+                 $item['id_police'];
                  $item['date_debut'];
                  $item['duree'];
                  $item['marque'];
@@ -104,6 +108,13 @@ if(isset($_GET['action']))
             $usPolao=new PoliceDao();
             $usPolao->changeToValider($_GET['id_police']);
             header('Location: ./controller/formulaire/?action=affi');
+        break;
+        case 'passer' :
+            $mat = $_SESSION['matricule'];
+            require_once('../../view/user/commandes.php');
+        break;
+        case 'garanties' :
+            require_once('../../view/user/garanties_details.php');
         break;
         case 'lister':
         $usInt=new IntermediaireDao();
@@ -503,6 +514,7 @@ if(isset($_GET['action']))
             $numFacture=$ligne2['numFacture'];
             $attestation=$ligne2['attestation'];
         }
+        $categories = $usPolao->getCat($_GET['opli']);
         //-------------------------------------
         $usdao=new AssureDao();
         $us=new Assure($_GET['opli'],'','','','');
@@ -556,6 +568,7 @@ if(isset($_GET['action']))
             $mec                =DateTime::createFromFormat('Y-m-d', $ligne7['date_mec']);
             $val_neuve          =$ligne7['valeur_neuve'];
             $val_venale         =$ligne7['valeur_venale'];
+            $categorie          =$ligne7['categorie_vehicule_id_cat'];
         }
         //-------------------------------------recu cat
         $VCatdao=new VehiculeDao();
@@ -805,7 +818,6 @@ if(isset($_GET['action']))
         $rowAss=$assistance->rowCount();
         if($rowAss==1)
         {
-            //echo "llllllllllllllllllllllllllllllllllll".$rowAss;
             foreach ($assistance as $ligne17)
             {
                 if($ligne17['lim_gant']     ==0) $lim10=''    ;   else $lim10     =$ligne17['lim_gant'];
@@ -876,8 +888,8 @@ if(isset($_GET['action']))
         
         case 'lister1':
             $usInt          = new IntermediaireDao();
-            $int           = new Intermediaire($_SESSION['matricule']);
-            $intermediaire = $usInt->getUserByMat($_SESSION['matricule']);
+            $int            = new Intermediaire($_SESSION['matricule']);
+            $intermediaire  = $usInt->getUserByMat($_SESSION['matricule']);
             foreach($intermediaire as $ligne1)
             {
                 $codeInt=$ligne1['matricule'];
@@ -897,6 +909,12 @@ if(isset($_GET['action']))
                 $numFacture=$ligne2['numFacture'];
                 $attestation=$ligne2['attestation'];
             }
+            $attDAO = new AttestationDao();
+            $att    = $attDAO->getAttByNum('0000008');
+            foreach($att as $attesta){
+                $attes = $attesta['id_vente'];
+            }
+
             //-------------------------------------
             $usdao=new AssureDao();
             $us=new Assure($_GET['opli'],'','','','');
@@ -920,6 +938,7 @@ if(isset($_GET['action']))
                 $heureFin=$ligne4['heure_fin'];
                 $duree=$ligne4['duree'];
             }
+            
             //--------------------------------------
             $Cvao=new ConducteurVehiculeDao();
             $cond=new Conducteur_vehicule($_GET['opli'],'','','','');
@@ -1308,8 +1327,10 @@ if(isset($_GET['action']))
             $periode=$pdao->listPeriode($gant);
             foreach ($periode as $ligne4)
             {
-                $dateDebut=DateTime::createFromFormat('Y-m-d', $ligne4['date_debut']);
-                $dateFin=DateTime::createFromFormat('Y-m-d', $ligne4['date_fin']);
+                $dateDebut = new DateTime($ligne4['date_debut']);
+                $debut     = $dateDebut->format('d-m-Y');
+                $dateFin   = new DateTime($ligne4['date_fin']);
+                $fin       = $dateFin->format('d-m-Y');
                 $heureDebut=$ligne4['heure_debut'];
                 $heureFin=$ligne4['heure_fin'];
                 $duree=$ligne4['duree'];
@@ -1701,8 +1722,10 @@ if(isset($_GET['action']))
             $periode=$pdao->listPeriode($gant);
             foreach ($periode as $ligne4)
             {
-                $dateDebut=DateTime::createFromFormat('Y-m-d', $ligne4['date_debut']);
-                $dateFin=DateTime::createFromFormat('Y-m-d', $ligne4['date_fin']);
+                $dateDebut = new DateTime($ligne4['date_debut']);
+                $debut     = $dateDebut->format('d-m-Y');
+                $dateFin   = new DateTime($ligne4['date_fin']);
+                $fin       = $dateFin->format('d-m-Y');
                 $heureDebut=$ligne4['heure_debut'];
                 $heureFin=$ligne4['heure_fin'];
                 $duree=$ligne4['duree'];
@@ -2094,8 +2117,10 @@ if(isset($_GET['action']))
             $periode=$pdao->listPeriode($gant);
             foreach ($periode as $ligne4)
             {
-                $dateDebut=DateTime::createFromFormat('Y-m-d', $ligne4['date_debut']);
-                $dateFin=DateTime::createFromFormat('Y-m-d', $ligne4['date_fin']);
+                $dateDebut = new DateTime($ligne4['date_debut']);
+                $debut     = $dateDebut->format('d-m-Y');
+                $dateFin   = new DateTime($ligne4['date_fin']);
+                $fin       = $dateFin->format('d-m-Y');
                 $heureDebut=$ligne4['heure_debut'];
                 $heureFin=$ligne4['heure_fin'];
                 $duree=$ligne4['duree'];
@@ -2444,42 +2469,39 @@ if(isset($_GET['action']))
             }
                 require_once '../../view/user/cedeao.php';
             break;
-        default:
-            require_once '../../view/error.php';
+            case 'none':
+                require_once '../../view/error.php';
+            break;
+            default:
+                require_once '../../view/error.php';
             break;
     }
 }
 if(isset($_POST['action']))
 {
     switch ($_POST['action']) {
-
         case 'Créer contrat':
             if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
-                $id_police=$_GET['id_police'];
+                $id_police = $_GET['id_police'];
                 require_once 'postUpdate.php';
             }else{
                 require_once 'post.php';
             }
-                $post=extract($_POST);
-                echo $_POST['nom_assure'];
-                $usdao2=new ContenirDao();    
+                $post   = extract($_POST);
+                $usdao2 = new ContenirDao();    
         break;  
-        case 'Créer devis' :
+        case 'Dévis' :
             require_once 'postUpdate.php';    
         break;
-
-        case 'valider':
-            if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
-               $id_police=$_GET['id_police'];
-               require_once 'postUpdate.php';
-           }else{
-                require_once 'post.php';
-            }
-                $post=extract($_POST);
-                echo $_POST['nom_assure'];
-        $usdao2=new ContenirDao();    
+        case 'Valider':
+        require_once 'postUpdateAssurance.php';    
         break;
- 
+        case 'valider_commande' :
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],$_POST['nc']);
+            $commandeDAO = new CommandesDao();
+            $commandeDAO->insererCommandes($commande);
+            require_once '../../view/success.php';
+        break;
         case 'EXTRAIRE':
         $debut     = new DateTime($_POST['debut']);
         $fin       = new DateTime($_POST['fin']);
@@ -2506,7 +2528,7 @@ if(isset($_POST['action']))
                          "NOM CONDUCTEUR"                 => $row[9] ,
                          "PRÉNOM CONDUCTEUR"              => $row[10] ,
                          "DATE DÉBUT PERIODE DE GARANTIE" => $row[11] ,
-                         "HEURE DÉBUT PÉRIODE DE GARANTIE"   => $row[12] ,
+                         "HEURE DÉBUT PÉRIODE DE GARANTIE" => $row[12] ,
                          "DATE FIN PÉRIODE DE GARANTIE" => $row[13] ,
                          "HEURE FIN PÉRIODE DE GARANTIE" => $row[14] ,
                          "MARQUE VOITURE"                => $row[15] ,
@@ -2540,7 +2562,6 @@ if(isset($_POST['action']))
                 fclose($output);
             }
             else echo "Une erreur s'est produite lors de l'extraction. Veuillez réessayer.";
-            // header('Location: ../../pdf.php');
             break;
             
         default:

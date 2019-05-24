@@ -4,14 +4,16 @@ class Attestation
     private $id_attestation;
     private $numero_attestation;
     private $id_type;
+    private $id_vente;
     private $intermediaire;
     private $etat_actuel;
     private $etat_sortie;
 
-    function __construct($numero_attestation='',$id_type='',$intermediaire='',$etat_actuel='',$etat_sortie)
+    function __construct($numero_attestation='',$id_type='',$id_vente='', $intermediaire='',$etat_actuel='',$etat_sortie)
     {
        $this->numero_attestation = $numero_attestation;
         $this->id_type            = $id_type;
+        $this->id_vente           = $id_vente;
         $this->intermediaire      = $intermediaire;
         $this->etat_actuel        = $etat_actuel;
         $this->etat_sortie        = $etat_sortie;
@@ -120,6 +122,26 @@ class Attestation
     public function setEtat_sortie($etat_sortie)
     {
         $this->etat_sortie = $etat_sortie;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id_vente
+     */ 
+    public function getId_vente()
+    {
+        return $this->id_vente;
+    }
+
+    /**
+     * Set the value of id_vente
+     *
+     * @return  self
+     */ 
+    public function setId_vente($id_vente)
+    {
+        $this->id_vente = $id_vente;
 
         return $this;
     }

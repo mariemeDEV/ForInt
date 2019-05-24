@@ -6,6 +6,12 @@
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="form.css" rel="stylesheet">
     <link href="../../view/style/css_etat.css" rel="stylesheet">
+    <style>
+    @page {
+            size: auto;   
+            margin: 0;  
+        }
+    </style>
     </head>
     <body onload="window.print()">
     <img src="../../img/images/img0001.jpg" id="Banner1" alt="CONDITIONS PARTICULIERES" style="border-width:0;position:absolute;left:3px;top:70px;width:970px;height:20px;z-index:22;">

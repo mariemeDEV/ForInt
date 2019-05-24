@@ -5,6 +5,7 @@
     <head>
 
         <title>Saham Assurance SN</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -78,7 +79,7 @@
             display: inline-flex;
             position: absolute;
             top: 15px;
-            left: 10em;
+            left:-440px;
             z-index: 3;
         }
         ul li a{
@@ -161,10 +162,9 @@
                 </div>
             </div>
         </div><!--extraction production-->
-           
-                <ul>
-                    <li ><a id="myBtn">Éxtraire production</a></li>
-                </ul>
+            <ul>
+                <li ><a id="myBtn">Éxtraire production</a></li>
+            </ul>
           <h1 class="ajout-title">Géstion des contrats</h1>
           <hr>
             <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">

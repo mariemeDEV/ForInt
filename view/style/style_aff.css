@@ -137,38 +137,6 @@ tbody input[type="text"]{
 .material-icons{
     color:#062944 !important
 }
-/* .paginate_button{
-    background: #062945 !important;
-    padding: 10px;
-    position: relative;
-    top: 24px;
-    left: 0 !important;
-    color: #f7ba00;
-    cursor:pointer
-} */
-/* .paginate_button :hover{
-    color:#f7ba00 !important
-} */
-/* .dataTables_paginate{
-    margin-top: -22px !important
-} */
-/* .dataTables_info{
-    width: 30% !important;
-    position: relative;
-    top: 46px;
-    left: 91em;
-    color: #06273a !important;
-    font-weight: bold !important;
-    font-size: 12px;    
-} */
-
-.table{
-	/* background: #f7ba0021 !important;
-	color: #062945;
-    padding:16px !important;
-    width: 100% !important;
-    margin: auto; */
-}
 .userDataTab{
      margin-top: 13px !important;
 }
@@ -197,16 +165,6 @@ tbody input[type="text"]{
     top: 4px !important;
     left: 6px !important;
 }
-/* .dataTables_filter{
-	position: relative;
-	 top: -17px;
-    right: -544px;
-}
-.dataTables_filter input{
-	    height: 30px !important;
-    border: 1px solid #062945;
-    border-radius: 5px
-} */
 .production{
     background: #f5f0db !important;
     margin-top: 86px;
@@ -248,7 +206,6 @@ tbody input[type="text"]{
     border:none
 }
 .addIntermediaire{
-   /* background:red !important;  */
    margin-top: 53px !important ;
    padding-left: 5px!important;
    position: relative;
@@ -260,7 +217,6 @@ tbody input[type="text"]{
     left: 1273px !important;
     top: 65px !important;
     border: none;
-    /* border-radius: 8px; */
     background: #062944;
     color: #f7bb3d;
     font-size: 13px;
@@ -282,17 +238,10 @@ input{
     color: #062843 !important;
 }
 
-/* #DataTables_Table_0_filter{
-    height: 26px !important;
-    position: relative;
-    left: 526px;
-    top: 11px !important;
-} */
 #DataTables_Table_0_wrapper{
     margin-top: -56px;
 }
 
-/* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -314,12 +263,19 @@ input{
     padding: 17px;
     border: 1px solid #888;
     width: 46%;
-    height: 70%;
+    height: 79% !important;
     margin-top: -13px;
   }
   .modal-content .row {
     padding: 37px !important;
     margin-top: 84px !important
+}
+.update-attestations{
+    background:green !important;
+    position: relative;
+    top: -201px;
+    padding-left: 37px;
+    display:none
 }
   .cotent_ajout{
     height: 112% !important;

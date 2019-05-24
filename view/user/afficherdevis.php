@@ -3,8 +3,8 @@
 <html lang="fr">
 
     <head>
-
-        <title>Saham Assurance SN</title>
+        <title>Saham Assurance SN devis</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -17,8 +17,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../view/style/search_admin.css">
         <link rel="stylesheet" href="../../view/style/style_aff.css">
-
-    
     <style>
         .ajout-title{
             position: relative;
@@ -153,7 +151,7 @@
                         <th>Date Echeance</th>
                         <th>Assure</th>
                         <th>Projets</th>
-                        <th style='text-align: center;'>Contrat</th>
+                        <th style='text-align: center;'>Créer le Contrat</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -167,7 +165,7 @@
                             <td>$row[1]</td>
                             <td>$row[2]</td>
                             <td>$row[3]</td>
-                            <td>$row[5]&nbsp;$row[4]</td>                   
+                            <td style='font-weight:bolder;text-transform:uppercase'><span style='color:red;float:right;position:relative;left:-30px;'>*</span>$row[5]&nbsp;$row[4]</td>                   
                             <td style='text-align: center;'>
                                 <a href='../../controller/formulaire/?action=lister&id=$row[0]' onclick='if(!confirm(\"voulez-vous imprimer ? \")) return false;' target=\"_blank\"><i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                             </td>  

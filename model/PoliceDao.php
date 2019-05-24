@@ -49,11 +49,12 @@ class PoliceDao extends DBao
                 var_dump($e->getMessage());
             }
     }
-    public function uptadePolice(Police $us)
-    {
-      $sql="UPDATE 'police' SET 'date_police'='".$us->getDatePolice()."','attestation'='".$us->getAttestation()."','numFacture'='".$us->getNumFacture()."','validation'='".$us->getValidation()."','intermediaire_matricule'='".$us->getIntermediaire()."','conducteur_vehicule_id_cond'='".getConducteurVehicule()."','periode_garantie_id_periode'='".$us->getPeriodeGarantie()."','vehicule_id_vehicule'='".$us->getVehicule()."','decompte_prime_id_dp'='".$us->getDecomptePrime()."','red_maj_id_red_maj'='".$us->getRedMaj()."','assure_id_assure'='".$us->getAssure()."' WHERE 'police'.'id_police'='".$us->getIdPolice()."'";
+
+    public function uptadePolice(Police $us){
+      $sql="UPDATE police SET attestation='".$us->getAttestation()."',validation='".$us->getValidation()."' WHERE id_police='".$us->getIdPolice()."'";
       return $this->executeMAJ($sql);
     }
+    
     /**
      * @param Police $us
      * @return PDOStatement
@@ -112,42 +113,6 @@ class PoliceDao extends DBao
         echo $sql;
         return $this->executeMAJ($sql);
     }
-/*    public function etatPolice(Police $us){
-        $sql="SELECT count(*) from police_valider WHERE id_police=".$us->getIdPolice(); 
-        $etat =$this->executeMAJ($sql);
-        if($etat!=0){
-            return 1;//etat valider
-        }
-        $sql="SELECT count(*) from police_preformant WHERE id_police=".$us->getIdPolice(); 
-        $etat =$this->executeMAJ($sql);
-        if($etat!=0){
-            return 2;//etat preformant
-        }
-        return 0;
-    }
-    public function changeToPreformant(Police $us){
-        $etat=etatPolice($us);
-        if($etat==1){
-            $sql="DELETE FROM police_valider WHERE id_police=".$us->getIdPolice();
-            $this->executeMAJ($sql);
-        }
-        $sql="INSERT INTO police_preformant VALUES (".$us->getIdPolice().")";
-        $this->executeMAJ($sql);
-        $sql="UPDATE police set validation=2 WHERE id_police=".$us->getIdPolice();
-        return $this->executeMAJ($sql);
-     
-    }
-    public function changeToValider(Police $us){
-        $etat=etatPolice($us);
-        if($etat==2){
-            $sql="DELETE FROM police_preformant WHERE id_police=".$us->getIdPolice();
-            $this->executeMAJ($sql);
-        }
-        $sql="INSERT INTO police_valider VALUES (".$us->getIdPolice().")";
-        $this->executeMAJ($sql);
-        $sql="UPDATE police set validation=1 WHERE id_police=".$us->getIdPolice();
-        return $this->executeMAJ($sql);
-    }
     /**
      * @return PDOStatement
      */
@@ -166,12 +131,14 @@ class PoliceDao extends DBao
         return $this->executeMAJ($sql);
     }
     /**
-     * @param Police $us
-     * @return int
      */
-    public function validate(Police $us)
-    {
-        $sql="UPDATE police set validation=1 WHERE id_police='".$us->getIdPolice()."'";
+    // public function validateAssure(string $idPolice,string $nom,string $prenom,string $adresse,string $telephone,string $email)
+    // {
+    //     $sql="UPDATE assure set nom_assure='".$nom."',prenom_assure='".$prenom."',adresse_assure='".$adresse."',tel_assure='".$telephone."',email_assure='".$email."' WHERE id_police='".$idPolice."'";
+    //     return $this->executeMAJ($sql);
+    // }
+    public function validatePolice(string $attestation, string $idpolice){
+        $sql="UPDATE police set validation=1,attestation='".$attestation."' WHERE id_police='".$idPolice."'";
         return $this->executeMAJ($sql);
     }
     /**
@@ -250,7 +217,7 @@ class PoliceDao extends DBao
     public function getAllProduction(String $numPolice)
     {
         $sql="	 SELECT 
-        p.num_police,p.date_police ,p.attestation,p.numFacture,
+        p.id_police,p.num_police,p.date_police ,p.attestation,p.numFacture,
         i.matricule,i.nom,i.prenom,
         a.nom_assure , a.prenom_assure,cat.id_cat,cat.libelle_categorie,v.energie,v.date_mec,
         cv.nom_conducteur,cv.prenom_conducteur,v.puissance,v.type,v.cylindre,
@@ -298,5 +265,12 @@ class PoliceDao extends DBao
         $sql="INSERT INTO schema_data 
                  VALUES (NULL, '1', 'F', 'N', '1', '1', '0', '0', '0', 'CIN', '', '', '', '', '', '', NULL, '2017-12-06', '2017-12-06', '2017-12-06', 'N', '5a0b0a6919eee')";
         return $this->executeMAJ($sql);
+    }
+    /*
+    * @return PDOStatement
+    */
+    public function getCat($idVehicule){
+       $sql="select c.libelle_categorie from categorie_vehicule c JOIN vehicule v ON (v.categorie_vehicule_id_cat=c.id_cat) where v.id_vehicule='".$idVehicule."'";
+       return $this->executeMAJ($sql);
     }
 }

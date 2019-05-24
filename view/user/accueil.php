@@ -32,25 +32,44 @@
         <main class="mdl-layout__content">
             <h1 class='top-title'>ASSURANCE AUTOMOBILE</h1>
             <hr></hr>
-            <div class="mdl-content">
+            <div class="mdl-content" style='margin-top:-55px;'><!--row1-->
                 <div class="mdl-grid animated fadeInLeft animation-delay-900">
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d1 mdl-card mdl-shadow--2dp" id="rediger">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=valider">SOUSCRIPTION ASSURANCE</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=valider">SOUSCRIRE UNE ASSURANCE</a>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d2 mdl-card mdl-shadow--2dp" id="simuler">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=simul">SIMULATION SOUSCRIPTION</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=simul">FAIRE UNE SIMULATION</a>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d3 mdl-card mdl-shadow--2dp" id="consult">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=afficher">CONSULTER</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=afficher">CONSULTER MES DÉVIS</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div><!--row1-->
+            <div class="mdl-content" style='margin-top: -165px;'><!--row2-->
+                <div class="mdl-grid animated fadeInLeft animation-delay-900">
+                    <div class="mdl-cell mdl-cell---col">
+                        <div class="demo-card-square d4 mdl-card mdl-shadow--2dp" id="contrats">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=affi">CONSULTER MES CONTRATS</a>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell---col">
+                        <div class="demo-card-square d5 mdl-card mdl-shadow--2dp" id="simuler">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=passer">PASSER UNE COMMANDE</a>
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell---col">
+                        <div class="demo-card-square d6 mdl-card mdl-shadow--2dp" id="consult">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="garanties_details.php">VOIR MES GARANTIES</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!--row2-->
         </main>
     </div>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>

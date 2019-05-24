@@ -1,17 +1,6 @@
 <?php
     /**********************LES VALEURS DE L'ASSURE ***********************************/
-//echo $_SESSION['matricule'];
- echo "unique ID: ".$unikId=uniqid();
- function generateId($length):string{
-    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@';
-    $charactersLength = strlen($characters);
-    $idGenerated      = '';
-    $password         = '';
-    for ($i = 0; $i < $length; $i++) {
-        $idGenerated .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $idGenerated;
-}
+ $unikId=uniqid();
 echo "<br>";
 "<br>";
 $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null;$c8=null;
@@ -19,15 +8,15 @@ $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null
 echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
 echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
 echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
+echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
 $Assuredao=new AssureDao();
 $usAssure=new Assure($unikId,preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT)),
                             preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))
-                            );
+                    );
 $okAssure=$Assuredao->insererAssure($usAssure);
 if($okAssure==true)
   {
@@ -97,19 +86,6 @@ else
 
 /**********************LES VALEURS DU VEHICULE ***********************************/
 
-/*echo "marque: ".$_POST['marque']."<br>";
-echo "type vehicule: ".$_POST['type_vehicule']."<br>";
-echo "immatriculation: ".$_POST['immatriculation']."<br>";
- echo "GENRE".$_POST['genre']."<br>";
-echo "puissance".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['puissance'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "energie: ".$_POST['energie']."<br>";
-echo "charge: ".$_POST['charge']."<br>";
-echo "places: ".$_POST['places']."<br>";
-echo "MEC: ".$_POST['mec']."<br>";
-echo "valeur neuve: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_neuve'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "valeur venale: ".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo "categorie: ".$_POST['categorie']."<br>";
-echo "PAck: ".$_POST['pack']."<br>";*/
 $marque=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['marque'],FILTER_SANITIZE_STRING));
 $type=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['type_vehicule'],FILTER_SANITIZE_STRING));
 $immatriculation=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['immatriculation'],FILTER_SANITIZE_STRING));
@@ -157,7 +133,6 @@ echo "prime totale".$primeTotale=$_POST['totalPT1']."<br>";
 
 $Cptdao=new Decompte_primeDao();
 $usCpt=new Decompte_prime($unikId,$_POST['taxe1'],$fond=$_POST['accessoire'],$_POST['totalFG1'],$_POST['totalPN1'],$_POST['totalPT1']);
-
 $okCpt=$Cptdao->insererDecompte($usCpt);
 if($okCpt==true)
 {
@@ -240,23 +215,18 @@ else
     $numFacture=$vaPol."-".$year."-".$item['facture'];
 }
 /*****************************INSERTION DE LA POLICE*****************************************/
-// $dp = date_create()->format('Y-m-d');
-
 echo(date_create()->format('Y-m-d H:i:s'));
 $datePolice = date_create()->format('Y-m-d H:i:s');
-// $attestation=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['attestation'],FILTER_SANITIZE_NUMBER_INT));
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
     $usdao             = new PoliceDao();
-    $attestationDao    = new AttestationDao();
-    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,"NULL",0,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,'NULL',0,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
     $ok                = $usdao->insererPolice($us);
     var_dump($ok);
     if($ok==true)
     {
-// echo "toutes les insertions sont faites<br>";
+echo "toutes les insertions sont faites<br>";
 echo '<p style="backgroud:green">Police inseree</p>'."<br>";
-      
         $c7=1;
     }
     else
@@ -366,6 +336,7 @@ echo '<p style="backgroud:green">Police inseree</p>'."<br>";
                 }
             }
         }
+    //Redirection vers la page d'erreur
     }
 }
 else
@@ -561,6 +532,7 @@ if ($c7==1)
             echo " defense donnee non inserer"."<br>";
         }
     }
+
 //-------------------------
 //CHECKBOX 4
 //-----------------------------
@@ -592,6 +564,7 @@ if ($c7==1)
             echo " incendie donnee non inserer"."<br>";
         }
     }
+
 //-------------------------
 //CHECKBOX 5
 //-----------------------------
@@ -623,11 +596,10 @@ if ($c7==1)
           }
 
     }
+
 //-------------------------
 //CHECKBOX 6
 //--------------------------------
-//echo "bris: ".$_POST['bris']."<br>";
-//-----------------------------
     if (isset($_POST['bris']))
     {
         $unikIdBRIS=uniqid();
@@ -656,6 +628,7 @@ if ($c7==1)
           }
 
     }
+
 //-------------------------
 //CHECKBOX 7
 //--------------------------------
@@ -786,6 +759,7 @@ if ($c7==1)
         }
 
     }
+
 //-------------------------
 //CHECKBOX 9
 //-----------------------------
@@ -856,6 +830,7 @@ if ($c7==1)
         }
 
     }
+
 //-------------------------
 //CHECKBOX 10
 //-----------------------------
@@ -888,9 +863,8 @@ if ($c7==1)
                          echo "  assistance donnee non inserer"."<br>";
                      }
     }
-    header('Location: ../../view/user/accueil.php');
+    header('Location: ./?action=afficher');
 }
 else{
-   // header('Location: http://saham-app.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
+   header('Location: ./?action=none');
 }
-

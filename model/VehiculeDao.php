@@ -51,9 +51,9 @@ class VehiculeDao extends DBao
     }
     public function updateVehicule(Vehicule $us)
     {
-        $sql="UPDATE `vehicule` SET `marque` = '".$us->getMarque()."', `type` = '".$us->getType()."',
-         `immatriculation` = '".$us->getImmatriculation()."', `puissance` = '".$us->getPuissance()."', `energie` = '".$us->getEnergie()."','charge_utile'='".$us->getChargeUtile()."','places'='".getPlaces()."','genre'='".$us->getGenre()."','chassis'='".getChassis()."','cylindre'='".$us->getCylindre()."','date_mec'='".$us->getDateMec()."','valeur_neuve'='".$us->getValeurNeuve()."','valeur_venale'='".$us->getValeurVenale()."','nom_chauffeur'='".$us->getNomChauffeur()."'
-         WHERE `vehicule`.`id_vehicule` = '".$us->getIdVehicule()."'";
+        $sql="UPDATE vehicule SET marque = '".$us->getMarque()."', type = '".$us->getType()."',
+         immatriculation = '".$us->getImmatriculation()."', puissance = '".$us->getPuissance()."', energie = '".$us->getEnergie()."',charge_utile='".$us->getChargeUtile()."',places='".$us->getPlaces()."',genre='".$us->getGenre()."',chassis='".$us->getChassis()."',cylindre='".$us->getCylindre()."',date_mec='".$us->getDateMec()."',valeur_neuve='".$us->getValeurNeuve()."',valeur_venale='".$us->getValeurVenale()."',nom_chauffeur='".$us->getNomChauffeur()."'
+         WHERE id_vehicule = '".$us->getIdVehicule()."'";
         return $this->executeMAJ($sql);
     }
 }
