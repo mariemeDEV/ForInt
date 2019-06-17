@@ -2,7 +2,8 @@
     <html>
     <head>
     <meta charset="utf-8">
-    <title>Saham Assurance SN</title>
+    <title>For-Int</title>
+
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="form.css" rel="stylesheet">
     <link href="../../view/style/css_etat.css" rel="stylesheet">

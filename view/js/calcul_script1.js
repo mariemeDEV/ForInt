@@ -247,6 +247,7 @@ function CalculeBC(){
         document.getElementById('brute5').value=0;
         document.getElementById('prorata5').value=0;
         document.getElementById('PrimeVol').value=0;
+        $('#attesta').prop('disabled',true);
        
         $('#cylindreLabel,#cylindre').fadeIn();
         $('#labelPuissance,#puissance,#vnLabel,#val_neuve,#vvLabel,#val_venale,#placeLabel,#places,#mecLabel,#mec,#energieLabel,#energie,#labelPack,#pack,#labelChargeUtile,#charge').fadeOut()
@@ -286,6 +287,8 @@ function CalculeBC(){
         $('#puissance,#places,#mec').addClass('requis')
 
         document.getElementById("puissance").disabled=false;
+        $('#attesta').prop('disabled',false);
+
     }
     if(genre_v !=2)
     {
@@ -1253,7 +1256,6 @@ function CalculeBC(){
 
     //*************************CONDITION POUR LE CHECKBOX 6: BRIS DE GLACE*********************** */
     if( Checkbox6.checked==1){
-
         var lim_gant_ck6=0;
         var franch_6=0;
 
@@ -1272,7 +1274,7 @@ function CalculeBC(){
         if  (puissance>=24){
             var primebrute_6=36750;
         }
-        if(places=39 || places==60 || places>60){
+        if(places==39 || places>=60){
             var primebrute_6=105000;
         }       
         if(pack=="classic" || pack=="confort" || pack=="liberte"){
@@ -1360,7 +1362,13 @@ function CalculeBC(){
                 document.getElementById('brute9').value=0;
                 document.getElementById('prorata9').value=0;
                 document.getElementById('PrimeAvance').value=0;
+                $('#chiffre3').prop('disabled',true);
+                $('# sel1').prop('disabled',true);
 
+            }
+            else if(genre_v!=6){
+                $('#chiffre3').prop('disabled',false);
+                $('# sel1').prop('disabled',false);
             }
         }
         else if(Checkbox7_2.checked==true)
@@ -1668,7 +1676,7 @@ function CalculeBC(){
     //*************************CONDITION POUR LE CHECKBOX 9 PERSONNES TRANSPORTEES*********************** */
     var transport=document.getElementById('Checkbox9').value;
 
-    if (document.getElementById('Checkbox9').options[0].selected == true)
+     if (document.getElementById('Checkbox9').options[0].selected == true)
     {
         var lim_gant_ck9=0;
         var franch_9=0;
@@ -1684,7 +1692,7 @@ function CalculeBC(){
     {
         var lim_gant_ck9=1000000;
         var franch_9=0;
-        var primebrute_9=places*1200;
+        var primebrute_9=parseInt(places)*1200;
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1696,7 +1704,7 @@ function CalculeBC(){
     {
         var lim_gant_ck9=2000000;
         var franch_9=0;
-        var primebrute_9=places*2400;
+        var primebrute_9=parseInt(places)*2400;
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1718,12 +1726,10 @@ function CalculeBC(){
             var lim_gant_ck9=3000000;
             var franch_9=0;
         }
-        else
-        {
-            var lim_gant_ck9=0;
-            var franch_9=0;
-            var primebrute_9=places*3600;
-        }
+     
+        var lim_gant_ck9=0;
+        var franch_9=0;
+        var primebrute_9=parseInt(places)*3600;
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1811,60 +1817,72 @@ function CalculeBC(){
     document.getElementById('totalPN1').value = totalPN;
 
     // ------------------------FIN CALCUL DES Checkbox-------------------------------
-  
 
-    //-----------------------calcul de l'accessoire-------------------------------
-    if  (totalPN<=50000) {
-        var totalAC=2000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
-    else if(totalPN>=50001 && totalPN<=100000){
-        var totalAC=3000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
 
-    else if(totalPN>=100001 && totalPN<=500000){
-        var totalAC=5000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
-    else if(totalPN>=500001 && totalPN<=1000000){
-        var totalAC=8000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
-    else if(totalPN>=1000001 && totalPN<=5000000){
-        var totalAC=10000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
-    else{
-        var totalAC=20000
-        document.getElementById('totalAC').value  = totalAC;
-        document.getElementById('totalAC1').value = totalAC;
-    }
-
-    //---------------------calcul de la taxe-----------------------
-    var taxe=Math.round((totalPN+totalAC)*(10/100));
-    document.getElementById('taxe').value = taxe;
-    document.getElementById('taxe1').value = taxe;
+ 
 
     //---------------------calcul du fond de garantie-----------------------
     var totalFG=parseInt((primebrute_prorata_1-totalBC)*(2.5/100))
     document.getElementById('totalFG').value = totalFG;
     document.getElementById('totalFG1').value = totalFG;
 
+    var totalPN = $('#totalPN').val()
+    var totalAC=0
+
+    if(totalPN<=50000) {
+        totalAC=2000
+    }else if(totalPN>50000 && totalPN<=100000){
+        totalAC=3000
+    }else if(totalPN>100000 && totalPN<=500000){
+        totalAC=5000
+    }else if(totalPN>500000 && totalPN<=1000000){
+        totalAC=8000
+    }else if(totalPN>1000000 && totalPN<=5000000){
+        totalAC=10000
+    }else{
+        totalAC=20000
+    }
+
+    //alert(totalAC)
+    $('#totalAC').val(totalAC) 
+    $('#totalAC1').val(totalAC)
+
+    //---------------------calcul de la taxe-----------------------
+    var taxe=Math.round((parseInt(totalPN)+parseInt(totalAC))*(10/100));
+    document.getElementById('taxe').value = taxe;
+    document.getElementById('taxe1').value = taxe;
 
     //---------------------- calcul de la prime totale-------------------------------------
-    var PrimeTotale=parseInt(totalPN+totalAC+taxe+totalFG);
+    var PrimeTotale=parseInt(totalPN)+parseInt(totalAC)+parseInt(taxe)+parseInt(totalFG);
     document.getElementById('totalPT').value = PrimeTotale;
     document.getElementById('totalPT1').value = PrimeTotale;
 
     var dtre=(document.getElementById('date_debut').value).substring(0,10);
     var dtrv=(document.getElementById('date_fin').value).substring(0,10);
 }
+
+//-----------------------calcul de l'accessoire----------------------------------
+$('#contrat-create').on('click',function(){
+    var totalPN = $('#totalPN').val()
+    var totalAC=0
+    //alert(totalPN)
+    if(totalPN<=50000) {
+        totalAC=2000
+    }else if(totalPN>50000 && totalPN<=100000){
+        totalAC=3000
+    }else if(totalPN>100000 && totalPN<=500000){
+        totalAC=5000
+    }else if(totalPN>500000 && totalPN<=1000000){
+        totalAC=8000
+    }else if(totalPN>1000000 && totalPN<=5000000){
+        totalAC=10000
+    }else{
+        totalAC=20000
+    }
+   // alert(totalAC)
+    $('#totalAC').val(totalAC) 
+    $('#totalAC1').val(totalAC)
+})
 
 function myFunction() {
     $("#pack").fadeOut();
@@ -1966,6 +1984,14 @@ $('#afficherPopup').on('click', function(){
 $('#nom_assure,#prenom_assure,#adresse_assure,#tel,#email_assure,#puissance,#val_neuve,#val_venale,#places,#mec,#energie,#categorie,#genre,#marque,#type,#immatriculation').keyup(function(){
     $(this).val($(this).val().toUpperCase())
 })
+//     // $( "#energie" ).prop( "disabled", true ); 
+$('body').keyup(function(e) {
+    console.log('keyup called');
+    var code = e.keyCode || e.which;
+    if (code == '9') {
+    $( "#energie").val("essence");
+    }
+ });
 
 
 function checkDate(){

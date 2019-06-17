@@ -61,10 +61,10 @@ $(window, document, undefined).ready(function() {
       }
     })
 
-    $('#valider').click(function(){
+   /* $('#valider').click(function(){
       $('#update_modal').css('display','inline-block')
       $('#assure-infos,#hidden-caracteristiques').css('display','none')
-    })
+    })*/
     $('#close_modal').click(function() {
         $('#update_modal').css('display','none')
         $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')
@@ -86,6 +86,10 @@ $(window, document, undefined).ready(function() {
       }); 
     }
     divider()
+
+  // setInterval(function() {
+  //   divider()
+  // }, 1000);
 
     var input = document.querySelector("#tel");
     window.intlTelInput(input, {

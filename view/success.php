@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head><!--header-->
-    <title>Saham Assurance SN</title>
+<title>For-Int</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color">
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../view/style/style_aff.css">
     <style>
-        .error-message{
+        .success-message{
             text-align: center; 
             color: #ec7777;
         }
-        .error-text{
+        .success-text{
             color: #062944;
             text-align:center;
             font-size:11px
         }
-        .error-content{
+        .success-content{
             margin-top: 71px;
         }
         .retour-content{
@@ -34,15 +34,15 @@
         }
     </style>
 </head><!--end header-->
-<body onload="myFunction();CalculeBC()"id="assurance">
+<body onload="myFunction();CalculeBC()" id="assurance">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <?php include "user/header.php"; ?>
-        <main class="mdl-layout__content error-content">
+        <main class="mdl-layout__content success-content">
             <div class="mdl-content">
-                <h1 class="error-message">Succés !</h1>
-                <p class='error-text'>Votre commande a étè bien prise en compte,<br> merci de vous rapprocher auprés de nos agents pour recupérer vos attestations</p>
+                <h1 class="success-message">Succés !</h1>
+                <p class='success-text'>Votre commande a étè bien prise en compte,<br> merci de vous rapprocher auprés de nos agents pour recupérer vos attestations ou appelez nous au <br><b>33 825 20 14 </b>pour obtenir un rendez-vous</p>
                 <div class="retour-content">
-                    <a href="http://localhost/saham-app/view/user/accueil.php">RETOUR</a>
+                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>
@@ -51,8 +51,5 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
 </body>
 </html>

@@ -117,7 +117,6 @@ h6
 }
 
 #wb_Text3 > span {
-    color: #010000;
     font-family: Arial;
     font-size: 13px;
 }
@@ -1462,8 +1461,8 @@ h6
 
 #wb_Text3 {
     position: absolute;
-    left: 388px;
-    top: 223px;
+    left: 867px;
+    top: 196px;
     width: 100px;
     height: 16px;
     z-index: 53;

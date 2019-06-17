@@ -86,7 +86,11 @@ $datePolice = date_create()->format('Y-m-d H:i:s');
 if($c1==1 && $c4==1){
     $usdao             = new PoliceDao();
     $attestationDao    = new AttestationDao();
-    $attestationCedeao = $_POST['attesta'];
+    if(isset($_POST['attesta'])){
+        $attestationCedeao = $_POST['attesta'];
+    }else{
+        $attestationCedeao = 'NULL';
+    }
     $option            = $_POST['optradio'];
     if($option=='jaune'){
         $attestation      = $_POST['attestation-j'];
@@ -103,12 +107,21 @@ echo "toutes les insertions sont faites<br>";
 echo '<p style="backgroud:green">Police inseree</p>'."<br>";
         if($_POST['optradio']=='verte'){
             $idVente = generateIdVente(5);
-            $attestationDao->setToSoldVertes($_POST['attestation-v'],$idVente);
-            $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente);
+            if(isset($_POST['attesta'])){
+                $attestationDao->setToSoldVertes($_POST['attestation-v'],$idVente);
+                $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente);
+            }else{
+                $attestationDao->setToSoldVertes($_POST['attestation-v'],$idVente);
+            }
         }else if($_POST['optradio']=='jaune'){
             $idVente = generateIdVente(5);
-            $attestationDao->setToSoldJaunes($_POST['attestation-j'],$idVente );
-            $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente );
+            if(isset($_POST['attesta'])){
+                $attestationDao->setToSoldJaunes($_POST['attestation-j'],$idVente );
+                $attestationDao->setToSoldCedeao($_POST['attesta'],$idVente );
+            }else{
+                $attestationDao->setToSoldJaunes($_POST['attestation-j'],$idVente );
+            }
+            
         }
         $c7=1;
     }
@@ -551,42 +564,42 @@ if ($c7==1)
     <!doctype html>
     <html lang=\"en\">
         <head>
-        <meta charset=\"UTF-8\">
-        <meta http-equiv=\"refresh\" content=\"5; URL=javascript:window.open('http://google.com','_parent');\">
-        <meta name=\"viewport\"content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
-        <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
-        <title>Document</title>
-            <script>
-                function redict(){
-                    var a ='../../controller/formulaire/?action=lister1&opli=$idPolice';
+            <meta charset=\"UTF-8\">
+            <meta http-equiv=\"refresh\" content=\"5; URL=javascript:window.open('http://google.com','_parent');\">
+            <meta name=\"viewport\"content=\"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0\">
+            <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">
+            <title>Document</title>
+        </head>
+        <script>
+            function getCP(){
+                var a ='../../controller/formulaire/?action=lister1&opli=$idPolice&att=$attestationCedeao';
+                window.location.href='../../controller/formulaire/?action=valider';
+                window.open(a);
+            }
+            function getOne(){
+                var cat = $categorie;
+                if(cat!='4'){
+                    var b ='../../controller/formulaire/?action=lister2&opli=$idPolice';
                     window.location.href='../../controller/formulaire/?action=valider';
-                    window.open(a);
+                    window.open(b);
+                }else{
+                    var c ='../../controller/formulaire/?action=lister3&opli=$idPolice';
+                    window.location.href='../../controller/formulaire/?action=valider';
+                    window.open(c);
                 }
-            </script>
-            <script>
-            function redict1(){
-                var b ='../../controller/formulaire/?action=lister2&opli=$idPolice';
-                window.location.href='../../controller/formulaire/?action=valider';
-                window.open(b);
             }
-            </script>
-            <script>
-            function redict2(){
-                var c ='../../controller/formulaire/?action=lister3&opli=$idPolice';
-                window.location.href='../../controller/formulaire/?action=valider';
-                window.open(c);
+            function getCedeao(){
+                var cat = $categorie;
+                if(cat!='5'){
+                    var d ='../../controller/formulaire/?action=lister4&opli=$idPolice';
+                    window.location.href='../../controller/formulaire/?action=valider';
+                    window.open(d)
+                }else{}
+               
             }
-            </script>
-            <script>
-            function redict3(){
-                var d ='../../controller/formulaire/?action=lister4&opli=$idPolice';
-                window.location.href='../../controller/formulaire/?action=valider';
-                window.open(d);
-            }
-            </script>
-</head>
-<body onload='redict();redict1();redict2();redict3()'></body>
-</html>";
+        </script>
+        <body onload='getCP();getOne();getCedeao()'></body>
+    </html>";
 }
 else{
    header('Location: ./?action=none');

@@ -10,7 +10,7 @@ class CommandesDao extends DBao
        try {
         $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
         $user="root";
-        $password="passer";
+        $password="";
         $pdo = new PDO($dns, $user, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -25,7 +25,6 @@ class CommandesDao extends DBao
                 '".$c->getNombre_attestation_cedeao()."'
             )"
         );
-        echo "Insertion effectuée";
         return $sql->execute();
     }
     catch(Exception $e) {

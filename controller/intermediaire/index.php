@@ -1,7 +1,6 @@
 <?php
 // Démarrage ou restauration de la session
 session_start();
-//ini_set("display_errors",0);error_reporting(0);
 require_once '../../model/IntermediaireDao.php';
 require_once '../../mapping/Intermediaire.php';
 require_once '../../model/AssureDao.php';
@@ -46,7 +45,7 @@ if(isset($_GET['action']))
 }
 if(isset($_POST['action'])){
     switch($_POST['action']) {
-        case 'connect':
+        case 'connexion':
                   $usdao = new IntermediaireDao();
                   $mdp   = filter_var($_POST['mdp'],FILTER_SANITIZE_STRING);
                   $email = filter_var($_POST['email'],FILTER_SANITIZE_EMAIL);
@@ -147,17 +146,17 @@ if(isset($_POST['action'])){
             }
             if(($_POST['Npwd'] != $_POST['Cpwd']))// je verifie si le nouveau MDP et le MPD confirmé sont conformes!!
             {
-                header('Location: localhost/saham-app/controller/intermediaire/?action=profil&err=1np0');
+                header('Location: ../../controller/intermediaire/?action=profil&err=1np0');
             }
             elseif ($_POST['Npwd']=="saham" && $_POST['Cpwd']=="saham")// il ne peut pas choisir 'saham' comme nouveau MDP
             {
-                header('Location: localhost/saham-app/controller/intermediaire/?action=profil&err=2np0');
+                header('Location: ../../controller/intermediaire/?action=profil&err=2np0');
             }
             else
             {
                 if(!password_verify($_POST['Amdp'], $pwd))//je verifie si l'ancien et le new MDP ne sont pas identique
                 {
-                    header('Location: localhost/saham-app/controller/intermediaire/?action=profil&err=1np0');
+                    header('Location: ../../controller/intermediaire/?action=profil&err=1np0');
                 }
                 else
                 {
@@ -165,7 +164,7 @@ if(isset($_POST['action'])){
                     $ps=new Intermediaire( $_SESSION['matricule'],0,0,0,0, 0, $hash);
                     $modification=$usdao->modifMdp($ps);
                     if($modification==true)
-                        header('Location: localhost/saham-app/controller/intermediaire/?action=profil&err=1np1');
+                        header('Location: ../../controller/intermediaire/?action=profil&err=1np1');
                 }
             }
             break;

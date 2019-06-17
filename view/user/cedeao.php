@@ -2,13 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Saham Assurance SN</title>
+		<title>CEDEAO</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="../../view/style/css_etats3.css" rel="stylesheet">
     <style>
         .container{
-            margin-top:12em;
-			font-size:9px
+						font-size:9px;
+						position: relative;
+    				top: 263px;
         }
     </style>
 </head>
@@ -33,11 +34,9 @@
 	<colgroup width="17"></colgroup>
 	<colgroup width="132"></colgroup>
 	<tr>
-		<td colspan=4 height="12" align="center" valign=middle><b><font size=1 color="#000000" style="    position: absolute;
-    left: 93px;
-    top: 108px;"><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
+		<td colspan=4 height="12" align="center" valign=middle><b><font size=1 color="#000000" style="position: absolute;left: 93px;top:-8px;"><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
-		<td colspan=6 align="center" valign=middle><b><font size=1 color="#000000" style=''><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
+		<td colspan=6 align="center" valign=middle><b><font size=1 color="#000000" style='position: relative;left: -73px;top:-8px'><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -46,15 +45,16 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 	</tr>
 	<tr>
-		<td colspan=4 height="12" align="center" valign=middle><b><font size=1 color="#000000"><?php echo($adresseAssure) ?></font></b></td>
+		<td colspan=4 height="12" align="center" valign=middle><b><font size=1 color="#000000" style='    position: relative;
+    top: -9px;'><?php echo($adresseAssure) ?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=6 align="center" valign=middle><b><font size=1 color="#000000"><?php echo($adresseAssure) ?></font></b></td>
+		<td colspan=6 align="center" valign=middle><b><font size=1 color="#000000" style='position: relative;top: 7px;left:-73px;top:-9px'><?php echo($adresseAssure) ?></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    left: 111em;
-    top: 108px;'><?php echo($codePolice) ?></font></b></td>
+    left:831px;
+    top:4px;'><?php echo($codePolice) ?></font></b></td>
 		</tr>
 	<tr>
 		<td height="12" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -71,8 +71,13 @@
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=2 align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($debut)?></font></b></td>
-		<td align="right" valign=middle sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($fin)?></font></b></td>
+		<td colspan=2 align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='    position: relative;
+    top: -50px;
+    left: -124px;
+'><?php echo($debut)?></font></b></td>
+		<td align="right" valign=middle sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='position: relative;
+    left: -157px;
+    top: -50px;'><?php echo($fin)?></font></b></td>
 	</tr>
 	<tr>
 		<td height="10" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -86,9 +91,7 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=2 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-      top: 106px;
-    left: 706px;'><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
+		<td colspan=2 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;top:10px;left:587px;'><?php echo($prenomAssure.' '.$nomAssure) ?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -97,17 +100,16 @@
 	<tr>
 		<td height="12" align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style="    position: absolute;
-    left: 127px;top:145px"><?php echo($immatriculation)?></font></b></td>
+    left: 127px;top:27px"><?php echo($immatriculation)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    top: 143px;
-    left: 444px;'><?php echo($immatriculation)?></font></b></td>
+    top: 27px;
+    left:371px;'><?php echo($immatriculation)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=2 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    top: 119px;
-    left: 73em;'><?php echo($adresseAssure) ?></font></b></td>
+		<td colspan=2 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;top: 19px;
+    left: 60em;top:30px'><?php echo($adresseAssure) ?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -116,12 +118,11 @@
 	<tr>
 		<td height="11" align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    left: 130px;'><?php echo($marque)?></font></b></td>
+    left: 130px;top:53px'><?php echo($marque)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    left: 442px;'><?php echo($marque)?></font></b></td>
+		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;left:382px;top:53px'><?php echo($marque)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -137,15 +138,14 @@
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style="    position: absolute;
-    left: 431px;">SAHAM ASSURANCE</font></b></td>
+		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style="position: absolute;left:357px;">SAHAM ASSURANCE</font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
-		<td align="left" valign=middle><b><font size=1 color="#000000"><?php echo($immatriculation)?></font></b></td>
+		<td align="left" valign=middle><b><font size=1 color="#000000" style='    position: relative;
+    left: -80px;top:-31px
+'><?php echo($immatriculation)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='    position: absolute;
-    left: 96em;
-    top: 172px;'><?php echo($marque)?></font></b></td>
+		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;left:916px;top:45px;'><?php echo($marque)?></font></b></td>
 		</tr>
 	<tr>
 		<td height="12" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -196,7 +196,10 @@
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
-		<td align="left" valign=middle><b><font size=1 color="#000000">SAHAM ASSURANCE</font></b></td>
+		<td align="left" valign=middle><b><font size=1 color="#000000" style='    position: relative;
+    left: -148px;
+    top: -39px;
+'>SAHAM ASSURANCE</font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -217,9 +220,7 @@
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;
-    top: 235px;
-    left: 96em;'>SAHAM ASSURANCE</font></b></td>
+		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;top:88px;left: 83em;'>SAHAM ASSURANCE</font></b></td>
 		</tr>
 	<tr>
 		<td height="6" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -242,10 +243,9 @@
 	</tr>
 	<tr>
 		<td height="12" align="left" valign=bottom><font color="#000000"><br></font></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style="position: absolute;left: 96em;top: 108px;"><?php echo($codePolice) ?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=4 align="center" valign=middle><b><font size=1 color="#000000" style=''><?php echo($codePolice) ?></font></b></td>
+		<td colspan=4 align="center" valign=middle><b><font size=1 color="#000000" style='position: relative;left: 162px;top:-52px'><?php echo($codePolice) ?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -253,6 +253,8 @@
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
+		<td colspan=4 align="center" valign=middle><b><font size=1 color="#000000" style="position: relative;left:-820px;top:-58px;"><?php echo($codePolice) ?></font></b></td>
+
 	</tr>
 	<tr>
 		<td height="20" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -274,12 +276,13 @@
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 	</tr>
 	<tr>
-		<td colspan=3 height="20" align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($debut)?></font></b></td>
-		<td align="center" valign=top sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($fin)?></font></b></td>
+		<td colspan=3 height="20" align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='    position: relative;
+    left: 45px;top:-58px'><?php echo($debut)?></font></b></td>
+		<td align="center" valign=top sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='position:relative;top:-58px'><?php echo($fin)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=3 align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($debut)?></font></b></td>
-		<td align="right" valign=top sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000"><?php echo($fin)?></font></b></td>
+		<td colspan=3 align="center" valign=top sdval="42948" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='position: relative;left: -91px;top:-59px'><?php echo($debut)?></font></b></td>
+		<td align="right" valign=top sdval="43128" sdnum="1036;1036;JJ/MM/AAAA"><b><font size=1 color="#000000" style='position:relative;left:-74px;top:-60px'><?php echo($fin)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>

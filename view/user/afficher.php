@@ -4,7 +4,7 @@
 
     <head>
 
-        <title>Saham Assurance SN</title>
+        <title>For-Int</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -124,6 +124,13 @@
             position: relative;
             top: 50px;
         }
+        #myBtn{
+            background: #f7ba00 !important;
+            position: relative;
+            top: 24px;
+            z-index: 3;
+            padding: 13px;
+        }
      
     </style>
 
@@ -162,11 +169,9 @@
                 </div>
             </div>
         </div><!--extraction production-->
-            <ul>
-                <li ><a id="myBtn">Éxtraire production</a></li>
-            </ul>
+               <a id="myBtn">Éxtraire production</a>
           <h1 class="ajout-title">Géstion des contrats</h1>
-          <hr>
+          <hr style='position:absolute;top:153px !important'>
             <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
@@ -191,7 +196,7 @@
                             <td>$row[3]</td>
                             <td>$row[5]&nbsp;$row[4]</td>                   
                             <td style='text-align: center;'>
-                                <a href='../../controller/formulaire/?action=lister&id=$row[0]' onclick='if(!confirm(\"voulez-vous imprimer ? \")) return false;' target=\"_blank\"><i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
+                                <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                             </td>                            
                         </tr>";
                         }

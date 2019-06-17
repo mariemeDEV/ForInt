@@ -14,7 +14,7 @@ hr{
     border: 0;
     border-top: 2px solid #062945;
     position: absolute;
-    top: 65px;
+    top: 92px;
     left: 86px;
 }
 .mdl-grid{
@@ -80,21 +80,23 @@ hr{
     background-size:cover
 }
 .connect-avatar{
-    width: 7%;
+    width: 25%;
     float: none;
     position: relative;
-    left: 631px;
-    top:87px
+    left: 160px;
+    top: -4px;
 }
 form {
-    height: 259px;
-    width: 501px;
+   /* height: 259px;
+    width: 501px;*/
     margin:auto;
     margin-top:4%;
 	padding: 3em 2em 2em 2em;
-	background: #fafafa;
-	border: 1px solid #ebebeb;
-	box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;
+	/*background: #fafafa;*/
+	/*border: 1px solid #ebebeb;*/
+    /*box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px;*/
+    width: 41%;
+    margin: auto;
 }
 .group { 
 	position: relative; 
@@ -125,8 +127,7 @@ label {
 	font-weight: normal;
 	position: absolute;
 	pointer-events: none;
-	left: 5px;
-	top: 10px;
+	
 	transition: all 0.2s ease;
 }
 
@@ -202,8 +203,6 @@ input:focus ~ .highlight {
   position: relative;
   display: inline-block;
   padding: 12px 24px;
-  margin: .3em 0 1em 0;
-  width: 100%;
   vertical-align: middle;
   color: #fff;
   font-size: 16px;
@@ -218,7 +217,10 @@ input:focus ~ .highlight {
   border-bottom: 2px solid #ebebeb;
   cursor: pointer;
   transition: all 0.15s ease;
-  text-transform: uppercase
+  text-transform: uppercase;
+  top: -12px;
+  width: 55%;
+  margin: auto;
 }
 .button:focus { outline: 0; }
 

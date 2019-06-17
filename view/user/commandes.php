@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Saham Assurance SN</title>
-        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <title>For-Int</title>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -88,7 +88,7 @@
                         <div class="col md-4">
                             <div class="form-group">
                                 <label for="matricule">nombre d'attestations</label>&nbsp&nbsp<span style='color:red'>*</span>
-                                <input type="number" placeholder="0" min="1cc" name='nj' id='number_j'>
+                                <input type="number" placeholder="0" min="1" name='nj' id='number_j'>
                             </div>
                         </div>
                     </div>

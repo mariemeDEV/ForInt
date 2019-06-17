@@ -3,7 +3,7 @@
 <html lang="fr">
 
     <head>
-        <title>Saham Assurance SN devis</title>
+        <title>For-Int</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -167,10 +167,10 @@
                             <td>$row[3]</td>
                             <td style='font-weight:bolder;text-transform:uppercase'><span style='color:red;float:right;position:relative;left:-30px;'>*</span>$row[5]&nbsp;$row[4]</td>                   
                             <td style='text-align: center;'>
-                                <a href='../../controller/formulaire/?action=lister&id=$row[0]' onclick='if(!confirm(\"voulez-vous imprimer ? \")) return false;' target=\"_blank\"><i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
+                                <a href='../../controller/formulaire/?action=lister&id=$row[0]' <i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                             </td>  
                             <td style='text-align: center;'>
-                                <a href='../../controller/formulaire/?action=modiferDevis&id_police=$row[0]' onclick='if(!confirm(\"voulez-vous créer un contrat pour ce devis ? \")) return false;' target=\"_blank\"><i class=\"material-icons\" style=\"color:#062944 !important\">folder_open</i></a>
+                                <a href='../../controller/formulaire/?action=modiferDevis&id_police=$row[0]' <i class=\"material-icons\" style=\"color:#062944 !important\">folder_open</i></a>
                             </td>                           
                         </tr>";
                         }

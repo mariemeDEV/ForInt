@@ -270,7 +270,7 @@ body
 }
 #Editbox9
 {
-    border: 0px #CCCCCC solid;
+    border: 1px #CCCCCC solid;
     border-radius: 4px;
     background-color: #FFFFFF;
     background-image: none;
@@ -569,8 +569,7 @@ body
 }
 #Line11
 {
-    color: #000000;
-    background-color: #000000;
+  
     border-width: 0;
     margin: 0;
     padding: 0;

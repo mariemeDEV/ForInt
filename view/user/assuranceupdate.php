@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head><!--header-->
-    <title>Saham Assurance SN</title>
+    <title>For-Int</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color">
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
@@ -89,7 +89,7 @@
 <body onload="myFunction();CalculeBC()" id="assurance">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <?php include "header.php"; ?>
-    <form method="post" action="../../controller/formulaire/index.php" id="assurance-form"><!--form-->
+    <form method="post" action="../../controller/formulaire/index.php" id="assurance-form" name="updateContrat"><!--form-->
         <main class="mdl-layout__content">
             <div class="mdl-content">
                 <div class="mdl-grid">
@@ -173,8 +173,8 @@
                                             <div class="col-lg-5"><!-- debut col-lg-6 -->
                                                 <div class="form-group">
                                                     <label style="margin-right: 1%;margin-top: 5%;font-family: Times New Roman;font-size: 14px;">Durée<span style="color: red;">*</span>:</label>  
-                                                    <select onchange="CalculeBC()" class="form-control requis" name="duree_garantie" id="duree" title="duree" style="height: 36%;font-size: 15px;font-family: Times New Roman;width: 60%;padding-left: 33px;" required='required'>
-                                                        <option value="0"><h5>DURÉE</h5></option>
+                                                    <select onchange="CalculeBC()" class="form-control requis" name="duree_garantie" id="duree" title="duree" style="height: 36%;font-size: 15px;font-family: Times New Roman;width: 60%;padding-left: 33px;;margin-top: -30px !important;margin-left: 57px !important" required='required'>
+                                                        <option value=<?php echo('"'. $item['duree'].'"')?>><?php echo($item['duree'].' mois')?></option>
                                                         <option value="1">1 mois</option>
                                                         <option value="2">2 mois</option>
                                                         <option value="3">3 mois</option>
@@ -429,7 +429,7 @@
                             <!--fin caracteristiques du vehicule -->
                           
                             <div id="myModal" class="modal">
-                                <div class="modal-content" style='background:#fdfddc !important'>
+                                <div class="modal-content" style='background:#ffffff !important;height:72% !important'>
                                 <span class="close" id="close_modal" style="position: relative;top: -21px;color: #062944;">&times;</span>
                                 <h2 style="padding-bottom: 10px;color:#062944;text-align: center;text-decoration: underline">Confirmez-vous la création du contrat ?<h2>
                                 <h3 style="color:#062944">Les actions suivantes seront éxecutées</h3>
@@ -462,7 +462,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Valider" name="action" style="margin:auto !important;position: relative;top: -112px;color: #f7bb3d;">
+                                    <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" type="submit" value="Valider Contrat" name="action" style="margin:auto !important;position: relative;top: -125px;color: #f7bb3d;">
                                 </div>
                                 </div>
                             </div>
@@ -976,7 +976,7 @@
                 </div>
             </div>
             <div class="buttons">
-                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="sendContrat()" value="Dévis" id="valider">
+                <input  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored validate-btn" onclick="sendContrat()" value="Continuer" id="valider">
                 <button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button>
             </div>
         </main>

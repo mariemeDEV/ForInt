@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Saham Assurance SN</title>
+    <title>Condition particuiére</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="../../view/style/form_v3.css" rel="stylesheet">
     <link href="../../view/style/css_etats3.css" rel="stylesheet">
@@ -36,6 +36,7 @@
     </form>
 </div>
 <label for="" id="Label1" >Prenom et Nom</label>
+<?php //echo urlencode("https://geeksforgeeks.org/")?>
 <input type="text" id="Editbox3" name="EditboxNPS" value="<?php echo $prenomAssure." ".$nomAssure; ?>" spellcheck="false">
 <img src="../../img/images3/img0002.jpg" id="Banner4" alt="PERIDOE DE GARANTIE">
 <div id="wb_Heading1">
@@ -65,8 +66,8 @@
 <label for="" id="Label11">Durée de conduite</label>
 <div id="wb_Text1">
     <span style='margin-left: -5px;'>
-    <strong>N° Att. : <?php echo '<p style="margin-top: -11px;margin-left: 32px;">'.($attestation).'</p>'?></strong>
-    <strong style='position: relative;top: -5px;left: 13px;'>cedeao:1255</strong>
+    <p style='    background: yellow;margin-top: -11px;margin-left: 42px;width: 96%;'><b>N° Att. : <?php echo ($attestation)?></b></p>
+    <p style='background:yellow;position: relative;top:-1px;left:39px !important;'><b>CEDEAO:<?php echo $_GET['att'] ?></b></p>
     </span></div>
 <div class="rest-container" style="background:green">
 <img src="../../img/images3/img0007.jpg" id="Banner3" alt="CARACTERISTIQUE DU VEHICULE">

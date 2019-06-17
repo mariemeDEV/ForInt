@@ -17,59 +17,80 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Saham Assurance SN</title>
+        <title>For-Int</title>
         <link rel="icon"       href="../../img/favicon-32x32.png" type="image/png" sizes="32x32" />
-        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <link rel="stylesheet" href="../../view/style/material.min.css">
+        <link rel="stylesheet" href="../../view/style/material-icon.min.css">
+        <link rel="stylesheet" href="../../view/style/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../view/style/animate.min.css">
         <link rel="stylesheet" href="../../view/style/style_2.css">
+        <style>
+            .subTitle{
+                position: relative;
+                top: 82px;
+                left: 247px;
+                font-size: 10px;
+                color: #062944;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body ♥ id="acceuil">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <?php include "header.php"; ?>
         <main class="mdl-layout__content">
-            <h1 class='top-title'>ASSURANCE AUTOMOBILE</h1>
-            <hr></hr>
+            <h1 class='top-title'>For-Int</h1><span class='subTitle'>Saham sénègal</span>
+            <hr style='width:5% !important'></hr>
+
             <div class="mdl-content" style='margin-top:-55px;'><!--row1-->
                 <div class="mdl-grid animated fadeInLeft animation-delay-900">
+
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d1 mdl-card mdl-shadow--2dp" id="rediger">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=valider">SOUSCRIRE UNE ASSURANCE</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=valider">SOUSCRIPTION</a>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell---col">
-                        <div class="demo-card-square d2 mdl-card mdl-shadow--2dp" id="simuler">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=simul">FAIRE UNE SIMULATION</a>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell---col">
-                        <div class="demo-card-square d3 mdl-card mdl-shadow--2dp" id="consult">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=afficher">CONSULTER MES DÉVIS</a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--row1-->
-            <div class="mdl-content" style='margin-top: -165px;'><!--row2-->
-                <div class="mdl-grid animated fadeInLeft animation-delay-900">
+
+                  
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d4 mdl-card mdl-shadow--2dp" id="contrats">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=affi">CONSULTER MES CONTRATS</a>
                         </div>
                     </div>
+
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d5 mdl-card mdl-shadow--2dp" id="simuler">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=passer">PASSER UNE COMMANDE</a>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=passer">COMMANDE D'ATTESTATIONS</a>
                         </div>
                     </div>
+                </div>
+            </div><!--row1-->
+
+            <div class="mdl-content" style='margin-top: -174px;'><!--row2-->
+                <div class="mdl-grid animated fadeInLeft animation-delay-900">
+
+                    <div class="mdl-cell mdl-cell---col">
+                        <div class="demo-card-square d2 mdl-card mdl-shadow--2dp" id="simuler">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=simul">SIMULATION</a>
+                        </div>
+                    </div>
+
+                    <div class="mdl-cell mdl-cell---col">
+                        <div class="demo-card-square d3 mdl-card mdl-shadow--2dp" id="consult">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=afficher">CONSULTER MES PROJETS</a>
+                        </div>
+                    </div>
+
+               
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d6 mdl-card mdl-shadow--2dp" id="consult">
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="garanties_details.php">VOIR MES GARANTIES</a>
                         </div>
                     </div>
+
                 </div>
             </div><!--row2-->
+
         </main>
     </div>
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>

@@ -73,7 +73,6 @@ class AttestationDao extends DBao{
         $sql="SELECT a.numero_attestation,t.libelle,i.nom,i.prenom,i.tel,a.etat_actuel,a.etat_sortie FROM `attestation` as a
         JOIN intermediaire  as i ON(a.intermediaire = i.matricule)
         JOIN type_attestation as t ON(a.id_type = t.id_type)";
-
         return $this->executeSELECT($sql);
     }
 
@@ -123,8 +122,8 @@ class AttestationDao extends DBao{
         return $this->executeMAJ($sql);
     }
 
-    public function getAttByNum($numero){
-        $sql='select numero_attestation,id_vente from attestation where numero_attestation ="'.$numero.'"';
+    public function getIdVente($numero){
+        $sql='select numero_attestation, id_vente from attestation where numero_attestation ="'.$numero.'"';
         return $this->executeMAJ($sql);
     }
 

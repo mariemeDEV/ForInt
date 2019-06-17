@@ -31,15 +31,24 @@ else {
 <head>
     <title>Saham Assurance SN</title>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="../../view/style/style_2.css" rel="stylesheet">
-
+    <style>
+        .modal{
+            margin-top:105px
+        }
+        input{
+            border: 0px solid #ffffff !important;
+            border-bottom:1px solid green !important;
+            width: 233px !important;
+            margin: auto !important
+        }
+    </style>
 </head>
 <body ♥ id="acceuil">
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -88,11 +97,7 @@ else {
                 ?>
                 <div class="mdl-cell mdl-cell--8-col" style="margin: 0 auto">
                     <div class="demo-card-square mdl-card mdl-shadow--2dp account-card" id="compteM" style="width: 100%;height: 100%;background: #062945 !important;color: #f7ba00 !important;">
-
-                        <div class="mdl-cell mdl-cell--12-col" >
-                            <div class="col-lg-4">
-                                <img src="../../img/contacts.png" style="width: 60%;margin-top: 42px;">
-                            </div>
+                        <div class="mdl-cell mdl-cell--12-col">
                             <div class="col-lg-8" style="padding-top: 25px">
                                 <table class="table" style="font-size: 18px">
                                     <tbody>
@@ -121,11 +126,6 @@ else {
                                         <td>&nbsp;</td>
                                         <td style="text-align: right"><?php echo $email ?></td>
                                     </tr>
-                                    <!--tr>
-                                        <td>Mot de passe</td>
-                                        <td>&nbsp;</td>
-                                        <td style="text-align: right"><?php// echo $mdp ?></td>
-                                    </tr-->
                                     </tbody>
                                 </table>
                             </div>
@@ -153,6 +153,7 @@ else {
             </div>
     </main>
     <!-- Modal -->
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -174,6 +175,7 @@ else {
             </div>
         </div>
     </div>
+
 </div>
 
 

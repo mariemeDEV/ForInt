@@ -11,7 +11,7 @@
     public  function  getConnection(){
         $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
         $user="root";
-        $password="passer";
+        $password="";
         try{
             $this->db=new PDO($dns,$user,$password);
         }catch (PDOException $ex){

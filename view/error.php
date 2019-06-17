@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="fr">
 <head><!--header-->
-    <title>Saham Assurance SN</title>
+<title>For-Int</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="theme-color">
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
@@ -42,7 +43,7 @@
                 <h1 class="error-message">Requete incorrecte !</h1>
                 <p class='error-text'>Veuillez vous assurer que tous les de votre formulaire portant le signe<span style='color:red'>*</span><br> sont bien remplis avant de faire votre validation</p>
                 <div class="retour-content">
-                    <a href="./simulation1.php">RETOUR</a>
+                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>

@@ -56,7 +56,6 @@ if(isset($_GET['action']))
             $cedeao         = $attestationDao->getCedeao($_SESSION['matricule']);
             require_once('../../view/user/assurance.php');
         break;
-        //Affichage des contrats
         case 'afficher':
             $usPolao  = new PoliceDao();
             $resultat = $usPolao->listPoliceValides($_SESSION['matricule'],'','','','','','','','');
@@ -1282,6 +1281,12 @@ if(isset($_GET['action']))
                 $totale         =$ligne19['prime_totale'];
                 $accessoire     =$ligne19['accessoire'];
             }
+            // $cdaoDao =  new AttestationDao();
+            // $attCedeaoNum = $cdaoDao->getAttByNum($_GET['att']);
+            // foreach($attCedeaoNum as $c){
+            //     $numero_attCedeao = $c['numero_attestation'];
+            // }
+            // $num_attestation = $_GET['att'];
             require_once '../../view/user/CP.php';
             break;
 //C'est les memes information c'est le type choisi qui va faire la difference
@@ -2477,12 +2482,10 @@ if(isset($_GET['action']))
             break;
     }
 }
-if(isset($_POST['action']))
-{
+if(isset($_POST['action'])){
     switch ($_POST['action']) {
         case 'Créer contrat':
             if(isset($_GET['id_police']) && !empty($_GET['id_police'])){
-                $id_police = $_GET['id_police'];
                 require_once 'postUpdate.php';
             }else{
                 require_once 'post.php';
@@ -2493,23 +2496,31 @@ if(isset($_POST['action']))
         case 'Dévis' :
             require_once 'postUpdate.php';    
         break;
-        case 'Valider':
+        case 'Valider Contrat':
         require_once 'postUpdateAssurance.php';    
         break;
         case 'valider_commande' :
+        if(!isset($_POST['nj'])){
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],0,$_POST['nv'],$_POST['nc']);
+        }else if(!isset($_POST['nv'])){
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],0,$_POST['nc']);
+        }else if(!isset($_POST['nc'])){
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],0);
+        }else{
             $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],$_POST['nc']);
+        }
             $commandeDAO = new CommandesDao();
             $commandeDAO->insererCommandes($commande);
             require_once '../../view/success.php';
         break;
         case 'EXTRAIRE':
-        $debut     = new DateTime($_POST['debut']);
+      $debut       = new DateTime($_POST['debut']);
         $fin       = new DateTime($_POST['fin']);
         $matricule = $_SESSION['matricule'];
         $interval  = $debut->diff($fin);
             $usdao=new PoliceDao();
             $Resultat=$usdao->getAllProductByInt($_SESSION['matricule'],$_POST['debut'],$_POST['fin']);
-            $cpt1=$Resultat->rowCount();
+           /* $cpt1=$Resultat->rowCount();
             $info=null;
             if($Resultat==true)
             {
@@ -2561,7 +2572,8 @@ if(isset($_POST['action']))
                 }
                 fclose($output);
             }
-            else echo "Une erreur s'est produite lors de l'extraction. Veuillez réessayer.";
+            else echo "Une erreur s'est produite lors de l'extraction. Veuillez réessayer.";*/
+            require_once('../../view/user/production.php');
             break;
             
         default:
