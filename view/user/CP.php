@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print()">
 <div id="wb_Image1">
 <div id="wb_Heading8">
     <h6 id="Heading8">ASSURANCE AUTOMOBILE</h6></div>

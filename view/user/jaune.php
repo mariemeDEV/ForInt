@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print()">
 
 <!-- <div id="wb_Line3" style="position:absolute;left:386px;top:1359px;width:570px;height:2px;z-index:88;">
     <img src="../../img/images3/img0018.png" id="Line3" alt=""></div> -->

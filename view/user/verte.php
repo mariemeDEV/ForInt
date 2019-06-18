@@ -21,7 +21,7 @@
        }
     </style>
 </head>
-<body>
+<body onload="window.print()">
 <div class="container">
     <table cellspacing="0" border="0" class='greenTable'>
         <colgroup span="8" width="99"></colgroup>

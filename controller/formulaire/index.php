@@ -224,7 +224,7 @@ if(isset($_GET['action']))
         $res=new ContenirDao();
         $respons=new Contenir('','','','','','',$_GET['id']);
         /*************************************************************************/
-        $reponsable=$res->getResponsabilite($respons);
+        $reponsable=$res->getResponsabilite($_GET['opli']);
         foreach ($reponsable as $ligne8)
         {
             if($ligne8['franchise']==0) $franchRes='';else $franchRes=number_format($ligne8['franchise']);
@@ -233,7 +233,7 @@ if(isset($_GET['action']))
             $limRes=$ligne8['lim_gant'];
         }
         /***************************************************************************/
-        $rti=$res->getRTI($respons);
+        $rti=$res->getRTI($_GET['opli']);
         $rowRTI=$rti->rowCount();
         if($rowRTI==1)
         {
@@ -249,7 +249,7 @@ if(isset($_GET['action']))
             $limRti='';$franchRti='';$bruteRti='';$prorataRti='';
         }
         /****************************************************************************/
-        $defense=$res->getDefense($respons);
+        $defense=$res->getDefense($_GET['opli']);
         $rowDER=$defense->rowCount();
         if($rowDER==1)
         {
@@ -265,7 +265,7 @@ if(isset($_GET['action']))
             $limdef ='';$franchdef='';$brutedef='';$proratadef='';
         }
         /****************************************************************************/
-        $incendie=$res->getIncendie($respons);
+        $incendie=$res->getIncendie($_GET['opli']);
         $rowInc=$incendie->rowCount();
         if($rowInc==1)
         {
@@ -282,7 +282,7 @@ if(isset($_GET['action']))
             $lim4=''; $franch4='';$brute4='';$prorata4='';
         }
         /*************************************************************************/
-        $vol=$res->getVol($respons);
+        $vol=$res->getVol($_GET['opli']);
         $rowVol=$vol->rowCount();
         if($rowVol==1)
         {
@@ -299,7 +299,7 @@ if(isset($_GET['action']))
             $lim5=''; $franch5='';$brute5='';$prorata5='';
         }
         /*****************************************************************************/
-        $lib_gant=$res->getLibelle_garantie($respons);
+        $lib_gant=$res->getLibelle_garantie($_GET['opli']);
         $tc=0;$aso=0;$pto=0;
      foreach ($lib_gant as $key=>$Base)
       {
@@ -315,7 +315,7 @@ if(isset($_GET['action']))
           $ert=$libelle;
       }
       /**************************************************/
-        $bris=$res->getBris($respons);
+        $bris=$res->getBris($_GET['opli']);
         $rowBris=$bris->rowCount();
         if($rowBris==1)
         {
@@ -332,8 +332,8 @@ if(isset($_GET['action']))
             $lim6=''; $franch6='';$brute6='';$prorata6='';
         }
       /**************************************************/
-        $tcm=$res->getTcm($respons);
-        $tcl=$res->getTcl($respons);
+        $tcm=$res->getTcm($_GET['opli']);
+        $tcl=$res->getTcl($_GET['opli']);
         $rowtierces=$tcm->rowCount();
         $rowtierces1=$tcl->rowCount();
         if($tc==7)
@@ -378,9 +378,9 @@ if(isset($_GET['action']))
             $lim7=''; $franch7='';$brute7='';$prorata7='';
         }
         /*************************************************/
-        $avance1=$res->getAvance1($respons);
-        $avance2=$res->getAvance2($respons);
-        $avance3=$res->getAvance3($respons);
+        $avance1=$res->getAvance1($_GET['opli']);
+        $avance2=$res->getAvance2($_GET['opli']);
+        $avance3=$res->getAvance3($_GET['opli']);
         if( $aso==9)
         {
             foreach ($avance1 as $ligne15)
@@ -417,9 +417,9 @@ if(isset($_GET['action']))
             $lim8=''   ;$franch8='';$brute8='';$prorata8='';
         }
         //************************************************/
-        $personne1=$res->getPersonne1($respons);
-        $personne2=$res->getPersonne2($respons);
-        $personne3=$res->getPersonne3($respons);
+        $personne1=$res->getPersonne1($_GET['opli']);
+        $personne2=$res->getPersonne2($_GET['opli']);
+        $personne3=$res->getPersonne3($_GET['opli']);
         if($pto==12)
         {
             foreach ($personne1 as $ligne16)
@@ -456,7 +456,7 @@ if(isset($_GET['action']))
             $lim9=''   ;$franch9='';$brute9='';$prorata9='';
         }
         //****************************************************/
-        $assistance=$res->getAssistance($respons);
+        $assistance=$res->getAssistance($_GET['opli']);
         $rowAss=$assistance->rowCount();
         if($rowAss==1)
         {
@@ -579,7 +579,7 @@ if(isset($_GET['action']))
         //-------------------------------------
         $res=new ContenirDao();
         $respons=new Contenir('','','','','','',$_GET['opli']);
-        $reponsable=$res->getResponsabilite($respons);
+        $reponsable=$res->getResponsabilite($_GET['opli']);
         foreach ($reponsable as $ligne8)
         {
             $lim1=$ligne8['lim_gant'];
@@ -588,7 +588,7 @@ if(isset($_GET['action']))
             $prorata1=$ligne8['prime_prorata'];
         }
         //-------------------------------------
-        $rti=$res->getRTI($respons);
+        $rti=$res->getRTI($_GET['opli']);
         $rowRTI=$rti->rowCount();
         if($rowRTI==1)
         {
@@ -604,16 +604,37 @@ if(isset($_GET['action']))
             $lim2='';$franch2='';$brute2='';$prorata2='';
         }
         //-------------------------------------
-        $defense=$res->getDefense($respons);
+        $defense=$res->getDefense($_GET['opli']);
         $RowDef=$defense->rowCount();
-        if($RowDef==1)
-        {
+        if($RowDef==1){
+
             foreach ($defense as $ligne10)
             {
-               if($ligne10['lim_gant']     ==0) $lim3=''       ; else $lim3=number_format($ligne10['lim_gant']);
-               if($ligne10['franchise']    ==0) $franch3=''    ; else $franch3=number_format($ligne10['franchise']);
-               if($ligne10['prime_brute']  ==0) $brute3=''     ; else $brute3=number_format($ligne10['prime_brute']);
-               if($ligne10['prime_prorata']==0) $prorata3=''   ; else $prorata3=number_format($ligne10['prime_prorata']);
+                if($ligne10['lim_gant']==0) {
+                        $lim3=''       ;
+                }else {
+                    $lim3=number_format($ligne10['lim_gant']);
+                }
+
+                if($ligne10['franchise']==0){
+                    $franch3=''    ;
+                }else {
+                    $franch3=number_format($ligne10['franchise']);
+                }
+
+                if($ligne10['prime_brute']  ==0){
+                        $brute3=''     ; 
+                } 
+                else{
+                    $brute3=number_format($ligne10['prime_brute']);
+                } 
+
+                if($ligne10['prime_prorata']==0){
+                    $prorata3=''   ; 
+                } 
+                else{
+                    $prorata3=number_format($ligne10['prime_prorata']);
+                }
             }
         }
         else
@@ -621,7 +642,7 @@ if(isset($_GET['action']))
             $lim3=''; $franch3='';$brute3='';$prorata3='';
         }
         //-------------------------------------
-        $incendie=$res->getIncendie($respons);
+        $incendie=$res->getIncendie($_GET['opli']);
         $rowInc=$incendie->rowCount();
         if($rowInc==1)
         {
@@ -638,7 +659,7 @@ if(isset($_GET['action']))
             $lim4=''; $franch4='';$brute4='';$prorata4='';
         }
         //-------------------------------------
-        $vol=$res->getVol($respons);
+        $vol=$res->getVol($_GET['opli']);
         $rowVol=$vol->rowCount();
         if($rowVol==1)
         {
@@ -655,7 +676,7 @@ if(isset($_GET['action']))
             $lim5=''; $franch5='';$brute5='';$prorata5='';
         }
         //-------------------------------------
-        $bris=$res->getBris($respons);
+        $bris=$res->getBris($_GET['opli']);
         $rowBris=$bris->rowCount();
         if($rowBris==1)
         {
@@ -672,7 +693,7 @@ if(isset($_GET['action']))
             $lim6=''; $franch6='';$brute6='';$prorata6='';
        }
         //-------------------------------------
-        $lib_gant=$res->getLibelle_garantie($respons);
+        $lib_gant=$res->getLibelle_garantie($_GET['opli']);
         $rowLib=$lib_gant->rowCount();
         $tc=0;$aso=0 ;$pto=0;
         foreach ($lib_gant as $key=>$Base)
@@ -688,8 +709,8 @@ if(isset($_GET['action']))
             if($libelle==14) {$pto=14;$titrePs="PERSONNES TRANSPORTEES OPT3";}
         }
         //-------------------------------------
-        $tcm=$res->getTcm($respons);
-        $tcl=$res->getTcl($respons);
+        $tcm=$res->getTcm($_GET['opli']);
+        $tcl=$res->getTcl($_GET['opli']);
         $rowtierces=$tcm->rowCount();
         $rowtierces1=$tcl->rowCount();
         if($tc==7)
@@ -734,9 +755,9 @@ if(isset($_GET['action']))
             $lim7=''; $franch7='';$brute7='';$prorata7='';
         }
         //-------------------------------------
-        $avance1=$res->getAvance1($respons);
-        $avance2=$res->getAvance2($respons);
-        $avance3=$res->getAvance3($respons);
+        $avance1=$res->getAvance1($_GET['opli']);
+        $avance2=$res->getAvance2($_GET['opli']);
+        $avance3=$res->getAvance3($_GET['opli']);
         //-------------------------------------
         if( $aso==9)
         {
@@ -774,9 +795,9 @@ if(isset($_GET['action']))
             $lim8=''   ;$franch8='';$brute8='';$prorata8='';
         }
         //-------------------------------------
-        $personne1=$res->getPersonne1($respons);
-        $personne2=$res->getPersonne2($respons);
-        $personne3=$res->getPersonne3($respons);
+        $personne1=$res->getPersonne1($_GET['opli']);
+        $personne2=$res->getPersonne2($_GET['opli']);
+        $personne3=$res->getPersonne3($_GET['opli']);
         if($pto==12)
         {
             foreach ($personne1 as $ligne16)
@@ -813,7 +834,7 @@ if(isset($_GET['action']))
             $lim9=''   ;$franch9='';$brute9='';$prorata9='';
         }
         //-------------------------------------
-        $assistance=$res->getAssistance($respons);
+        $assistance=$res->getAssistance($_GET['opli']);
         $rowAss=$assistance->rowCount();
         if($rowAss==1)
         {
@@ -980,7 +1001,7 @@ if(isset($_GET['action']))
             //-------------------------------------
             $res=new ContenirDao();
             $respons=new Contenir('','','','','','',$_GET['opli']);
-            $reponsable=$res->getResponsabilite($respons);
+            $reponsable=$res->getResponsabilite($_GET['opli']);
             foreach ($reponsable as $ligne8)
             {
                 $lim1=$ligne8['lim_gant'];
@@ -989,7 +1010,7 @@ if(isset($_GET['action']))
                 $prorata1=$ligne8['prime_prorata'];
             }
             //-------------------------------------
-            $rti=$res->getRTI($respons);
+            $rti=$res->getRTI($_GET['opli']);
             $rowRTI=$rti->rowCount();
             if($rowRTI==1)
             {
@@ -1005,7 +1026,7 @@ if(isset($_GET['action']))
                 $lim2='';$franch2='';$brute2='';$prorata2='';
             }
             //-------------------------------------
-            $defense=$res->getDefense($respons);
+            $defense=$res->getDefense($_GET['opli']);
             $RowDef=$defense->rowCount();
             if($RowDef==1)
             {
@@ -1022,7 +1043,7 @@ if(isset($_GET['action']))
                 $lim3=''; $franch3='';$brute3='';$prorata3='';
             }
             //-------------------------------------
-            $incendie=$res->getIncendie($respons);
+            $incendie=$res->getIncendie($_GET['opli']);
             $rowInc=$incendie->rowCount();
             if($rowInc==1)
             {
@@ -1039,7 +1060,7 @@ if(isset($_GET['action']))
                 $lim4=''; $franch4='';$brute4='';$prorata4='';
             }
             //-------------------------------------
-            $vol=$res->getVol($respons);
+            $vol=$res->getVol($_GET['opli']);
             $rowVol=$vol->rowCount();
             if($rowVol==1)
             {
@@ -1056,7 +1077,7 @@ if(isset($_GET['action']))
                 $lim5=''; $franch5='';$brute5='';$prorata5='';
             }
             //-------------------------------------
-            $bris=$res->getBris($respons);
+            $bris=$res->getBris($_GET['opli']);
             $rowBris=$bris->rowCount();
             if($rowBris==1)
             {
@@ -1073,7 +1094,7 @@ if(isset($_GET['action']))
                 $lim6=''; $franch6='';$brute6='';$prorata6='';
            }
             //-------------------------------------
-            $lib_gant=$res->getLibelle_garantie($respons);
+            $lib_gant=$res->getLibelle_garantie($_GET['opli']);
             $rowLib=$lib_gant->rowCount();
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
@@ -1089,8 +1110,8 @@ if(isset($_GET['action']))
                 if($libelle==14) {$pto=14;$titrePs="PERSONNES TRANSPORTEES OPT3";}
             }
             //-------------------------------------
-            $tcm=$res->getTcm($respons);
-            $tcl=$res->getTcl($respons);
+            $tcm=$res->getTcm($_GET['opli']);
+            $tcl=$res->getTcl($_GET['opli']);
             $rowtierces=$tcm->rowCount();
             $rowtierces1=$tcl->rowCount();
             if($tc==7)
@@ -1135,9 +1156,9 @@ if(isset($_GET['action']))
                 $lim7=''; $franch7='';$brute7='';$prorata7='';
             }
             //-------------------------------------
-            $avance1=$res->getAvance1($respons);
-            $avance2=$res->getAvance2($respons);
-            $avance3=$res->getAvance3($respons);
+            $avance1=$res->getAvance1($_GET['opli']);
+            $avance2=$res->getAvance2($_GET['opli']);
+            $avance3=$res->getAvance3($_GET['opli']);
             //-------------------------------------
             if( $aso==9)
             {
@@ -1175,9 +1196,9 @@ if(isset($_GET['action']))
                 $lim8=''   ;$franch8='';$brute8='';$prorata8='';
             }
             //-------------------------------------
-            $personne1=$res->getPersonne1($respons);
-            $personne2=$res->getPersonne2($respons);
-            $personne3=$res->getPersonne3($respons);
+            $personne1=$res->getPersonne1($_GET['opli']);
+            $personne2=$res->getPersonne2($_GET['opli']);
+            $personne3=$res->getPersonne3($_GET['opli']);
             if($pto==12)
             {
                 foreach ($personne1 as $ligne16)
@@ -1214,7 +1235,7 @@ if(isset($_GET['action']))
                 $lim9=''   ;$franch9='';$brute9='';$prorata9='';
             }
             //-------------------------------------
-            $assistance=$res->getAssistance($respons);
+            $assistance=$res->getAssistance($_GET['opli']);
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {
@@ -1381,7 +1402,7 @@ if(isset($_GET['action']))
             //-------------------------------------
             $res=new ContenirDao();
             $respons=new Contenir('','','','','','',$_GET['opli']);
-            $reponsable=$res->getResponsabilite($respons);
+            $reponsable=$res->getResponsabilite($_GET['opli']);
             foreach ($reponsable as $ligne8)
             {
                 $lim1=$ligne8['lim_gant'];
@@ -1390,7 +1411,7 @@ if(isset($_GET['action']))
                 $prorata1=$ligne8['prime_prorata'];
             }
             //-------------------------------------
-            $rti=$res->getRTI($respons);
+            $rti=$res->getRTI($_GET['opli']);
             $rowRTI=$rti->rowCount();
             if($rowRTI==1)
             {
@@ -1406,7 +1427,7 @@ if(isset($_GET['action']))
                 $lim2='';$franch2='';$brute2='';$prorata2='';
             }
             //-------------------------------------
-            $defense=$res->getDefense($respons);
+            $defense=$res->getDefense($_GET['opli']);
             $RowDef=$defense->rowCount();
             if($RowDef==1)
             {
@@ -1423,7 +1444,7 @@ if(isset($_GET['action']))
                 $lim3=''; $franch3='';$brute3='';$prorata3='';
             }
             //-------------------------------------
-            $incendie=$res->getIncendie($respons);
+            $incendie=$res->getIncendie($_GET['opli']);
             $rowInc=$incendie->rowCount();
             if($rowInc==1)
             {
@@ -1440,7 +1461,7 @@ if(isset($_GET['action']))
                 $lim4=''; $franch4='';$brute4='';$prorata4='';
             }
             //-------------------------------------
-            $vol=$res->getVol($respons);
+            $vol=$res->getVol($_GET['opli']);
             $rowVol=$vol->rowCount();
             if($rowVol==1)
             {
@@ -1457,7 +1478,7 @@ if(isset($_GET['action']))
                 $lim5=''; $franch5='';$brute5='';$prorata5='';
             }
             //-------------------------------------
-            $bris=$res->getBris($respons);
+            $bris=$res->getBris($_GET['opli']);
             $rowBris=$bris->rowCount();
             if($rowBris==1)
             {
@@ -1474,7 +1495,7 @@ if(isset($_GET['action']))
                 $lim6=''; $franch6='';$brute6='';$prorata6='';
            }
             //-------------------------------------
-            $lib_gant=$res->getLibelle_garantie($respons);
+            $lib_gant=$res->getLibelle_garantie($_GET['opli']);
             $rowLib=$lib_gant->rowCount();
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
@@ -1490,8 +1511,8 @@ if(isset($_GET['action']))
                 if($libelle==14) {$pto=14;$titrePs="PERSONNES TRANSPORTEES OPT3";}
             }
             //-------------------------------------
-            $tcm=$res->getTcm($respons);
-            $tcl=$res->getTcl($respons);
+            $tcm=$res->getTcm($_GET['opli']);
+            $tcl=$res->getTcl($_GET['opli']);
             $rowtierces=$tcm->rowCount();
             $rowtierces1=$tcl->rowCount();
             if($tc==7)
@@ -1536,9 +1557,9 @@ if(isset($_GET['action']))
                 $lim7=''; $franch7='';$brute7='';$prorata7='';
             }
             //-------------------------------------
-            $avance1=$res->getAvance1($respons);
-            $avance2=$res->getAvance2($respons);
-            $avance3=$res->getAvance3($respons);
+            $avance1=$res->getAvance1($_GET['opli']);
+            $avance2=$res->getAvance2($_GET['opli']);
+            $avance3=$res->getAvance3($_GET['opli']);
             //-------------------------------------
             if( $aso==9)
             {
@@ -1576,9 +1597,9 @@ if(isset($_GET['action']))
                 $lim8=''   ;$franch8='';$brute8='';$prorata8='';
             }
             //-------------------------------------
-            $personne1=$res->getPersonne1($respons);
-            $personne2=$res->getPersonne2($respons);
-            $personne3=$res->getPersonne3($respons);
+            $personne1=$res->getPersonne1($_GET['opli']);
+            $personne2=$res->getPersonne2($_GET['opli']);
+            $personne3=$res->getPersonne3($_GET['opli']);
             if($pto==12)
             {
                 foreach ($personne1 as $ligne16)
@@ -1615,7 +1636,7 @@ if(isset($_GET['action']))
                 $lim9=''   ;$franch9='';$brute9='';$prorata9='';
             }
             //-------------------------------------
-            $assistance=$res->getAssistance($respons);
+            $assistance=$res->getAssistance($_GET['opli']);
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {
@@ -1776,7 +1797,7 @@ if(isset($_GET['action']))
             //-------------------------------------
             $res=new ContenirDao();
             $respons=new Contenir('','','','','','',$_GET['opli']);
-            $reponsable=$res->getResponsabilite($respons);
+            $reponsable=$res->getResponsabilite($_GET['opli']);
             foreach ($reponsable as $ligne8)
             {
                 $lim1=$ligne8['lim_gant'];
@@ -1785,7 +1806,7 @@ if(isset($_GET['action']))
                 $prorata1=$ligne8['prime_prorata'];
             }
             //-------------------------------------
-            $rti=$res->getRTI($respons);
+            $rti=$res->getRTI($_GET['opli']);
             $rowRTI=$rti->rowCount();
             if($rowRTI==1)
             {
@@ -1801,7 +1822,7 @@ if(isset($_GET['action']))
                 $lim2='';$franch2='';$brute2='';$prorata2='';
             }
             //-------------------------------------
-            $defense=$res->getDefense($respons);
+            $defense=$res->getDefense($_GET['opli']);
             $RowDef=$defense->rowCount();
             if($RowDef==1)
             {
@@ -1818,7 +1839,7 @@ if(isset($_GET['action']))
                 $lim3=''; $franch3='';$brute3='';$prorata3='';
             }
             //-------------------------------------
-            $incendie=$res->getIncendie($respons);
+            $incendie=$res->getIncendie($_GET['opli']);
             $rowInc=$incendie->rowCount();
             if($rowInc==1)
             {
@@ -1835,7 +1856,7 @@ if(isset($_GET['action']))
                 $lim4=''; $franch4='';$brute4='';$prorata4='';
             }
             //-------------------------------------
-            $vol=$res->getVol($respons);
+            $vol=$res->getVol($_GET['opli']);
             $rowVol=$vol->rowCount();
             if($rowVol==1)
             {
@@ -1852,7 +1873,7 @@ if(isset($_GET['action']))
                 $lim5=''; $franch5='';$brute5='';$prorata5='';
             }
             //-------------------------------------
-            $bris=$res->getBris($respons);
+            $bris=$res->getBris($_GET['opli']);
             $rowBris=$bris->rowCount();
             if($rowBris==1)
             {
@@ -1869,7 +1890,7 @@ if(isset($_GET['action']))
                 $lim6=''; $franch6='';$brute6='';$prorata6='';
             }
             //-------------------------------------
-            $lib_gant=$res->getLibelle_garantie($respons);
+            $lib_gant=$res->getLibelle_garantie($_GET['opli']);
             $rowLib=$lib_gant->rowCount();
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
@@ -1885,8 +1906,8 @@ if(isset($_GET['action']))
                 if($libelle==14) {$pto=14;$titrePs = "PERSONNES TRANSPORTEES OPT3";}
             }
             //-------------------------------------
-            $tcm=$res->getTcm($respons);
-            $tcl=$res->getTcl($respons);
+            $tcm=$res->getTcm($_GET['opli']);
+            $tcl=$res->getTcl($_GET['opli']);
             $rowtierces=$tcm->rowCount();
             $rowtierces1=$tcl->rowCount();
             if($tc==7)
@@ -1931,9 +1952,9 @@ if(isset($_GET['action']))
                 $lim7=''; $franch7='';$brute7='';$prorata7='';
             }
             //-------------------------------------
-            $avance1=$res->getAvance1($respons);
-            $avance2=$res->getAvance2($respons);
-            $avance3=$res->getAvance3($respons);
+            $avance1=$res->getAvance1($_GET['opli']);
+            $avance2=$res->getAvance2($_GET['opli']);
+            $avance3=$res->getAvance3($_GET['opli']);
             //-------------------------------------
             if( $aso==9)
             {
@@ -1971,9 +1992,9 @@ if(isset($_GET['action']))
                 $lim8=''   ;$franch8='';$brute8='';$prorata8='';
             }
             //-------------------------------------
-            $personne1=$res->getPersonne1($respons);
-            $personne2=$res->getPersonne2($respons);
-            $personne3=$res->getPersonne3($respons);
+            $personne1=$res->getPersonne1($_GET['opli']);
+            $personne2=$res->getPersonne2($_GET['opli']);
+            $personne3=$res->getPersonne3($_GET['opli']);
             if($pto==12)
             {
                 foreach ($personne1 as $ligne16)
@@ -2010,7 +2031,7 @@ if(isset($_GET['action']))
                 $lim9=''   ;$franch9='';$brute9='';$prorata9='';
             }
             //-------------------------------------
-            $assistance=$res->getAssistance($respons);
+            $assistance=$res->getAssistance($_GET['opli']);
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {
@@ -2171,7 +2192,7 @@ if(isset($_GET['action']))
             //-------------------------------------
             $res=new ContenirDao();
             $respons=new Contenir('','','','','','',$_GET['opli']);
-            $reponsable=$res->getResponsabilite($respons);
+            $reponsable=$res->getResponsabilite($_GET['opli']);
             foreach ($reponsable as $ligne8)
             {
                 $lim1=$ligne8['lim_gant'];
@@ -2180,7 +2201,7 @@ if(isset($_GET['action']))
                 $prorata1=$ligne8['prime_prorata'];
             }
             //-------------------------------------
-            $rti=$res->getRTI($respons);
+            $rti=$res->getRTI($_GET['opli']);
             $rowRTI=$rti->rowCount();
             if($rowRTI==1)
             {
@@ -2196,7 +2217,7 @@ if(isset($_GET['action']))
                 $lim2='';$franch2='';$brute2='';$prorata2='';
             }
             //-------------------------------------
-            $defense=$res->getDefense($respons);
+            $defense=$res->getDefense($_GET['opli']);
             $RowDef=$defense->rowCount();
             if($RowDef==1)
             {
@@ -2213,7 +2234,7 @@ if(isset($_GET['action']))
                 $lim3=''; $franch3='';$brute3='';$prorata3='';
             }
             //-------------------------------------
-            $incendie=$res->getIncendie($respons);
+            $incendie=$res->getIncendie($_GET['opli']);
             $rowInc=$incendie->rowCount();
             if($rowInc==1)
             {
@@ -2230,7 +2251,7 @@ if(isset($_GET['action']))
                 $lim4=''; $franch4='';$brute4='';$prorata4='';
             }
             //-------------------------------------
-            $vol=$res->getVol($respons);
+            $vol=$res->getVol($_GET['opli']);
             $rowVol=$vol->rowCount();
             if($rowVol==1)
             {
@@ -2247,7 +2268,7 @@ if(isset($_GET['action']))
                 $lim5=''; $franch5='';$brute5='';$prorata5='';
             }
             //-------------------------------------
-            $bris=$res->getBris($respons);
+            $bris=$res->getBris($_GET['opli']);
             $rowBris=$bris->rowCount();
             if($rowBris==1)
             {
@@ -2264,7 +2285,7 @@ if(isset($_GET['action']))
                 $lim6=''; $franch6='';$brute6='';$prorata6='';
            }
             //-------------------------------------
-            $lib_gant=$res->getLibelle_garantie($respons);
+            $lib_gant=$res->getLibelle_garantie($_GET['opli']);
             $rowLib=$lib_gant->rowCount();
             $tc=0;$aso=0 ;$pto=0;
             foreach ($lib_gant as $key=>$Base)
@@ -2280,8 +2301,8 @@ if(isset($_GET['action']))
                 if($libelle==14) {$pto=14;$titrePs="PERSONNES TRANSPORTEES OPT3";}
             }
             //-------------------------------------
-            $tcm=$res->getTcm($respons);
-            $tcl=$res->getTcl($respons);
+            $tcm=$res->getTcm($_GET['opli']);
+            $tcl=$res->getTcl($_GET['opli']);
             $rowtierces=$tcm->rowCount();
             $rowtierces1=$tcl->rowCount();
             if($tc==7)
@@ -2326,9 +2347,9 @@ if(isset($_GET['action']))
                 $lim7=''; $franch7='';$brute7='';$prorata7='';
             }
             //-------------------------------------
-            $avance1=$res->getAvance1($respons);
-            $avance2=$res->getAvance2($respons);
-            $avance3=$res->getAvance3($respons);
+            $avance1=$res->getAvance1($_GET['opli']);
+            $avance2=$res->getAvance2($_GET['opli']);
+            $avance3=$res->getAvance3($_GET['opli']);
             //-------------------------------------
             if( $aso==9)
             {
@@ -2366,9 +2387,9 @@ if(isset($_GET['action']))
                 $lim8=''   ;$franch8='';$brute8='';$prorata8='';
             }
             //-------------------------------------
-            $personne1=$res->getPersonne1($respons);
-            $personne2=$res->getPersonne2($respons);
-            $personne3=$res->getPersonne3($respons);
+            $personne1=$res->getPersonne1($_GET['opli']);
+            $personne2=$res->getPersonne2($_GET['opli']);
+            $personne3=$res->getPersonne3($_GET['opli']);
             if($pto==12)
             {
                 foreach ($personne1 as $ligne16)
@@ -2405,7 +2426,7 @@ if(isset($_GET['action']))
                 $lim9=''   ;$franch9='';$brute9='';$prorata9='';
             }
             //-------------------------------------
-            $assistance=$res->getAssistance($respons);
+            $assistance=$res->getAssistance($_GET['opli']);
             $rowAss=$assistance->rowCount();
             if($rowAss==1)
             {

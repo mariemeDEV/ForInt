@@ -96,8 +96,8 @@ else {
                  }
                 ?>
                 <div class="mdl-cell mdl-cell--8-col" style="margin: 0 auto">
-                    <div class="demo-card-square mdl-card mdl-shadow--2dp account-card" id="compteM" style="width: 100%;height: 100%;background: #062945 !important;color: #f7ba00 !important;">
-                        <div class="mdl-cell mdl-cell--12-col">
+                    <div class="demo-card-square mdl-card mdl-shadow--2dp account-card" id="compteM" style="width: 61%;height: 100%;background: #062945 !important;color: #f7ba00 !important;margin: auto;">
+                        <div class="mdl-cell mdl-cell--12-col" style="width:144% !important">
                             <div class="col-lg-8" style="padding-top: 25px">
                                 <table class="table" style="font-size: 18px">
                                     <tbody>
@@ -131,7 +131,15 @@ else {
                             </div>
                             <div style="padding-left: 50%">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg passWord" data-toggle="modal" data-target="#myModal" style="background: #f7ba00; color: #062945 !important;padding: 5px; position: relative;top:-6px">
+                                <button type="button" class="btn btn-primary btn-lg passWord" data-toggle="modal" data-target="#myModal" style="    background: #f7ba00;
+    color: #062945 !important;
+    padding: 5px;
+    position: relative;
+    top: 208px;
+    left: -461px;
+    border-radius: 0;
+    font-size: 11px;
+">
                                     Modifier Mot de passe
                                 </button>
                             </div>
@@ -159,13 +167,13 @@ else {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="myModalLabel">Modifier mon mot de passe : mote de passe actuel <span style='color:green !important'>"saham"</span></h4>
                 </div>
                 <div class="modal-body">
                 <form method="post" action="../../controller/intermediaire/index.php">
-                        <div class="form-group"> <label for="Amdp">Ancien Mot de passe</label> <input type="password" class="form-control" name="Amdp" id="Amdp" placeholder="Saisir votre ancien mot de passe"> </div>
-                        <div class="form-group"> <label for="Npwd">Nouveau Mot de passe</label> <input type="password" class="form-control" name="Npwd" id="Npwd" placeholder="Entrer le nouveau mot de passe"> </div>
-                        <div class="form-group"> <label for="Cpwd">Confirmer Mot de passe</label> <input type="password" class="form-control" name="Cpwd" id="Cpwd" placeholder="Confirmer mot de passe"> </div>
+                        <div class="form-group"><input type="password" class="form-control" name="Amdp" id="Amdp" placeholder="Saisir votre ancien mot de passe"> </div>
+                        <div class="form-group"><input type="password" class="form-control" name="Npwd" id="Npwd" placeholder="Entrer le nouveau mot de passe"> </div>
+                        <div class="form-group"><input type="password" class="form-control" name="Cpwd" id="Cpwd" placeholder="Confirmer mot de passe"> </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>

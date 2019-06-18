@@ -1354,7 +1354,6 @@ function CalculeBC(){
                 var franch_7=36000;
                 var primebrute_7=parseInt(vn*((3)/100));
                 var primebrute_prorata_7=parseInt(primebrute_7*(taux/100));
-
                 var primebrute_8=0;
                 var primebrute_prorata_8=0;
                 document.getElementById('lim9').value=0;
@@ -1364,7 +1363,6 @@ function CalculeBC(){
                 document.getElementById('PrimeAvance').value=0;
                 $('#chiffre3').prop('disabled',true);
                 $('# sel1').prop('disabled',true);
-
             }
             else if(genre_v!=6){
                 $('#chiffre3').prop('disabled',false);
