@@ -208,14 +208,14 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group"><!-- debut input-group -->
                                                      <label style="margin-right: 1%;margin-top: 2%;font-family: Times New Roman;font-size: 14px;position:relative;left:-12px">Téléphone</label>
-                                                     <input type="text" id="tel" style="margin-top:-2%;margin-left:-4px;font-size: 15px;font-family: Times New Roman;width:102%" name="tel_assure" class="form-control divide" placeholder="Ex: 00 000 00 00" aria-describedby="sizing-addon1" title="Telephone de l'assure">
+                                                     <input type="text" id="tel" style="margin-top:-2%;margin-left:-4px;font-size: 15px;font-family: Times New Roman;width:102%" name="tel_assure" class="form-control" placeholder="Ex: 00 000 00 00" aria-describedby="sizing-addon1" title="Telephone de l'assure">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <div class="input-group" style="width: 212% !important">
                                                     <!-- debut input-group -->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">E-mail</label>
-                                                    <input type="text" type="tel" style="margin-top:1%;margin-left:14px;font-size: 15px;font-family: Times New Roman;width:99%" name="email_assure" id="email_assure" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" title="Email de l'assure">
+                                                    <input type="text" style="margin-top:1%;margin-left:14px;font-size: 15px;font-family: Times New Roman;width:99%" name="email_assure" id="email_assure" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" title="Email de l'assure">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -468,7 +468,6 @@
                                                     </select>
                                                     <label style="display:none !important; margin-right: 1%;font-family: Times New Roman;font-size: 14px;position:relative;top:-87px" id="labelPack">Pack<span style="color: red;">*</span></label>
                                                     <select class="custom-select col-lg-12" id="pack" style='height: 30px;border: 1px solid #bbcedc;border-radius: 0;font-size: 15px;font-family: "Times New Roman";margin-top: -25%;margin-left:-39px;' onchange="CalculeBC()" name="pack">
-                                                        <!--option  selected>PACK</option-->
                                                         <option value="mini" selected>Pack Mini</option>
                                                         <option value="classic">Pack Classic</option>
                                                         <option value="confort">Pack Confort</option>
@@ -1079,7 +1078,6 @@
         <div id="tabs">
                 <ul>
                     <li><a href="#tabs-1">Responsabilité civile</a></li>
-                    <li><a href="#tabs-2">Recours des tiers incendie</a></li>
                     <li><a href="#tabs-3">Défense et recours</a></li>
                     <li><a href="#tabs-4">Incendie</a></li>
                     <li><a href="#tabs-5">Vol</a></li>
@@ -1112,9 +1110,6 @@
                         </tr>
                     </tbody>
                     </table>
-                </div>
-                <div id="tabs-2">
-                    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
                 </div>
                 <div id="tabs-3"><!--défense et recours-->
                 <table class="table">

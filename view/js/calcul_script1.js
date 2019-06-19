@@ -1362,7 +1362,7 @@ function CalculeBC(){
                 document.getElementById('prorata9').value=0;
                 document.getElementById('PrimeAvance').value=0;
                 $('#chiffre3').prop('disabled',true);
-                $('# sel1').prop('disabled',true);
+                $('#sel1').prop('disabled',true);
             }
             else if(genre_v!=6){
                 $('#chiffre3').prop('disabled',false);
@@ -1758,7 +1758,6 @@ function CalculeBC(){
             var lim_gant_ck10='2 interventions/an';
             var primebrute_10=15000;
             var primebrute_prorata_10=15000;
-
         }
         else if(pack=="mini")
         {

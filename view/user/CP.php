@@ -28,11 +28,13 @@
 <div id="wb_Form1">
     <form name="Form1" method="post" action="mailto:yourname@yourdomain.com" enctype="text/plain" id="Form1">
         <input type="text" id="Editbox4" name="EditboxAdresseS" value="<?php echo $adresseAssure; ?>" spellcheck="false">
-        <input type="text" id="Editbox5" name="EditboxTelS" value="<?php echo $telAssure; ?>" spellcheck="false">
+        <input type="text" id="Editbox5" name="EditboxTelS" value="<?php echo $mail; ?>" spellcheck="false">
         <label for="" id="Label5" >Téléphone</label>
         <label for="" id="Label6" style='position: absolute !important;left:272px !important;top:43px !important;' >E-mail</label>
         <input type="text" id="Editbox6" style='position: absolute !important;left: 333px !important;top: 21px !important;' name="EditboxTelS" value="<?php echo $telAssure; ?>" spellcheck="false">
         <label for="" id="Label2" >Adresse</label>
+
+       
     </form>
 </div>
 <label for="" id="Label1" >Prenom et Nom</label>
@@ -138,66 +140,66 @@
     </tr>
     <tr>
         <td class="cell4"><span><strong> RESPONSABILITE CIVILE</strong></span></td>
-        <td class="cell5"><span> </span><span><?php echo $lim1;?></span></td>
-        <td class="cell5"><span> </span><span><?php echo $franch1;?></span></td>
+        <td class="cell5"><span> </span><span><?php echo ($lim1);?></span></td>
+        <td class="cell5"><span> </span><span><?php echo ($franch1);?></span></td>
         <td class="cell6"><span> <?php echo number_format($brute1,'0');?></span></td>
         <td class="cell7"><span> </span><span><?php echo number_format($prorata1);?></span></td>
     </tr>
     <tr>
         <td class="cell8"><span><strong> RECOURS TIERS INCENDIE</strong></span></td>
-        <td class="cell9"><span> <?php echo $lim2;?></span></td>
-        <td class="cell9"><span> <?php echo $franch2 ;?></span></td>
-        <td class="cell10"><span> <?php echo $brute2;?></span></td>
+        <td class="cell9"><span> <?php echo ($lim2);?></span></td>
+        <td class="cell9"><span> <?php echo ($franch2) ;?></span></td>
+        <td class="cell10"><span> <?php echo ($brute2);?></span></td>
         <td class="cell11"><span> </span><span><?php echo $prorata2;?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong> DEFENSE ET RECOURS</strong></span></td>
-        <td class="cell12"><span> </span><span><?php echo $lim3;?></span></td>
-        <td class="cell12"><span> </span><span><?php echo $franch3;?></span></td>
+        <td class="cell12"><span> </span><span><?php echo ($lim3);?></span></td>
+        <td class="cell12"><span> </span><span><?php echo ($franch3);?></span></td>
         <td class="cell13"><span><?php echo $brute3;?></span></td>
-        <td class="cell14"><span> </span><span><?php echo $prorata3;?></span></td>
+        <td class="cell14"><span> </span><span><?php echo ($prorata3);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong> INCENDIE</strong></span></td>
-        <td class="cell12"><span> </span><span><?php echo $lim4;?></span></td>
-        <td class="cell12"><span> </span><span><?php echo $franch4;?></span></td>
-        <td class="cell13"><span> </span><span><?php echo $brute4;?></span></td>
-        <td class="cell14"><span> </span><span><?php echo $prorata4;?></span></td>
+        <td class="cell12"><span> </span><span><?php echo ($lim4);?></span></td>
+        <td class="cell12"><span> </span><span><?php echo ($franch4);?></span></td>
+        <td class="cell13"><span> </span><span><?php echo ($brute4);?></span></td>
+        <td class="cell14"><span> </span><span><?php echo ($prorata4);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong>VOL</strong></span></td>
-        <td class="cell12"><span><?php echo $lim5;?></span></td>
-        <td class="cell12"><span><?php echo $franch5;?></span></td>
-        <td class="cell13"><span><?php echo $brute5;?></span></td>
-        <td class="cell14"><span><?php echo $prorata5;?></span></td>
+        <td class="cell12"><span><?php echo ($lim5);?></span></td>
+        <td class="cell12"><span><?php echo ($franch5);?></span></td>
+        <td class="cell13"><span><?php echo ($brute5);?></span></td>
+        <td class="cell14"><span><?php echo ($prorata5);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong>BRIS DE GLACE</strong></span></td>
-        <td class="cell12"><span><?php echo $lim6;?></span></td>
-        <td class="cell12"><span><?php echo $franch6;?></span></td>
-        <td class="cell13"><span><?php echo $brute6;?></span></td>
-        <td class="cell14"><span><?php echo $prorata6;?></span></td>
+        <td class="cell12"><span><?php echo ($lim6);?></span></td>
+        <td class="cell12"><span><?php echo ($franch6);?></span></td>
+        <td class="cell13"><span><?php echo ($brute6);?></span></td>
+        <td class="cell14"><span><?php echo ($prorata6);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong><?php echo $vri;?></strong></span></td>
-        <td class="cell12"><span><?php echo $lim7;?></span></td>
-        <td class="cell12"><span><?php echo $franch7;?></span></td>
-        <td class="cell13"><span><?php echo $brute7;?></span></td>
-        <td class="cell14"><span><?php echo $prorata7;?></span></td>
+        <td class="cell12"><span><?php echo ($lim7);?></span></td>
+        <td class="cell12"><span><?php echo ($franch7);?></span></td>
+        <td class="cell13"><span><?php echo ($brute7);?></span></td>
+        <td class="cell14"><span><?php echo ($prorata7);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong><?php echo $titreAv;?></strong></span></td>
-        <td class="cell12"><span><?php echo $lim8;?></span></td>
-        <td class="cell12"><span><?php echo $franch8;?></span></td>
-        <td class="cell13"><span><?php echo $brute9;?></span></td>
-        <td class="cell14"><span><?php echo $prorata8;?></span></td>
+        <td class="cell12"><span><?php echo ($lim8);?></span></td>
+        <td class="cell12"><span><?php echo ($franch8);?></span></td>
+        <td class="cell13"><span><?php echo ($brute9);?></span></td>
+        <td class="cell14"><span><?php echo ($prorata8);?></span></td>
     </tr>
     <tr>
         <td class="cell8"><span><strong><?php echo $titrePs;?></strong></span></td>
-        <td class="cell15"><span><?php echo $lim9;?></span></td>
-        <td class="cell15"><span><?php echo $franch9;?></span></td>
-        <td class="cell10"><span><?php echo $brute9;?></span></td>
-        <td class="cell11"><span><?php echo $prorata9;?></span></td>
+        <td class="cell15"><span><?php echo ($lim9);?></span></td>
+        <td class="cell15"><span><?php echo ($franch9);?></span></td>
+        <td class="cell10"><span><?php echo ($brute9);?></span></td>
+        <td class="cell11"><span><?php echo ($prorata9);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong>CARTE BRUNE CEDEAO</strong></span></td>
@@ -210,8 +212,8 @@
         <td class="cell4"><span><strong>ASSISTANCE</strong></span></td>
         <td class="cell12"><span><?php if($lim10==0 ||$lim10=='') echo ""; else echo $lim10 ;?></span></td>
         <td class="cell12"><span><?php if($franch10==0 ||$franch10=='') echo ""; else echo $franch10 ;?></span></td>
-        <td class="cell13"><span><?php  echo $brute10 ;?></span></td>
-        <td class="cell14"><span><?php  echo $prorata10 ;?></span></td>
+        <td class="cell13"><span><?php  echo ($brute10) ;?></span></td>
+        <td class="cell14"><span><?php  echo ($prorata10) ;?></span></td>
     </tr>
 
 </table>
@@ -221,7 +223,7 @@
         <td class="cell0"><span><strong> </strong></span><span><strong>BONUS RC</strong></span></td>
     </tr>
     <tr>
-        <td class="cell1"><div align="justify"><span> <?php echo $percentBC ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  <?php echo $bc ?></span></div></td>
+        <td class="cell1"><div align="justify"><span> <?php echo ($percentBC) ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  <?php echo $bc ?></span></div></td>
     </tr>
 </table>
 <table id="Table8">
@@ -229,7 +231,7 @@
         <td class="cell0"><span> </span><span><strong> </strong></span><span><strong style='font-size:12px !important'>REDUCTION COMMERCIALE</strong></span></td>
     </tr>
     <tr>
-        <td class="cell1"><div align="justify"><span><?php echo $percentRC ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $rc ?></span></div></td>
+        <td class="cell1"><div align="justify"><span><?php echo ($percentRC) ;?>%&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  <?php echo $rc ?></span></div></td>
     </tr>
 </table>
 <img src="../../img/images3/img0009.jpg" id="Banner8" alt="DECOMPTE DES PRIMES">

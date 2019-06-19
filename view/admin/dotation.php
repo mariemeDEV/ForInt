@@ -169,15 +169,10 @@
                             }
                              echo '<td>'.$row[4].'</td>';
                              if($etat_sortie=="restante"){
-                                echo '<td style="background:#de5143;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height: 0.5rem">'.$row[6].'</td>';
+                                echo '<td style="background:#de5143;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height: 0.5rem">non utilisée</td>';
                              }else if($etat_sortie=="vendue"){
-                                echo '<td style="background:#acd68b;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height:0.5rem">'.$row[6].'</td>';
+                                echo '<td style="background:#acd68b;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height:0.5rem">utilisée</td>';
                              }
-                            // if($etat_actuel=="libre"){
-                            //     echo '<td><a style="background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;font-weight:lighter !important" href="#" onclick="if(!confirm(\"voulez - vous Modifier ? \")) return false;">attribuer</a></td>';
-                            // }else{
-                            //     echo '<td></td>';
-                            // }
                         echo '</tr>';
                     }
                 ?>

@@ -197,24 +197,10 @@ if(isset($_GET['action']))
         $bonus=$Redmaj->selectRedMaj($red_maj);
         foreach ($bonus as $ligne5)
     {
-        if($ligne5['pourcentageBC']==0) $percentBC=''; else $percentBC=$ligne5['pourcentageBC'];
-        if($ligne5['pourcentageRC']==0) $percentRC=''; else $percentRC=$ligne5['pourcentageRC'];
-        if($ligne5['bonus_rc']==0)
-        {
-            $bc='';$percentBC='';
-        }
-        else
-        {
-            $bc=number_format($ligne5['bonus_rc']);
-        }
-        if($ligne5['reduc_com']==0)
-        {
-            $rc='';$percentRC='';
-        }
-        else
-        {
-            $rc=number_format($ligne5['reduc_com']);
-        }
+        $percentBC=$ligne5['pourcentageBC'];
+        $percentRC=$ligne5['pourcentageRC'];
+        $bc=number_format($ligne5['bonus_rc']);
+        $rc=number_format($ligne5['reduc_com']);
     }
         //-------------------------------------
         $Decompte=new Decompte_primeDao();
@@ -224,57 +210,57 @@ if(isset($_GET['action']))
         $res=new ContenirDao();
         $respons=new Contenir('','','','','','',$_GET['id']);
         /*************************************************************************/
-        $reponsable=$res->getResponsabilite($_GET['opli']);
+        $reponsable=$res->getResponsabilite($_GET['id']);
         foreach ($reponsable as $ligne8)
         {
-            if($ligne8['franchise']==0) $franchRes='';else $franchRes=number_format($ligne8['franchise']);
-            if($ligne8['prime_brute']==0) $bruteRes='';else $bruteRes=number_format($ligne8['prime_brute']);
-            if($ligne8['prime_prorata']==0) $prorataRes='';else $prorataRes=number_format($ligne8['prime_prorata']);
+            $franchRes=number_format($ligne8['franchise']);
+            $bruteRes=number_format($ligne8['prime_brute']);
+            $prorataRes=number_format($ligne8['prime_prorata']);
             $limRes=$ligne8['lim_gant'];
         }
         /***************************************************************************/
-        $rti=$res->getRTI($_GET['opli']);
+        $rti=$res->getRTI($_GET['id']);
         $rowRTI=$rti->rowCount();
         if($rowRTI==1)
         {
             foreach ($rti as $ligne7)
             {
-                if($ligne7['lim_gant']     ==0) $limRti=''       ; else $limRti=number_format($ligne7['lim_gant']);
-                if($ligne7['franchise']    ==0) $franchRti=''    ; else $franchRti=number_format($ligne7['franchise']);
-                $bruteRti=$ligne7['prime_brute'];
-                $prorataRti=$ligne7['prime_prorata'];
+               $limRti=number_format($ligne7['lim_gant']);
+               $franchRti=number_format($ligne7['franchise']);
+               $bruteRti=$ligne7['prime_brute'];
+               $prorataRti=$ligne7['prime_prorata'];
             }
         }
         else{
             $limRti='';$franchRti='';$bruteRti='';$prorataRti='';
         }
         /****************************************************************************/
-        $defense=$res->getDefense($_GET['opli']);
+        $defense=$res->getDefense($_GET['id']);
         $rowDER=$defense->rowCount();
         if($rowDER==1)
         {
             foreach ($defense as $ligne9)
             {
-                if($ligne9['lim_gant']     ==0) $limdef=''       ; else  $limdef=number_format($ligne9['lim_gant']);
-                if($ligne9['franchise']    ==0) $franchdef=''    ; else  $franchdef=number_format($ligne9['franchise']);
-                if($ligne9['prime_brute']  ==0) $brutedef=''     ; else  $brutedef=number_format($ligne9['prime_brute']);
-                if($ligne9['prime_prorata']==0) $proratadef=''   ; else  $proratadef=number_format($ligne9['prime_prorata']);
+                $limdef=number_format($ligne9['lim_gant']);
+                $franchdef=number_format($ligne9['franchise']);
+                $brutedef=number_format($ligne9['prime_brute']);
+                $proratadef=number_format($ligne9['prime_prorata']);
             }
         }
         else{
             $limdef ='';$franchdef='';$brutedef='';$proratadef='';
         }
         /****************************************************************************/
-        $incendie=$res->getIncendie($_GET['opli']);
+        $incendie=$res->getIncendie($_GET['id']);
         $rowInc=$incendie->rowCount();
         if($rowInc==1)
         {
             foreach ($incendie as $ligne10)
             {
-                if($ligne10['lim_gant']     ==0) $lim4=''       ; else  $lim4=number_format($ligne10['lim_gant']);
-                if($ligne10['franchise']    ==0) $franch4=''    ; else  $franch4=number_format($ligne10['franchise']);
-                if($ligne10['prime_brute']  ==0) $brute4=''     ; else  $brute4=number_format($ligne10['prime_brute']);
-                if($ligne10['prime_prorata']==0) $prorata4=''   ; else  $prorata4=number_format($ligne10['prime_prorata']);
+                $lim4=number_format($ligne10['lim_gant']);
+                $franch4=number_format($ligne10['franchise']);
+                $brute4=number_format($ligne10['prime_brute']);
+                $prorata4=number_format($ligne10['prime_prorata']);
             }
         }
         else
@@ -282,16 +268,16 @@ if(isset($_GET['action']))
             $lim4=''; $franch4='';$brute4='';$prorata4='';
         }
         /*************************************************************************/
-        $vol=$res->getVol($_GET['opli']);
+        $vol=$res->getVol($_GET['id']);
         $rowVol=$vol->rowCount();
         if($rowVol==1)
         {
             foreach ($vol as $ligne11)
             {
-                if($ligne11['lim_gant']     ==0) $lim5=''       ; else $lim5=number_format($ligne11['lim_gant']);
-                if($ligne11['franchise']    ==0) $franch5=''    ; else $franch5=number_format($ligne11['franchise']);
-                if($ligne11['prime_brute']  ==0) $brute5=''     ; else $brute5=number_format($ligne11['prime_brute']);
-                if($ligne11['prime_prorata']==0) $prorata5=''   ; else $prorata5=number_format($ligne11['prime_prorata']);
+                $lim5=number_format($ligne11['lim_gant']);
+                $franch5=number_format($ligne11['franchise']);
+                $brute5=number_format($ligne11['prime_brute']);
+                $prorata5=number_format($ligne11['prime_prorata']);
             }
         }
         else
@@ -299,7 +285,7 @@ if(isset($_GET['action']))
             $lim5=''; $franch5='';$brute5='';$prorata5='';
         }
         /*****************************************************************************/
-        $lib_gant=$res->getLibelle_garantie($_GET['opli']);
+        $lib_gant=$res->getLibelle_garantie($_GET['id']);
         $tc=0;$aso=0;$pto=0;
      foreach ($lib_gant as $key=>$Base)
       {
@@ -315,16 +301,16 @@ if(isset($_GET['action']))
           $ert=$libelle;
       }
       /**************************************************/
-        $bris=$res->getBris($_GET['opli']);
+        $bris=$res->getBris($_GET['id']);
         $rowBris=$bris->rowCount();
         if($rowBris==1)
         {
             foreach ($bris as $ligne12)
             {
-                if($ligne12['lim_gant']     ==0) $lim6=''       ; else $lim6=number_format($ligne12['lim_gant']);
-                if($ligne12['franchise']    ==0) $franch6=''    ; else $franch6=number_format($ligne12['franchise']);
-                if($ligne12['prime_brute']  ==0) $brute6=''     ; else $brute6=number_format($ligne12['prime_brute']);
-                if($ligne12['prime_prorata']==0) $prorata6=''   ; else $prorata6=number_format($ligne12['prime_prorata']);
+                $lim6=number_format($ligne12['lim_gant']);
+                $franch6=number_format($ligne12['franchise']);
+                $brute6=number_format($ligne12['prime_brute']);
+                $prorata6=number_format($ligne12['prime_prorata']);
             }
         }
         else
@@ -332,8 +318,8 @@ if(isset($_GET['action']))
             $lim6=''; $franch6='';$brute6='';$prorata6='';
         }
       /**************************************************/
-        $tcm=$res->getTcm($_GET['opli']);
-        $tcl=$res->getTcl($_GET['opli']);
+        $tcm=$res->getTcm($_GET['id']);
+        $tcl=$res->getTcl($_GET['id']);
         $rowtierces=$tcm->rowCount();
         $rowtierces1=$tcl->rowCount();
         if($tc==7)
@@ -343,10 +329,10 @@ if(isset($_GET['action']))
             {
                 foreach ($tcm as $ligne14)
                 {
-                    if($ligne14['lim_gant']     ==0) $lim7=''       ; else $lim7        =number_format(intval($ligne14['lim_gant']));
-                    if($ligne14['franchise']    ==0) $franch7=''    ; else $franch7     =number_format(intval($ligne14['franchise']));
-                    if($ligne14['prime_brute']  ==0) $brute7=''     ; else $brute7      =number_format(intval($ligne14['prime_brute']));
-                    if($ligne14['prime_prorata']==0) $prorata7=''   ; else $prorata7    =number_format(intval($ligne14['prime_prorata']));
+                    $lim7        =number_format(intval($ligne14['lim_gant']));
+                    $franch7     =number_format(intval($ligne14['franchise']));
+                    $brute7      =number_format(intval($ligne14['prime_brute']));
+                   $prorata7    =number_format(intval($ligne14['prime_prorata']));
                 }
             }
             else
@@ -361,10 +347,10 @@ if(isset($_GET['action']))
             {
                 foreach ($tcl as $ligne14)
                 {
-                    if($ligne14['lim_gant']     ==0) $lim7=''       ; else $lim7        =number_format(intval($ligne14['lim_gant']));
-                    if($ligne14['franchise']    ==0) $franch7=''    ; else $franch7     =number_format(intval($ligne14['franchise']));
-                    if($ligne14['prime_brute']  ==0) $brute7=''     ; else $brute7      =number_format(intval($ligne14['prime_brute']));
-                    if($ligne14['prime_prorata']==0) $prorata7=''   ; else $prorata7    =number_format(intval($ligne14['prime_prorata']));
+                    $lim7        =number_format(intval($ligne14['lim_gant']));
+                    $franch7     =number_format(intval($ligne14['franchise']));
+                    $brute7      =number_format(intval($ligne14['prime_brute']));
+                    $prorata7    =number_format(intval($ligne14['prime_prorata']));
                 }
             }
             else
@@ -378,37 +364,37 @@ if(isset($_GET['action']))
             $lim7=''; $franch7='';$brute7='';$prorata7='';
         }
         /*************************************************/
-        $avance1=$res->getAvance1($_GET['opli']);
-        $avance2=$res->getAvance2($_GET['opli']);
-        $avance3=$res->getAvance3($_GET['opli']);
+        $avance1=$res->getAvance1($_GET['id']);
+        $avance2=$res->getAvance2($_GET['id']);
+        $avance3=$res->getAvance3($_GET['id']);
         if( $aso==9)
         {
             foreach ($avance1 as $ligne15)
             {
-                if($ligne15['lim_gant']     ==0) $lim8=''       ; else $lim8        =number_format(intval($ligne15['lim_gant']));
-                if($ligne15['franchise']    ==0) $franch8=''    ; else $franch8     =number_format(intval($ligne15['franchise']));
-                if($ligne15['prime_brute']  ==0) $brute8=''     ; else $brute8      =number_format(intval($ligne15['prime_brute']));
-                if($ligne15['prime_prorata']==0) $prorata8=''   ; else $prorata8    =number_format(intval($ligne15['prime_prorata']));
+                $lim8        =number_format(intval($ligne15['lim_gant']));
+                $franch8     =number_format(intval($ligne15['franchise']));
+                $brute8      =number_format(intval($ligne15['prime_brute']));
+                $prorata8    =number_format(intval($ligne15['prime_prorata']));
             }
         }
         elseif ($aso==10)
         {
             foreach ($avance2 as $ligne15)
             {
-                if($ligne15['lim_gant']     ==0) $lim8=''       ; else $lim8        =number_format(intval($ligne15['lim_gant']));
-                if($ligne15['franchise']    ==0) $franch8=''    ; else $franch8     =number_format(intval($ligne15['franchise']));
-                if($ligne15['prime_brute']  ==0) $brute8=''     ; else $brute8      =number_format(intval($ligne15['prime_brute']));
-                if($ligne15['prime_prorata']==0) $prorata8=''   ; else $prorata8    =number_format(intval($ligne15['prime_prorata']));
+                $lim8        =number_format(intval($ligne15['lim_gant']));
+                $franch8     =number_format(intval($ligne15['franchise']));
+                $brute8      =number_format(intval($ligne15['prime_brute']));
+                $prorata8    =number_format(intval($ligne15['prime_prorata']));
             }
         }
         elseif($aso==11)
         {
             foreach ($avance3 as $ligne15)
             {
-                if($ligne15['lim_gant']     ==0) $lim8=''       ; else $lim8        =number_format(intval($ligne15['lim_gant']));
-                if($ligne15['franchise']    ==0) $franch8=''    ; else $franch8     =number_format(intval($ligne15['franchise']));
-                if($ligne15['prime_brute']  ==0) $brute8=''     ; else $brute8      =number_format(intval($ligne15['prime_brute']));
-                if($ligne15['prime_prorata']==0) $prorata8=''   ; else $prorata8    =number_format(intval($ligne15['prime_prorata']));
+                $lim8        =number_format(intval($ligne15['lim_gant']));
+                $franch8     =number_format(intval($ligne15['franchise']));
+               $brute8      =number_format(intval($ligne15['prime_brute']));
+               $prorata8    =number_format(intval($ligne15['prime_prorata']));
             }
         }
         else
@@ -417,37 +403,37 @@ if(isset($_GET['action']))
             $lim8=''   ;$franch8='';$brute8='';$prorata8='';
         }
         //************************************************/
-        $personne1=$res->getPersonne1($_GET['opli']);
-        $personne2=$res->getPersonne2($_GET['opli']);
-        $personne3=$res->getPersonne3($_GET['opli']);
+        $personne1=$res->getPersonne1($_GET['id']);
+        $personne2=$res->getPersonne2($_GET['id']);
+        $personne3=$res->getPersonne3($_GET['id']);
         if($pto==12)
         {
             foreach ($personne1 as $ligne16)
             {
-                if($ligne16['lim_gant']     ==0) $lim9=''       ; else $lim9        =number_format(intval($ligne16['lim_gant']));
-                if($ligne16['franchise']    ==0) $franch9=''    ; else $franch9     =number_format(intval($ligne16['franchise']));
-                if($ligne16['prime_brute']  ==0) $brute9=''     ; else $brute9      =number_format(intval($ligne16['prime_brute']));
-                if($ligne16['prime_prorata']==0) $prorata9=''   ; else $prorata9    =number_format(intval($ligne16['prime_prorata']));
+               $lim9        =number_format(intval($ligne16['lim_gant']));
+               $franch9     =number_format(intval($ligne16['franchise']));
+               $brute9      =number_format(intval($ligne16['prime_brute']));
+               $prorata9    =number_format(intval($ligne16['prime_prorata']));
             }
         }
         elseif($pto==13)
         {
             foreach ($personne2 as $ligne16)
             {
-                if($ligne16['lim_gant']     ==0) $lim9=''    ;      else $lim9      =number_format($ligne16['lim_gant']);
-                if($ligne16['franchise']    ==0) $franch9='' ;      else $franch9   =number_format($ligne16['franchise']);
-                if($ligne16['prime_brute']  ==0) $brute9=''  ;      else $brute9    =number_format($ligne16['prime_brute']);
-                if($ligne16['prime_prorata']==0) $prorata9='';      else $prorata9  =number_format($ligne16['prime_prorata']);
+                $lim9      =number_format($ligne16['lim_gant']);
+                $franch9   =number_format($ligne16['franchise']);
+                $brute9    =number_format($ligne16['prime_brute']);
+                $prorata9  =number_format($ligne16['prime_prorata']);
             }
         }
         elseif($pto==14)
         {
             foreach ($personne3 as $ligne16)
             {
-                if($ligne16['lim_gant']     ==0) $lim9=''    ;   else $lim9         =number_format($ligne16['lim_gant']);
-                if($ligne16['franchise']    ==0) $franch9='' ;   else $franch9      =number_format($ligne16['franchise']);
-                if($ligne16['prime_brute']  ==0) $brute9=''  ;   else $brute9       =number_format($ligne16['prime_brute']);
-                if($ligne16['prime_prorata']==0) $prorata9='' ;  else $prorata9     =number_format($ligne16['prime_prorata']);
+                $lim9         =number_format($ligne16['lim_gant']);
+                $franch9      =number_format($ligne16['franchise']);
+                $brute9       =number_format($ligne16['prime_brute']);
+                $prorata9     =number_format($ligne16['prime_prorata']);
             }
         }
         else
@@ -456,14 +442,14 @@ if(isset($_GET['action']))
             $lim9=''   ;$franch9='';$brute9='';$prorata9='';
         }
         //****************************************************/
-        $assistance=$res->getAssistance($_GET['opli']);
+        $assistance=$res->getAssistance($_GET['id']);
         $rowAss=$assistance->rowCount();
         if($rowAss==1)
         {
             foreach ($assistance as $ligne27)
             {
-                if($ligne27['lim_gant']     ==0) $lim10=''    ;   else $lim10     =$ligne27['lim_gant'];
-                if($ligne27['franchise']    ==0) $franch10='' ;   else $franch10  =$ligne27['franchise'];
+               $lim10     =$ligne27['lim_gant'];
+               $franch10  =$ligne27['franchise'];
                 if($ligne27['prime_brute']==15000 || $ligne27['prime_brute']==10000)
                 {
                     $brute10=number_format($ligne27['prime_brute']);
@@ -945,6 +931,7 @@ if(isset($_GET['action']))
                 $prenomAssure=$ligne3['prenom_assure'];
                 $adresseAssure=$ligne3['adresse_assure'];
                 $telAssure=$ligne3['tel_assure'];
+                $mail=$ligne3['email_assure'];
             }
             //-------------------------------------
             $pdao=new Periode_garantieDao();
