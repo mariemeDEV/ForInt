@@ -510,6 +510,7 @@ if(isset($_GET['action']))
             $prenomAssure=$ligne3['prenom_assure'];
             $adresseAssure=$ligne3['adresse_assure'];
             $telAssure=$ligne3['tel_assure'];
+            $mail=$ligne3['email_assure'];
         }
         //-------------------------------------
         $pdao=new Periode_garantieDao();
@@ -890,7 +891,6 @@ if(isset($_GET['action']))
         //-------------------------------------
         require_once '../../view/user/CP.php';
         break;
-        
         
         case 'lister1':
             $usInt          = new IntermediaireDao();

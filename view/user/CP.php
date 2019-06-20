@@ -33,8 +33,6 @@
         <label for="" id="Label6" style='position: absolute !important;left:272px !important;top:43px !important;' >E-mail</label>
         <input type="text" id="Editbox6" style='position: absolute !important;left: 333px !important;top: 21px !important;' name="EditboxTelS" value="<?php echo $telAssure; ?>" spellcheck="false">
         <label for="" id="Label2" >Adresse</label>
-
-       
     </form>
 </div>
 <label for="" id="Label1" >Prenom et Nom</label>

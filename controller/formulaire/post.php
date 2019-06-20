@@ -13,6 +13,17 @@
     return $idGenerated;
 }
 
+function generateIdGarantie($length):string{
+    $characters       = '0123456789abcdefghijklmnopqrstuvwxyzABCWXYZ@';
+    $charactersLength = strlen($characters);
+    $idGenerated      = '';
+    $password         = '';
+    for ($i = 0; $i < $length; $i++) {
+        $idGenerated .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $idGenerated;
+}
+
 echo "<br>";
 "<br>";
 $c1=null;   $c2=null;   $c3=null;   $c4=null;   $c5=null;   $c6=null;   $c7=null;$c8=null;
@@ -477,12 +488,13 @@ else
 
 if ($c7==1)
 {
+
 //-------------------------
 //CHECKBOX 1
 //-------------------------
     if (isset($_POST['res_civ']))
     {
-        $unikIdCIV=uniqid();
+        $unikIdCIV=generateIdGarantie(7);
         echo "la resposabilite est  choisie";
         echo "resposabilite: ".$_POST['res_civ'];
         echo "<br>";
@@ -496,7 +508,7 @@ if ($c7==1)
         echo "<br>";
 
         $usdao1=new ContenirDao();
-        $us1=new Contenir($unikIdCIV,$_POST['lim1'],$_POST['franch1'], $_POST['brute1'],$_POST['prorata1'], '1', $unikId);
+        $us1=new Contenir($unikIdCIV,$_POST['lim1'],$_POST['franch1'], $_POST['brute1'],$_POST['prorata1'], 1, $unikId);
         $ok1=$usdao1->insererContenir($us1);
         if($ok1==true)
         {
@@ -515,7 +527,7 @@ if ($c7==1)
 
     if (isset($_POST['recours']))
     {
-        $unikIdREC=uniqid();
+        $unikIdREC=generateIdGarantie(7);
         echo "la recours est  choisie"."<br>";
         echo "recours: ".$_POST['recours'];
         echo "<br>";
@@ -549,7 +561,7 @@ if ($c7==1)
 //-------------------------
     if (isset($_POST['defense']))
     {
-        $unikIdDEF=uniqid();
+        $unikIdDEF=generateIdGarantie(7);
         echo "la resposabilite est  choisie"."<br>";
         echo "defense: ".$_POST['defense'];
         echo "<br>";
@@ -581,7 +593,7 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['incendie']))
     {
-        $unikIdINC=uniqid();
+        $unikIdINC=generateIdGarantie(7);
         echo "l'incendie est choisie"."<br>";
         echo "incendie: ".$_POST['incendie'];
         echo "<br>";
@@ -613,7 +625,7 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['vol']))
     {
-        $unikIdVol=uniqid();
+        $unikIdVol=generateIdGarantie(7);
         echo "lE VOL est  choisie"."<br>";
         echo "vol: ".$_POST['vol'];
         echo "<br>";
@@ -645,7 +657,7 @@ if ($c7==1)
 //--------------------------------
     if (isset($_POST['bris']))
     {
-        $unikIdBRIS=uniqid();
+        $unikIdBRIS=generateIdGarantie(7);
         echo "lE bris est  choisie";
         echo "bris: ".$_POST['bris'];
         echo "<br>";
@@ -678,7 +690,7 @@ if ($c7==1)
 
     if (isset($_POST['TierceCom']))
     {
-        $unikICOM=uniqid();
+        $unikICOM=generateIdGarantie(7);
         echo "la tierce complete est choisie est  choisie";
         echo "tierce: ".$_POST['TierceCom'];
         echo "<br>";
@@ -706,7 +718,7 @@ if ($c7==1)
     }
     if (isset($_POST['TierceCol']))
     {
-        $unikIdCOL=uniqid();
+        $unikIdCOL=generateIdGarantie(7);
         echo "la tierce collision est choisie est  choisie";
         echo "tierce Collision: ".$_POST['TierceCol'];
         echo "<br>";
@@ -739,7 +751,7 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['avance']))
     {
-        echo $unikIdAV=uniqid();
+        echo $unikIdAV=generateIdGarantie(7);
         echo "l'avance est  choisie"."<br>";
         echo "avance: ".$_POST['avance'];
         echo "<br>";
@@ -808,7 +820,7 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['personne']))
     {
-        $unikIdPERS=uniqid();
+        $unikIdPERS=generateIdGarantie(7);
         echo "la personne est  choisie";
         echo "<br>";
         echo "<br>";
@@ -878,7 +890,7 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['assistance']))
     {
-        $unikIdAUT=uniqid();
+        $unikIdAUT=generateIdGarantie(7);
         echo "la auto est  choisie";
         echo "<br>";
         echo "auto: ".$_POST['assistance'];
@@ -893,25 +905,25 @@ if ($c7==1)
         echo "<br>";
 
         $usdao10=new ContenirDao();
-                     $us10=new Contenir($unikIdAUT,$_POST['lim10'],$_POST['franch10'], $_POST['brute10'],$_POST['prorata10'],15, $unikId);
+        $us10=new Contenir($unikIdAUT,$_POST['lim10'],$_POST['franch10'], $_POST['brute10'],$_POST['prorata10'],15, $unikId);
 
-                     $ok10=$usdao10->insererContenir($us10);
-                     if($ok10==true)
-                     {
-                         echo ' assistance donnees insere'."<br>";
-                     }
-                     else
-                     {
-                         echo "  assistance donnee non inserer"."<br>";
+            $ok10=$usdao10->insererContenir($us10);
+            if($ok10==true)
+            {
+                echo ' assistance donnees insere'."<br>";
+            }
+            else
+            {
+                echo "  assistance donnee non inserer"."<br>";
                      }
     }
   
-    $test = array();
+    /*$test = array();
     $test['test1'] = '1';
     $test['test2'] = '2';
     $test['test3'] = '3';
 
-    echo json_encode($test);
+    echo json_encode($test);*/
 
     
     print "

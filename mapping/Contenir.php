@@ -109,7 +109,7 @@ class Contenir
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getGarantie()
     {
@@ -117,7 +117,7 @@ class Contenir
     }
 
     /**
-     * @param string $garantie
+     * @param int $garantie
      */
     public function setGarantie($garantie)
     {
