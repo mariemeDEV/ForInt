@@ -7,10 +7,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="../../view/style/form_v3.css" rel="stylesheet">
     <style>
-         @page {
-            size: auto;   /* auto is the initial value */
-            margin: 0;  /* this affects the margin in the printer settings */
-        }
+       	@page { size:landscape; marks:none;size: 21.0cm;margin: 0cm ;}
+
         .b3{
             position: absolute;
             left: 16em !important;

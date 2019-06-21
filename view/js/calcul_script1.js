@@ -110,7 +110,6 @@ function CalculeBC(){
 //
     if(genre_v==1)
     {
-     
         document.getElementById("Checkbox2").checked   = true;
         document.getElementById("Checkbox265").checked = true;
         document.getElementById('genre1').value        = ' promenade et affaires personne physique';
@@ -143,6 +142,7 @@ function CalculeBC(){
         $("#places1").fadeIn();
         $("#placeSup").fadeIn();
         $('#cylindreCol').fadeIn();
+        $('#PrimeAuto').val('0')
 
 
         document.getElementById("places").disabled=false;
@@ -153,7 +153,6 @@ function CalculeBC(){
     }
     if (genre_v==3)
     {
-   
         document.getElementById('genre2').value = 'Charge Utile';
         document.getElementById("Checkbox2").checked = true;//recours des tiers et incendie
         document.getElementById("Checkbox265").checked = true;//
@@ -167,6 +166,8 @@ function CalculeBC(){
         $("#labelPack").fadeOut();
         $("#pack").fadeOut();
         $("#charge").fadeIn();
+        $('#PrimeAuto').val('0')
+
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
         document.getElementById("pack").options[0].selected=true;
@@ -186,6 +187,7 @@ function CalculeBC(){
 
         document.getElementById("places").disabled=true;
         document.getElementById("places1").disabled=false;
+        $('#PrimeAuto').val('0')
     }
     if (genre_v==5)
     {
@@ -248,6 +250,7 @@ function CalculeBC(){
         document.getElementById('prorata5').value=0;
         document.getElementById('PrimeVol').value=0;
         $('#attesta').prop('disabled',true);
+        $('#PrimeAuto').val('0')
        
         $('#cylindreLabel,#cylindre').fadeIn();
         $('#labelPuissance,#puissance,#vnLabel,#val_neuve,#vvLabel,#val_venale,#placeLabel,#places,#mecLabel,#mec,#energieLabel,#energie,#labelPack,#pack,#labelChargeUtile,#charge').fadeOut()
@@ -313,7 +316,8 @@ function CalculeBC(){
         document.getElementById("Checkbox3").checked = true;
         document.getElementById('genre1').value = 'Pack auto';
         document.getElementById('genre').value = 'Pack auto';
-        document.getElementById('Checkbox9').options[3].selected = true
+        document.getElementById('Checkbox9').options[3].selected = true;
+        document.getElementById("Checkbox101").checked = true;
         $("#labelPack").fadeIn();
         $("#pack").fadeIn();
         $("#labelChargeUtile").fadeOut();

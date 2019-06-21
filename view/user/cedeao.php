@@ -7,13 +7,14 @@
     <link href="../../view/style/css_etats3.css" rel="stylesheet">
     <style>
         .container{
-						font-size:9px;
-						position: relative;
-    				top: 263px;
+			font-size:9px;
+			position: relative;
+			top: 263px;
         }
+		@page { size:landscape; marks:none;size: 21.0cm;margin: 0cm ;}
     </style>
 </head>
-<body>
+<body onload="window.print()">
     <div class="container">
     <table cellspacing="0" border="0">
 	<colgroup width="81"></colgroup>
@@ -145,7 +146,7 @@
     left: -80px;top:-31px
 '><?php echo($immatriculation)?></font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
-		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;left:916px;top:45px;'><?php echo($marque)?></font></b></td>
+		<td colspan=3 align="center" valign=middle><b><font size=1 color="#000000" style='position: absolute;left:916px;top:854px;'><?php echo($marque)?></font></b></td>
 		</tr>
 	<tr>
 		<td height="12" align="left" valign=bottom><font color="#000000"><br></font></td>
@@ -197,7 +198,7 @@
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000"><br></font></b></td>
 		<td align="left" valign=middle><b><font size=1 color="#000000" style='    position: relative;
-    left: -148px;
+    left: -72px;
     top: -39px;
 '>SAHAM ASSURANCE</font></b></td>
 		<td align="left" valign=bottom><b><font color="#000000"><br></font></b></td>
