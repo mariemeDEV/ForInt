@@ -184,7 +184,6 @@ function CalculeBC(){
         document.getElementById("Checkbox101").checked = false;
         document.getElementById("Checkbox7_1").disabled = true;
         document.getElementById("Checkbox7_1").checked = false;
-
         document.getElementById("places").disabled=true;
         document.getElementById("places1").disabled=false;
         $('#PrimeAuto').val('0')
@@ -338,10 +337,13 @@ function CalculeBC(){
             document.getElementById("Checkbox8").disabled = true;
             document.getElementById("Checkbox8").options[0].selected=true;
         }
+        if(genre_v!=6){
+            document.getElementById("Checkbox101").checked = false;
+        }
         if(pack=="classic")
         {
             document.getElementById("Checkbox4").checked = true;
-            document.getElementById("Checkbox5").checked = true;
+            document.getElementById( "Checkbox5").checked = true;
             document.getElementById("Checkbox6").checked = true;
             document.getElementById("Checkbox7_1").disabled = true;
             document.getElementById("Checkbox7_1").checked = false;
@@ -435,7 +437,6 @@ function CalculeBC(){
             console.log(places+' '+varDate + ' ' + puissance + ' '+ cylindre+' '+valeur_venale+' '+valeur_neuve+' '+genre_v+' '+mois+' '+nrj+' '+charge_utile+' '+placeSup)
             if(nrj=='essence')
             {
-                console.log('ok')
                 if(charge_utile=='Break')
                 {
                     if (puissance<=2) {

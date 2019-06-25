@@ -115,7 +115,7 @@
             width:99% !important
         }
         .modal-content{
-            height: 381px !important;
+            height: 470px !important;
             width: 45% !important
         }
         .btn-lg{
@@ -131,12 +131,36 @@
             z-index: 3;
             padding: 13px;
         }
+        .form-group{
+            position:relative !important;
+            top:52px !important
+        }
+        .delete-btn{
+            background-color: #e52c2c !important;
+            color: #062945;
+            font-weight: bold;
+            padding: 5px;
+            margin-top: -6px;
+            border: none;
+            cursor: pointer;
+            padding: 6px !important
+        }
+        .annulation-validate{
+            padding: 10px 18px 10px 18px !important;
+            position: relative !important;
+            top: 2px !important;
+        }
+        .annulation-label{
+            position: relative !important;
+            top: 52px !important
+        }
      
     </style>
 
     </head>
 
     <body onchange="CalculeBC()">
+    
         <!--header-->
         <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
             <?php include "header.php";?>
@@ -181,31 +205,90 @@
                         <th>Date Echeance</th>
                         <th>Assure</th>
                         <th>Conditions particuliéres</th>
+                        <th>Etat de la production</th>
+                        <th>Annuler</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                        $cp=0;
-                        while($row=$resultat->fetch())
-                        {
-                            $cp+=1;
-                            echo "<tr>
-                            <th scope=\"row\">$cp</th>                         
-                            <td>$row[1]</td>
-                            <td>$row[2]</td>
-                            <td>$row[3]</td>
-                            <td>$row[5]&nbsp;$row[4]</td>                   
-                            <td style='text-align: center;'>
-                                <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
-                            </td>                            
-                        </tr>";
+                    $cp=0;
+                    while($row=$resultat->fetch())
+                    {
+                        $cp+=1;
+                    echo "<tr>
+                        <th scope=\"row\">$cp</th>                         
+                        <td>$row[1]</td>
+                        <td>$row[2]</td>
+                        <td>$row[3]</td>
+                        <td>$row[5]&nbsp;$row[4]</td>                   
+                        <td style='text-align: center;'>
+                            <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
+                        </td> ";
+                        if($row[7]=="En cours"){
+                            echo "<td style='background:green;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                        }else if($row[7]=="Annulé"){
+                            echo "<td style='background:red;text-align:center;font-weight:bold'>".$row[7]."</td>";
                         }
+                        echo
+                            "<td>
+                                <button class=\"delete-btn\" value='$row[0]'>Annuler</button>
+                            </td>                        
+                    </tr>";
+                    }
                        ?>
                 </tbody>
                 </tfoot>                
                 <tfoot>
 
             </table>
+
+            <div class="card modal" id='annulation_modal'><!--Annulation contratl-->
+            <div class="card-header"><h3>Annuler la production</h3></div>
+            <div class="card-body">
+            <div>
+                <div class="modal-content">
+                        <!--h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3-->
+                        <span class="close">&times;</span>
+                        <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
+                        <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
+                            <div class="form-group inline">
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
+                                <input type ="text"  name="police" id="pol" required style="">
+                            </div>
+                            <div class="form-group">
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Code intermédiaire</label>
+                                <input type ="text"  name="intermediaire" id="code" required style="">
+                            </div>
+                            <div class="form-group">
+                                <label for="Motif d'annulation">Motif d'annulation</label>
+                                <select class="form-control" id="motifAnnulation" name="motif">
+                                    <option>Erreur de saisie</option>
+                                    <option>Retour</option>
+                                </select>
+                            </div>
+                            <label for="annulation-rule" class="annulation-label">Avez-vous déjà imprimé une attestation avec ce numéro de police ?</label>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="inlineCheckbox1" value="Oui" name="etat-attestation">
+                                    <label class="form-check-label" for="inlineCheckbox1">Oui</label>
+                                </div>
+                            </div>
+                            <div class="form-group"  style="position: relative !important;top: 13px !important;left: 83px;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="inlineCheckbox2" value="Non" name="etat-attestation">
+                                    <label class="form-check-label" for="inlineCheckbox2">Non</label>
+                                </div>
+                            </div>
+                            <div style="text-align: center;margin: 0 auto;">
+                                <input  name="action"  type="submit" value="Valider" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation'>
+                            </div>
+                        </form>
+                        <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
+                    </div>
+                </div>
+            </div>
+        </div><!--Annulation contrat-->
+
         </div>
         <!--container-->
 
@@ -216,7 +299,6 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="../../view/js/form-script.js"></script>
-
     <script>
         $(document).ready(function() {
             $('#usersData').DataTable();
@@ -248,14 +330,24 @@
     </script>
     <script>
         $('.close').on('click',function(){
-            $('#intermediaire_modal,#addUserModal').fadeOut()
+            $('#intermediaire_modal,#addUserModal,#annulation_modal').fadeOut()
         })
     </script>
     <script>
         $(window).on('click',function(event){
             if (event.target == $('#intermediaire_modal')) {
-                $('#intermediaire_modal,#addUserModal').fadeOut()
+                $('#intermediaire_modal,#addUserModal,#annulation_modal').fadeOut()
             }
+        })
+    </script>
+    <script>
+        $('.delete-btn').on('click',function(){
+           var police= $(this).val()
+           var int = $('#mat_int').val()
+            $('#annulation_modal').fadeIn()
+            $('#pol').val(police)
+            $('#code').val(int)
+          
         })
     </script>
     </body>

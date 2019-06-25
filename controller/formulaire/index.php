@@ -44,6 +44,8 @@ require_once '../../mapping/AttestationCedeao.php';
 require_once '../../model/AttestationCedeaoDao.php';
 require_once '../../mapping/commandes.php';
 require_once '../../model/CommandesDao.php';
+require_once '../../mapping/Annulation.php';
+
 
 if(isset($_GET['action']))
 {
@@ -69,6 +71,7 @@ if(isset($_GET['action']))
         case 'affi':
             $usPolao  = new PoliceDao();
             $resultat = $usPolao->listPolicePreformant($_SESSION['matricule']);
+            $mat = $_SESSION['matricule'];
             $cpt1     = $resultat->rowCount();
             require_once('../../view/user/afficher.php');
         break;
@@ -2521,6 +2524,28 @@ if(isset($_POST['action'])){
             $commandeDAO->insererCommandes($commande);
             require_once '../../view/success.php';
         break;
+        case 'Valider':
+            $policeDao       = new PoliceDao();
+            $dateAnnulation ="'".date_create()->format('Y-m-d H:i:s')."'";
+            $numPolice= $_POST['police'];
+            $intermediaire = $_POST['intermediaire'];
+            $motif="'".$_POST['motif']."'";
+            //Si le talon a déja étè imprimé, l'annulation est faite en local
+            if($_POST['etat-attestation']=='Oui'){
+                $etat = "A annuler";
+                $etatAnnulation = "'".$etat."'";
+                $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation);
+                $policeDao->delePolice($_POST['police'],$annulation);
+                require_once('../../view/annuler_en_agence.php');
+            }else if($_POST['etat-attestation']=='Non'){
+                $etat = "Annulé";
+                $etatAnnulation = "'".$etat."'";
+                $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation);
+                $policeDao->delePolice($_POST['police'],$annulation);
+                require_once('../../view/annuler.php');
+            }
+        
+        break;
         case 'EXTRAIRE':
       $debut       = new DateTime($_POST['debut']);
         $fin       = new DateTime($_POST['fin']);
@@ -2528,63 +2553,9 @@ if(isset($_POST['action'])){
         $interval  = $debut->diff($fin);
             $usdao=new PoliceDao();
             $Resultat=$usdao->getAllProductByInt($_SESSION['matricule'],$_POST['debut'],$_POST['fin']);
-           /* $cpt1=$Resultat->rowCount();
-            $info=null;
-            if($Resultat==true)
-            {
-                while($row=$Resultat->fetch())
-                {
-                    $info [] = array(
-                         "NUMÉRO POLICE"                  => $row[0] ,
-                         "DATE DE CRÉATION"               => $row[1] ,
-                         "NUMÉRO ATTESTATION"             => $row[2] ,
-                         "NUMÉRO FACTURE"                 => $row[3] ,
-                         "MATRICULE INTERMÉDIAIRE"        => $row[4] ,
-                         "NOM INTERMÉDIAIRE"              => $row[5] ,
-                         "PRÉNOM INTERMÉDIAIRE"           => $row[6] ,
-                         "NOM ASSURÉ"                     => $row[7] ,
-                         "PRÉNOM ASSURÉ"                  => $row[8] ,
-                         "NOM CONDUCTEUR"                 => $row[9] ,
-                         "PRÉNOM CONDUCTEUR"              => $row[10] ,
-                         "DATE DÉBUT PERIODE DE GARANTIE" => $row[11] ,
-                         "HEURE DÉBUT PÉRIODE DE GARANTIE" => $row[12] ,
-                         "DATE FIN PÉRIODE DE GARANTIE" => $row[13] ,
-                         "HEURE FIN PÉRIODE DE GARANTIE" => $row[14] ,
-                         "MARQUE VOITURE"                => $row[15] ,
-                         "IMMATRICULATION"               => $row[16] ,
-                         "GENRE"                         => $row[17] ,
-                         "DATE DE MISE EN CIRCULATION"   => $row[18] ,
-                         "VALEUR VÉNALE"                 => $row[19] ,
-                         "VALEUR À NEUVE"                => $row[20] ,
-                         "GARANTIES"                     => $row[21],
-                         "RÉCUCTION MAJORATION RC"       => $row[22],
-                         "BONUS RC"                      => $row[23],
-                         "POURCENTAGE RC"                => $row[24],
-                         "RÉDUCTION COMMERCIALE"         => $row[25],
-                         "PRIME NETTE"                   => $row[26],
-                         "ACCESSOIRES"                   => $row[27],
-                         "TAXES"                         => $row[28],
-                         "FGA"                           => $row[29],
-                         "PRIME TOTALE"                  => $row[30]
-                    );
-                }
-                $filname='production.csv';
-                header("Content-type: text/csv;charset=utf-8");
-                header("Content-Disposition: attachment; filename=$filname");
-                $output = fopen("php://output","w");
-                $header=array_keys($info[0]);
-                fputcsv($output,$header);
-                foreach ($info as $row)
-                {
-                    fputcsv($output,$row);
-                }
-                fclose($output);
-            }
-            else echo "Une erreur s'est produite lors de l'extraction. Veuillez réessayer.";*/
             require_once('../../view/user/production.php');
             break;
-            
-        default:
+            default:
             require_once '../../view/error.php';
             break;
     }

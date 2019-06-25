@@ -32,6 +32,7 @@ class PoliceDao extends DBao
                     '".$us->getNumFacture()."',
                     '".$us->getAttestation()."',
                     ".$us->getValidation().",
+                    '".$us->getEtat()."',
                     ".$us->getIntermediaire().",
                     '".$us->getConducteurVehicule()."',
                     '".$us->getPeriodeGarantie()."',
@@ -64,13 +65,14 @@ class PoliceDao extends DBao
         $sql="select * from police where id_police='".$us->getIdPolice()."'";
         return $this->executeSELECT($sql);
     }
+
     /**
      * @param Police $us
      * @return PDOStatement
      */
     public function listPolice(int $intermediaireId)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation from police p
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat  from police p
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
               JOIN intermediaire i on (p.intermediaire_matricule=i.matricule) 
@@ -80,7 +82,7 @@ class PoliceDao extends DBao
 
     public function listPolicePreformant(int $p)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation  from police pp
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat   from police pp
               JOIN police p on (pp.id_police=p.id_police) 
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
@@ -91,7 +93,7 @@ class PoliceDao extends DBao
     
     public function listPoliceValides(int $p)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation  from police pv
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat  from police pv
               JOIN police p on (pv.id_police=p.id_police) 
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
@@ -266,11 +268,41 @@ class PoliceDao extends DBao
                  VALUES (NULL, '1', 'F', 'N', '1', '1', '0', '0', '0', 'CIN', '', '', '', '', '', '', NULL, '2017-12-06', '2017-12-06', '2017-12-06', 'N', '5a0b0a6919eee')";
         return $this->executeMAJ($sql);
     }
-    /*
+    /** 
     * @return PDOStatement
     */
     public function getCat($idVehicule){
        $sql="select c.libelle_categorie from categorie_vehicule c JOIN vehicule v ON (v.categorie_vehicule_id_cat=c.id_cat) where v.id_vehicule='".$idVehicule."'";
        return $this->executeMAJ($sql);
+    }
+
+     /**
+     * @param String $numPolice
+     */
+    public function delePolice(String $numPolice,Annulation $annulation){
+        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $user     = "root";
+        $password = "";
+        try{
+            $pdo      = new PDO($dns, $user, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->beginTransaction();
+            $insert =  "insert into annulation values
+            (
+                NULL,
+                '".$annulation->getNumeroPolice()."',
+                '".$annulation->getCodeIntermediaire()."',
+                ".$annulation->getMotif().",
+                ".$annulation->getEtatAnnulation().",
+                ".$annulation->getDateAnnulation()."
+            )";
+            $req0 = $pdo->exec($insert);
+            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'");
+            $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
+            $pdo->commit();
+        }catch(Exception $e){
+            $pdo->rollBack();
+            die("Impossible de se connecter : " . $e->getMessage());
+        }
     }
 }

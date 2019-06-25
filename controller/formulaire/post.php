@@ -244,6 +244,7 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
     $usdao             = new PoliceDao();
     $attestationDao    = new AttestationDao();
+    $etat = 'En cours';
     if(isset($_POST['attesta'])){
         $attestationCedeao = $_POST['attesta'];
     }else{
@@ -256,9 +257,9 @@ if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
         $attestation = $_POST['attestation-v'];
     }
     echo("<p style='background:yellow'>ATTESTATION</p> ".$attestation." ".$attestationCedeao.' '.$option);
-    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,$attestation,1,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,$attestation,1,$etat,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
     $ok                = $usdao->insererPolice($us);
-   // var_dump($ok);
+   //var_dump($ok);
     if($ok==true)
     {
 echo "toutes les insertions sont faites<br>";
@@ -968,5 +969,5 @@ if ($c7==1)
     </html>";
 }
 else{
-   header('Location: ./?action=none');
+  // header('Location: ./?action=none');
 }

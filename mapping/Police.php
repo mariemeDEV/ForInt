@@ -13,8 +13,8 @@ class Police
     private $date_police;
     private $numFacture;
     private $attestation;
-    // private $attestation_cedeao;
     private $validation;
+    private $etat;
     private $intermediaire;
     private $conducteur_vehicule;
     private $periode_garantie;
@@ -24,15 +24,15 @@ class Police
     private $assure;
 
 
-    function __construct($id_police='',$num_police='',$date_police='',$numFacture='',$attestation='',$validation='',$intermediaire='',$conducteur_vehicule='',$periode_garantie='',$vehicule='',$decompte_prime='',$red_maj='',$assure='')
+    function __construct($id_police='',$num_police='',$date_police='',$numFacture='',$attestation='',$validation='',$etat='', $intermediaire='',$conducteur_vehicule='',$periode_garantie='',$vehicule='',$decompte_prime='',$red_maj='',$assure='')
     {
         $this->id_police   = $id_police;
         $this->num_police  = $num_police;
         $this->date_police = $date_police;
         $this->numFacture=$numFacture;
         $this->attestation = $attestation;
-        // $this->attestation_cedeao=$attestation_cedeao;
         $this->validation=$validation;
+        $this->etat=$etat;
         $this->intermediaire=$intermediaire;
         $this->conducteur_vehicule=$conducteur_vehicule;
         $this->periode_garantie=$periode_garantie;
@@ -250,6 +250,22 @@ class Police
     public function setValidation(string $validation)
     {
         $this->validation = $validation;
+    }
+
+     /**
+     * @return string
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * @param string $etat
+     */
+    public function setEtat(string $etat)
+    {
+        $this->etat = $etat;
     }
 
 
