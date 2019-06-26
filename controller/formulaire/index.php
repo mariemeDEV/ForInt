@@ -2524,27 +2524,35 @@ if(isset($_POST['action'])){
             $commandeDAO->insererCommandes($commande);
             require_once '../../view/success.php';
         break;
-        case 'Valider':
+        //Annulation par l'intermediaire si la date de souscription n'est pas dépassée
+        case 'Valider Annulation':
             $policeDao       = new PoliceDao();
             $dateAnnulation ="'".date_create()->format('Y-m-d H:i:s')."'";
             $numPolice= $_POST['police'];
             $intermediaire = $_POST['intermediaire'];
+            $etat = "Annulé";
+            $etatAnnulation = "'".$etat."'";
             $motif="'".$_POST['motif']."'";
-            //Si le talon a déja étè imprimé, l'annulation est faite en local
-            if($_POST['etat-attestation']=='Oui'){
-                $etat = "A annuler";
-                $etatAnnulation = "'".$etat."'";
-                $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation);
-                $policeDao->delePolice($_POST['police'],$annulation);
-                require_once('../../view/annuler_en_agence.php');
-            }else if($_POST['etat-attestation']=='Non'){
-                $etat = "Annulé";
-                $etatAnnulation = "'".$etat."'";
-                $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation);
-                $policeDao->delePolice($_POST['police'],$annulation);
-                require_once('../../view/annuler.php');
-            }
-        
+            $role = "intermediaire";
+            $roleAuteur = "'".$role."'";
+            $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation,$roleAuteur);
+            $policeDao->annulerPolice($_POST['police'],$annulation);
+            require_once('../../view/annuler.php');
+        break;
+        //Annulation par l'agent si la date de souscription est dépassée
+        case 'Valider Demande' :
+            $policeDao       = new PoliceDao();
+            $dateAnnulation ="'".date_create()->format('Y-m-d H:i:s')."'";
+            $numPolice= $_POST['police'];
+            $intermediaire = $_POST['intermediaire'];
+            $etat = "A annuler";
+            $etatAnnulation = "'".$etat."'";
+            $motif="'".$_POST['motif']."'";
+            $role = "NULL";
+            $roleAuteur = "'".$role."'";
+            $annulation = new Annulation(NULL,$numPolice,$intermediaire,$motif,$etatAnnulation,$dateAnnulation,$roleAuteur);
+            $policeDao->demanderAnnulation($_POST['police'],$annulation);
+            require_once('../../view/annuler_en_agence.php');
         break;
         case 'EXTRAIRE':
       $debut       = new DateTime($_POST['debut']);

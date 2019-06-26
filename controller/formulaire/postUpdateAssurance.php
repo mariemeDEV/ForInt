@@ -98,7 +98,7 @@ if($c1==1 && $c4==1){
         $attestation       = $_POST['attestation-v'];
     }
     echo("<p style='background:yellow'>ATTESTATION</p> ".$attestation." ".$attestationCedeao.' '.$option);
-    $us                = new Police($_POST['idPolice'],'','','',$attestation,1,'','','','','','','');
+    $us                = new Police($_POST['idPolice'],'','','',$attestation,1,'En cours','','','','','','','');
     $ok                = $usdao->uptadePolice($us);
     var_dump($ok);
     if($ok==true)

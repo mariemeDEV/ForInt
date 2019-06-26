@@ -30,7 +30,7 @@
         }
         .retour-content a{
             color: rgb(247, 187, 61);
-            font-weight: 500;   
+            font-weight:bold
         }
     </style>
 </head><!--end header-->

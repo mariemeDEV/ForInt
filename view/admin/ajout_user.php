@@ -78,8 +78,10 @@
             color: #f7bb3d !important
         }
         ul li a{
-            text-decoration:none !important;
-            color: #f7bb3d !important
+            text-decoration: none !important;
+            color: #062945 !important;
+            background: #f7ba00;
+            padding: 8px;
         }
         .card-body input{
             border: 1px solid #ffffff !important;
@@ -160,10 +162,6 @@
                         <label for="dtp_input2" class=" control-label" title="Mise en circulation" style="margin-left: -23%;">Période Fin</label>
                         <input type ="date"  name="fin" id="mec" required style="width: 136%;margin-left: -23%;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;margin-bottom: 11%;">
                     </div>
-                    <!--div class="form-group" style="width: 65%">
-                        <label for="intermediaire" class=" control-label" title="Mise en circulation" >Intermédiaire</label>
-                        <input type ="text"  name="intermediaire_extrait" value="MATRICULE INTERMEDIAIRE" id="intermdiaire" required style="">
-                    </div-->
                     <div style="text-align: center;margin: 0 auto;">
                         <input type="submit" name="action" value="excel" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important; margin-left:-121px;">
                     </div>
@@ -298,6 +296,7 @@
 
                 <ul>
                     <li><a href="./?action=dotations">Consultation dotations</a></li>
+                    <li><a href="./?action=annulations">Consultation annulations</a></li>
                     <li><a id="myBtn">Extraire production</a></li>
                     <li><a id="add_new_intermediaire">Nouvel intérmédiaire</a></li>
                 </ul>

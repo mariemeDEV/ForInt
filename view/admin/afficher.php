@@ -79,7 +79,7 @@
            display: inline-flex;
             position: absolute;
             top: -3px;
-            left: 55em;
+            left: 18em !important;
             z-index: 3;
         }
         .container ul li{

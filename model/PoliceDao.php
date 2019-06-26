@@ -279,7 +279,7 @@ class PoliceDao extends DBao
      /**
      * @param String $numPolice
      */
-    public function delePolice(String $numPolice,Annulation $annulation){
+    public function annulerPolice(String $numPolice,Annulation $annulation){
         $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
         $user     = "root";
         $password = "";
@@ -294,11 +294,40 @@ class PoliceDao extends DBao
                 '".$annulation->getCodeIntermediaire()."',
                 ".$annulation->getMotif().",
                 ".$annulation->getEtatAnnulation().",
-                ".$annulation->getDateAnnulation()."
+                ".$annulation->getDateAnnulation().",
+                ".$annulation->getRoleAuteur()."
             )";
             $req0 = $pdo->exec($insert);
             $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'");
             $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
+            $pdo->commit();
+        }catch(Exception $e){
+            $pdo->rollBack();
+            die("Impossible de se connecter : " . $e->getMessage());
+        }
+    }
+    /**
+     * @param String $numPolice
+     */
+    public function demanderAnnulation(String $numPolice,Annulation $annulation){
+        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $user     = "root";
+        $password = "";
+        try{
+            $pdo      = new PDO($dns, $user, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->beginTransaction();
+            $insert =  "insert into annulation values
+            (
+                NULL,
+                '".$annulation->getNumeroPolice()."',
+                '".$annulation->getCodeIntermediaire()."',
+                ".$annulation->getMotif().",
+                ".$annulation->getEtatAnnulation().",
+                ".$annulation->getDateAnnulation().",
+                ".$annulation->getRoleAuteur()."
+            )";
+            $req0 = $pdo->exec($insert);
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();

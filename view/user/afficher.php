@@ -115,7 +115,7 @@
             width:99% !important
         }
         .modal-content{
-            height: 470px !important;
+            height: 429px !important;
             width: 45% !important
         }
         .btn-lg{
@@ -218,7 +218,7 @@
                     echo "<tr>
                         <th scope=\"row\">$cp</th>                         
                         <td>$row[1]</td>
-                        <td>$row[2]</td>
+                        <td class=\"echeance_date\">$row[2]</td>
                         <td>$row[3]</td>
                         <td>$row[5]&nbsp;$row[4]</td>                   
                         <td style='text-align: center;'>
@@ -232,6 +232,7 @@
                         echo
                             "<td>
                                 <button class=\"delete-btn\" value='$row[0]'>Annuler</button>
+                                <input type=\"text\" class=\"souscript-date\" value='$row[2]' style=\"display:none\">
                             </td>                        
                     </tr>";
                     }
@@ -242,7 +243,7 @@
 
             </table>
 
-            <div class="card modal" id='annulation_modal'><!--Annulation contratl-->
+            <div class="card modal" id='annulation_modal'><!--Annulation contrat-->
             <div class="card-header"><h3>Annuler la production</h3></div>
             <div class="card-body">
             <div>
@@ -266,21 +267,44 @@
                                     <option>Retour</option>
                                 </select>
                             </div>
-                            <label for="annulation-rule" class="annulation-label">Avez-vous déjà imprimé une attestation avec ce numéro de police ?</label>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="inlineCheckbox1" value="Oui" name="etat-attestation">
-                                    <label class="form-check-label" for="inlineCheckbox1">Oui</label>
-                                </div>
-                            </div>
-                            <div class="form-group"  style="position: relative !important;top: 13px !important;left: 83px;">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" id="inlineCheckbox2" value="Non" name="etat-attestation">
-                                    <label class="form-check-label" for="inlineCheckbox2">Non</label>
-                                </div>
-                            </div>
+                            <input type="text" value='' id='date_debut_contrat' style='display:none' name='date_souscription'>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input  name="action"  type="submit" value="Valider" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation'>
+                                <input  name="action"  type="submit" value="Valider Annulation" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation' style='margin-top:60px !important'>
+                            </div>
+                        </form>
+                        <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
+                    </div>
+                </div>
+            </div>
+        </div><!--Annulation contrat-->
+
+        
+        <div class="card modal" id='demande_modal'><!--Demande d'an nulation de contrat-->
+            <div class="card-header"><h3>Demande d'annulation</h3></div>
+            <div class="card-body">
+            <div>
+                <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
+                        <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
+                            <div class="form-group inline">
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
+                                <input type ="text"  name="police" id="polDemande" required style="">
+                            </div>
+                            <div class="form-group">
+                                <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Code intermédiaire</label>
+                                <input type ="text"  name="intermediaire" id="codeDemande" required style="">
+                            </div>
+                            <div class="form-group">
+                                <label for="Motif d'annulation">Motif d'annulation</label>
+                                <select class="form-control" id="motifDemande" name="motif">
+                                    <option>Erreur de saisie</option>
+                                    <option>Retour</option>
+                                </select>
+                            </div>
+                            <input type="text" value='' id='date_debut' style='display:none' name='date_souscription'>
+                            <div style="text-align: center;margin: 0 auto;">
+                                <input  name="action"  type="submit" value="Valider Demande" class="btn btn-primary btn-lg annulation-validate" id='' style='margin-top:66px !important'>
                             </div>
                         </form>
                         <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
@@ -328,9 +352,41 @@
             intermediaire_modal.style.display='block'
         })
     </script>
+ 
     <script>
+        var cell =  $("#usersData tr td:last-child")
+        cell.on('click',function(){
+            var date_souscription = ($(this).find('.souscript-date').val());
+            var date              = new Date();
+            var current_date      = ((date.getFullYear() + '-' + (date.getMonth()+1) + '-' +  date.getDate()));
+            var police            = ($(this).find('.delete-btn').val());
+            var int               = $('#mat_int').val();
+          
+        //Souscription datant de la journée
+        if ((new Date(date_souscription)) > (new Date(current_date)) ) {
+           // alert("not");
+            $('#pol').val(police);
+            $('#code').val(int);
+            $('#date_debut_contrat').val(date_souscription);
+            $('#annulation_modal').fadeIn();
+        }
+        //Souscription antérieure
+        else {
+           // alert("yes");
+            $('#polDemande').val(police);
+            $('#codeDemande').val(int);
+            $('#date_debut').val(date_souscription);
+            $('#demande_modal').fadeIn();
+        }
+         
+        })
+
+    
+
+    </script>
+       <script>
         $('.close').on('click',function(){
-            $('#intermediaire_modal,#addUserModal,#annulation_modal').fadeOut()
+            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal').fadeOut()
         })
     </script>
     <script>
@@ -338,16 +394,6 @@
             if (event.target == $('#intermediaire_modal')) {
                 $('#intermediaire_modal,#addUserModal,#annulation_modal').fadeOut()
             }
-        })
-    </script>
-    <script>
-        $('.delete-btn').on('click',function(){
-           var police= $(this).val()
-           var int = $('#mat_int').val()
-            $('#annulation_modal').fadeIn()
-            $('#pol').val(police)
-            $('#code').val(int)
-          
         })
     </script>
     </body>

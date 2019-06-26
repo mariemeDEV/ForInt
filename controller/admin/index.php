@@ -518,6 +518,9 @@ if(isset($_GET['action']))
             $attestations   = $attestationDao->getAttestations();
             require_once '../../view/admin/dotation.php';
         break;
+        case 'annulations':
+            require_once '../../view/admin/annulation.php';
+        break;
         case 'affectations' :
             $type           = new TypeAttestationDao();
             $attestationDao = new AttestationDao();

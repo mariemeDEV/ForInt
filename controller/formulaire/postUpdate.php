@@ -220,13 +220,13 @@ $datePolice = date_create()->format('Y-m-d H:i:s');
 if($c1==1 && $c2==1 && $c3==1 && $c4==1 && $c5==1 && $c6==1 )
 {
     $usdao             = new PoliceDao();
-    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,'NULL',0,$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
+    $us                = new Police($unikId,$valueNumP,$datePolice,$numFacture,'NULL',0,'En cours',$_SESSION['matricule'],$unikId,$unikId,$unikId,$unikId,$unikId,$unikId);
     $ok                = $usdao->insererPolice($us);
     var_dump($ok);
     if($ok==true)
     {
-echo "toutes les insertions sont faites<br>";
-echo '<p style="backgroud:green">Police inseree</p>'."<br>";
+    echo "toutes les insertions sont faites<br>";
+    echo '<p style="backgroud:green">Police inseree</p>'."<br>";
         $c7=1;
     }
     else

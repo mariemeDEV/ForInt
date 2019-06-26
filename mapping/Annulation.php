@@ -7,8 +7,9 @@ class Annulation{
     private $motif;
     private $etat_annulation;
     private $dateAnnulation;
+    private $role_auteur;
 
-    function __construct($id='',$numero_police='',$code_intermediaire='',$motif='',$etat_annulation='', $dateAnnulation='')
+    function __construct($id='',$numero_police='',$code_intermediaire='',$motif='',$etat_annulation='', $dateAnnulation='', $role_auteur)
     {
         $this->id=$id;
         $this->numero_police=$numero_police;
@@ -16,6 +17,7 @@ class Annulation{
         $this->motif=$motif;
         $this->etat_annulation=$etat_annulation;
         $this->dateAnnulation=$dateAnnulation;
+        $this->role_auteur=$role_auteur;
     }
 
       /**
@@ -112,6 +114,20 @@ class Annulation{
      */
     public function getDateAnnulation(){
         return $this->dateAnnulation;
+    }
+
+      /**
+     * @param string $role_auteur
+    */
+    public function setRoleAuteur($role_auteur){
+        $this->role_auteur= $role_auteur;
+    }
+
+    /**
+     * @return string $role_auteur
+     */
+    public function getRoleAuteur(){
+        return $this->role_auteur;
     }
    
 
