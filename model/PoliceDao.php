@@ -70,8 +70,7 @@ class PoliceDao extends DBao
      * @param Police $us
      * @return PDOStatement
      */
-    public function listPolice(int $intermediaireId)
-    {
+    public function listPolice(int $intermediaireId){
         $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat  from police p
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
@@ -328,6 +327,30 @@ class PoliceDao extends DBao
                 ".$annulation->getRoleAuteur()."
             )";
             $req0 = $pdo->exec($insert);
+            $pdo->commit();
+        }catch(Exception $e){
+            $pdo->rollBack();
+            die("Impossible de se connecter : " . $e->getMessage());
+        }
+    }
+
+    public function annulerDevis($numPolice){
+        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $user     = "root";
+        $password = "";
+        try{
+            $pdo      = new PDO($dns, $user, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->beginTransaction();
+          
+            $req1 = $pdo->exec("DELETE FROM police              WHERE id_police ='".$numPolice."'");
+            $req2 = $pdo->exec("DELETE FROM conducteur_vehicule WHERE id_cond ='".$numPolice."'");
+            $req3 = $pdo->exec("DELETE FROM periode_garantie    WHERE id_periode ='".$numPolice."'");
+            $req4 = $pdo->exec("DELETE FROM decompte_prime      WHERE id_dp ='".$numPolice."'");
+            $req5 = $pdo->exec("DELETE FROM vehicule            WHERE id_vehicule ='".$numPolice."'");
+            $req6 = $pdo->exec("DELETE FROM red_maj             WHERE id_red_maj ='".$numPolice."'");
+            $req7 = $pdo->exec("DELETE FROM assure              WHERE id_assure ='".$numPolice."'");
+            $req8 = $pdo->exec("DELETE FROM police              WHERE id_police ='".$numPolice."'");
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();

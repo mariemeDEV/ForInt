@@ -106,6 +106,11 @@ if(isset($_GET['action']))
             }
             require_once('../../view/user/assuranceupdate.php');
         break;
+        case 'annulerDevis':
+            $policeDao = new PoliceDao();
+            $policeDao->annulerDevis($_GET['id_police']);
+            require_once('../../view/annulerDevis.php');
+        break;
         case 'changeToValider':
             $usPolao=new PoliceDao();
             $usPolao->changeToValider($_GET['id_police']);

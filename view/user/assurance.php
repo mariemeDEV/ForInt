@@ -627,7 +627,7 @@
                                                 <font  size=1>
                                                     <select  class="form-control" id="Checkbox9" name="personne" onchange="CalculeBC()">
                                                         <option value="0">PERSONNES TRANSPORTÉES</option>
-                                                        <option value="PT_opt1">PERSONNES TRANSPORTÉES(OPTION 1)</option>
+                                                        <option value="PT_opt1" selected>PERSONNES TRANSPORTÉES(OPTION 1)</option>
                                                         <option value="PT_opt2">PERSONNES TRANSPORTÉES(OPTION 2)</option>
                                                         <option value="PT_opt3">PERSONNES TRANSPORTÉES(OPTION 3)</option>
                                                     </select>
@@ -684,7 +684,7 @@
                                         <tr>
                                             <td>
                                                 <select class="custom-select" name="chiffre3" id="chiffre3"  onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="5">5%</option>
                                                     <option value="10">10 %</option>
                                                     <option value="15">15 %</option>
@@ -695,7 +695,7 @@
                                             </td>
                                             <td class='texes-sup'>
                                                 <select class="custom-select" name="sel1" id="sel1"   onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="5">5%</option>
                                                     <option value="10">10%</option>
                                                     <option value="15">15%</option>

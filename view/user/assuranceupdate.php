@@ -259,20 +259,14 @@
                                 </div>
                                 <div id="collapseFour" class="panel-collapse collapse" style="height:424px !important;max-height:450px !important">
                                     <div class="panel-body">
-                                    
                                         <div class="row"><!-- debut row -->
-
                                         <br><br><br>
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Catégorie<span style="color: red;">*</span></label>  
                                                 <input style='display:none' type="text" value=<?php echo('"'.$item['id_police'].'"')?> name="idPolice">
                                                 <div class="input-group">   
                                                     <select class="custom-select col-lg-12 requis" id="categorie" title="Categorie" name="categorie" onchange="CalculeBC()" style="height: 35px;font-size: 15px;font-family: Times New Roman;border: 1px solid #bbcedc;">
-                                                    <option value = 
-                                                            <?php echo '"'.$item['id_cat'].'"' ?>
-                                                        >  
-                                                            <?php echo $item['libelle_categorie'];?>
-                                                        </option>
+                                                        <option value = <?php echo '"'.$item['id_cat'].'"' ?> selected><?php echo $item['libelle_categorie'];?></option>
                                                         <option value="1">Cat 401</option>
                                                         <option value="2">Cat 402</option>
                                                         <option value="3">Cat 403</option>
@@ -580,7 +574,7 @@
                                                 </label>
                                             </font>
                                         </td>
-                                        <td><input type="text" class="divide" size="6" name="PrimeIncendie" id="PrimeIncendie" style="text-align: right;" disabled="disabled" /></td>
+                                        <td><input type="text" class="divide" size="6" name="PrimeIncendie" id="PrimeIncendie" style="text-align: right;"  /></td>
                                         <td>
                                             <div class="col-lg-11 select-garanties">
                                                 <font  size=1>
@@ -593,7 +587,7 @@
                                                 </font>
                                             </div>
                                         </td>
-                                        <td><input class="divide" type="text"  size="6" name="PrimePersonne" id="PrimePersonne" style="text-align: right;" disabled="disabled" /></td>
+                                        <td><input class="divide" type="text"  size="6" name="PrimePersonne" id="PrimePersonne" style="text-align: right;" disabled="disabled" value="" /></td>
                                     </tr>
                                     
                                     <tr>
@@ -643,7 +637,7 @@
                                         <tr>
                                             <td>
                                                 <select class="custom-select" name="chiffre3" id="chiffre3"  onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="5">5%</option>
                                                     <option value="10">10 %</option>
                                                     <option value="15">15 %</option>
@@ -654,7 +648,7 @@
                                             </td>
                                             <td class='texes-sup'>
                                                 <select class="custom-select" name="sel1" id="sel1"   onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="5">5%</option>
                                                     <option value="10">10%</option>
                                                     <option value="15">15%</option>

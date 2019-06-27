@@ -107,14 +107,14 @@
         .p-title{
             text-decoration:underline
         }
-        .whatIf{
+   /*.whatIf{
             float: right;
             font-size: 10px;
             cursor: pointer;
         }
         .whatIf:hover{
             text-decoration:underline
-        }
+        }*/
     </style>
     </head>
     <body ♥ id="acceuil">
@@ -124,7 +124,7 @@
             <h1 class='top-title'>LES GARANTIES</h1>
             <hr></hr>
             <div class="card command-card">
-                <div class="card-header command-header">Garanties<span class="whatIf" id='sinistreHelp'>Que faire en cas de sinistre ?</span></div>
+                <div class="card-header command-header">Garanties</div>
                 <div class="card-body">
                 <div id="tabs">
                 <ul>

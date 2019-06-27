@@ -110,6 +110,7 @@ function CalculeBC(){
 //
     if(genre_v==1)
     {
+        $('#sel1,#chiffre3').prop('disabled', false)
         document.getElementById("Checkbox2").checked   = true;
         document.getElementById("Checkbox265").checked = true;
         document.getElementById('genre1').value        = ' promenade et affaires personne physique';
@@ -127,6 +128,7 @@ function CalculeBC(){
     }
     if (genre_v==2)
     {
+        $('#sel1,#chiffre3').prop('disabled', false)
         document.getElementById('genre2').value = 'Charge Utile';
         document.getElementById("Checkbox2").checked = true;//recours des tiers et incendie
         document.getElementById("Checkbox265").checked = true;//
@@ -153,6 +155,7 @@ function CalculeBC(){
     }
     if (genre_v==3)
     {
+        $('#sel1,#chiffre3').prop('disabled', false)
         document.getElementById('genre2').value = 'Charge Utile';
         document.getElementById("Checkbox2").checked = true;//recours des tiers et incendie
         document.getElementById("Checkbox265").checked = true;//
@@ -174,6 +177,7 @@ function CalculeBC(){
     }
     if (genre_v==4)
     {
+        $('#sel1,#chiffre3').prop('disabled', false)
         document.getElementById('genre2').value = 'Charge Utile';
         document.getElementById('genre1').value = 'transport public de voyageurs';
         document.getElementById('genre').value = 'TPV';
@@ -190,6 +194,7 @@ function CalculeBC(){
     }
     if (genre_v==5)
     {
+        $('#sel1,#chiffre3').prop('disabled', false)
         document.getElementById("puissance").disabled=true;
         document.getElementById("puissance").value=null;
         document.getElementById('genre1').value = '2 roues';
@@ -302,6 +307,9 @@ function CalculeBC(){
         document.getElementById("places1").disabled=true;
         var places=document.getElementById('places').value;
     }
+    if(genre_v!=6){
+        document.getElementById("Checkbox101").checked = false;
+    }
 
     /******************************TEST SUR LES PACK****************************************/
     var pack=document.getElementById("pack").value;
@@ -316,6 +324,7 @@ function CalculeBC(){
         document.getElementById('genre1').value = 'Pack auto';
         document.getElementById('genre').value = 'Pack auto';
         document.getElementById('Checkbox9').options[3].selected = true;
+        document.getElementById("Checkbox10").checked  = true;
         document.getElementById("Checkbox101").checked = true;
         $("#labelPack").fadeIn();
         $("#pack").fadeIn();
@@ -336,9 +345,6 @@ function CalculeBC(){
             document.getElementById("Checkbox7_2").checked = false;
             document.getElementById("Checkbox8").disabled = true;
             document.getElementById("Checkbox8").options[0].selected=true;
-        }
-        if(genre_v!=6){
-            document.getElementById("Checkbox101").checked = false;
         }
         if(pack=="classic")
         {
@@ -825,7 +831,6 @@ function CalculeBC(){
                         var primebrute_1=17162
                     }
                 }
-
                 if(places==7){
                     if(puissance>=11 && puissance<=14){
                         var primebrute_1=23302
@@ -1292,7 +1297,7 @@ function CalculeBC(){
         document.getElementById('franch6').value=franch_6;
         document.getElementById('brute6').value=primebrute_6;
         document.getElementById('prorata6').value=primebrute_prorata_6;
-        document.getElementById('PrimeBris').value=primebrute_prorata_6;
+        document.getElementById('PrimeBris').value=primebrute_6;
     }
     else
     {
@@ -1681,42 +1686,56 @@ function CalculeBC(){
 
      if (document.getElementById('Checkbox9').options[0].selected == true)
     {
+        //alert('yes')
         var lim_gant_ck9=0;
         var franch_9=0;
         var primebrute_9=0;
+        //console.log(parseInt(places))
+        //console.log(parseInt(primebrute_9))
         var primebrute_prorata_9=0;
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value=primebrute_prorata_9;
+        document.getElementById('PrimePersonne').value= primebrute_9;
     }
+
     if ( document.getElementById('Checkbox9').options[1].selected == true)
     {
+       // alert('yes1')
         var lim_gant_ck9=1000000;
         var franch_9=0;
+        console.log(parseInt(places))
         var primebrute_9=parseInt(places)*1200;
+        //console.log(parseInt(primebrute_9))
+       // console.log(parseInt(taux))
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value=primebrute_prorata_9;
+        document.getElementById('PrimePersonne').value= primebrute_9;
     }
+
     if(document.getElementById('Checkbox9').options[2].selected === true)
     {
+        //alert('yes2')
         var lim_gant_ck9=2000000;
         var franch_9=0;
+       // console.log(parseInt(places))
         var primebrute_9=parseInt(places)*2400;
+        //console.log(parseInt(primebrute_9))
+        //console.log(parseInt(taux))
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value=primebrute_prorata_9;
+        document.getElementById('PrimePersonne').value= primebrute_9;
     }
     if(document.getElementById('Checkbox9').options[3].selected === true)
     {
+       //alert('yes3')
         if(pack=="mini"  )
         {
             var primebrute_9=5000;
@@ -1729,6 +1748,7 @@ function CalculeBC(){
             var lim_gant_ck9=3000000;
             var franch_9=0;
         }
+       // console.log(parseInt(primebrute_9))
      
         var lim_gant_ck9=0;
         var franch_9=0;
@@ -1738,7 +1758,7 @@ function CalculeBC(){
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value=primebrute_prorata_9;
+        document.getElementById('PrimePersonne').value= primebrute_9;
     }
 
 

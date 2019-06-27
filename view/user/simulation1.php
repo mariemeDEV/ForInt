@@ -618,7 +618,7 @@
                                         <tr>
                                             <td>
                                                 <select class="custom-select" name="chiffre3" id="chiffre3"  onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="5">5%</option>
                                                     <option value="10">10 %</option>
                                                     <option value="15">15 %</option>
@@ -629,8 +629,7 @@
                                             </td>
                                             <td class='texes-sup'>
                                                 <select class="custom-select" name="sel1" id="sel1"   onchange="CalculeBC()">
-                                                    <option value="0">0%</option>
-                                                    <option value="5">5%</option>
+                                                    <option value="0" selected>0</option>
                                                     <option value="10">10%</option>
                                                     <option value="15">15%</option>
                                                     <option value="20">20%</option>

@@ -152,6 +152,7 @@
                         <th>Assure</th>
                         <th>Projets</th>
                         <th style='text-align: center;'>Créer le Contrat</th>
+                        <th>Annuler le dévis</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -171,7 +172,10 @@
                             </td>  
                             <td style='text-align: center;'>
                                 <a href='../../controller/formulaire/?action=modiferDevis&id_police=$row[0]' <i class=\"material-icons\" style=\"color:#062944 !important\">folder_open</i></a>
-                            </td>                           
+                            </td>  
+                            <td style='text-align: center;'>
+                                <a href='../../controller/formulaire/?action=annulerDevis&id_police=$row[0]' <i class=\"material-icons\" style=\"color:#b71a23 !important\">delete</i></a>
+                            </td>                         
                         </tr>";
                         }
                        ?>

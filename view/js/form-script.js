@@ -61,10 +61,6 @@ $(window, document, undefined).ready(function() {
       }
     })
 
-   /* $('#valider').click(function(){
-      $('#update_modal').css('display','inline-block')
-      $('#assure-infos,#hidden-caracteristiques').css('display','none')
-    })*/
     $('#close_modal').click(function() {
         $('#update_modal').css('display','none')
         $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')

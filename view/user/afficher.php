@@ -133,17 +133,15 @@
         }
         .form-group{
             position:relative !important;
-            top:52px !important
+            top:11px !important
         }
         .delete-btn{
-            background-color: #e52c2c !important;
-            color: #062945;
-            font-weight: bold;
-            padding: 5px;
+     
+          /*  padding: 5px;
             margin-top: -6px;
             border: none;
             cursor: pointer;
-            padding: 6px !important
+            padding: 6px !important*/
         }
         .annulation-validate{
             padding: 10px 18px 10px 18px !important;
@@ -201,7 +199,7 @@
                     <tr>
                         <th>#</th>
                         <th>Numero Police</th>
-                        <th>Date debut</th>
+                        <th>Date debut contrat</th>
                         <th>Date Echeance</th>
                         <th>Assure</th>
                         <th>Conditions particuliéres</th>
@@ -231,7 +229,7 @@
                         }
                         echo
                             "<td>
-                                <button class=\"delete-btn\" value='$row[0]'>Annuler</button>
+                                <button style=\"border:none;background:#ffffff\"class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\">delete</i></button>
                                 <input type=\"text\" class=\"souscript-date\" value='$row[2]' style=\"display:none\">
                             </td>                        
                     </tr>";
@@ -251,6 +249,7 @@
                         <!--h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3-->
                         <span class="close">&times;</span>
                         <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
+                        <p style='position: relative;top: 26px;font-weight: bold;font-weight: bold;color: #062944;'><span style='color:red'>*</span>Etes-vous sure de vouloir annuler la police :<p class='policeNum'></p> </p>
                         <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
                             <div class="form-group inline">
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
@@ -269,7 +268,7 @@
                             </div>
                             <input type="text" value='' id='date_debut_contrat' style='display:none' name='date_souscription'>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input  name="action"  type="submit" value="Valider Annulation" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation' style='margin-top:60px !important'>
+                                <input  name="action"  type="submit" value="Valider Annulation" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation' style='margin-top:6px !important'>
                             </div>
                         </form>
                         <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
@@ -312,6 +311,20 @@
                 </div>
             </div>
         </div><!--Annulation contrat-->
+
+        <div class="card modal" id='message_modal'><!--Demande d'an nulation de contrat-->
+            <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+            <div class="card-body">
+            <div>
+                <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
+                        <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                        <p>Ce contrat a étè déjà annulé</p>                       
+                        <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
+                    </div>
+                </div>
+            </div>
+        </div><!--Annulation contrat-->
+
 
         </div>
         <!--container-->
@@ -361,6 +374,7 @@
             var current_date      = ((date.getFullYear() + '-' + (date.getMonth()+1) + '-' +  date.getDate()));
             var police            = ($(this).find('.delete-btn').val());
             var int               = $('#mat_int').val();
+
           
         //Souscription datant de la journée
         if ((new Date(date_souscription)) > (new Date(current_date)) ) {
@@ -374,19 +388,31 @@
         else {
            // alert("yes");
             $('#polDemande').val(police);
+            $('.policeNum').text('ok');
             $('#codeDemande').val(int);
             $('#date_debut').val(date_souscription);
             $('#demande_modal').fadeIn();
         }
          
         })
-
-    
-
     </script>
-       <script>
+    <script>
+        $(document).ready(function(){
+            $('#usersData tr').each(function() {
+                var etat = $(this).find("td").eq(5).html(); 
+                if(etat =='Annulé'){
+                    var delete_btn=$(this).find("td").eq(6)
+                    $(delete_btn).unbind()
+                    delete_btn.on('click',function(){
+                        $('#message_modal').fadeIn();
+                    })
+                }
+            });
+        })
+    </script>
+    <script>
         $('.close').on('click',function(){
-            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal').fadeOut()
+            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal,#message_modal').fadeOut()
         })
     </script>
     <script>
