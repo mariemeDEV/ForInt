@@ -278,7 +278,7 @@ class PoliceDao extends DBao
      /**
      * @param String $numPolice
      */
-    public function annulerPolice(String $numPolice,Annulation $annulation){
+    public function annulerPolice(String $numPolice, Annulation $annulation){
         $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
         $user     = "root";
         $password = "";
@@ -289,15 +289,15 @@ class PoliceDao extends DBao
             $insert =  "insert into annulation values
             (
                 NULL,
-                '".$annulation->getNumeroPolice()."',
+                '".$annulation->getIdPolice()."',
                 '".$annulation->getCodeIntermediaire()."',
                 ".$annulation->getMotif().",
                 ".$annulation->getEtatAnnulation().",
                 ".$annulation->getDateAnnulation().",
-                ".$annulation->getRoleAuteur()."
+                ".$annulation->getMatAuteur()."
             )";
             $req0 = $pdo->exec($insert);
-            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'");
+            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'"  );
             $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
             $pdo->commit();
         }catch(Exception $e){
@@ -319,14 +319,15 @@ class PoliceDao extends DBao
             $insert =  "insert into annulation values
             (
                 NULL,
-                '".$annulation->getNumeroPolice()."',
+                '".$annulation->getIdPolice()."',
                 '".$annulation->getCodeIntermediaire()."',
                 ".$annulation->getMotif().",
                 ".$annulation->getEtatAnnulation().",
                 ".$annulation->getDateAnnulation().",
-                ".$annulation->getRoleAuteur()."
+                ".$annulation->getMatAuteur()."
             )";
             $req0 = $pdo->exec($insert);
+            $req1 = $pdo->exec("UPDATE police SET etat ='A annuler' WHERE id_police ='".$numPolice."'");
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();
@@ -351,6 +352,24 @@ class PoliceDao extends DBao
             $req6 = $pdo->exec("DELETE FROM red_maj             WHERE id_red_maj ='".$numPolice."'");
             $req7 = $pdo->exec("DELETE FROM assure              WHERE id_assure ='".$numPolice."'");
             $req8 = $pdo->exec("DELETE FROM police              WHERE id_police ='".$numPolice."'");
+            $pdo->commit();
+        }catch(Exception $e){
+            $pdo->rollBack();
+            die("Impossible de se connecter : " . $e->getMessage());
+        }
+    }
+
+    public function deletePolice(String $numPolice){
+        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $user     = "root";
+        $password = "";
+        try{
+            $pdo      = new PDO($dns, $user, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->beginTransaction();
+            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'"  );
+            $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
+            $req3 = $pdo->exec("UPDATE annulation SET etat_annulation ='Annulé' WHERE id_police ='".$numPolice."'" );
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();

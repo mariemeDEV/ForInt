@@ -53,6 +53,9 @@ require_once '../../mapping/Attestation.php';
 require_once '../../model/AttestationDao.php';
 require_once '../../mapping/AttestationCedeao.php';
 require_once '../../model/AttestationCedeaoDao.php';
+require_once '../../mapping/Annulation.php';
+require_once '../../model/AnnulationsDao.php';
+
 
 $choix=null;
 $usdao=new IntermediaireDao();
@@ -519,6 +522,8 @@ if(isset($_GET['action']))
             require_once '../../view/admin/dotation.php';
         break;
         case 'annulations':
+        $annulationsDao = new AnnulationsDao();
+        $annulations    = $annulationsDao->getAnnulations();
             require_once '../../view/admin/annulation.php';
         break;
         case 'affectations' :
@@ -666,6 +671,16 @@ if(isset($_POST['action']))
             break;
             case 'excelIntermediaire':
                 echo('ok');
+            break;
+            case 'Annuler Police' :
+                $policeDao = new PoliceDao();
+                $policeDao->deletePolice($_POST['numero_police']);
+                require_once('../../view/annuler.php');
+            break;
+            case 'Generer Demande' :
+                $annulationDao = new AnnulationsDao();
+                $annulation    = $annulationDao->getAnnulation($_POST['numero_police']);
+                require_once('../../view/admin/demande.php');
             break;
             default :
                 require_once '../../view/error.php';

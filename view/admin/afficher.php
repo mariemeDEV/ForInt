@@ -189,7 +189,7 @@
                                 <th>Téléphone assuré</th>
                                 <th>Prime nette</th>
                                 <th>Prime totale</th>
-                                <th>Vlidation contrat</th>
+                                <th>Validation contrat</th>
                             </tr>
                         </thead>
                         <tbody>

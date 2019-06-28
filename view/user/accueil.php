@@ -50,7 +50,6 @@
                             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect action-title" href="../../controller/formulaire/?action=valider">SOUSCRIPTION</a>
                         </div>
                     </div>
-
                   
                     <div class="mdl-cell mdl-cell---col">
                         <div class="demo-card-square d4 mdl-card mdl-shadow--2dp" id="contrats">

@@ -268,25 +268,15 @@ class Police
         $this->etat = $etat;
     }
 
+    
+  /*  public function getIdAnnulation()
+    {
+        return $this->id_annulation;
+    }
 
+    public function setIdAnnulation($id_annulation)
+    {
+        $this->id_annulation = $id_annulation;
+    }*/
 
-    // /**
-    //  * Get the value of attestation_cedeao
-    //  */ 
-    // public function getAttestationCedeao()
-    // {
-    //     return $this->attestation_cedeao;
-    // }
-
-    // /**
-    //  * Set the value of attestation_cedeao
-    //  *
-    //  * @return  self
-    //  */ 
-    // public function setAttestationCedeao($attestation_cedeao)
-    // {
-    //     $this->attestation_cedeao = $attestation_cedeao;
-
-    //     return $this;
-    // }
 }

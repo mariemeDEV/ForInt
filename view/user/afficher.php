@@ -223,13 +223,15 @@
                             <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                         </td> ";
                         if($row[7]=="En cours"){
-                            echo "<td style='background:green;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                            echo "<td style='background:#00800070;text-align:center;font-weight:bold'>".$row[7]."</td>";
                         }else if($row[7]=="Annulé"){
-                            echo "<td style='background:red;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                            echo "<td style='background:#ff000087;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                        }else if($row[7]=="A annuler"){
+                            echo "<td style='background:#ffa50085;text-align:center;font-weight:bold'>".$row[7]."</td>";
                         }
                         echo
                             "<td>
-                                <button style=\"border:none;background:#ffffff\"class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\">delete</i></button>
+                                <button style=\"border:none;background:#ffffff\"class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\" id=\"delete-icon\">delete</i></button>
                                 <input type=\"text\" class=\"souscript-date\" value='$row[2]' style=\"display:none\">
                             </td>                        
                     </tr>";
@@ -238,7 +240,6 @@
                 </tbody>
                 </tfoot>                
                 <tfoot>
-
             </table>
 
             <div class="card modal" id='annulation_modal'><!--Annulation contrat-->
@@ -262,8 +263,13 @@
                             <div class="form-group">
                                 <label for="Motif d'annulation">Motif d'annulation</label>
                                 <select class="form-control" id="motifAnnulation" name="motif">
+                                    <option>Erreur sur la date d'effet</option>
+                                    <option>Erreur sur la période de garantie</option>
+                                    <option>Erreur sur le numéro d'immatriculation</option>
+                                    <option>Erreur sur nom/prenom de l'assuré</option>
+                                    <option>Refus du client</option>
+                                    <option>Doublons</option>
                                     <option>Erreur de saisie</option>
-                                    <option>Retour</option>
                                 </select>
                             </div>
                             <input type="text" value='' id='date_debut_contrat' style='display:none' name='date_souscription'>
@@ -312,7 +318,7 @@
             </div>
         </div><!--Annulation contrat-->
 
-        <div class="card modal" id='message_modal'><!--Demande d'an nulation de contrat-->
+        <div class="card modal" id='message_modal'><!--Annulation d'un contrat-->
             <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
             <div class="card-body">
             <div>
@@ -325,6 +331,17 @@
             </div>
         </div><!--Annulation contrat-->
 
+        <div class="card modal" id='annul_demande_modal'><!--Demande d'annulation de contrat déjà annulé-->
+            <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+            <div class="card-body">
+            <div>
+                <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
+                        <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                        <p>Vous avez déja soumis une demande pour l'annulation de ce contrat <br>Vous pouvez appeler au 33 825 20 14 pour connaitre l'etat d'avancement de votre demande.</p>                       
+                    </div>
+                </div>
+            </div>
+        </div><!--Annulation contrat déjà annulé-->
 
         </div>
         <!--container-->
@@ -374,11 +391,8 @@
             var current_date      = ((date.getFullYear() + '-' + (date.getMonth()+1) + '-' +  date.getDate()));
             var police            = ($(this).find('.delete-btn').val());
             var int               = $('#mat_int').val();
-
-          
         //Souscription datant de la journée
         if ((new Date(date_souscription)) > (new Date(current_date)) ) {
-           // alert("not");
             $('#pol').val(police);
             $('#code').val(int);
             $('#date_debut_contrat').val(date_souscription);
@@ -386,7 +400,6 @@
         }
         //Souscription antérieure
         else {
-           // alert("yes");
             $('#polDemande').val(police);
             $('.policeNum').text('ok');
             $('#codeDemande').val(int);
@@ -396,23 +409,35 @@
          
         })
     </script>
+
     <script>
         $(document).ready(function(){
             $('#usersData tr').each(function() {
-                var etat = $(this).find("td").eq(5).html(); 
+                var etat       = $(this).find("td").eq(5).html(); 
+                var deleteIcon = $(this).find("td").eq(5).find('i');
+                deleteIcon.removeClass('material-icons')
                 if(etat =='Annulé'){
                     var delete_btn=$(this).find("td").eq(6)
                     $(delete_btn).unbind()
+                    $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#062944");
                     delete_btn.on('click',function(){
                         $('#message_modal').fadeIn();
+                    })
+                }else if(etat == 'A annuler'){
+                    var delete_btn=$(this).find("td").eq(6)
+                    $(delete_btn).unbind()
+                    $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#ffa500");
+                    delete_btn.on('click',function(){
+                        $('#annul_demande_modal').fadeIn();
                     })
                 }
             });
         })
     </script>
+
     <script>
         $('.close').on('click',function(){
-            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal,#message_modal').fadeOut()
+            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal,#message_modal,#annul_demande_modal').fadeOut()
         })
     </script>
     <script>

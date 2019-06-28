@@ -38,7 +38,7 @@
         .dataTab{
             position: relative;
             top:9px;
-            left:18px
+            left:-58px
         }
         .paging_simple_numbers{
             position: relative !important;
@@ -60,12 +60,12 @@
             background: #062944 !important;
             color: #f7ba00 !important
         }
-        #usersData_filter{
+        #annulationsData_filter{
             position: relative !important;
             left: 2em !important;
             top: 6px;
         }
-        #usersData_filter .form-control-sm{
+        #annulationsData_filter .form-control-sm{
             border: 0 solid #ffffff !important;
             border-bottom: 1px solid #062944 !important;
             width: 79%;
@@ -112,9 +112,7 @@
         #usersData_paginate ul li{
             padding: 6px
         }
-        /* .pagination li{
-            padding:0 !important
-        } */
+      
        
     </style>
 
@@ -131,58 +129,99 @@
         <div class="container">
           <h1 class="ajout-title">Consultation annulations</h1>
           <hr>
-            <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">
+            <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
                         <th>Numéro policce</th>
                         <th>Matricule intermediaire</th>
-                        <th>Prénom intermediaire</th>
-                        <th>Nom intermediaire</th>
+                        <th>Prénom intermediaire et nom</th>
                         <th>Téléphone intérmédiaire</th>
-                         <th>Date annulation</th>
+                        <th>Date annulation</th>
                         <th>Etat annulation</th>
+                        <th>Motif annulation</th>
+                        <th>Etat police</th>
                         <th>Annulé par</th>
-                        <!--th>Opération</th-->
+                        <th>Annuler</th>
+                        <th>Générer une demande d'annulation</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                    /*while($row=$attestations->fetch()){
-                        $type_attestation = $row[1];
-                        $etat_actuel      = $row[5];
-                        $etat_sortie      = $row[6];
-                        echo'
-                        <tr>
-                            <td>'.$row[0].'</td>';
-                            if($type_attestation=="verte"){
-                                echo '<td style="background:#77bb41;">'.$row[1].'</td>';
-                            }else if($type_attestation=="jaune"){
-                                echo '<td style="background:#f5ca3e">'.$row[1].'</td>';
-                            }else if($type_attestation=="cedeao"){
-                                echo '<td style="background:#d3d3ec">'.$row[1].'</td>';
-                            }
-                            echo '<td>'.$row[2].'</td>';
-                            echo '<td>'.$row[3].'</td>';
-                            if($etat_actuel=="attribue"){
-                                echo '<td style="background:#e4a6a0;">'.$row[5].'</td>';
-                            }else if($etat_actuel=="libre"){
-                                echo '<td style="background:#99c5e2;">'.$row[5].'</td>';
-                            }
-                             echo '<td>'.$row[4].'</td>';
-                             if($etat_sortie=="restante"){
-                                echo '<td style="background:#de5143;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height: 0.5rem">non utilisée</td>';
-                             }else if($etat_sortie=="vendue"){
-                                echo '<td style="background:#acd68b;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height:0.5rem">utilisée</td>';
-                             }
-                        echo '</tr>';
-                    }*/
+                    while($row=$annulations->fetch()){
+                      echo '<tr> 
+                        <td>'.$row[0].'</td>
+                        <td>'.$row[1].'</td>
+                        <td>'.$row[2].$row[3].'</td>
+                        <td>'.$row[4].'</td>
+                        <td>'.$row[5].'</td>';
+                        if($row[6]=='A annuler'){
+                            echo '<td style="background:#ff000087">'.$row[6].'</td>';
+                        }else if($row[6]=='Annulé'){
+                            echo '<td style="background:#ffa50085">'.$row[6].'</td>';
+                        }
+                        echo '<td>'.$row[7].'</td>
+                        <td>'.$row[8].'</td>
+                        <td>'.$row[2].$row[3].'</td>';
+                        echo
+                        "<td>
+                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
+                        </td>
+                        <td>
+                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
+                        </td>
+                    </tr>";
+                    }
                 ?>
                 </tbody>
                 </tfoot>                
                 <tfoot>
             </table>
-
             
+            <div class="card modal" id='annul_demande'><!--Demande d'annulation-->
+                <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+                <div class="card-body">
+                <div>
+                    <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
+                            <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                            <p>Vous avez déja soumis une demande pour l'annulation de ce contrat <br>Vous pouvez appeler au 33 825 20 14 pour connaitre l'etat d'avancement de votre demande.</p>                       
+                        </div>
+                    </div>
+                </div>
+            </div><!--Demande d'annulation-->
+
+            <div class="card modal" id='annul_modal'><!--Annulation déjà effectuée-->
+                <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+                <div class="card-body">
+                <div>
+                    <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
+                            <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                            <form method="POST" action="../../controller/admin/index.php">
+                                <input type="text" name='numero_police' id='pol_num'>
+                                <div style="text-align: center;margin: 0 auto;">
+                                    <input  name="action"  type="submit" value="Annuler Police" class="btn btn-primary btn-md annulation-validate" id='' style='margin-top:6px !important'>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><!--Annulation déjà effectuée-->
+
+            <div class="card modal" id='folder_modal'><!--Dossier d'annulation-->
+                <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+                <div class="card-body">
+                <div>
+                    <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
+                            <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                            <form method="POST" action="../../controller/admin/index.php">
+                                <input type="text" name='numero_police' id='pol_folder'>
+                                <div style="text-align: center;margin: 0 auto;">
+                                    <input  name="action"  type="submit" value="Generer Demande" class="btn btn-primary btn-md annulation-validate" id='' style='margin-top:6px !important'>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><!--Dossier d'annulation-->
         </div>
         <!--container-->
 
@@ -195,9 +234,39 @@
 
     <script>
         $(document).ready(function() {
-            $('#usersData').DataTable();
-            $("#usersData_filter").find('input').focus()
+            $('#annulationsData').DataTable();
+            $("#annulationsData_filter").find('input').focus()
         } );
+
+        var cell1 =  $("#annulationsData tr").find("td").eq(9)
+        cell1.on('click',function(){
+               var police= $(this).find('.delete-btn').val()
+               $('#pol_num').val(police)
+        })
+
+        $('.cp-btn').on('click', function(){
+            var contrat = $(this).val()
+            $('#folder_modal').fadeIn();
+            $('#pol_folder').val(contrat)
+        })
+
+        $('#annulationsData tr').each(function(){
+            var etat       = $(this).find("td").eq(5).html(); 
+            var delete_btn = $(this).find("td").eq(9)
+            delete_btn.on('click',function(){
+                if(etat=='Annulé'){
+                    $('#annul_demande').fadeIn();
+                }else if(etat=='A annuler'){
+                    $('#annul_modal').fadeIn();
+                }
+            })
+        })
+    </script>
+
+    <script>
+        $('.close').on('click',function(){
+            $('#annul_demande,#annul_modal,#folder_modal').fadeOut()
+        })
     </script>
 
   

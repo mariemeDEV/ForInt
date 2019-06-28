@@ -1,55 +1,47 @@
 <?php
 
 class Annulation{
-    private $id;
-    private $numero_police;
+    private $id_annulation;
+    private $id_police;
     private $code_intermadiaire;
-    private $motif;
+    private $motif_annulation;
     private $etat_annulation;
-    private $dateAnnulation;
-    private $role_auteur;
+    private $date_annulation;
+    private $matricule_auteur;
 
-    function __construct($id='',$numero_police='',$code_intermediaire='',$motif='',$etat_annulation='', $dateAnnulation='', $role_auteur)
+    function __construct($id_annulation='',$id_police='',$code_intermediaire='',$motif_annulation='',$etat_annulation='', $date_annulation='', $matricule_auteur)
     {
-        $this->id=$id;
-        $this->numero_police=$numero_police;
+        $this->id_annulation=$id_annulation;
+        $this->id_police=$id_police;
         $this->code_intermediaire=$code_intermediaire;
-        $this->motif=$motif;
+        $this->motif_annulation=$motif_annulation;
         $this->etat_annulation=$etat_annulation;
-        $this->dateAnnulation=$dateAnnulation;
-        $this->role_auteur=$role_auteur;
+        $this->date_annulation=$date_annulation;
+        $this->matricule_auteur=$matricule_auteur;
     }
 
       /**
      * @return int
      */
-    public function getId()
+    public function getIdAnnulation()
     {
-        return $this->id;
+        return $this->id_annulation;
+    }
+
+        /**
+     * @return String
+     */
+    public function getIdPolice()
+    {
+        return $this->id_police;
     }
 
     /**
-     * @param int $id
+     * @param String $id_police
      */
-    public function setId(int $id)
+    public function setIdPolice(string $id_police)
     {
-        $this->id = $id;
-    }
-
-      /**
-     * @return string
-     */
-    public function getNumeroPolice()
-    {
-        return $this->numero_police;
-    }
-
-    /**
-     * @param string $numero_police
-     */
-    public function setNumeroPolice(string $numero_police)
-    {
-        $this->numero_police = $numero_police;
+        $this->id_police = $id_police;
     }
 
         /**
@@ -63,7 +55,7 @@ class Annulation{
     /**
      * @param int $code_intermediaire
      */
-    public function setCodeIntermediaire(string $code_intermadiaire)
+    public function setCodeIntermediaire(string $code_intermediaire)
     {
         $this->code_intermediaire = $code_intermediaire;
     }
@@ -74,15 +66,15 @@ class Annulation{
      */
     public function getMotif()
     {
-        return $this->motif;
+        return $this->motif_annulation;
     }
 
     /**
      * @param string $motif
      */
-    public function setMotif(string $motif)
+    public function setMotif(string $motif_annulation)
     {
-        $this->motif = $motif;
+        $this->motif_annulation = $motif_annulation;
     }
 
     
@@ -103,31 +95,31 @@ class Annulation{
     }
     
     /**
-     * @param string $dateAnnulation
+     * @param string $date_annulation
     */
-    public function setDateAnnulation($dateAnnulation){
-        $this->dateAnnulation= $dateAnnulation;
+    public function setDateAnnulation($date_annulation){
+        $this->date_annulation= $date_annulation;
     }
 
     /**
      * @return string $dateAnnulation
      */
     public function getDateAnnulation(){
-        return $this->dateAnnulation;
+        return $this->date_annulation;
     }
 
       /**
-     * @param string $role_auteur
+     * @param int $matricule_auteur
     */
-    public function setRoleAuteur($role_auteur){
-        $this->role_auteur= $role_auteur;
+    public function setMatAuteur($matricule_auteur){
+        $this->matricule_auteur= $matricule_auteur;
     }
 
     /**
-     * @return string $role_auteur
+     * @return int $matricule_auteur
      */
-    public function getRoleAuteur(){
-        return $this->role_auteur;
+    public function getMatAuteur(){
+        return $this->matricule_auteur;
     }
    
 
