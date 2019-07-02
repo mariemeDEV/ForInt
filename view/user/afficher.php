@@ -137,11 +137,7 @@
         }
         .delete-btn{
      
-          /*  padding: 5px;
-            margin-top: -6px;
-            border: none;
-            cursor: pointer;
-            padding: 6px !important*/
+        
         }
         .annulation-validate{
             padding: 10px 18px 10px 18px !important;
@@ -224,7 +220,7 @@
                         </td> ";
                         if($row[7]=="En cours"){
                             echo "<td style='background:#00800070;text-align:center;font-weight:bold'>".$row[7]."</td>";
-                        }else if($row[7]=="Annulé"){
+                        }else if($row[7]=="Annule"){
                             echo "<td style='background:#ff000087;text-align:center;font-weight:bold'>".$row[7]."</td>";
                         }else if($row[7]=="A annuler"){
                             echo "<td style='background:#ffa50085;text-align:center;font-weight:bold'>".$row[7]."</td>";
@@ -263,11 +259,11 @@
                             <div class="form-group">
                                 <label for="Motif d'annulation">Motif d'annulation</label>
                                 <select class="form-control" id="motifAnnulation" name="motif">
-                                    <option>Erreur sur la date d'effet</option>
-                                    <option>Erreur sur la période de garantie</option>
-                                    <option>Erreur sur le numéro d'immatriculation</option>
-                                    <option>Erreur sur nom/prenom de l'assuré</option>
-                                    <option>Refus du client</option>
+                                    <option>Erreur sur date effet</option>
+                                    <option>Erreur sur période de garantie</option>
+                                    <option>Erreur sur immatriculation vehicule</option>
+                                    <option>Erreur sur nom/prenom assuré</option>
+                                    <option>Refus client</option>
                                     <option>Doublons</option>
                                     <option>Erreur de saisie</option>
                                 </select>
@@ -303,8 +299,13 @@
                             <div class="form-group">
                                 <label for="Motif d'annulation">Motif d'annulation</label>
                                 <select class="form-control" id="motifDemande" name="motif">
+                                <option>Erreur sur date effet</option>
+                                    <option>Erreur sur période de garantie</option>
+                                    <option>Erreur sur immatriculation vehicule</option>
+                                    <option>Erreur sur nom/prenom assuré</option>
+                                    <option>Refus client</option>
+                                    <option>Doublons</option>
                                     <option>Erreur de saisie</option>
-                                    <option>Retour</option>
                                 </select>
                             </div>
                             <input type="text" value='' id='date_debut' style='display:none' name='date_souscription'>
@@ -324,7 +325,7 @@
             <div>
                 <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
                         <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
-                        <p>Ce contrat a étè déjà annulé</p>                       
+                        <p>Contrat déjà annulé.</p>                       
                         <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
                     </div>
                 </div>
@@ -337,7 +338,7 @@
             <div>
                 <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
                         <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
-                        <p>Vous avez déja soumis une demande pour l'annulation de ce contrat <br>Vous pouvez appeler au 33 825 20 14 pour connaitre l'etat d'avancement de votre demande.</p>                       
+                        <p>Votre demande d'annulation sera prise en charge par le support Saham Assurance,<br>Cordialement.</p>                       
                     </div>
                 </div>
             </div>
@@ -411,12 +412,11 @@
     </script>
 
     <script>
-        $(document).ready(function(){
-            $('#usersData tr').each(function() {
+            $(document).find('#usersData tr').each(function() {
                 var etat       = $(this).find("td").eq(5).html(); 
                 var deleteIcon = $(this).find("td").eq(5).find('i');
                 deleteIcon.removeClass('material-icons')
-                if(etat =='Annulé'){
+                if(etat =='Annule'){
                     var delete_btn=$(this).find("td").eq(6)
                     $(delete_btn).unbind()
                     $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#062944");
@@ -431,7 +431,6 @@
                         $('#annul_demande_modal').fadeIn();
                     })
                 }
-            });
         })
     </script>
 

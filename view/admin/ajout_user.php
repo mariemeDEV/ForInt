@@ -292,8 +292,6 @@
                 </div>
                 </div><!--ajout nouvel utilisateur-->
                 </div>
-            
-
                 <ul>
                     <li><a href="./?action=dotations">Consultation dotations</a></li>
                     <li><a href="./?action=annulations">Consultation annulations</a></li>

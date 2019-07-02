@@ -530,6 +530,7 @@ if(isset($_GET['action']))
             $type           = new TypeAttestationDao();
             $attestationDao = new AttestationDao();
             $types          = $type->listTypes();
+            $matricule      = $_GET['mat'];
             require_once '../../view/admin/affectations.php';
         break;
         default:
@@ -568,71 +569,15 @@ if(isset($_POST['action']))
             // $modification=$usdao->modifUser($us);
             // $resultat=$usdao->listUser();
             // require_once'../../view/admin/ajout_user.php';
-        break;
-        case 'excel':
-            $debut=$_POST['debut']." 00:00:00";
-            $fin=$_POST['fin']." 23:59:00";
-
-            $usdao=new PoliceDao();
-            $us=new Police('','',$debut,'','','','','','','','','','','');
-            $ds=new Police('','',$fin,'','','','','','','','','','','');
-            $Resultat=$usdao->getAllProduct($_POST['debut']." 00:00:00",$_POST['fin']." 23:59:00");
-            $cpt1=$Resultat->rowCount();
-            //echo $cpt1."<br>";
-            $info=null;
-            if($Resultat==true)
-            {
-                while($row=$Resultat->fetch())
-                { 
-                    $info[]  =  array( 
-                        "NUMÉRO POLICE"                  => $row[0] ,
-                        "DATE DE CRÉATION"               => $row[1] ,
-                        "NUMÉRO ATTESTATION"             => $row[2] ,
-                        "NUMÉRO FACTURE"                 => $row[3] ,
-                        "MATRICULE INTERMÉDIAIRE"        => $row[4] ,
-                        "NOM INTERMÉDIAIRE"              => $row[5] ,
-                        "PRÉNOM INTERMÉDIAIRE"           => $row[6] ,
-                        "NOM ASSURÉ"                     => $row[7] ,
-                        "PRÉNOM ASSURÉ"                  => $row[8] ,
-                        "NOM CONDUCTEUR"                 => $row[9] ,
-                        "PRÉNOM CONDUCTEUR"              => $row[10] ,
-                        "DATE DÉBUT PERIODE DE GARANTIE" => $row[11] ,
-                        "HEURE DÉBUT PÉRIODE DE GARANTIE" => $row[12] ,
-                        "DATE FIN PÉRIODE DE GARANTIE" => $row[13] ,
-                        "HEURE FIN PÉRIODE DE GARANTIE" => $row[14] ,
-                        "MARQUE VOITURE"                => $row[15] ,
-                        "IMMATRICULATION"               => $row[16] ,
-                        "GENRE"                         => $row[17] ,
-                        "DATE DE MISE EN CIRCULATION"   => $row[18] ,
-                        "VALEUR VÉNALE"                 => $row[19] ,
-                        "VALEUR À NEUVE"                => $row[20] ,
-                        "GARANTIES"                     => $row[21],
-                        "RÉCUCTION MAJORATION RC"       => $row[22],
-                        "BONUS RC"                      => $row[23],
-                        "POURCENTAGE RC"                => $row[24],
-                        "RÉDUCTION COMMERCIALE"         => $row[25],
-                        "PRIME NETTE"                   => $row[26],
-                        "ACCESSOIRES"                   => $row[27],
-                        "TAXES"                         => $row[28],
-                        "FGA"                           => $row[29],
-                        "PRIME TOTALE"                  => $row[30]
-                    );
-                }
-                    //var_dump($info);
-                    $filname='production.csv';
-                    header("Content-type: text/csv;charset=utf-8");
-                    header("Content-Disposition: attachment; filename=$filname");
-                    $output = fopen("php://output","w");
-                    $header=array_keys($info[0]);
-                    fputcsv($output,$header);
-                    foreach ($info as $row)
-                    {
-                        fputcsv($output,$row);
-                    }
-                    fclose($output);
-            }
-            else echo "false";
-
+            break;
+                case 'excel':
+                $debut       = new DateTime($_POST['debut']);
+                $fin       = new DateTime($_POST['fin']);
+                $matricule = $_SESSION['matricule'];
+                $interval  = $debut->diff($fin);
+                $usdao=new PoliceDao();
+                $Resultat=$usdao->getAllProduct($_POST['debut'],$_POST['fin']);
+                require_once('../../view/admin/production.php');
             break;
             case 'lister':
                 require_once('../../view/admin/etats.php');
@@ -646,7 +591,7 @@ if(isset($_POST['action']))
                     }
                     return $serie;
                 }
-                // echo($_GET['mat']);
+                echo($_GET['mat']);
                 if(($_POST['type_attestation']=="verte")){
                 $selectedVertes = getAttestations();
                     for($v=0;$v<count($selectedVertes);$v++){
@@ -670,16 +615,38 @@ if(isset($_POST['action']))
                 require_once '../../view/admin/affectations.php';
             break;
             case 'excelIntermediaire':
-                echo('ok');
+               // echo('ok');
             break;
             case 'Annuler Police' :
+            //echo($_POST ['numero_police']);
                 $policeDao = new PoliceDao();
                 $policeDao->deletePolice($_POST['numero_police']);
                 require_once('../../view/annuler.php');
             break;
             case 'Generer Demande' :
-                $annulationDao = new AnnulationsDao();
+                $annulationDao    = new AnnulationsDao();
+                $intermediaireDao = new IntermediaireDao();
                 $annulation    = $annulationDao->getAnnulation($_POST['numero_police']);
+                $assure        = $annulationDao->getAssure($_POST['numero_police']);
+                $primeNette    = $annulationDao->getPN($_POST['numero_police']);
+                $intermediaire = $intermediaireDao->getUserByMat($_SESSION['matricule']);
+                while($row=$annulation->fetch()){
+                    $police = $row[1];
+                    $effet  = $row[5];
+                    $raison = $row[3];
+                }
+                while($row=$assure->fetch()){
+                    $prenom_assure = $row[1];
+                    $nom_assure    = $row[0];
+                }
+                while($row=$primeNette->fetch()){
+                    $prime = $row[0];
+                }
+                while($row=$intermediaire->fetch()){
+                    $mat_int    = $row[0];
+                    $nom_int    = $row[1];
+                    $prenom_int = $row[2];
+                }
                 require_once('../../view/admin/demande.php');
             break;
             default :

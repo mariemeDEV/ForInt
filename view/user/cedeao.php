@@ -11,8 +11,7 @@
 			position: relative;
 			top: 263px;
         }
-		@page { size:landscape; marks:none;size: 21.0cm;margin: 0cm ;}
-    </style>
+		@media print{@page {size: landscape}}    </style>
 </head>
 <body onload="window.print()">
     <div class="container">

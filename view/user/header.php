@@ -9,7 +9,6 @@
 <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Saham Assurance</span>
     <?php
-        if($_SESSION['mdp']!="saham")
     echo "
     <nav class=\"mdl-navigation\">
         <a class=\"mdl-navigation__link\" href=\"../../view/user/accueil.php\">Accueil</a>

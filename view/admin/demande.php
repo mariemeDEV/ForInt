@@ -51,57 +51,51 @@
           <hr>
 
           <div class="container" style='margin:0 !important;    margin: 0 !important;position: relative;top: -83px;'>
-            <div class="row" style='padding-bottom: 10px;'>Date de la demande :</div>
-            <div class="row" style='padding-bottom: 10px;'>Service :</div>
-            <div class="row">Demandeur :</div>
+            <div class="row" style='padding-bottom: 10px;'>Date de la demande : <?php echo $effet; ?></div>
+            <div class="row" style='padding-bottom: 10px;'>Service : <?php echo 'Automobile'; ?></div>
+            <div class="row">Demandeur : <?php echo $mat_int.'   '.$prenom_int.'   '.$nom_int ; ?></div>
           </div>
 
             <table id="demandeData" class="table dataTab table-bordered" style="width:100%">
                
                 <tbody>                  
                  <?php
-                 while($row=$annulation->fetch()){
                 echo '<tr>
                    <td>NUMERO DE POLICE</td>
-                   <td>'.$row[1].'</td>
+                   <td>'.$police.'</td>
                 </tr>
                 <tr>
                     <td>INTERMEDIAIRE</td>
-                   <td>'.$row[2].'</td>
+                   <td>'.$mat_int.'   '.$prenom_int.'   '.$nom_int.'</td>
                 </tr>
                 <tr>
                     <td>AVENANT</td>
-                   <td>'.$row[0].'</td>
+                   <td></td>
                 </tr>
                 <tr>
                     <td>EFFET</td>
-                   <td>'.$row[5].'</td>
-                </tr>
-                <tr>
-                    <td>ECHEANCE</td>
-                   <td>'.$row[5].'</td>
+                   <td>'.$effet.'</td>
                 </tr>
                 <tr>
                     <td>PART COASSURANCE</td>
-                   <td>'.$row[0].'</td>
+                   <td></td>
                 </tr>
                 <tr>
                     <td>ASSURE</td>
-                   <td>'.$row[0].'</td>
+                   <td>'.$prenom_assure.'   '.$nom_assure.'</td>
                 </tr>
                 <tr>
                     <td>PRIME NETTE</td>
-                   <td>'.$row[0].'</td>
+                   <td>'.$prime.' FCFA</td>
                 </tr>
                 <tr>
                     <td>APERITEUR</td>
-                   <td>'.$row[0].'</td>
+                   <td></td>
                 </tr>
                 <tr>
                     <td>RAISON DE LA DEMANDE</td>
-                   <td>'.$row[3].'</td>
+                   <td>'.$raison.'</td>
                 </tr>';
-                 }
                 ?>
                 </tbody>
                 </tfoot>                

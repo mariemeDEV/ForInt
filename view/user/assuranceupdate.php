@@ -445,10 +445,10 @@
                                 </ul>
                                 <div class="row" style="position:relative !important;top:-118px !important">
                                 <label class="radio-inline" id='j' style="font-size:12px">
-                                    <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important">attestation jaune
+                                    <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important;display:none !important">
                                 </label>
                                 <label class="radio-inline" id='v' style="font-size:12px">
-                                    <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !important">attestation verte
+                                    <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !importan;display:none !important">
                                 </label>
                                 </div>
                                 <div class="row" style="margin-top: -160px !important;">
@@ -533,12 +533,6 @@
                                                     <input class="form-check-input" name="TierceCol"  onclick="CalculeBC()"  type="checkbox" id="Checkbox7_2" value=""> TIERCE COLLISION (TCL)
                                                 </label>
                                             </font>
-                                            <!--font  size=1>
-                                                <label class="form-check-label" style="padding-left: 1%;">
-                                                    <input class="form-check-input" name="TierceAgr"  onclick="CalculeBC()"  type="checkbox" id="Checkbox7_3" value=""> TIERCE AGRÉE (TAG)
-                                                </label>
-                                            </font-->
-
                                         </td>
                                         <td><input type="text"  class="divide" size="6" name="PrimeTierce" id="PrimeTierce" style="text-align: right;" disabled="disabled" /></td>
                                     </tr>
@@ -661,7 +655,6 @@
                                                 <input  class='taxes-sup divide' type="text" name="totalRC1" size="10" id="totalRC1" hidden/>
                                             </td>
                                         </tr>
-
                                         </tbody>
                                     </table>
                                 </div>

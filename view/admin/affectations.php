@@ -36,14 +36,11 @@
        .dotations-form{
             position: relative !important;
             top: 18px !important;
-            /* background:#fdfbdc !important; */
             padding: 0 !important;
             width: 50%;
             height: 394px !important;
             margin: auto;
             padding: 35px 0 0 0 !important;
-            /* border: 1px solid #062944; */
-            /* border-radius: 1%; */
        }
        .dotations-form input{
             width: 112% !important;
@@ -95,7 +92,6 @@
     <div class="card-header" style="background:#062945 !important;color: #f7ba00 !important;text-align:center;font-weight:bold"><h3>Dotations</h3></div>
        <div class="card-body">
        <form class="form dotations-form" method="post" action="../../controller/admin/index.php"  id='dotations'><!--begin form-->
-            <!--label>Type d'attestation</label-->
             <div class="form-group">
                 <select class="form-control" id="" name="type_attestation">
                     <?php
@@ -119,7 +115,6 @@
         </form><!--end form-->
        </div>   
     </div>
-        
     </div><!--end container-->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>

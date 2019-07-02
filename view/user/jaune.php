@@ -7,8 +7,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link href="../../view/style/form_v3.css" rel="stylesheet">
     <style>
-       	@page { size:landscape; marks:none;size: 21.0cm;margin: 0cm ;}
-
+    @media print{@page {size: landscape}}
         .b3{
             position: absolute;
             left: 16em !important;
@@ -27,9 +26,6 @@
     </style>
 </head>
 <body onload="window.print()">
-
-<!-- <div id="wb_Line3" style="position:absolute;left:386px;top:1359px;width:570px;height:2px;z-index:88;">
-    <img src="../../img/images3/img0018.png" id="Line3" alt=""></div> -->
 <div class="main-content">
 <div class='b1' style="">
     <div>

@@ -92,11 +92,13 @@ class PoliceDao extends DBao
     
     public function listPoliceValides(int $p)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat  from police pv
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat,v.categorie_vehicule_id_cat,d.prime_nette  from police pv
               JOIN police p on (pv.id_police=p.id_police) 
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
               JOIN intermediaire i on (p.intermediaire_matricule=i.matricule) 
+              JOIN vehicule as v on(p.vehicule_id_vehicule=v.id_vehicule)
+              JOIN decompte_prime as d on(p.decompte_prime_id_dp=d.id_dp)
               where i.matricule=".$p." AND p.validation=0 ORDER by p.date_police DESC ";
               return $this->executeSELECT($sql);
     }
@@ -297,7 +299,7 @@ class PoliceDao extends DBao
                 ".$annulation->getMatAuteur()."
             )";
             $req0 = $pdo->exec($insert);
-            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'"  );
+            $req1 = $pdo->exec("UPDATE police SET etat ='Annule' WHERE id_police ='".$numPolice."'"  );
             $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
             $pdo->commit();
         }catch(Exception $e){
@@ -367,9 +369,9 @@ class PoliceDao extends DBao
             $pdo      = new PDO($dns, $user, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $pdo->beginTransaction();
-            $req1 = $pdo->exec("UPDATE police SET etat ='Annulé' WHERE id_police ='".$numPolice."'"  );
+            $req1 = $pdo->exec("UPDATE police SET etat ='Annule' WHERE id_police ='".$numPolice."'");
             $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
-            $req3 = $pdo->exec("UPDATE annulation SET etat_annulation ='Annulé' WHERE id_police ='".$numPolice."'" );
+            $req3 = $pdo->exec("UPDATE annulation SET etat_annulation ='Annule' WHERE id_police ='".$numPolice."'" );
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();

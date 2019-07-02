@@ -40,13 +40,12 @@
         <main class="mdl-layout__content success-content">
             <div class="mdl-content">
                 <h1 class="success-message">Succés !</h1>
-                <p class='success-text'>L'annulation de ce projet a étè bien pris en compte,<br> Pour plus d'informations, joignez nous sur le : <br><b>33 825 20 14</p>
+                <p class='success-text'>Contrat annulé avec succés,<br>Cordialement</p>
                 <div class="retour-content">
                     <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>
-
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

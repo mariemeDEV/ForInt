@@ -2135,7 +2135,7 @@ if(isset($_POST['action'])){
             $dateAnnulation ="'".date_create()->format('Y-m-d H:i:s')."'";
             $numPolice= $_POST['police'];
             $intermediaire = $_POST['intermediaire'];
-            $etat = "Annulé";
+            $etat = "Annule";
             $etatAnnulation = "'".$etat."'";
             $motif="'".$_POST['motif']."'";
             $mat_auteur = $_SESSION['matricule'];
@@ -2149,7 +2149,7 @@ if(isset($_POST['action'])){
             $dateAnnulation ="'".date_create()->format('Y-m-d H:i:s')."'";
             $numPolice= $_POST['police'];
             $intermediaire = $_POST['intermediaire'];
-            $etat = "A annuler";
+            $etat           = "A annuler";
             $etatAnnulation = "'".$etat."'";
             $motif="'".$_POST['motif']."'";
             $mat_auteur = $_SESSION['matricule'];

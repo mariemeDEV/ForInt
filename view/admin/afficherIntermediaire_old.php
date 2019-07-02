@@ -23,39 +23,6 @@
             <h1 class="top-title">Activités de l'intérmédiaire</h1>
             <hr></hr>
             <div class="row">
-            <?php              
-            while($row=$intermediaireData->fetch()){
-            echo '
-                <div class="col-lg-4">
-                <ul class="list-group intermediaire_data" style="width: 110% !important">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Matricule
-                    <span class="badge badge-primary badge-pill">'.$row[0].'</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Prénom
-                    <span class="badge badge-primary badge-pill">'.$row[2].'</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Nom
-                    <span class="badge badge-primary badge-pill">'.$row[1].'</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Téléphone
-                    <span class="badge badge-primary badge-pill">'.$row[4].'</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    E-mail
-                    <span class="badge badge-primary badge-pill">'.$row[5].'</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Etat
-                    <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                </li>
-            </ul>
-            </div>';
-            }
-        ?>
             <div class="col-lg-8">
                 <div class="card-body" >
                     <table class="table table-striped details_tab">

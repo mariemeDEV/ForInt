@@ -43,14 +43,7 @@
             position: relative !important;
             top: 81px !important
         }
-        .pagination li{
-            height:34px !important
-        }
-        .pagination li a{
-            padding: 1px !important;
-            background: #062944 !important;
-            color: #f7ba00 !important
-        }
+       
         #usersData_filter{
             position: relative !important;
             left: 448px !important;
@@ -87,39 +80,18 @@
             line-height: 39px;
             font-weight: bold;
         }
-        /* .dataTables_paginate{
-            background: green !important;
-            width: 219px !important;
-            height: 36px !important;
-            position: relative !important;
-            left: -132px !important; 
-        }
-        .dataTables_paginate ul{
-            position: absolute !important;
-            left: -102px;
-            top: -7px;
-        }
-        .dataTables_paginate ul li{
-            left: 165px;
-            top: 6px;
-            background: yellow;
+        .pagination{
+            display: inline-flex;
             position: absolute;
-        } */
-      
-
-
-        /* .container ul li::after:not(:last-child){
-        } */
-        /* li:last-child:after{
-            content:'/';
-            padding-left:40px
-        } */
-        /* ul > li:not(:last-child):after{
-            content:'/';
-            padding-left:40px;
-            color: #f7bb3d !important
-
-        } */
+            top: -74px;
+            left: -42em;
+            background: #062843;
+            z-index: 3;
+        }
+        .pagination li a{
+            background: #062944 !important;
+            color: #f7ba00 !important
+        } 
         ul li a{
             text-decoration:none !important;
             color: #f7bb3d !important;
@@ -147,38 +119,8 @@
         <hr>
         <!--container-->
         <div class="container">
-            <div class="row">
-                <div class="col col-lg-8" style="position: relative;left:35px;top:123px !important">
-                    <?php              
-                        while($row=$intermediaireData->fetch()){
-                        echo '
-                            <ul class="list-group intermediaire_data" style="width: 110% !important">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Contrats validés
-                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Devis
-                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Attestations vertes
-                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Attestations jaunes
-                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Attestations cedeao
-                                <span class="badge badge-primary badge-pill">'.$row[8].'</span>
-                            </li>
-                        </ul>';
-                        }
-                    ?>
-                </div>
-                <div class="col col-lg-4" style="position: relative;left: -54em;top:130px;">
-                    <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%;margin-top:-63px !important">
+          
+                    <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%;margin-top:64px !important">
                         <thead>
                             <tr>
                                 <th>Date contrat</th>
@@ -218,7 +160,6 @@
                         <tfoot></tfoot>
                     </table>
                 </div>
-            </div>
         </div>
         <!--container-->
 

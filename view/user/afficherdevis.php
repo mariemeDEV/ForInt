@@ -149,7 +149,8 @@
                         <th>Numero Police</th>
                         <th>Date debut</th>
                         <th>Date Echeance</th>
-                        <th>Assure</th>
+                        <th>Catégorie</th>
+                        <th>Prime nette</th>
                         <th>Projets</th>
                         <th style='text-align: center;'>Créer le Contrat</th>
                         <th>Annuler le dévis</th>
@@ -165,8 +166,21 @@
                             <th scope=\"row\">$cp</th>                         
                             <td>$row[1]</td>
                             <td>$row[2]</td>
-                            <td>$row[3]</td>
-                            <td style='font-weight:bolder;text-transform:uppercase'><span style='color:red;float:right;position:relative;left:-30px;'>*</span>$row[5]&nbsp;$row[4]</td>                   
+                            <td>$row[3]</td>";
+                            if($row[8]==1){
+                                echo "<td>Catégorie 401</td>";
+                            }else if($row[8]==2){
+                                echo "<td>Catégorie 402</td>";
+                            }else if($row[8]==3){
+                                echo "<td>Catégorie 403</td>";
+                            }else if($row[8]==4){
+                                echo "<td>Catégorie 404</td>";
+                            }else if($row[8]==5){
+                                echo "<td>Catégorie 405</td>";
+                            }else if($row[8]==6){
+                                echo "<td>Catégorie 418</td>";
+                            }
+                            echo "<td style='font-weight:bolder;text-transform:uppercase;color:green !important'>$row[9] FCFA</td>                   
                             <td style='text-align: center;'>
                                 <a href='../../controller/formulaire/?action=lister&id=$row[0]' <i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                             </td>  

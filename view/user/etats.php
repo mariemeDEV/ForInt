@@ -160,10 +160,10 @@
         <tr>
             <td class="cell0"><label for="" id="Label10" style="display:block;width:100%;;height:24px;line-height:24px;z-index:15;">Valeur Neuve: </label>
             </td>
-            <td class="cell1"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <strong><?php echo number_format($val_neuve);?></strong></span></td>
+            <td class="cell1"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <strong><?php echo($val_neuve);?></strong></span></td>
             <td class="cell0"><label for="" id="Label11" style="display:block;width:100%;;height:24px;line-height:24px;z-index:16;">Valeur Vénale</label>
             </td>
-            <td class="cell2"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <strong><?php echo number_format($val_venale);?></strong></span></td>
+            <td class="cell2"><span style="color:#000000;font-family:Arial;font-size:13px;line-height:16px;"> <strong><?php echo($val_venale);?></strong></span></td>
         </tr>
     </table>
     <table style="position:absolute;left:28px;top:660px;width:955px;height:206px;z-index:61;" id="Table6">

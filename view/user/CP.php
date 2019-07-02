@@ -159,35 +159,35 @@
     </tr>
     <tr>
         <td class="cell4"><span><strong> INCENDIE</strong></span></td>
-        <td class="cell12"><span> </span><span><?php echo ($lim4);?></span></td>
+        <td class="cell12"><span> </span><span><?php echo(number_format($val_venale));?></span></td>
         <td class="cell12"><span> </span><span><?php echo ($franch4);?></span></td>
         <td class="cell13"><span> </span><span><?php echo ($brute4);?></span></td>
         <td class="cell14"><span> </span><span><?php echo ($prorata4);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong>VOL</strong></span></td>
-        <td class="cell12"><span><?php echo ($lim5);?></span></td>
-        <td class="cell12"><span><?php echo ($franch5);?></span></td>
+        <td class="cell12"><span><?php echo(number_format($val_venale) );?></span></td>
+        <td class="cell12"><span><?php echo('36 000');?></span></td>
         <td class="cell13"><span><?php echo ($brute5);?></span></td>
         <td class="cell14"><span><?php echo ($prorata5);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong>BRIS DE GLACE</strong></span></td>
-        <td class="cell12"><span><?php echo ($lim6);?></span></td>
+        <td class="cell12"><span><?php echo ('V.remplacement');?></span></td>
         <td class="cell12"><span><?php echo ($franch6);?></span></td>
         <td class="cell13"><span><?php echo ($brute6);?></span></td>
         <td class="cell14"><span><?php echo ($prorata6);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong><?php echo $vri;?></strong></span></td>
-        <td class="cell12"><span><?php echo ($lim7);?></span></td>
-        <td class="cell12"><span><?php echo ($franch7);?></span></td>
+        <td class="cell12"><span><?php echo (number_format($val_neuve));?></span></td>
+        <td class="cell12"><span><?php echo ('36 000');?></span></td>
         <td class="cell13"><span><?php echo ($brute7);?></span></td>
         <td class="cell14"><span><?php echo ($prorata7);?></span></td>
     </tr>
     <tr>
         <td class="cell4"><span><strong><?php echo $titreAv;?></strong></span></td>
-        <td class="cell12"><span><?php echo ($lim8);?></span></td>
+        <td class="cell12"><span><?php echo ('1 000 000');?></span></td>
         <td class="cell12"><span><?php echo ($franch8);?></span></td>
         <td class="cell13"><span><?php echo ($brute9);?></span></td>
         <td class="cell14"><span><?php echo ($prorata8);?></span></td>

@@ -344,7 +344,32 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control requis" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
+                                                    <select style="font-size: 15px;font-family: Times New Roman;height:32px !important" class="form-control requis" name="marque" id="marque" placeholder="Marque">
+                                                            <option value="ACURA">ACURA</option>
+                                                            <option value="BMW">BMW</option>
+                                                            <option value="CITROEN">CITROEN</option>
+                                                            <option value="CHEVROLET">CHEVROLET</option>
+                                                            <option value="DACIA">DACIA</option>
+                                                            <option value="FORD">FORD</option>
+                                                            <option value="FIAT">FIAT</option>
+                                                            <option value="FORD">FORD</option>
+                                                            <option value="HOLDEN">HOLDEN</option>
+                                                            <option value="HONDA">HONDA</option>
+                                                            <option value="HYUNDAI">HYUNDAI</option>
+                                                            <option value="ISUZU">ISUZU</option>
+                                                            <option value="KIA">KIA</option>
+                                                            <option value="LEXUS">LEXUS</option>
+                                                            <option value="MAZDA">MARDA</option>
+                                                            <option value="MITSUBISHI">MITSUBISHI</option>
+                                                            <option value="NISSAN">NISSAN</option>
+                                                            <option value="SUZUKI">SUZUKI</option>
+                                                            <option value="SABARU">SABARU</option>
+                                                            <option value="SEAT">SEAT</option>
+                                                            <option value="TOYOTA">TOYOTA</option>
+                                                            <option value="VOLSWAGEN">VOLSWAGEN</option>
+                                                            <option value="AUTRE MARQUE">AUTRE</option>
+                                                    </select>
+                                                    <!--input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control requis" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1"-->
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -498,10 +523,10 @@
                                 </ul>
                                 <div class="row" style="position:relative !important;top:-118px !important">
                                 <label class="radio-inline" id='j' style="font-size:12px">
-                                    <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important">attestation jaune
+                                    <input type="radio" name="optradio" id="jaune" value="jaune" checked style="cursor:pointer !important;display:none !important">
                                 </label>
                                 <label class="radio-inline" id='v' style="font-size:12px">
-                                    <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !important">attestation verte
+                                    <input type="radio" name="optradio" id="verte" value="verte" style="cursor:pointer !important;display:none !important">
                                 </label>
                                 </div>
                                 <div class="row" style="margin-top: -160px !important;">

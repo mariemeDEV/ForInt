@@ -114,7 +114,7 @@ function CalculeBC(){
         document.getElementById("Checkbox2").checked   = true;
         document.getElementById("Checkbox265").checked = true;
         document.getElementById('genre1').value        = ' promenade et affaires personne physique';
-        document.getElementById('genre').value         = ' PAPP';
+        document.getElementById('genre').value         = '';
         document.getElementById("Checkbox10").checked  = true;
         document.getElementById("Checkbox101").checked = true;
         $("#labelPack").fadeOut();
@@ -1951,13 +1951,13 @@ $(document).on('keypress',function(e) {
             if($('#categorie').val()==4){
                 $('#j').fadeOut(1000)
                 $('#v').fadeIn(1000)
-                $('#jaune').fadeOut(1000)
-                $('#verte').fadeIn(1000)
+                /*$('#jaune').fadeOut(1000)
+                $('#verte').fadeIn(1000)*/
             }else{
                 $('#v').fadeOut(1000)
                 $('#j').fadeIn(1000)
-                $('#jaune').fadeIn(1000)
-                $('#verte').fadeOut(1000)
+                /*$('#jaune').fadeIn(1000)
+                $('#verte').fadeOut(1000)*/
             }     
         }
     }

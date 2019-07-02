@@ -5,8 +5,7 @@
     <title>VERTE</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <style>
-      	@page { size:landscape; marks:none;size: 21.0cm;margin: 0cm ;}
-
+    @media print{@page {size: landscape}}
        .container{
         margin-top: 273px;
         font-size: 9px;

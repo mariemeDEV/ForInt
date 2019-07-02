@@ -132,11 +132,11 @@
             <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Numéro policce</th>
+                        <th>Numéro police</th>
                         <th>Matricule intermediaire</th>
                         <th>Prénom intermediaire et nom</th>
                         <th>Téléphone intérmédiaire</th>
-                        <th>Date annulation</th>
+                        <th>Date demande</th>
                         <th>Etat annulation</th>
                         <th>Motif annulation</th>
                         <th>Etat police</th>
@@ -150,24 +150,24 @@
                     while($row=$annulations->fetch()){
                       echo '<tr> 
                         <td>'.$row[0].'</td>
-                        <td>'.$row[1].'</td>
-                        <td>'.$row[2].$row[3].'</td>
-                        <td>'.$row[4].'</td>
-                        <td>'.$row[5].'</td>';
-                        if($row[6]=='A annuler'){
-                            echo '<td style="background:#ff000087">'.$row[6].'</td>';
-                        }else if($row[6]=='Annulé'){
-                            echo '<td style="background:#ffa50085">'.$row[6].'</td>';
+                        <td>'.$row[2].'</td>
+                        <td>'.$row[3].$row[3].'</td>
+                        <td>'.$row[5].'</td>
+                        <td>'.$row[6].'</td>';
+                        if($row[7]=='A annuler'){
+                            echo '<td style="background:#ff000087">A annuler</td>';
+                        }else if($row[7]=='Annule'){
+                            echo '<td style="background:#ffa50085">Annulé</td>';
                         }
-                        echo '<td>'.$row[7].'</td>
-                        <td>'.$row[8].'</td>
-                        <td>'.$row[2].$row[3].'</td>';
+                        echo '<td>'.$row[8].'</td>
+                        <td>'.$row[9].'</td>
+                        <td>'.$row[4].'</td>';
                         echo
                         "<td>
-                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
+                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[1]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
                         </td>
                         <td>
-                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
+                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[1]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
                         </td>
                     </tr>";
                     }
@@ -183,7 +183,7 @@
                 <div>
                     <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
                             <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
-                            <p>Vous avez déja soumis une demande pour l'annulation de ce contrat <br>Vous pouvez appeler au 33 825 20 14 pour connaitre l'etat d'avancement de votre demande.</p>                       
+                            <p>Contrat déjà annulé.</p>                       
                         </div>
                     </div>
                 </div>
@@ -225,12 +225,13 @@
         </div>
         <!--container-->
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../view/js/form-script.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -238,11 +239,12 @@
             $("#annulationsData_filter").find('input').focus()
         } );
 
-        var cell1 =  $("#annulationsData tr").find("td").eq(9)
+      /*  var cell1 =  $("#annulationsData tr").find("td").eq(9)
         cell1.on('click',function(){
                var police= $(this).find('.delete-btn').val()
-               $('#pol_num').val(police)
-        })
+               alert(police)
+               //$('#pol_num').val(police)
+        })*/
 
         $('.cp-btn').on('click', function(){
             var contrat = $(this).val()
@@ -250,14 +252,16 @@
             $('#pol_folder').val(contrat)
         })
 
-        $('#annulationsData tr').each(function(){
+        $(document).find('#annulationsData tr').each(function(){
             var etat       = $(this).find("td").eq(5).html(); 
             var delete_btn = $(this).find("td").eq(9)
             delete_btn.on('click',function(){
-                if(etat=='Annulé'){
+                if(etat=='Annule'){
                     $('#annul_demande').fadeIn();
                 }else if(etat=='A annuler'){
-                    $('#annul_modal').fadeIn();
+                    var police= $(this).find('.delete-btn').val()
+                    $('#pol_num').val(police)
+                    $('#annul_modal').fadeIn()
                 }
             })
         })

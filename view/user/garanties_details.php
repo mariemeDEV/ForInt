@@ -34,6 +34,7 @@
             width: 87%;
             margin-left: 6%;
             margin-top: 8%;
+            height: 640px;
         }
         .command-header{
             background:#062945;
@@ -107,6 +108,22 @@
         .p-title{
             text-decoration:underline
         }
+        .tabs{
+            height: 238px !important
+        }
+        .tabs-1,p{
+            padding-left: 291px !important;
+            position: relative;
+            top: -170px;
+        }
+        .tab-img{
+        width: 299px;
+        height: 195px;
+        position: relative;
+        left: -20px;
+        border: 1px solid #f7ba00;
+        border-radius: 2%;
+        }
    /*.whatIf{
             float: right;
             font-size: 10px;
@@ -141,8 +158,8 @@
                     <li><a href="#tabs-12">Packs</a></li>
                 </ul>
                 <div id="tabs-1">
-                    <table class="table">
-                    <p>Appelée communément  assurance « contre tiers », elle s’applique à la réparation des dommages corporels ou matériels résultant : Des accidents, incendies ou explosions causés par le véhicule, les accessoires  et produits servant à son utilisation, les objets et substances qu’il transporte ;De la chute de ces accessoires, objets, substances ou produitsLa RC est accordée, que le véhicule soit en circulation ou hors circulation.L’assurance RC est valable dans ensemble des territoires membres de la CIMA.Pour les pays membre de la CEDEAO, et non membre de la CIMA, la circulation dans ces territoires nécessite la détention d’une Carte brune CEDEAO pour couvrir la responsabilité civile pouvant être encourue dans ces pays.Les autres garanties ne sont valables qu’au Sénégal et peuvent être étendues à d’autres territoires.</p>
+                    <table class="table" style='position: relative;top: -114px;'>
+                    <img src="../../img/rc.jpg" alt="" class='tab-img'><p>Appelée communément  assurance « contre tiers », elle s’applique à la réparation des dommages corporels ou matériels résultant : Des accidents, incendies ou explosions causés par le véhicule, les accessoires  et produits servant à son utilisation, les objets et substances qu’il transporte ;De la chute de ces accessoires, objets, substances ou produitsLa RC est accordée, que le véhicule soit en circulation ou hors circulation.L’assurance RC est valable dans ensemble des territoires membres de la CIMA.Pour les pays membre de la CEDEAO, et non membre de la CIMA, la circulation dans ces territoires nécessite la détention d’une Carte brune CEDEAO pour couvrir la responsabilité civile pouvant être encourue dans ces pays.Les autres garanties ne sont valables qu’au Sénégal et peuvent être étendues à d’autres territoires.</p>
                     <thead class='garanties-head'>
                         <tr>
                             <th scope="col">Ce que nous garantissons</th>
@@ -164,7 +181,7 @@
              
                 <div id="tabs-3"><!--défense et recours-->
                 <table class="table">
-                    <p>L’assureur réclame auprès du tiers responsable ou de son assureur substitué, la réparation des préjudices subis par son assuré à l’occasion d’un accident dans lequel le véhicule assuré est impliqué pourvu que le tiers responsable soit identifié.L’assureur s’engage également à pourvoir à la défense de l’assuré devant les juridictions compétentes lorsqu’il y est poursuivi à la suite d’un sinistre couvert. Cette garantie s’exerce à concurrence de 200.000 FCFA.</p>
+                    <img src="../../img/dr.jpg" alt="" class='tab-img'><p style='position:relative;top:-191px !important'>L’assureur réclame auprès du tiers responsable ou de son assureur substitué, la réparation des préjudices subis par son assuré à l’occasion d’un accident dans lequel le véhicule assuré est impliqué pourvu que le tiers responsable soit identifié.L’assureur s’engage également à pourvoir à la défense de l’assuré devant les juridictions compétentes lorsqu’il y est poursuivi à la suite d’un sinistre couvert. Cette garantie s’exerce à concurrence de 200.000 FCFA.</p>
                     <thead class='garanties-head'>
                         <tr>
                             <th scope="col">Ce que nous garantissons</th>
@@ -197,7 +214,7 @@
                         </thead>
                         <body class='garanties-body'>
                             <tr>
-                                <td>Les dommages matériels  subis par le véhicule assuré et les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule et provenant d’incendie, de combustion spontanée, de chute de la foudre, d’explosions.</td>
+                                <td><img src="../../img/incendie.jpg" alt="" class='tab-img'><p  style='position:relative;top:-202px !important'>Les dommages matériels  subis par le véhicule assuré et les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule et provenant d’incendie, de combustion spontanée, de chute de la foudre, d’explosions.</p></td>
                                 <td style='color:#3d753b;font-weight:bold'>Valeur vénale du véhicule au jour du sinistre sans franchise.</td>
                             </tr>
                         </body>
@@ -213,7 +230,7 @@
                         </thead>
                         <tbody class ='garanties-body'>
                             <tr>
-                                <td>Les dommages subis par le véhicule assuré ainsi que  les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule et résultant de la disparition ou de la détérioration à la suite d’un vol ou d’une tentative de vol.</td>
+                                <td><img src="../../img/vol.jpg" alt="" class='tab-img'><p  style='position:relative;top:-180px !important'>Les dommages subis par le véhicule assuré ainsi que  les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule et résultant de la disparition ou de la détérioration à la suite d’un vol ou d’une tentative de vol.<p></td>
                                 <td style='color:#3d753b;font-weight:bold'>Valeur vénale du véhicule au jour du sinistre.Franchise obligatoire de FCFA 36.000</td>
                             </tr>
                         </tbody>
@@ -229,7 +246,7 @@
                         </thead>
                         <tbody class='garanties-body'>
                             <tr>
-                                <td>Le bris des pare-brise, glaces latérales et glaces arrières lorsque le bris résulte d’un événement quelconque.</td>
+                                <td><img src="../../img/bg.jpg" alt="" class='tab-img'><p  style='position:relative;top:-203px !important'>Le bris des pare-brise, glaces latérales et glaces arrières lorsque le bris résulte d’un événement quelconque.</p></td>
                                 <td style='color:#3d753b;font-weight:bold'>Valeur de remplacement des glaces brisées y compris les fournitures nécessaires à leur remplacement et les frais de pose.</td>
                             </tr>
                         </tbody>
@@ -245,7 +262,7 @@
                         </thead>
                         <tbody class='garanties-body'>
                             <tr>
-                                <td>Les dommages subis par le véhicule de l’assuré ainsi que les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule par suite de collision, choc contre un corps fixe ou mobile, de renversement</td>
+                                <td><img src="../../img/tc.jpg" alt="" class='tab-img'><p  style='position:relative;top:-194px !important'>Les dommages subis par le véhicule de l’assuré ainsi que les accessoires et pièces de rechange dont le catalogue du constructeur prévoit la livraison en même temps que le véhicule par suite de collision, choc contre un corps fixe ou mobile, de renversement</p></td>
                                 <td style='color:#3d753b;font-weight:bold'>Valeur à neuf ou catalogue du concessionnaire avec une Franchise obligatoire de FCFA 36.000</td>
                             </tr>
                         </tbody>
@@ -261,14 +278,14 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Les dommages subis par le véhicule de l’assuré par suite de collision avec un véhicule ou un animal appartenant à un tiers identifié ou avec un piéton, lui-même identifié.</td>
+                                <td><img src="../../img/t_col.jpg" alt="" class='tab-img'><p  style='position:relative;top:-204px !important'>Les dommages subis par le véhicule de l’assuré par suite de collision avec un véhicule ou un animal appartenant à un tiers identifié ou avec un piéton, lui-même identifié.</p></td>
                                 <td  style='color:#3d753b;font-weight:bold'>Valeur à neuf ou catalogue du concessionnaire avec une Franchise obligatoire de FCFA 36.000</td>
                             </tr>
                         </tbody>
                     </table>
                 </div><!--Tiérce collision-->
                 <div id="tabs-9"><!--avance sur recours-->
-                    <p>En cas de collision avec un véhicule tiers identifié, accident par lequel notre assuré est dans son bon droit totalement ou partiellement, nous nous engageons à rembourser à notre assuré, les frais de réparation des dommages matériels subis par son véhicule.Un capital optionnel (500.000, 750.000, 1.000.00, 2.000.000) est proposé et en cas de sinistre, l’avance est réglée rapidement à la réception du dossier complet.</p>
+                <img src="../../img/ar.jpg" alt="" class='tab-img'><p  style='position:relative;top:-153px !important'>En cas de collision avec un véhicule tiers identifié, accident par lequel notre assuré est dans son bon droit totalement ou partiellement, nous nous engageons à rembourser à notre assuré, les frais de réparation des dommages matériels subis par son véhicule.Un capital optionnel (500.000, 750.000, 1.000.00, 2.000.000) est proposé et en cas de sinistre, l’avance est réglée rapidement à la réception du dossier complet.</p>
                     <table class='table'>
                         <thead class='garanties-head'>
                             <tr>
@@ -285,7 +302,7 @@
                     </table>
                 </div><!--avance sur recours-->
                 <div id="tabs-10">
-                    <p>Des indemnités contractuelles sont prévues pour les risques décès, infirmité permanente, frais médicaux pour les personnes transportées dans la limite des places autorisées par l’administration ayant délivré le récépissé de circulation.</p>
+                <img src="../../img/pt.jpg" alt="" class='tab-img'><p  style='position:relative;top:-152px !important'>Des indemnités contractuelles sont prévues pour les risques décès, infirmité permanente, frais médicaux pour les personnes transportées dans la limite des places autorisées par l’administration ayant délivré le récépissé de circulation.</p>
                     <table class='table'>
                         <thead class='garanties-head'>
                             <tr>
@@ -331,7 +348,7 @@
                     </thead>
                     <tbody class='garanties-body'>
                         <tr>
-                            <td>Les dommages causés à autrui par le véhicule de l’assuré (RC en circulation et RC hors circulation)</td>
+                            <td><img src="../../img/ass.jpg" alt="" class='tab-img'><p>Les dommages causés à autrui par le véhicule de l’assuré (RC en circulation et RC hors circulation)</p></td>
                             <td style='color:#3d753b;font-weight:bold'>ILLIMITE</td>
                         </tr>
                         <tr>

@@ -40,7 +40,7 @@
         <main class="mdl-layout__content success-content">
             <div class="mdl-content">
                 <h1 class="success-message">Succés !</h1>
-                <p class='success-text'>L'annulation de cette production sera prise en compte par nos agents,<br> merci de nous contacter  pour vous assurer que votre stock est bien mise à jour ou appelez nous au <br><b>33 825 20 14 </b>pour obtenir un rendez-vous</p>
+                <p class='success-text'>Votre demande d'annulation sera prise en charge par le support Saham Assurance,<br>Cordialement</p>
                 <div class="retour-content">
                     <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>
