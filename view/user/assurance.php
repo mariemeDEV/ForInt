@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="../../view/style/intlTelInput.css">
     <link rel="stylesheet" href="../../view/style/style_aff.css">
+
     <style>
         .selected-flag{
             z-index: 4 !important;
@@ -145,13 +146,20 @@
             list-style-type:square !important;
             font-size:11px !important
         }
-        /* .ui-tabs-tab a{
-            color: #f7bb3d !important;
-        } */
-    </style>
+        #continue-validation{
+            width: 98px;
+            /* height: 59px; */
+            padding: 6px;
+            margin: auto;
+            background: #062945;
+            border: none;
+            color: #f7ba00;
+    }
+</style>
 </head><!--end header-->
 
 <body onload="myFunction();CalculeBC()"id="assurance">
+
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <?php include "header.php"; ?>
     <form method="post" action="../../controller/formulaire/index.php" id="assurance-form" ><!--form-->
@@ -344,32 +352,7 @@
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->
                                                 <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;">Marque<span style="color: red;">*</span></label> 
                                                 <div class="input-group"><!-- debut input-group --> 
-                                                    <select style="font-size: 15px;font-family: Times New Roman;height:32px !important" class="form-control requis" name="marque" id="marque" placeholder="Marque">
-                                                            <option value="ACURA">ACURA</option>
-                                                            <option value="BMW">BMW</option>
-                                                            <option value="CITROEN">CITROEN</option>
-                                                            <option value="CHEVROLET">CHEVROLET</option>
-                                                            <option value="DACIA">DACIA</option>
-                                                            <option value="FORD">FORD</option>
-                                                            <option value="FIAT">FIAT</option>
-                                                            <option value="FORD">FORD</option>
-                                                            <option value="HOLDEN">HOLDEN</option>
-                                                            <option value="HONDA">HONDA</option>
-                                                            <option value="HYUNDAI">HYUNDAI</option>
-                                                            <option value="ISUZU">ISUZU</option>
-                                                            <option value="KIA">KIA</option>
-                                                            <option value="LEXUS">LEXUS</option>
-                                                            <option value="MAZDA">MARDA</option>
-                                                            <option value="MITSUBISHI">MITSUBISHI</option>
-                                                            <option value="NISSAN">NISSAN</option>
-                                                            <option value="SUZUKI">SUZUKI</option>
-                                                            <option value="SABARU">SABARU</option>
-                                                            <option value="SEAT">SEAT</option>
-                                                            <option value="TOYOTA">TOYOTA</option>
-                                                            <option value="VOLSWAGEN">VOLSWAGEN</option>
-                                                            <option value="AUTRE MARQUE">AUTRE</option>
-                                                    </select>
-                                                    <!--input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control requis" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1"-->
+                                                    <input type="text" style="font-size: 15px;font-family: Times New Roman;" class="form-control requis" name="marque" id="marque" placeholder="Marque" title="Marque" aria-describedby="sizing-addon1">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
 
@@ -486,8 +469,6 @@
                                                 <p></p>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <select class="custom-select col-lg-12" style="height: 30px;font-size: 15px;font-family: Times New Roman;margin-top:-89px;border-radius:0 !important;margin-left:0 !important;border:1px solid #bbcedc" onchange="CalculeBC()" id="charge" name="charge">
-                                                        <!--option value="N/A" selected>CHARGE UTILE<span style="color: red;">*</span></option-->
-                                                        <option value="Break" selected>Break</option>
                                                         <option value="Moins de 3,5T">Moins de 3,5T</option>
                                                         <option value="Plus de 3,5T">Plus de 3,5T</option>
                                                     </select>
@@ -532,10 +513,10 @@
                                 <div class="row" style="margin-top: -160px !important;">
                                     <div class="col-lg-6"> 
                                         <div class="input-group">
-                                            <input class="form-control form-control-sm attestations" type="text" name="attestation-j" id="attestation-jaune" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
+                                            <input class="form-control form-control-sm attestations" type="text" name="attestation-j" id="attestation-jaune" class="form-control" placeholder="Attestation jaune" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important;">
                                         </div>
                                         <div class="input-group"> 
-                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation-v" id="attestation-verte" class="form-control" placeholder="Attestation" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
+                                            <input class="form-control form-control-sm attestations"  type="text" name="attestation-v" id="attestation-verte" class="form-control" placeholder="Attestation verte" title="Attestation" aria-describedby="sizing-addon1" style="font-size: 15px;font-family: Times New Roman;height: 34px !important; !important;display:none">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">     
@@ -1403,6 +1384,18 @@
         </div>
         </div>
     </div><!--garanties-->
+    <div class="card modal" id='no-attestation'><!--épuisement de stock d'attestation-->
+            <!--div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div-->
+            <div class="card-body">
+            <div>
+                <div class="modal-content" style='height: 183px !important;width: 27% !important;text-align:center !important'>
+                        <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                        <p id='empty-msg'></p>      
+                        <button id='continue-validation'>Continuer</button>                 
+                    </div>
+                </div>
+            </div>
+        </div><!--épuisement de stock d'attestation-->
 
     <form id="hidden-form">
         <select name="" id="vertes-attestations" style="display:none !important">
@@ -1453,12 +1446,30 @@ $(document).ready(function(){
             tab.push($(this).val())
         })
         return tab;
+        
     }
   
-    function getStockState(){
-        $('#stockEtat').fadeIn(1000)
-    }
+    var vertes = pushAttestations('#vertes-attestations option',attestationsVertes);
+    var jaunes = pushAttestations('#jaunes-attestations option',attestationsJaunes);
+    var cedeao = pushAttestations('#cedeao-attestations option',attestationsCedeao);
 
+    console.log(vertes)
+    console.log(jaunes)
+    console.log(cedeao)
+
+        if(jaunes.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations jaunes dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
+        if(vertes.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations jaunes dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
+        if(cedeao.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations cedeao dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
+      
     function getExist(assertion){
         if(assertion=="non"){
             $('#attestations-alert').fadeIn()
@@ -1470,10 +1481,12 @@ $(document).ready(function(){
         }
     }
 
-    $(function() {
-        var vertes = pushAttestations('#vertes-attestations option',attestationsVertes)
-        var jaunes = pushAttestations('#jaunes-attestations option',attestationsJaunes)
-        var cedeao = pushAttestations('#cedeao-attestations option',attestationsCedeao )
+    var marques_voitures = ['FIAT','BMW','ACURA','FORD','HOLDEN','HONDA','HYUNDAI','ISUZU','KIA','LEXUS','NISSAN','RENAULT','SEAT','CHEVROLET','CITROEN','DACIA','INFINITI','MAZDA','MITSUBISHI','PEUGEOT','SUBARU','TOYOTA','VOLSWAGEN']
+
+    $(function(){
+        $('#marque').autocomplete({
+            source: marques_voitures
+        })
 
         $("#attestation-verte").autocomplete({
             source : vertes,
@@ -1486,6 +1499,7 @@ $(document).ready(function(){
                 }
             }
         });
+
         $("#attestation-jaune").autocomplete({
             source: jaunes,
             change : function(event,ui){
@@ -1497,6 +1511,7 @@ $(document).ready(function(){
                 }
             }
         });
+
         $("#attesta").autocomplete({
             source: cedeao,
             change : function(event,ui){
@@ -1508,15 +1523,10 @@ $(document).ready(function(){
                 }
             }
         });
+
     });
 
-    // if($('#attestation-verte').val()!='' || $('#attestation-jaune').val()!=''){
-    //         alert('ok')
-    //     if(('#attesta').val()!=''){
-    //         alert('yes yes')
-    //     }
-    // }
-
+    
     $(".more-garanties").on('click',function(){
         $('#alert-garanties').fadeIn(1000)
     })
@@ -1524,6 +1534,11 @@ $(document).ready(function(){
         $('#alert-garanties').fadeOut(1000)
     })
     $( "#tabs" ).tabs();
+   
+    $('.close, #continue-validation').on('click',function(){
+        $('#no-attestation').fadeOut(1000)
+    })
+
 })
 
 

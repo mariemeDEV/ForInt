@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
-    header ('location: ./saham-app');
+    header ('location: ../../view/user/connect.php');
 }
 
 
@@ -52,14 +52,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
                     <div class="col"></div>
                 </div>
             </div>
-
         </div>
     </main>
-
 </div>
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
-
 </body>
-
 </html>

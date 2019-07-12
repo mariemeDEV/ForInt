@@ -29,16 +29,14 @@
                 <th>NUMÉRO ATTESTATION</th>
                 <th>NUMÉRO FACTURE</th>
                 <th>MATRICULE INTERMÉDIAIRE</th>
-                <th>NOM INTERMÉDIAIRE</th>
-                <th>PRÉNOM INTERMÉDIAIRE</th>
+              
                 <th>NOM ASSURÉ</th>
                 <th>PRÉNOM ASSURÉ</th>
                 <th>NOM CONDUCTEUR</th>
                 <th>PRÉNOM CONDUCTEUR</th>
-                <th>DATE DÉBUT PERIODE DE GARANTIE</th>
-                <th>HEURE DÉBUT PÉRIODE DE GARANTIE</th>
-                <th>DATE FIN PÉRIODE DE GARANTIE</th>
-                <th>HEURE FIN PÉRIODE DE GARANTIE</th>
+                <th>DATE EFFET</th>
+                <th>DATE ECHEANCE</th>
+                <th>DATE EMISSION</th>
                 <th>MARQUE VOITURE</th>
                 <th>IMMATRICULATION</th>
                 <th>GENRE</th>
@@ -67,16 +65,13 @@
             <td>$row[2]</td>
             <td>$row[3]</td>
             <td>$row[4]</td>
-            <td>$row[5]</td>
-            <td>$row[6]</td>
             <td>$row[7]</td>
             <td>$row[8]</td>
             <td>$row[9]</td>
             <td>$row[10]</td>
             <td>$row[11]</td>
-            <td>$row[12]</td>
             <td>$row[13]</td>
-            <td>$row[14]</td>
+            <td>$row[1]</td>
             <td>$row[15]</td>
             <td>$row[16]</td>
             <td>$row[17]</td>
@@ -92,7 +87,7 @@
             <td>$row[27]</td>
             <td>$row[28]</td>
             <td>$row[29]</td>
-            <td>$row[30]</td>                        
+            <td>$row[30]</td> 
         </tr>";
         }
         ?>

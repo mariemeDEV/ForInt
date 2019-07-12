@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 28 juin 2019 à 19:44
+-- Généré le :  ven. 05 juil. 2019 à 19:18
 -- Version du serveur :  10.3.15-MariaDB
 -- Version de PHP :  7.1.30
 
@@ -38,14 +38,6 @@ CREATE TABLE `annulation` (
   `matricule_auteur` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `annulation`
---
-
-INSERT INTO `annulation` (`id_annulation`, `id_police`, `code_intermediaire`, `motif_annulation`, `etat_annulation`, `date_annulation`, `matricule_auteur`) VALUES
-(9, '5d139acc46f16', 4091, 'Retour', 'AnnulÃ©', '2019-06-28 14:51:03', 4091),
-(10, '5d15efc577759', 4091, 'Erreur de saisie', 'AnnulÃ©', '2019-06-28 15:04:56', 4091);
-
 -- --------------------------------------------------------
 
 --
@@ -66,14 +58,9 @@ CREATE TABLE `assure` (
 --
 
 INSERT INTO `assure` (`id_assure`, `nom_assure`, `prenom_assure`, `adresse_assure`, `tel_assure`, `email_assure`) VALUES
-('5d139acc46f16', 'DIALLO', 'ABDOULAYE', 'PARCELES', '774585588', 'DIALLO@GMAIL.COM'),
-('5d139b132e870', 'NDIAYE', 'DIARRA', 'PARCELLES', '778541025', 'NDIAYE@GMAIL.COM'),
-('5d1480739f31f', 'DIOP', 'DIOR', 'PARCELLES', '775210855', 'DIOP@GMAIL.COM'),
-('5d14ac7c66078', 'nom prospect', 'prenom prospect', 'adresse prospect', '', 'emailprospect'),
-('5d14ae3d31488', 'FALL', 'AMADOU', 'PARCELLES', '775241186', 'FALL@GMAIL.COM'),
-('5d15ef2795f83', 'FAYE', 'DIOR', 'PARCELLES', '775412058', 'FAYE@GMAIL.COM'),
-('5d15ef7b5cca2', 'DIOP', 'KHADI', 'PARCELLES', '785410259', 'DIOP@GMAIL.COM'),
-('5d15efc577759', 'DIA', 'FALLA', 'SIPRES', '785410258', 'DIA@GMAIL.COM');
+('5d1f7debb5e93', 'FAYE', 'AMADOU', 'PARCELLES', '775402296', 'FAYE@GMAIL.COM'),
+('5d1f7f4650509', 'DIENG', 'OULIMATA', 'PARCELLES', '78540229', 'NIANG@GMAIL.COM'),
+('5d1f82ba32177', 'KOUNDOUL', 'MARIME', 'PARCELLES', '', 'KNDEYEMARIEME@GMAIL.COM');
 
 -- --------------------------------------------------------
 
@@ -83,7 +70,7 @@ INSERT INTO `assure` (`id_assure`, `nom_assure`, `prenom_assure`, `adresse_assur
 
 CREATE TABLE `attestation` (
   `id_attestation` int(11) NOT NULL,
-  `numero_attestation` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `numero_attestation` varchar(10) NOT NULL,
   `id_type` int(10) NOT NULL,
   `id_vente` varchar(20) DEFAULT NULL,
   `intermediaire` int(10) DEFAULT NULL,
@@ -96,49 +83,110 @@ CREATE TABLE `attestation` (
 --
 
 INSERT INTO `attestation` (`id_attestation`, `numero_attestation`, `id_type`, `id_vente`, `intermediaire`, `etat_actuel`, `etat_sortie`) VALUES
-(411, '0000051', 3, NULL, 4091, 'attribue', 'vendue'),
-(412, '0000001', 1, NULL, 4091, 'attribue', 'restante'),
-(413, '0000002', 1, NULL, 4091, 'attribue', 'restante'),
-(414, '0000003', 1, NULL, 4091, 'attribue', 'restante'),
-(415, '0000004', 1, NULL, 4091, 'attribue', 'restante'),
-(416, '0000005', 1, NULL, 4091, 'attribue', 'restante'),
-(417, '0000006', 1, NULL, 4091, 'attribue', 'restante'),
-(418, '0000007', 1, NULL, 4091, 'attribue', 'restante'),
-(419, '0000008', 1, NULL, 4091, 'attribue', 'restante'),
-(420, '0000009', 1, NULL, 4091, 'attribue', 'restante'),
-(421, '0000010', 1, NULL, 4091, 'attribue', 'restante'),
-(422, '0000011', 1, NULL, 4091, 'attribue', 'restante'),
-(423, '0000012', 1, NULL, 4091, 'attribue', 'restante'),
-(424, '0000013', 1, NULL, 4091, 'attribue', 'restante'),
-(425, '0000014', 1, NULL, 4091, 'attribue', 'restante'),
-(426, '0000015', 1, NULL, 4091, 'attribue', 'restante'),
-(427, '0000016', 1, NULL, 4091, 'attribue', 'restante'),
-(428, '0000017', 1, NULL, 4091, 'attribue', 'restante'),
-(429, '0000018', 1, NULL, 4091, 'attribue', 'restante'),
-(430, '0000019', 1, NULL, 4091, 'attribue', 'restante'),
-(431, '0000020', 1, NULL, 4091, 'attribue', 'restante'),
-(432, '0000021', 2, NULL, 4091, 'attribue', 'vendue'),
-(433, '0000022', 2, 'NULL', 4091, 'attribue', 'vendue'),
-(434, '0000023', 2, NULL, 4091, 'attribue', 'restante'),
-(435, '0000024', 2, 'dFtUp', 4091, 'attribue', 'vendue'),
-(436, '0000025', 2, 'Heyw8', 4091, 'attribue', 'vendue'),
-(437, '0000026', 2, NULL, 4091, 'attribue', 'restante'),
-(438, '0000027', 2, NULL, 4091, 'attribue', 'restante'),
-(439, '0000028', 2, NULL, 4091, 'attribue', 'restante'),
-(440, '0000029', 2, NULL, 4091, 'attribue', 'restante'),
-(441, '0000030', 2, NULL, 4091, 'attribue', 'restante'),
-(442, '0000031', 2, NULL, 4091, 'attribue', 'restante'),
-(443, '0000032', 3, 'NULL', 4091, 'attribue', 'vendue'),
-(444, '0000033', 3, 'Heyw8', 4091, 'attribue', 'vendue'),
-(445, '0000034', 3, NULL, 4091, 'attribue', 'restante'),
-(446, '0000035', 3, 'dFtUp', 4091, 'attribue', 'vendue'),
-(447, '0000036', 3, NULL, 4091, 'attribue', 'restante'),
-(448, '0000037', 3, NULL, 4091, 'attribue', 'restante'),
-(449, '0000038', 3, NULL, 4091, 'attribue', 'restante'),
-(450, '0000039', 3, NULL, 4091, 'attribue', 'restante'),
-(451, '0000040', 3, NULL, 4091, 'attribue', 'restante'),
-(452, '0000041', 3, NULL, 4091, 'attribue', 'restante'),
-(453, '0000042', 3, NULL, 4091, 'attribue', 'restante');
+(4, '0023926', 1, '', 4000, 'attribue', 'restante'),
+(5, '0023926', 1, '', 4000, 'attribue', 'restante'),
+(6, '0023927', 1, '', 4000, 'attribue', 'restante'),
+(7, '0023927', 1, '', 4000, 'attribue', 'restante'),
+(8, '0023928', 1, '', 4000, 'attribue', 'restante'),
+(9, '0023928', 1, '', 4000, 'attribue', 'restante'),
+(10, '0023929', 1, '', 4000, 'attribue', 'restante'),
+(11, '0023929', 1, '', 4000, 'attribue', 'restante'),
+(12, '0023930', 1, '', 4000, 'attribue', 'restante'),
+(13, '0023930', 1, '', 4000, 'attribue', 'restante'),
+(14, '0159491', 2, '', 4000, 'attribue', 'restante'),
+(15, '0159491', 2, '', 4000, 'attribue', 'restante'),
+(16, '0159492', 2, '', 4000, 'attribue', 'restante'),
+(17, '0159492', 2, '', 4000, 'attribue', 'restante'),
+(18, '0159493', 2, '', 4000, 'attribue', 'restante'),
+(19, '0159493', 2, '', 4000, 'attribue', 'restante'),
+(20, '0159494', 2, '', 4000, 'attribue', 'restante'),
+(21, '0159494', 2, '', 4000, 'attribue', 'restante'),
+(22, '0159495', 2, '', 4000, 'attribue', 'restante'),
+(23, '0159495', 2, '', 4000, 'attribue', 'restante'),
+(24, '0645956', 3, '', 4000, 'attribue', 'restante'),
+(25, '0645956', 3, '', 4000, 'attribue', 'restante'),
+(26, '0645957', 3, '', 4000, 'attribue', 'restante'),
+(27, '0645957', 3, '', 4000, 'attribue', 'restante'),
+(28, '0645958', 3, '', 4000, 'attribue', 'restante'),
+(29, '0645958', 3, '', 4000, 'attribue', 'restante'),
+(30, '0645959', 3, '', 4000, 'attribue', 'restante'),
+(31, '0645959', 3, '', 4000, 'attribue', 'restante'),
+(32, '0645960', 3, '', 4000, 'attribue', 'restante'),
+(33, '0645960', 3, '', 4000, 'attribue', 'restante'),
+(34, '0645961', 3, '', 4000, 'attribue', 'restante'),
+(35, '0645961', 3, '', 4000, 'attribue', 'restante'),
+(36, '0645962', 3, '', 4000, 'attribue', 'restante'),
+(37, '0645962', 3, '', 4000, 'attribue', 'restante'),
+(38, '0645963', 3, '', 4000, 'attribue', 'restante'),
+(39, '0645963', 3, '', 4000, 'attribue', 'restante'),
+(40, '0645964', 3, '', 4000, 'attribue', 'restante'),
+(41, '0645964', 3, '', 4000, 'attribue', 'restante'),
+(42, '0645965', 3, '', 4000, 'attribue', 'restante'),
+(43, '0645965', 3, '', 4000, 'attribue', 'restante'),
+(44, '0645966', 3, '', 4000, 'attribue', 'restante'),
+(45, '0645966', 3, '', 4000, 'attribue', 'restante'),
+(46, '0645967', 3, '', 4000, 'attribue', 'restante'),
+(47, '0645967', 3, '', 4000, 'attribue', 'restante'),
+(48, '0645968', 3, '', 4000, 'attribue', 'restante'),
+(49, '0645968', 3, '', 4000, 'attribue', 'restante'),
+(50, '0645969', 3, '', 4000, 'attribue', 'restante'),
+(51, '0645969', 3, '', 4000, 'attribue', 'restante'),
+(52, '0645970', 3, '', 4000, 'attribue', 'restante'),
+(53, '0645970', 3, '', 4000, 'attribue', 'restante'),
+(54, '0000010', 1, '', 4091, 'attribue', 'restante'),
+(55, '0000010', 1, '', 4091, 'attribue', 'restante'),
+(56, '0000011', 1, '', 4091, 'attribue', 'restante'),
+(57, '0000011', 1, '', 4091, 'attribue', 'restante'),
+(58, '0000012', 1, '', 4091, 'attribue', 'restante'),
+(59, '0000012', 1, '', 4091, 'attribue', 'restante'),
+(60, '0000013', 1, '', 4091, 'attribue', 'restante'),
+(61, '0000013', 1, '', 4091, 'attribue', 'restante'),
+(62, '0000014', 1, '', 4091, 'attribue', 'restante'),
+(63, '0000014', 1, '', 4091, 'attribue', 'restante'),
+(64, '0000015', 1, '', 4091, 'attribue', 'restante'),
+(65, '0000015', 1, '', 4091, 'attribue', 'restante'),
+(66, '0000016', 1, '', 4091, 'attribue', 'restante'),
+(67, '0000016', 1, '', 4091, 'attribue', 'restante'),
+(68, '0000017', 1, '', 4091, 'attribue', 'restante'),
+(69, '0000017', 1, '', 4091, 'attribue', 'restante'),
+(70, '0000018', 1, '', 4091, 'attribue', 'restante'),
+(71, '0000018', 1, '', 4091, 'attribue', 'restante'),
+(72, '0000019', 1, '', 4091, 'attribue', 'restante'),
+(73, '0000019', 1, '', 4091, 'attribue', 'restante'),
+(74, '0000020', 1, '', 4091, 'attribue', 'restante'),
+(75, '0000020', 1, '', 4091, 'attribue', 'restante'),
+(80, '0000023', 2, '7ESnK', 4091, 'attribue', 'vendue'),
+(81, '0000023', 2, '7ESnK', 4091, 'attribue', 'vendue'),
+(82, '0000024', 2, 'ol@3k', 4091, 'attribue', 'vendue'),
+(83, '0000024', 2, 'ol@3k', 4091, 'attribue', 'vendue'),
+(84, '0000025', 2, 'B7dct', 4091, 'attribue', 'vendue'),
+(85, '0000025', 2, 'B7dct', 4091, 'attribue', 'vendue'),
+(86, '0000026', 2, '', 4091, 'attribue', 'restante'),
+(87, '0000026', 2, '', 4091, 'attribue', 'restante'),
+(88, '0000027', 2, '', 4091, 'attribue', 'restante'),
+(89, '0000027', 2, '', 4091, 'attribue', 'restante'),
+(90, '0000028', 2, '', 4091, 'attribue', 'restante'),
+(91, '0000028', 2, '', 4091, 'attribue', 'restante'),
+(92, '0000029', 2, '', 4091, 'attribue', 'restante'),
+(93, '0000029', 2, '', 4091, 'attribue', 'restante'),
+(94, '0000030', 2, '', 4091, 'attribue', 'restante'),
+(95, '0000030', 2, '', 4091, 'attribue', 'restante'),
+(100, '0000033', 3, '7ESnK', 4091, 'attribue', 'vendue'),
+(101, '0000033', 3, '7ESnK', 4091, 'attribue', 'vendue'),
+(102, '0000034', 3, 'ol@3k', 4091, 'attribue', 'vendue'),
+(103, '0000034', 3, 'ol@3k', 4091, 'attribue', 'vendue'),
+(104, '0000035', 3, 'B7dct', 4091, 'attribue', 'vendue'),
+(105, '0000035', 3, 'B7dct', 4091, 'attribue', 'vendue'),
+(106, '0000036', 3, '', 4091, 'attribue', 'restante'),
+(107, '0000036', 3, '', 4091, 'attribue', 'restante'),
+(108, '0000037', 3, '', 4091, 'attribue', 'restante'),
+(109, '0000037', 3, '', 4091, 'attribue', 'restante'),
+(110, '0000038', 3, '', 4091, 'attribue', 'restante'),
+(111, '0000038', 3, '', 4091, 'attribue', 'restante'),
+(112, '0000039', 3, '', 4091, 'attribue', 'restante'),
+(113, '0000039', 3, '', 4091, 'attribue', 'restante'),
+(114, '0000040', 3, '', 4091, 'attribue', 'restante'),
+(115, '0000040', 3, '', 4091, 'attribue', 'restante');
 
 -- --------------------------------------------------------
 
@@ -192,13 +240,6 @@ CREATE TABLE `commandes` (
   `nombre_attestation_cedeao` int(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `commandes`
---
-
-INSERT INTO `commandes` (`id_commande`, `date_commande`, `matricule_intermediaire`, `nombre_attestation_verte`, `nombre_attestation_jaune`, `nombre_attestation_cedeao`) VALUES
-(5, '2019-06-27', 4091, 5, 4, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -218,14 +259,9 @@ CREATE TABLE `conducteur_vehicule` (
 --
 
 INSERT INTO `conducteur_vehicule` (`id_cond`, `nom_conducteur`, `prenom_conducteur`, `annee_permis`, `duree_conduite`) VALUES
-('5d139acc46f16', 'DIALLO', 'ABDOULAYE', '', ''),
-('5d139b132e870', 'NDIAYE', 'DIARRA', '', ''),
-('5d1480739f31f', 'DIOP', 'DIOR', '', ''),
-('5d14ac7c66078', 'nom prospect', 'prenom prospect', '', ''),
-('5d14ae3d31488', 'FALL', 'AMADOU', '', ''),
-('5d15ef2795f83', 'FAYE', 'DIOR', '', ''),
-('5d15ef7b5cca2', 'DIOP', 'KHADI', '', ''),
-('5d15efc577759', 'DIA', 'FALLA', '', '');
+('5d1f7debb5e93', 'FAYE', 'AMADOU', '', ''),
+('5d1f7f4650509', 'DIENG', 'OULIMATA', '', ''),
+('5d1f82ba32177', 'nom prospect', 'prenom prospect', '', '');
 
 -- --------------------------------------------------------
 
@@ -248,50 +284,20 @@ CREATE TABLE `contenir` (
 --
 
 INSERT INTO `contenir` (`id_contenir`, `lim_gant`, `franchise`, `prime_brute`, `prime_prorata`, `garantie_id_garantie`, `police_id_police`) VALUES
-('0Xdlgq0', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d139b132e870'),
-('5d13a20a19816', 'ILLIMITE', '0', '45181', '23720', 1, '5d13a20a08e72'),
-('5d13a20a19fe6', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d13a20a08e72'),
-('5d13a20a1a3ce', '0', '0', '0', '0', 4, '5d13a20a08e72'),
-('5d14aae3f1653', 'ILLIMITE', '0', '51078', '26815', 1, '5d14aae3e2808'),
-('5d14aae3f397c', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d14aae3e2808'),
-('5d14aae4002f4', '200000', '0', '6000', '3150', 3, '5d14aae3e2808'),
-('5d14aae400ac4', '0', '0', '15000', '7875', 4, '5d14aae3e2808'),
-('5d14aae402a05', '0', '36000', '9000', '4725', 5, '5d14aae3e2808'),
-('5d14aae402ded', '0', '0', '20000', '10500', 6, '5d14aae3e2808'),
-('5d14aae4035bd', '0', '0', '275000', '144375', 7, '5d14aae3e2808'),
-('5d14aae4039a5', '2000000', '0', '4800', '2520', 13, '5d14aae3e2808'),
-('5d14ac7c75694', 'ILLIMITE', '0', '65677', '34480', 1, '5d14ac7c66078'),
-('5d14ac7c75a7c', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d14ac7c66078'),
-('5d14ac7c7895d', '0', '0', '0', '0', 4, '5d14ac7c66078'),
-('5j2rqYw', '200000', '0', '6000', '3150', 3, '5d14ae3d31488'),
-('5Xwbb3t', '0', '36000', '9000', '4725', 5, '5d139acc46f16'),
-('9aajdg5', '0', '0', '15000', '7875', 4, '5d14ae3d31488'),
-('a2lY530', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d15efc577759'),
-('AgefW1y', '0', '0', '20000', '10500', 6, '5d14ae3d31488'),
-('Awfmgln', '0', '0', '20000', '10500', 6, '5d1480739f31f'),
-('c3mW6Xo', '0', '0', '20000', '10500', 6, '5d139acc46f16'),
-('Crh8x5W', '200000', '0', '6000', '3150', 3, '5d1480739f31f'),
-('ggchbss', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d139acc46f16'),
-('irdjicn', '0', '0', '20000', '10500', 6, '5d15efc577759'),
-('it7xy31', '0', '0', '15000', '7875', 4, '5d139acc46f16'),
-('jqeeyd0', 'ILLIMITE', '0', '51078', '26815', 1, '5d14ae3d31488'),
-('jw74yjk', '0', '36000', '9000', '4725', 5, '5d14ae3d31488'),
-('kdY5mdC', 'ILLIMITE', '0', '51078', '26815', 1, '5d139acc46f16'),
-('lCshgX1', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d14ae3d31488'),
-('m6hCAqh', 'ILLIMITE', '0', '51078', '26815', 1, '5d1480739f31f'),
-('mpzpixX', '0', '0', '15000', '7875', 4, '5d1480739f31f'),
-('qBoXh2o', '1000000', '0', '6000', '3150', 12, '5d139acc46f16'),
-('shxAbtn', 'ILLIMITE', '0', '51078', '26815', 1, '5d139b132e870'),
-('tgxpblZ', '0', '0', '15000', '7875', 4, '5d15efc577759'),
-('vpy9032', '0', '36000', '9000', '4725', 5, '5d1480739f31f'),
-('x3Zr5ah', '1000000', '0', '6000', '3150', 12, '5d1480739f31f'),
-('YAZl8rA', '0', '36000', '9000', '4725', 5, '5d15efc577759'),
-('ydrZ8ee', '200000', '0', '6000', '3150', 3, '5d15efc577759'),
-('yexo7hd', '0', '0', '18000', '9450', 14, '5d14ae3d31488'),
-('yuq7Y5@', 'ILLIMITE', '0', '51078', '26815', 1, '5d15efc577759'),
-('yzp2ns8', '0', '36000', '6000', '3150', 5, '5d139b132e870'),
-('ZnkY0vm', '2000000', '0', '12000', '6300', 13, '5d15efc577759'),
-('zygvx3z', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d1480739f31f');
+('0ihka7n', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d1f7debb5e93'),
+('1ipWz2@', '1000000', '0', '6000', '3150', 12, '5d1f7f4650509'),
+('2X56y52', '50000000', '0', 'GRATUITS', 'GRATUITS', 2, '5d1f7f4650509'),
+('5d1f82ba39b57', 'ILLIMITE', '0', '51078', '4469', 1, '5d1f82ba32177'),
+('5d1f82ba3d847', '0', '0', '0', '0', 4, '5d1f82ba32177'),
+('5d1f82d392fa3', 'ILLIMITE', '0', '51078', '8938', 1, '5d1f82ba32177'),
+('5d1f82d396c93', '0', '0', '0', '0', 4, '5d1f82ba32177'),
+('adplBBj', '0', '36000', '3000', '787', 5, '5d1f7debb5e93'),
+('CoYC5qY', '200000', '0', '6000', '1575', 3, '5d1f7debb5e93'),
+('dr1uCBp', '0', '0', '5000', '1312.5', 4, '5d1f7debb5e93'),
+('f3fCliy', 'ILLIMITE', '0', '51078', '13407', 1, '5d1f7debb5e93'),
+('iz8Xfde', 'ILLIMITE', '0', '51078', '26815', 1, '5d1f7f4650509'),
+('odCdmBz', '1000000', '0', '6000', '1575', 12, '5d1f7debb5e93'),
+('s9A3xwr', '0', '0', '20000', '5250', 6, '5d1f7debb5e93');
 
 -- --------------------------------------------------------
 
@@ -313,14 +319,9 @@ CREATE TABLE `decompte_prime` (
 --
 
 INSERT INTO `decompte_prime` (`id_dp`, `taxe`, `accessoire`, `fond_garantie`, `prime_nette`, `prime_totale`) VALUES
-('5d139acc46f16', 4976, 2000, 603, 47759, 55338),
-('5d139b132e870', 3197, 2000, 670, 29965, 35832),
-('5d1480739f31f', 5100, 2000, 636, 48995, 56731),
-('5d14ac7c66078', 3648, 2000, 862, 34480, 40990),
-('5d14ae3d31488', 6239, 3000, 636, 59390, 69265),
-('5d15ef2795f83', 5806, 3000, 603, 55057, 64466),
-('5d15ef7b5cca2', 5926, 3000, 603, 56264, 65793),
-('5d15efc577759', 5643, 3000, 603, 53429, 62675);
+('5d1f7debb5e93', 2419, 2000, 318, 22187, 26924),
+('5d1f7f4650509', 3197, 2000, 670, 29965, 35832),
+('5d1f82ba32177', 647, 2000, 111, 4469, 7227);
 
 -- --------------------------------------------------------
 
@@ -378,14 +379,9 @@ CREATE TABLE `intermediaire` (
 
 INSERT INTO `intermediaire` (`matricule`, `nom`, `prenom`, `adresse`, `tel`, `email`, `mdp`, `role`, `actived`) VALUES
 (401, 'Mboup', 'Fallou', 'liberte 6 extension', '774808682', 'fallou.mboup@sahamassurance.com', '$2y$10$anCfE8WNL6NDBFQCWl6YFuzaqhs8qEGfWONpzROCi8xW5vJWfYTJ6', 1, 1),
-(403, 'Dioug', 'dga', 'dakar', '768521463', 'dga@saham.com', '$2y$10$0p0eJ0t3Fgm/IVVU9W2UdO9DAxfn/mpR2a7yqoAhzX7F3vBYeC67C', 1, 1),
-(4032, 'faye', 'amadou', 'parcelles', '785412588', 'faye@saham.com', '$2y$10$UmRggmkiuNDVdv3mxm.bweD5SRyy6ji2gstFwVMmSngBA4HJiG25y', 2, 1),
-(4091, 'mbacke', 'samb', 'pikine', '778563256', 'mbacke@saham.com', '$2y$10$QPSZpcAG0WN/c4Hl9Mccnu1eXgXGtE9wNSsJENrBeFxa4uKe.g00K', 2, 1),
-(4095, 'Diop', 'Khadi', 'sipres', '785412263', 'diopkhadi@gmail.com', '$2y$10$hOBhwHX6FKPqfWi1V7IQkuYP/m0X8ts1mxioOn9cYfTgD5Y4N73le', 2, 0),
-(4595, 'Diop', 'Fallou', 'Parcelles', '785412263', 'd@gmail.com', 'passer123', 2, 1),
-(4820, 'dieng', 'ibrahima', 'foire', '784521103', 'ibrahima@gmail.com', '$2y$10$wH1sWnYU06UGGR85XrGzjOEcpYhPjqdPOujNCssQqnZqHByNwGs4e', 2, 0),
-(9841, 'Fall', 'Ibrahima', 'sipres', '785412036', 'fall@gmail.com', '$2y$10$nuZj5IqX897EEtsinaGjLeXp4Wg0KpwwchkdQaKrV0dVd8hJbvw2S', 2, 0),
-(40000, 'mbaye', 'fatou', 'parcelles', '778471524', 'mbaye@saham.com', '$2y$10$XyoPXcbgCBGGtH6TRK9gY.vzOpOAs/mMukMoFs6bQCt0mLvwPPU7O', 2, 1);
+(4000, 'ndiaye', 'diarra', 'parcelles', '775201899', 'diarra@gmail.com', '$2y$10$m.4Phi4.dFlkZSmpGjOrJ.PqXdd1KfxP.MORn6yyGe26Go79mWLl.', 2, 1),
+(4022, 'faye', 'amadou', 'sipres', '775420036', 'am@gmail.com', '$2y$10$vUB/JUeJn1OGs..KIcSZ5.H5BJYr3w6W4QdjCezOHuK3h5YEWGEGq', 2, 1),
+(4091, 'mbacke', 'samb', 'pikine', '778563256', 'mbacke@saham.com', '$2y$10$QPSZpcAG0WN/c4Hl9Mccnu1eXgXGtE9wNSsJENrBeFxa4uKe.g00K', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -407,14 +403,9 @@ CREATE TABLE `periode_garantie` (
 --
 
 INSERT INTO `periode_garantie` (`id_periode`, `date_debut`, `date_fin`, `heure_debut`, `heure_fin`, `duree`) VALUES
-('5d139acc46f16', '2019-06-26', '2019-12-25', '08:00:00', '23:59:00', '6'),
-('5d139b132e870', '2019-06-26', '2019-12-25', '08:00:00', '23:59:00', '6'),
-('5d1480739f31f', '2019-06-27', '2019-12-26', '08:00:00', '23:59:00', '6'),
-('5d14ac7c66078', '2019-06-27', '2019-12-26', '08:00:00', '23:59:00', '6'),
-('5d14ae3d31488', '2019-06-27', '2019-12-26', '08:00:00', '23:59:00', '6'),
-('5d15ef2795f83', '2019-06-28', '2019-12-27', '08:00:00', '23:59:00', '6'),
-('5d15ef7b5cca2', '2019-06-28', '2019-12-27', '08:00:00', '23:59:00', '6'),
-('5d15efc577759', '2019-06-28', '2019-12-27', '08:00:00', '23:59:00', '6');
+('5d1f7debb5e93', '2019-07-05', '2019-10-04', '08:00:00', '23:59:00', '3'),
+('5d1f7f4650509', '2019-07-05', '2020-01-04', '08:00:00', '23:59:00', '6'),
+('5d1f82ba32177', '2019-07-05', '2019-08-04', '08:00:00', '23:59:00', '1');
 
 -- --------------------------------------------------------
 
@@ -444,11 +435,8 @@ CREATE TABLE `police` (
 --
 
 INSERT INTO `police` (`id_police`, `num_police`, `date_police`, `numFacture`, `attestation`, `validation`, `etat`, `intermediaire_matricule`, `conducteur_vehicule_id_cond`, `periode_garantie_id_periode`, `vehicule_id_vehicule`, `decompte_prime_id_dp`, `red_maj_id_red_maj`, `assure_id_assure`) VALUES
-('5d139acc46f16', '4091/41000001', '2019-06-26 16:18:20', '41000001-2019-40910000', '0000023', 1, 'AnnulÃ©', 4091, '5d139acc46f16', '5d139acc46f16', '5d139acc46f16', '5d139acc46f16', '5d139acc46f16', '5d139acc46f16'),
-('5d139b132e870', '4091/41000002', '2019-06-25 16:19:31', '41000002-2019-40910001', '0000024', 1, 'En cours', 4091, '5d139b132e870', '5d139b132e870', '5d139b132e870', '5d139b132e870', '5d139b132e870', '5d139b132e870'),
-('5d14ac7c66078', '4091/41000003', '2019-06-27 11:46:04', '41000003-2019-40910002', 'NULL', 0, 'En cours', 4091, '5d14ac7c66078', '5d14ac7c66078', '5d14ac7c66078', '5d14ac7c66078', '5d14ac7c66078', '5d14ac7c66078'),
-('5d14ae3d31488', '4091/41000004', '2019-06-27 11:53:33', '41000004-2019-40910003', '0000025', 1, 'En cours', 4091, '5d14ae3d31488', '5d14ae3d31488', '5d14ae3d31488', '5d14ae3d31488', '5d14ae3d31488', '5d14ae3d31488'),
-('5d15efc577759', '4091/41000005', '2019-06-28 10:45:25', '41000005-2019-40910004', '0000026', 1, 'AnnulÃ©', 4091, '5d15efc577759', '5d15efc577759', '5d15efc577759', '5d15efc577759', '5d15efc577759', '5d15efc577759');
+('5d1f7debb5e93', '41000001', '2019-07-05 16:42:19', '41000001-2019-40910000', '0000023', 1, 'En cours', 4091, '5d1f7debb5e93', '5d1f7debb5e93', '5d1f7debb5e93', '5d1f7debb5e93', '5d1f7debb5e93', '5d1f7debb5e93'),
+('5d1f82ba32177', '4091/41000001', '2019-07-05 17:02:50', '41000001-2019-40910001', '0000025', 1, 'En cours', 4091, '5d1f82ba32177', '5d1f82ba32177', '5d1f82ba32177', '5d1f82ba32177', '5d1f82ba32177', '5d1f82ba32177');
 
 -- --------------------------------------------------------
 
@@ -469,14 +457,9 @@ CREATE TABLE `red_maj` (
 --
 
 INSERT INTO `red_maj` (`id_red_maj`, `pourcentageBC`, `bonus_rc`, `pourcentageRC`, `reduc_com`) VALUES
-('5d139acc46f16', 10, 2681, 10, 2625),
-('5d139b132e870', 0, 0, 0, 0),
-('5d1480739f31f', 5, 1340, 20, 5880),
-('5d14ac7c66078', 0, 0, 0, 0),
-('5d14ae3d31488', 5, 1340, 5, 1785),
-('5d15ef2795f83', 10, 2681, 5, 1627),
-('5d15ef7b5cca2', 10, 2681, 10, 3570),
-('5d15efc577759', 10, 2681, 10, 3255);
+('5d1f7debb5e93', 5, 670, 10, 1049),
+('5d1f7f4650509', 0, 0, 0, 0),
+('5d1f82ba32177', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -590,14 +573,9 @@ CREATE TABLE `vehicule` (
 --
 
 INSERT INTO `vehicule` (`id_vehicule`, `marque`, `type`, `immatriculation`, `puissance`, `energie`, `charge_utile`, `places`, `genre`, `chassis`, `cylindre`, `date_mec`, `valeur_neuve`, `valeur_venale`, `nom_chauffeur`, `categorie_vehicule_id_cat`) VALUES
-('5d139acc46f16', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '3000000', 'DIALLO', 1),
-('5d139b132e870', 'PEUGEOT', '206', 'DK-9587-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '2000000', 'NDIAYE', 1),
-('5d1480739f31f', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '3000000', 'DIOP', 1),
-('5d14ac7c66078', 'CITROEN', 'C4', 'DK-8547-BB', '11', 'essence', 'Break', 2, ' PAPP', 'N/A', 'N/A', '2017-06-01', '3000000', '1000000', 'nom prospect', 1),
-('5d14ae3d31488', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2013-07-25', '5000000', '3000000', 'FALL', 1),
-('5d15ef2795f83', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '3000000', 'FAYE', 1),
-('5d15ef7b5cca2', 'CITROEN', 'C5', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '3000000', 'DIOP', 1),
-('5d15efc577759', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, ' PAPP', 'N/A', 'N/A', '2017-06-01', '5000000', '3000000', 'DIA', 1);
+('5d1f7debb5e93', 'CITROEN', 'C4', 'DK-8547-BB', '10', 'essence', 'Break', 5, '', 'N/A', 'N/A', '2017-06-01', '3000000', '1000000', 'FAYE', 1),
+('5d1f7f4650509', 'BMW', 'X5', 'DK-9874-BK', '10', 'essence', 'Break', 5, '', 'N/A', 'N/A', '2017-06-01', '10000000', '5000000', 'DIENG', 1),
+('5d1f82ba32177', 'PEUGEOT', '404', 'DK-9874-BK', '10', 'essence', 'Break', 2, '', 'N/A', 'N/A', '2017-06-01', '10000000', '5000000', 'KOUNDOUL', 1);
 
 --
 -- Index pour les tables déchargées
@@ -625,7 +603,6 @@ ALTER TABLE `assure`
 --
 ALTER TABLE `attestation`
   ADD PRIMARY KEY (`id_attestation`),
-  ADD UNIQUE KEY `numero_attestation` (`numero_attestation`),
   ADD KEY `id_type` (`id_type`),
   ADD KEY `intermediaire` (`intermediaire`);
 
@@ -757,13 +734,13 @@ ALTER TABLE `vehicule`
 -- AUTO_INCREMENT pour la table `annulation`
 --
 ALTER TABLE `annulation`
-  MODIFY `id_annulation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_annulation` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `attestation`
 --
 ALTER TABLE `attestation`
-  MODIFY `id_attestation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=454;
+  MODIFY `id_attestation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT pour la table `attestation_cedeao`
@@ -781,7 +758,7 @@ ALTER TABLE `categorie_vehicule`
 -- AUTO_INCREMENT pour la table `commandes`
 --
 ALTER TABLE `commandes`
-  MODIFY `id_commande` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_commande` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `garantie`

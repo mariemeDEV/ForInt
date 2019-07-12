@@ -24,9 +24,10 @@
 <table id="productionTab" class="display" style="width:100%;font-size:12px">
         <thead>
             <tr>
-                <th>NUMÉRO POLICE</th>
+            <th>NUMÉRO POLICE</th>
                 <th>DATE DE CRÉATION</th>
                 <th>NUMÉRO ATTESTATION</th>
+                <th>NUMÉRO ATTESTATION CEDEAO</th>
                 <th>NUMÉRO FACTURE</th>
                 <th>MATRICULE INTERMÉDIAIRE</th>
                 <th>NOM INTERMÉDIAIRE</th>
@@ -35,10 +36,9 @@
                 <th>PRÉNOM ASSURÉ</th>
                 <th>NOM CONDUCTEUR</th>
                 <th>PRÉNOM CONDUCTEUR</th>
-                <th>DATE DÉBUT PERIODE DE GARANTIE</th>
-                <th>HEURE DÉBUT PÉRIODE DE GARANTIE</th>
-                <th>DATE FIN PÉRIODE DE GARANTIE</th>
-                <th>HEURE FIN PÉRIODE DE GARANTIE</th>
+                <th>DATE EFFET</th>
+                <th>DATE ECHEANCE</th>
+                <th>DATE EMISSION</th>
                 <th>MARQUE VOITURE</th>
                 <th>IMMATRICULATION</th>
                 <th>GENRE</th>
@@ -65,6 +65,7 @@
             <td>$row[0]</td>
             <td>$row[1]</td>
             <td>$row[2]</td>
+            <td>$row[30]</td>                                               
             <td>$row[3]</td>
             <td>$row[4]</td>
             <td>$row[5]</td>
@@ -74,9 +75,8 @@
             <td>$row[9]</td>
             <td>$row[10]</td>
             <td>$row[11]</td>
-            <td>$row[12]</td>
             <td>$row[13]</td>
-            <td>$row[14]</td>
+            <td>$row[1]</td>
             <td>$row[15]</td>
             <td>$row[16]</td>
             <td>$row[17]</td>
@@ -92,7 +92,7 @@
             <td>$row[27]</td>
             <td>$row[28]</td>
             <td>$row[29]</td>
-            <td>$row[30]</td>                        
+            <td>$row[30]</td> 
         </tr>";
         }
         ?>

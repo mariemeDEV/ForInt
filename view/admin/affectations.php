@@ -102,6 +102,7 @@
                 <select>            
             </div>
             <!--label>Début série</label-->
+            <input type="number" name='intermediaire' value=<?php echo("'".$matricule."'"); ?> style="display:none !important">
             <div class="form-group">
                 <input type="text" class="form-control nombre-attestations" name="debut_serie" id='debut-serie' value='' placeholder="début de la série">
             </div>

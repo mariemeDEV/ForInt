@@ -42,11 +42,12 @@ class PoliceDao extends DBao
                     '".$us->getAssure()."'
                     )"
                 );
-                echo "Insertion effectuée";
+                //echo "Insertion effectuée";
+                //var_dump($sql);
                 return $sql->execute();
             }
             catch(Exception $e) {
-                echo 'Exception -> ';
+                //echo 'Exception -> ';
                 var_dump($e->getMessage());
             }
     }
@@ -81,7 +82,7 @@ class PoliceDao extends DBao
 
     public function listPolicePreformant(int $p)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat   from police pp
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat,i.prenom,i.nom   from police pp
               JOIN police p on (pp.id_police=p.id_police) 
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
@@ -113,7 +114,7 @@ class PoliceDao extends DBao
 
     public function changeToValider($id){
         $sql='UPDATE police set validation=0 WHERE id_police like "'.$id.'"';
-        echo $sql;
+        //echo $sql;
         return $this->executeMAJ($sql);
     }
     /**
@@ -190,33 +191,32 @@ class PoliceDao extends DBao
      */
     public function getAllProductByInt(int $matricule,$debut,$fin)
     {
-        $sql="SELECT p.num_police,p.date_police ,p.attestation,p.numFacture ,
-                i.matricule,i.nom,i.prenom,
-                a.nom_assure , a.prenom_assure ,
-                cv.nom_conducteur,cv.prenom_conducteur,
-                pg.date_debut,pg.heure_debut,pg.date_fin,pg.heure_fin,
-                v.marque,v.immatriculation,v.genre,v.date_mec,v.valeur_neuve,v.valeur_venale,
-                group_concat(g.libelle_garantie) ,
-                rm.pourcentageBC,rm.bonus_rc,rm.pourcentageRC,rm.reduc_com,
-                dp.prime_nette,dp.accessoire,dp.taxe,dp.fond_garantie,dp.prime_totale
-                
-                from police p JOIN intermediaire i ON (i.matricule=p.intermediaire_matricule
-                ) 
-                JOIN assure a ON (a.id_assure=p.id_police)
-                JOIN conducteur_vehicule cv ON (cv.id_cond=p.id_police)
-                JOIN periode_garantie pg ON (pg.id_periode=p.id_police)
-                JOIN vehicule v ON (v.id_vehicule=p.id_police)
-                JOIN decompte_prime dp ON (dp.id_dp=p.id_police)
-                JOIN red_maj rm ON (rm.id_red_maj=p.id_police)
-                JOIN contenir ct ON (ct.police_id_police=p.id_police)
-                JOIN garantie g ON (g.id_garantie=ct.garantie_id_garantie)
-                WHERE p.date_police BETWEEN '".$debut."' AND '".$fin."'".
-                "AND  i.matricule    = $matricule
-        GROUP BY p.num_police ORDER by p.date_police DESC";
+        $sql="SELECT p.num_police,p.date_police ,att.numero_attestation,p.numFacture ,
+            i.matricule,i.nom,i.prenom,
+            a.nom_assure , a.prenom_assure ,
+            cv.nom_conducteur,cv.prenom_conducteur,
+            pg.date_debut,pg.heure_debut,pg.date_fin,pg.heure_fin,
+            v.marque,v.immatriculation,v.genre,v.date_mec,v.valeur_neuve,v.valeur_venale,
+            group_concat(g.libelle_garantie) ,
+            rm.pourcentageBC,rm.bonus_rc,rm.pourcentageRC,rm.reduc_com,
+            dp.prime_nette,dp.accessoire,dp.taxe,dp.fond_garantie,dp.prime_totale
+            from police p
+            JOIN intermediaire i ON (i.matricule=p.intermediaire_matricule) 
+            JOIN assure a ON (a.id_assure=p.id_police)
+            JOIN conducteur_vehicule cv ON (cv.id_cond=p.id_police)
+            JOIN periode_garantie pg ON (pg.id_periode=p.id_police)
+            JOIN vehicule v ON (v.id_vehicule=p.id_police)
+            JOIN decompte_prime dp ON (dp.id_dp=p.id_police)
+            JOIN red_maj rm ON (rm.id_red_maj=p.id_police)
+            JOIN contenir ct ON (ct.police_id_police=p.id_police)
+            JOIN garantie g ON (g.id_garantie=ct.garantie_id_garantie)
+            JOIN attestation att ON(p.attestation=att.numero_attestation)
+            WHERE p.date_police BETWEEN '".$debut."' AND '".$fin."'".
+            "AND  i.matricule    = $matricule AND p.validation=1
+            GROUP BY p.num_police ORDER by p.date_police DESC";
         return $this->executeSELECT($sql);
     }
 
-    //-----------------------------------Mamadou Ndiaye-------------------------------------
     public function getAllProduction(String $numPolice)
     {
         $sql="	 SELECT 
@@ -250,12 +250,11 @@ class PoliceDao extends DBao
      * @param $cat
      * @return PDOStatement
      */
-    public function getNumPolice(int $us, int $cat)
+    public function getNumPolice(int $cat)
     {
-        $sql="select max(substr(police.num_police,6,8))+1 as numPolice from police
-              join vehicule on (vehicule.id_vehicule=police.id_police)
-              WHERE vehicule.categorie_vehicule_id_cat='".$cat."' 
-              AND police.intermediaire_matricule='".$us."' 
+        $sql="select max(police.num_police)+1 as numPolice from police
+              join vehicule on (vehicule.id_vehicule=police.id_police) 
+              WHERE police.validation!=0 AND vehicule.categorie_vehicule_id_cat='".$cat."' 
               ORDER by police.num_police DESC limit 1";
         return $this->executeSELECT($sql);
     }
@@ -361,7 +360,7 @@ class PoliceDao extends DBao
         }
     }
 
-    public function deletePolice(String $numPolice){
+    public function deletePolice(String $numPolice,int $mat){
         $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
         $user     = "root";
         $password = "";
@@ -371,7 +370,8 @@ class PoliceDao extends DBao
             $pdo->beginTransaction();
             $req1 = $pdo->exec("UPDATE police SET etat ='Annule' WHERE id_police ='".$numPolice."'");
             $req2 = $pdo->exec("UPDATE attestation AS cedeao INNER JOIN attestation AS jaune ON jaune.id_vente = cedeao.id_vente SET jaune.id_vente = NULL, cedeao.id_vente = NULL,jaune.etat_sortie = 'restante', cedeao.etat_sortie='restante' WHERE jaune.numero_attestation=(SELECT attestation FROM police WHERE id_police='".$numPolice."')");
-            $req3 = $pdo->exec("UPDATE annulation SET etat_annulation ='Annule' WHERE id_police ='".$numPolice."'" );
+            $req3 = $pdo->exec("UPDATE annulation SET etat_annulation ='Annule',matricule_auteur=".$mat." WHERE id_police ='".$numPolice."'" );
+
             $pdo->commit();
         }catch(Exception $e){
             $pdo->rollBack();

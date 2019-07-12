@@ -3,8 +3,7 @@
 <html lang="fr">
 
     <head>
-
-        <title>Saham Assurance SN</title>
+        <title>For-Int</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -18,13 +17,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../view/style/search_admin.css">
         <link rel="stylesheet" href="../../view/style/style_aff.css">
-
-    
     <style>
         .ajout-title{
             position: relative;
             top: 98px;
-            left: 38px;
+            left: 15px
         }
         hr{
             width: 9%;
@@ -32,23 +29,16 @@
             border-top: 2px solid #062945;
             position: absolute;
             top: 134px;
-            left: 40px;
+            left: 138px
         }
         .dataTab{
             position: relative;
-            top: -47px;
-
+            top: 5px;
         }
-        .paging_simple_numbers{
-            position: relative !important;
-            top: 81px !important
-        }
-       
         #usersData_filter{
             position: relative !important;
-            left: 448px !important;
-            top: -112px;
-            width: 224px;
+            left: -5px !important;
+            top: 6px;
         }
         #usersData_filter .form-control-sm{
             border: 0 solid #ffffff !important;
@@ -68,17 +58,8 @@
         .dataTables_info{
             display:none !important
         }
-        .container ul{
-           display: inline-flex;
-            position: absolute;
-            top: -3px;
-            left: 18em !important;
-            z-index: 3;
-        }
-        .container ul li{
-            padding: 1em;
-            line-height: 39px;
-            font-weight: bold;
+        .dataTables_info{
+            display:none !important
         }
         .pagination{
             display: inline-flex;
@@ -92,19 +73,24 @@
             background: #062944 !important;
             color: #f7ba00 !important
         } 
+        .container ul{
+            display: inline-flex;
+            position: absolute;
+            top: 15px;
+            left: -31em;
+            z-index: 3;
+        }
         ul li a{
             text-decoration:none !important;
             color: #f7bb3d !important;
             position: relative;
-            left: 118px;
         }
-        ul li span{
-            position: absolute;
-            left: 315px;
-            background: #f9d281 !important;
-            color: #062944 !important;
+        .list-group-item{
+            padding: 5px !important;
+        } 
+        .mdl-layout__container{
+            overflow-x:hidden !important
         }
-     
     </style>
 
     </head>
@@ -115,51 +101,53 @@
             <?php include "header.php";?>
         </div>
         <!--header-->
-        <h1 class="ajout-title">Activités de l'intérmédiaire</h1>
-        <hr>
+
         <!--container-->
         <div class="container">
-          
-                    <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%;margin-top:64px !important">
-                        <thead>
-                            <tr>
-                                <th>Date contrat</th>
-                                <th>Code assuré</th>
-                                <th>Prénom assuré</th>
-                                <th>Nom assuré</th>
-                                <th>Adresse assuré</th>
-                                <th>Téléphone assuré</th>
-                                <th>Prime nette</th>
-                                <th>Prime totale</th>
-                                <th>Validation contrat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        while($row=$resultat->fetch()){
-                            $datePolice = date("d-m-Y", strtotime($row[0]));
-                            echo'
-                            <tr>
-                                <td>'.$datePolice.'</td>
-                                <td>'.$row[2].'</td>
-                                <td>'.$row[4].'</td>
-                                <td>'.$row[3].'</td>
-                                <td>'.$row[5].'</td>
-                                <td>'.$row[6].'</td>
-                                <td>'.$row[7].'</td>
-                                <td>'.$row[8].'</td>';
-                            if($row[1]==1){
-                                echo '<td style="background:#9bec9b;text-align:center;font-weight:bold">Validé</td>';
-                            }else if($row[1]==0){
-                                echo '<td style="background:#e66355;text-align:center;font-weight:bold">Non validé</td>';
-                            }
-                        echo'</tr>';
+              
+          <h1 class="ajout-title">Activités de l'intermédiaires</h1>
+          <hr>
+            <table id="intData" class="table dataTab table-striped table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Date contrat</th>
+                        <th>Code assuré</th>
+                        <th>Prénom assuré</th>
+                        <th>Nom assuré</th>
+                        <th>Adresse assuré</th>
+                        <th>Téléphone assuré</th>
+                        <th>Prime nette</th>
+                        <th>Prime totale</th>
+                        <th>Validation contrat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    while($row=$resultat->fetch()){
+                        $datePolice = date("d-m-Y", strtotime($row[0]));
+                        echo'
+                        <tr>
+                            <td>'.$datePolice.'</td>
+                            <td>'.$row[2].'</td>
+                            <td>'.$row[4].'</td>
+                            <td>'.$row[3].'</td>
+                            <td>'.$row[5].'</td>
+                            <td>'.$row[6].'</td>
+                            <td>'.$row[7].'</td>
+                            <td>'.$row[8].'</td>';
+                        if($row[1]==1){
+                            echo '<td style="background:#9bec9b;text-align:center;font-weight:bold">Validé</td>';
+                        }else if($row[1]==0){
+                            echo '<td style="background:#e66355;text-align:center;font-weight:bold">Non validé</td>';
                         }
+                    echo'</tr>';
+                    }
                         ?>
-                        </tbody>
-                        <tfoot></tfoot>
-                    </table>
-                </div>
+                </tbody>
+                </tfoot>                
+                <tfoot>
+
+            </table>
         </div>
         <!--container-->
 
@@ -173,7 +161,8 @@
 
     <script>
         $(document).ready(function() {
-            $('#usersData').DataTable();
+            $('#intData').DataTable();
+            $("#intData_filter").find('input').focus()
         } );
     </script>
     </body>

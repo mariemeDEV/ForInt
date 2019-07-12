@@ -307,8 +307,8 @@
                         <th>Matricule</th>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Téléphone</th>
                         <th>Adresse</th>
+                        <th>Téléphone</th>
                         <th>E-mail</th>
                         <th>Consulter</th>
                         <th>Attestations</th>

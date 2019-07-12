@@ -2,7 +2,6 @@ body{
     margin:0;
     padding:0;
     background-size: cover; /* pour anciens Chrome et Safari */
-    /* background-image: url("../../img/OE9S3V0-min.jpg"); */
     font-family: 'Ubuntu', sans-serif;
 }
 .panel-info>.panel-heading {

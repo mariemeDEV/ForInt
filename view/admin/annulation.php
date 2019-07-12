@@ -3,8 +3,7 @@
 <html lang="fr">
 
     <head>
-
-        <title>Saham Assurance SN</title>
+        <title>For-Int</title>
         <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -18,54 +17,30 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../view/style/search_admin.css">
         <link rel="stylesheet" href="../../view/style/style_aff.css">
-
-    
     <style>
         .ajout-title{
             position: relative;
-            top: 96px;
-            left: 38px;
-            width: 41%;
+            top: 98px;
+            left: 15px
         }
         hr{
             width: 9%;
             border: 0;
             border-top: 2px solid #062945;
             position: absolute;
-            top: 137px;
-            left: 162px;
+            top: 134px;
+            left: 138px
         }
         .dataTab{
             position: relative;
-            top:9px;
-            left:-58px
+            top: 5px;
         }
-        .paging_simple_numbers{
+        #usersData_filter{
             position: relative !important;
-            top: 81px !important
-        }
-        .pagination{
-            position: absolute !important;
-            left: -91em !important;
-            top: -72px !important;
-            padding:7px !important
-            /* background: #062843; */
-            /* display:none !important */
-        }
-        .pagination li{
-            height:34px !important
-        }
-        .pagination li a{
-            padding: 1px !important;
-            background: #062944 !important;
-            color: #f7ba00 !important
-        }
-        #annulationsData_filter{
-            position: relative !important;
-            left: 2em !important;
+            left: -5px !important;
             top: 6px;
         }
-        #annulationsData_filter .form-control-sm{
+        #usersData_filter .form-control-sm{
             border: 0 solid #ffffff !important;
             border-bottom: 1px solid #062944 !important;
             width: 79%;
@@ -83,42 +58,44 @@
         .dataTables_info{
             display:none !important
         }
-        .container ul{
-           display: inline-flex;
+        .dataTables_info{
+            display:none !important
+        }
+        .pagination{
+            display: inline-flex;
             position: absolute;
-            top: -3px;
-            left: 55em;
+            top: -74px;
+            left: -42em;
+            background: #062843;
             z-index: 3;
         }
-        .container ul li{
-            padding: 1em;
-            line-height: 39px;
-            font-weight: bold;
-        }
-        ul > li:not(:last-child):after{
-            /* content:'/'; */
-            padding-left:40px;
-            color: #f7bb3d !important
+        .pagination li a{
+            background: #062944 !important;
+            color: #f7ba00 !important
+        } 
+        .container ul{
+            display: inline-flex;
+            position: absolute;
+            top: 15px;
+            left: -31em;
+            z-index: 3;
         }
         ul li a{
             text-decoration:none !important;
-            color: #f7bb3d !important
+            color: #f7bb3d !important;
+            position: relative;
         }
-        #usersData_paginate ul{
-            background: #062843 !important;
-            margin-top: 13px;
-            margin-left: 844px;
+        .list-group-item{
+            padding: 5px !important;
+        } 
+        .mdl-layout__container{
+            overflow-x:hidden !important
         }
-        #usersData_paginate ul li{
-            padding: 6px
-        }
-      
-       
     </style>
 
     </head>
 
-    <body>
+    <body onchange="CalculeBC()">
         <!--header-->
         <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
             <?php include "header.php";?>
@@ -127,9 +104,10 @@
 
         <!--container-->
         <div class="container">
-          <h1 class="ajout-title">Consultation annulations</h1>
+              
+          <h1 class="ajout-title">Gestion des annulations</h1>
           <hr>
-            <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%">
+            <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%;margin-left:-142px;"><!--Datatable-->
                 <thead>
                     <tr>
                         <th>Numéro police</th>
@@ -150,9 +128,9 @@
                     while($row=$annulations->fetch()){
                       echo '<tr> 
                         <td>'.$row[0].'</td>
-                        <td>'.$row[2].'</td>
-                        <td>'.$row[3].$row[3].'</td>
-                        <td>'.$row[5].'</td>
+                        <td>'.$row[1].'</td>
+                        <td>'.$row[2].$row[3].'</td>
+                        <td>'.$row[4].'</td>
                         <td>'.$row[6].'</td>';
                         if($row[7]=='A annuler'){
                             echo '<td style="background:#ff000087">A annuler</td>';
@@ -161,22 +139,22 @@
                         }
                         echo '<td>'.$row[8].'</td>
                         <td>'.$row[9].'</td>
-                        <td>'.$row[4].'</td>';
+                        <td>'.$row[5].'</td>';
                         echo
                         "<td>
-                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[1]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
+                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[10]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
                         </td>
                         <td>
-                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[1]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
+                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[10]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
                         </td>
                     </tr>";
                     }
                 ?>
-                </tbody>
+                </tbody><!--Datatable-->
                 </tfoot>                
                 <tfoot>
             </table>
-            
+
             <div class="card modal" id='annul_demande'><!--Demande d'annulation-->
                 <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
                 <div class="card-body">
@@ -225,7 +203,7 @@
         </div>
         <!--container-->
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js" charset="UTF-8"></script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -239,13 +217,6 @@
             $("#annulationsData_filter").find('input').focus()
         } );
 
-      /*  var cell1 =  $("#annulationsData tr").find("td").eq(9)
-        cell1.on('click',function(){
-               var police= $(this).find('.delete-btn').val()
-               alert(police)
-               //$('#pol_num').val(police)
-        })*/
-
         $('.cp-btn').on('click', function(){
             var contrat = $(this).val()
             $('#folder_modal').fadeIn();
@@ -256,7 +227,7 @@
             var etat       = $(this).find("td").eq(5).html(); 
             var delete_btn = $(this).find("td").eq(9)
             delete_btn.on('click',function(){
-                if(etat=='Annule'){
+                if(etat=='Annulé'){
                     $('#annul_demande').fadeIn();
                 }else if(etat=='A annuler'){
                     var police= $(this).find('.delete-btn').val()
@@ -266,13 +237,13 @@
             })
         })
     </script>
-
-    <script>
+      <script>
         $('.close').on('click',function(){
             $('#annul_demande,#annul_modal,#folder_modal').fadeOut()
         })
     </script>
 
-  
+
+    
     </body>
 </html>

@@ -1,0 +1,14 @@
+.mdl-layout__content > hr {
+    width: 5% !important
+}
+.mdl-content {
+    margin-top: -71px !important
+}
+.subTitle{
+    position: relative;
+    top: 82px;
+    left: 247px;
+    font-size: 10px;
+    color: #062944;
+    font-weight: bold;
+}

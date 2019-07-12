@@ -40,7 +40,7 @@
         <main class="mdl-layout__content success-content">
             <div class="mdl-content">
                 <h1 class="success-message">Succés !</h1>
-                <p class='success-text'>Votre demande d'annulation sera prise en charge par le support SAHAM,<br>Cordialement</p>
+                <p class='success-text'>Votre production a étè annulée avec succés,<br>Cordialement</p>
                 <div class="retour-content">
                     <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>

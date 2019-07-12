@@ -1,25 +1,15 @@
 <?php
-// Démarrage ou restauration de la session
 session_start();
-// echo $_SESSION['username'];
-// echo $_SESSION['password']."<br>";
-// echo $_SESSION['mdp']."<br>";
-// echo $hash = password_hash('saham',PASSWORD_BCRYPT);
-// echo $_SESSION['matricule'];
-if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
-{
-    header ('location: ./saham-app');
-}
-if(time()- $_SESSION['timestamp']>1440)
-{
-    echo"<script>alert('15 Minutes over!');</script>";
+if (!isset($_SESSION['username']) && !isset($_SESSION['password'])){
+    header('location: ../../view/user/connect.php');
+}if(time()- $_SESSION['timestamp']>1440){
     unset($_SESSION['username'],$_SESSION['password'],$_SESSION['matricule']);
-    header ('location: ./saham-app');
+    header('location: ../../view/user/connect.php');
     exit;
-}
-else {
+}else{
     $_SESSION['timestamp'] = time(); //set new timestamp
 }
+
 require_once '../../model/IntermediaireDao.php';
 require_once '../../mapping/Intermediaire.php';
 require_once '../../model/AssureDao.php';
@@ -38,10 +28,10 @@ require_once '../../mapping/Conducteur_vehicule.php';
 require_once '../../model/ConducteurVehiculeDao.php';
 require_once '../../mapping/Police.php';
 require_once '../../model/PoliceDao.php';
+require_once '../../model/TypeAttestationDao.php';
+require_once '../../mapping/TypeAttestation.php';
 require_once '../../mapping/Attestation.php';
 require_once '../../model/AttestationDao.php';
-require_once '../../mapping/AttestationCedeao.php';
-require_once '../../model/AttestationCedeaoDao.php';
 require_once '../../mapping/commandes.php';
 require_once '../../model/CommandesDao.php';
 require_once '../../mapping/Annulation.php';
@@ -467,8 +457,8 @@ if(isset($_GET['action']))
 {
     switch ($_GET['action']) {
         case 'valider':
+        //echo($_SESSION['matricule']);
             $attestationDao = new AttestationDao();
-            $cedeao         = new AttestationCedeaoDao();
             $vertes         = $attestationDao->getVertes($_SESSION['matricule']);
             $jaunes         = $attestationDao->getJaunes($_SESSION['matricule']);
             $cedeao         = $attestationDao->getCedeao($_SESSION['matricule']);
@@ -487,7 +477,7 @@ if(isset($_GET['action']))
         case 'affi':
             $usPolao  = new PoliceDao();
             $resultat = $usPolao->listPolicePreformant($_SESSION['matricule']);
-            $mat = $_SESSION['matricule'];
+            $mat      = $_SESSION['matricule'];
             $cpt1     = $resultat->rowCount();
             require_once('../../view/user/afficher.php');
         break;
@@ -533,7 +523,9 @@ if(isset($_GET['action']))
             header('Location: ./controller/formulaire/?action=affi');
         break;
         case 'passer' :
-            $mat = $_SESSION['matricule'];
+            $attestationDao = new AttestationDao();
+            $mat            = $_SESSION['matricule'];
+            $attestations   = $attestationDao->getIntAttestations($mat);
             require_once('../../view/user/commandes.php');
         break;
         case 'garanties' :

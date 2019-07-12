@@ -24,16 +24,8 @@
         <link rel="stylesheet" href="../../view/style/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="../../view/style/animate.min.css">
         <link rel="stylesheet" href="../../view/style/style_2.css">
-        <style>
-            .subTitle{
-                position: relative;
-                top: 82px;
-                left: 247px;
-                font-size: 10px;
-                color: #062944;
-                font-weight: bold;
-            }
-        </style>
+        <link rel="stylesheet" href="../../view/style/accueil.css">
+
     </head>
     <body ♥ id="acceuil">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -42,7 +34,7 @@
             <h1 class='top-title'>For-Int</h1><span class='subTitle'>Saham sénègal</span>
             <hr style='width:5% !important'></hr>
 
-            <div class="mdl-content" style='margin-top:-55px;'><!--row1-->
+            <div class="mdl-content"><!--row1-->
                 <div class="mdl-grid animated fadeInLeft animation-delay-900">
 
                     <div class="mdl-cell mdl-cell---col">
@@ -65,7 +57,7 @@
                 </div>
             </div><!--row1-->
 
-            <div class="mdl-content" style='margin-top: -174px;'><!--row2-->
+            <div class="mdl-content" style='padding-top: 70px;'><!--row2-->
                 <div class="mdl-grid animated fadeInLeft animation-delay-900">
 
                     <div class="mdl-cell mdl-cell---col">

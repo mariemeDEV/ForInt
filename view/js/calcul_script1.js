@@ -140,6 +140,7 @@ function CalculeBC(){
         $("#labelPack").fadeOut();
         $("#pack").fadeOut();
         $("#labelChargeUtile").fadeIn();
+        $("#charge").append('<option value="Break" selected>Break</option>');
         $("#charge").fadeIn();
         $("#places1").fadeIn();
         $("#placeSup").fadeIn();
@@ -168,6 +169,7 @@ function CalculeBC(){
         document.getElementById("Checkbox7_1").checked = false;
         $("#labelPack").fadeOut();
         $("#pack").fadeOut();
+        $("#charge option[value='Break']").remove();
         $("#charge").fadeIn();
         $('#PrimeAuto').val('0')
 
@@ -191,6 +193,7 @@ function CalculeBC(){
         document.getElementById("places").disabled=true;
         document.getElementById("places1").disabled=false;
         $('#PrimeAuto').val('0')
+   
     }
     if (genre_v==5)
     {
@@ -310,6 +313,7 @@ function CalculeBC(){
     if(genre_v!=6){
         document.getElementById("Checkbox101").checked = false;
     }
+   
 
     /******************************TEST SUR LES PACK****************************************/
     var pack=document.getElementById("pack").value;
@@ -1686,12 +1690,10 @@ function CalculeBC(){
 
      if (document.getElementById('Checkbox9').options[0].selected == true)
     {
-        //alert('yes')
         var lim_gant_ck9=0;
         var franch_9=0;
         var primebrute_9=0;
-        //console.log(parseInt(places))
-        //console.log(parseInt(primebrute_9))
+
         var primebrute_prorata_9=0;
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1702,13 +1704,10 @@ function CalculeBC(){
 
     if ( document.getElementById('Checkbox9').options[1].selected == true)
     {
-       // alert('yes1')
         var lim_gant_ck9=1000000;
         var franch_9=0;
         console.log(parseInt(places))
         var primebrute_9=parseInt(places)*1200;
-        //console.log(parseInt(primebrute_9))
-       // console.log(parseInt(taux))
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1716,16 +1715,11 @@ function CalculeBC(){
         document.getElementById('prorata10').value=primebrute_prorata_9;
         document.getElementById('PrimePersonne').value= primebrute_9;
     }
-
     if(document.getElementById('Checkbox9').options[2].selected === true)
     {
-        //alert('yes2')
         var lim_gant_ck9=2000000;
         var franch_9=0;
-       // console.log(parseInt(places))
         var primebrute_9=parseInt(places)*2400;
-        //console.log(parseInt(primebrute_9))
-        //console.log(parseInt(taux))
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
@@ -1735,7 +1729,6 @@ function CalculeBC(){
     }
     if(document.getElementById('Checkbox9').options[3].selected === true)
     {
-       //alert('yes3')
         if(pack=="mini"  )
         {
             var primebrute_9=5000;
@@ -1748,8 +1741,7 @@ function CalculeBC(){
             var lim_gant_ck9=3000000;
             var franch_9=0;
         }
-       // console.log(parseInt(primebrute_9))
-     
+        
         var lim_gant_ck9=0;
         var franch_9=0;
         var primebrute_9=parseInt(places)*3600;
@@ -1760,11 +1752,17 @@ function CalculeBC(){
         document.getElementById('prorata10').value=primebrute_prorata_9;
         document.getElementById('PrimePersonne').value= primebrute_9;
     }
+   if(genre_v==6){
+        $("#Checkbox9").prop('disabled',true);
+        $("#Checkbox9 option:first").attr('selected','selected');
+        $('#PrimePersonne').val(parseInt(5000))
+    }else{
+        $("#Checkbox9").prop('disabled',false)
+    }
 
 
     //*************************CONDITION POUR LE CHECKBOX 10 AUTO*********************** */
-    if(Checkbox10.checked==true)
-    {
+    if(Checkbox10.checked==true){
         var franch_10=0;
         var primebrute_prorata_10='0';
         if(genre_v==1){
@@ -1887,7 +1885,6 @@ function CalculeBC(){
 $('#contrat-create').on('click',function(){
     var totalPN = $('#totalPN').val()
     var totalAC=0
-    //alert(totalPN)
     if(totalPN<=50000) {
         totalAC=2000
     }else if(totalPN>50000 && totalPN<=100000){
@@ -1901,7 +1898,6 @@ $('#contrat-create').on('click',function(){
     }else{
         totalAC=20000
     }
-   // alert(totalAC)
     $('#totalAC').val(totalAC) 
     $('#totalAC1').val(totalAC)
 })
@@ -1951,31 +1947,24 @@ $(document).on('keypress',function(e) {
             if($('#categorie').val()==4){
                 $('#j').fadeOut(1000)
                 $('#v').fadeIn(1000)
-                /*$('#jaune').fadeOut(1000)
-                $('#verte').fadeIn(1000)*/
+        
             }else{
                 $('#v').fadeOut(1000)
                 $('#j').fadeIn(1000)
-                /*$('#jaune').fadeIn(1000)
-                $('#verte').fadeOut(1000)*/
+              
             }     
         }
     }
 });
-// $(document).on('keypress',function(t){
-//     if(e.which == 9) {
-//         console.log(t.target.href)
-//     }
-// })
   
 //Vérifications avant envoi de formulaire de création de contrats
 function sendContrat(){
     if($('#categorie').val()==4){
-        $('#j').fadeOut(1000)
-        $('#v').fadeIn(1000)
+        $('#attestation-jaune').fadeOut(1000)
+        $('#attestation-verte').fadeIn(1000)
     }else{
-        $('#v').fadeOut(1000)
-        $('#j').fadeIn(1000)
+        $('#attestation-verte').fadeOut(1000)
+        $('#attestation-jaune').fadeIn(1000)
     }
     var checked1 = checkInputs();
     if(checked1 ==true){
@@ -2006,7 +1995,6 @@ $('#afficherPopup').on('click', function(){
 $('#nom_assure,#prenom_assure,#adresse_assure,#tel,#email_assure,#puissance,#val_neuve,#val_venale,#places,#mec,#energie,#categorie,#genre,#marque,#type,#immatriculation').keyup(function(){
     $(this).val($(this).val().toUpperCase())
 })
-//     // $( "#energie" ).prop( "disabled", true ); 
 $('body').keyup(function(e) {
     console.log('keyup called');
     var code = e.keyCode || e.which;

@@ -8,7 +8,6 @@ session_start();
 //echo $hash = password_hash('saham',PASSWORD_BCRYPT);
 //echo $_SESSION['matricule'];
 
-
 /*if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
     header ('location: http://saham-app.com/');
@@ -51,8 +50,6 @@ require_once '../../model/TypeAttestationDao.php';
 require_once '../../mapping/TypeAttestation.php';
 require_once '../../mapping/Attestation.php';
 require_once '../../model/AttestationDao.php';
-require_once '../../mapping/AttestationCedeao.php';
-require_once '../../model/AttestationCedeaoDao.php';
 require_once '../../mapping/Annulation.php';
 require_once '../../model/AnnulationsDao.php';
 
@@ -516,7 +513,6 @@ if(isset($_GET['action']))
         case 'dotations' :
             $type           = new TypeAttestationDao();
             $attestationDao = new AttestationDao();
-            $cedeaoDao      = new AttestationCedeaoDao();
           
             $attestations   = $attestationDao->getAttestations();
             require_once '../../view/admin/dotation.php';
@@ -583,7 +579,11 @@ if(isset($_POST['action']))
                 require_once('../../view/admin/etats.php');
             break;
             case 'Valider dotation':
-                $type = new TypeAttestationDao();$attestationDao = new AttestationDao();$cedeaoDao= new AttestationCedeaoDao();$vertes= $attestationDao->getVertes($_SESSION['matricule']);$jaunes =$attestationDao->getJaunes($_SESSION['matricule']);$cedeao = $cedeaoDao->listAttestations($_SESSION['username']);$types = $type->listTypes();$totalJaunes = $attestationDao->getJaunesByType();$totalVertes = $attestationDao->getVertesByType();$cedeaos = $cedeaoDao->getAttestations();$attestations = $attestationDao->getAttestations();
+            echo($_POST['intermediaire']);
+                $matIntermediaire = $_POST['intermediaire'];
+                $type           = new TypeAttestationDao();
+                $attestationDao = new AttestationDao();
+               $types = $type->listTypes();$totalJaunes = $attestationDao->getJaunesByType();$totalVertes = $attestationDao->getVertesByType();$attestations = $attestationDao->getAttestations();
                 function getAttestations(){
                     $serie          = array();
                     for($t=($_POST['debut_serie']);$t<=($_POST['fin_serie']);$t++){
@@ -591,36 +591,41 @@ if(isset($_POST['action']))
                     }
                     return $serie;
                 }
-                echo($_GET['mat']);
                 if(($_POST['type_attestation']=="verte")){
                 $selectedVertes = getAttestations();
+                //var_dump($selectedVertes);
                     for($v=0;$v<count($selectedVertes);$v++){
-                        $attestationVerte = new Attestation($selectedVertes[$v],1, 'NULL', 4091,'attribue','restante');
+                        $attestationVerte = new Attestation($selectedVertes[$v],1,NULL, $matIntermediaire,'attribue','restante');
                         $attestationDao->insertDotation($attestationVerte);
+                        //var_dump($attestationDao->insertDotation($attestationVerte));
                     }
                 }else if(($_POST['type_attestation']=="jaune")){
                     $selectedJaunes = getAttestations();
+                   // var_dump($selectedJaunes);
                     for($j=0;$j<count($selectedJaunes);$j++){
-                        $attestationJaune = new Attestation($selectedJaunes[$j],2, 'NULL',4091,'attribue','restante');
+                        $attestationJaune = new Attestation($selectedJaunes[$j],2,NULL,$matIntermediaire,'attribue','restante');
                         $attestationDao->insertDotation($attestationJaune);
+                        //var_dump($attestationDao->insertDotation($attestationJaune));
                     }
                 }else if(($_POST['type_attestation']=="cedeao")){
                     $selectedCedeao = getAttestations();
+                    //var_dump($selectedCedeao);
                     for($c=0;$c<count($selectedCedeao);$c++){
-                        $attestationCedeao = new Attestation($selectedCedeao[$c],3,'NULL', 4091,'attribue','restante');
+                        $attestationCedeao = new Attestation($selectedCedeao[$c],3,NULL, $matIntermediaire,'attribue','restante');
                         $attestationDao->insertDotation($attestationCedeao);
+                       // var_dump( $attestationDao->insertDotation($attestationCedeao));
                     }
                 }
-            
-                require_once '../../view/admin/affectations.php';
+              //  require_once '../../view/admin/affectations.php'';
             break;
             case 'excelIntermediaire':
                // echo('ok');
             break;
             case 'Annuler Police' :
+            echo($_SESSION['matricule']);
             //echo($_POST ['numero_police']);
                 $policeDao = new PoliceDao();
-                $policeDao->deletePolice($_POST['numero_police']);
+                $policeDao->deletePolice($_POST['numero_police'],$_SESSION['matricule']);
                 require_once('../../view/annuler.php');
             break;
             case 'Generer Demande' :
@@ -636,8 +641,8 @@ if(isset($_POST['action']))
                     $raison = $row[3];
                 }
                 while($row=$assure->fetch()){
-                    $prenom_assure = $row[1];
-                    $nom_assure    = $row[0];
+                    $prenom_assure = $row[0];
+                    $nom_assure    = $row[1];
                 }
                 while($row=$primeNette->fetch()){
                     $prime = $row[0];

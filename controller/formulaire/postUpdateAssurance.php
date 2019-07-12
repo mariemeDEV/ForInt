@@ -13,15 +13,15 @@ $idPolice = $_POST['idPolice'];
     return $idGenerated;
 }
 
-echo "<br>";
-"<br>";
+/*echo "<br>";
+"<br>";*/
 $c1=null; $c4=null;$c7=null;
 
-echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
-echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
-echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
+//echo "nom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING))."<br>";
+//echo "prenom assure".preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING))."<br>";
+//echo "adresse assure".preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['adresse_assure'],FILTER_SANITIZE_STRING))."<br>";
+//echo " telephone".preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['tel_assure'],FILTER_SANITIZE_NUMBER_INT))."<br>";
+//echo " email".preg_replace("#[^a-zA-Z- ]]#", "",filter_var($_POST['email_assure'],FILTER_SANITIZE_EMAIL))."<br>";
 $Assuredao=new AssureDao();
 $usAssure=new Assure($_POST['idPolice'],preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_assure'],FILTER_SANITIZE_STRING)),
                             preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['prenom_assure'],FILTER_SANITIZE_STRING)),
@@ -32,12 +32,12 @@ $usAssure=new Assure($_POST['idPolice'],preg_replace("#[^a-zA-Z- ]#", "",filter_
 $okAssure=$Assuredao->updateAssure($usAssure);
 if($okAssure==true)
   {
-    echo 'ASSURE à jour'."<br>";
+    //echo 'ASSURE à jour'."<br>";
     $c1=1;
   }
 else
    {
-     echo "ASSURE non inserer"."<br>";
+    // echo "ASSURE non inserer"."<br>";
   }
 
 /**********************LES VALEURS DU VEHICULE ***********************************/
@@ -61,7 +61,7 @@ $valeur_neuve=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_neuve'],F
 $valeur_venale=preg_replace("#[^A-Za-z0-9]#", "",filter_var($_POST['val_venale'],FILTER_SANITIZE_NUMBER_INT));
 $nom_chauffeur=preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteur'],FILTER_SANITIZE_STRING));
 $categorie=$_POST['categorie'];
-echo $categorie."<br>";
+//echo $categorie."<br>";
 $Vehdao=new VehiculeDao();
 $usVeh=new Vehicule($_POST['idPolice'],$marque,$type,$immatriculation,$puissance,$energie,$charge_utile,$places,$genre,$chassis,$cylindre,$date_mec,$valeur_neuve,$valeur_venale,$nom_chauffeur,$categorie);
 $Vdao=new VehiculeDao('','','','','','','','','','','','','','','',$categorie);
@@ -71,17 +71,43 @@ $vehicule=$Vdao->getCatVehicule($voiture);
         $okVeh=$Vehdao->updateVehicule($usVeh);
         if($okVeh==true)
         {
-            echo 'VEHICULE insere'."<br>";
+            //echo 'VEHICULE insere'."<br>";
             $c4=1;
         }
         else
         {
-            echo "VEHICULE non inserer"."<br>";
+            //echo "VEHICULE non inserer"."<br>";
         }
 
+        $numPdao=new PoliceDao();
+        $numP=$numPdao->getNumPolice($categorie);
+        $c8=$numP->rowCount();
+        if($numP==true){
+            //echo("value got ".$value);
+            foreach ($numP as $value){
+                if($value['numPolice']==''){
+                  // echo "<strong>il nya pas de police</strong><br>";
+                    $vaPol="4".$categorie."000001";
+                    $valueNumP="4".$categorie."000001";
+                }else{
+                    /*echo*/ $valueNumP=$value['numPolice'];
+                    $vaPol=$value['numPolice'];
+                    $valueNumP=$vaPol;
+                }
+            }
+        date_default_timezone_set('UTC');
+        $year=date("Y");
+        $numFacture = $valueNumP."-".$year."-".$_SESSION['matricule'];
+        }
+        else{
+            //echo "supression Vehicule non effectué<br>";
+        }
+       //echo "num pol ".$valueNumP."<br>";
+        //echo "num fac ".$numFacture."<br>";
+        
 
 /*****************************INSERTION DE LA POLICE*****************************************/
-echo(date_create()->format('Y-m-d H:i:s'));
+//echo(date_create()->format('Y-m-d H:i:s'));
 $datePolice = date_create()->format('Y-m-d H:i:s');
 if($c1==1 && $c4==1){
     $usdao             = new PoliceDao();
@@ -97,14 +123,14 @@ if($c1==1 && $c4==1){
     }else if($option=='verte'){
         $attestation       = $_POST['attestation-v'];
     }
-    echo("<p style='background:yellow'>ATTESTATION</p> ".$attestation." ".$attestationCedeao.' '.$option);
-    $us                = new Police($_POST['idPolice'],'',$datePolice,'',$attestation,1,'En cours','','','','','','','');
+   // echo("<p style='background:yellow'>ATTESTATION</p> ".$attestation." ".$attestationCedeao.' '.$option);
+    $us                = new Police($_POST['idPolice'],$valueNumP,$datePolice,$numFacture,$attestation,1,'En cours','','','','','','','');
     $ok                = $usdao->uptadePolice($us);
-    var_dump($ok);
+    //var_dump($ok);
     if($ok==true)
     {
-echo "toutes les insertions sont faites<br>";
-echo '<p style="backgroud:green">Police inseree</p>'."<br>";
+//echo "toutes les insertions sont faites<br>";
+//echo '<p style="backgroud:green">Police inseree</p>'."<br>";
         if($_POST['optradio']=='verte'){
             $idVente = generateIdVente(5);
             if(isset($_POST['attesta'])){
@@ -127,7 +153,7 @@ echo '<p style="backgroud:green">Police inseree</p>'."<br>";
     }
     else
     {
-        echo "<p style='background:red'>Police non inseree</p>"."<br>";
+       // echo "<p style='background:red'>Police non inseree</p>"."<br>";
     }
 }
 
@@ -139,29 +165,29 @@ if ($c7==1)
     if (isset($_POST['res_civ']))
     {
         $unikIdCIV=uniqid();
-        echo "la resposabilite est  choisie";
-        echo "resposabilite: ".$_POST['res_civ'];
+        //echo "la resposabilite est  choisie";
+        //echo "resposabilite: ".$_POST['res_civ'];
         echo "<br>";
-        echo $lim1=$_POST['lim1'];
-        echo "<br>";
-        echo $franch1=$_POST['franch1'];
-        echo "<br>";
-        echo $brute1=$_POST['brute1'];
-        echo "<br>";
-        echo $prorata1=$_POST['prorata1'];
-        echo "<br>";
+        /*echo*/ $lim1=$_POST['lim1'];
+        //echo "<br>";
+        /*echo*/ $franch1=$_POST['franch1'];
+        //echo "<br>";
+        /*echo*/ $brute1=$_POST['brute1'];
+        //echo "<br>";
+        /*echo*/ $prorata1=$_POST['prorata1'];
+        //echo "<br>";
 
         $usdao1=new ContenirDao();
         $us1=new Contenir($unikIdCIV,$_POST['lim1'],$_POST['franch1'], $_POST['brute1'],$_POST['prorata1'], '1', $_POST['idPolice']);
         $ok1=$usdao1->insererContenir($us1);
         if($ok1==true)
         {
-            echo 'resposabilite donnees insere'."<br>";
+            //echo 'resposabilite donnees insere'."<br>";
             $cont1=1;
         }
         else
         {
-            echo " resposabilite donnee non inserer"."<br>";
+           // echo " resposabilite donnee non inserer"."<br>";
         }
 
     }
@@ -172,17 +198,17 @@ if ($c7==1)
     if (isset($_POST['recours']))
     {
         $unikIdREC=uniqid();
-        echo "la recours est  choisie"."<br>";
-        echo "recours: ".$_POST['recours'];
-        echo "<br>";
-        echo $lim2=$_POST['lim2'];
-        echo "<br>";
-        echo $franch2=$_POST['franch2'];
-        echo "<br>";
-        echo $brute2=$_POST['brute2'];
-        echo "<br>";
-        echo $prorata2=$_POST['prorata2'];
-        echo "<br>";
+       // echo "la recours est  choisie"."<br>";
+        //echo "recours: ".$_POST['recours'];
+        //echo "<br>";
+        /*echo*/ $lim2=$_POST['lim2'];
+        //echo "<br>";
+        /*echo*/ $franch2=$_POST['franch2'];
+        //echo "<br>";
+        /*echo*/ $brute2=$_POST['brute2'];
+        //echo "<br>";
+        /*echo*/ $prorata2=$_POST['prorata2'];
+        //echo "<br>";
 
         $usdao2=new ContenirDao();
         $us2=new Contenir($unikIdREC,$_POST['lim2'],$_POST['franch2'], $_POST['brute2'],$_POST['prorata2'],2, $_POST['idPolice']);
@@ -190,11 +216,11 @@ if ($c7==1)
         $ok2=$usdao2->insererContenir($us2);
         if($ok2==true)
         {
-            echo 'recours donnees insere'."<br>";
+            //echo 'recours donnees insere'."<br>";
         }
         else
         {
-            echo " recours donnee non inserer"."<br>";
+           //echo " recours donnee non inserer"."<br>";
         }
 
 
@@ -206,17 +232,17 @@ if ($c7==1)
     if (isset($_POST['defense']))
     {
         $unikIdDEF=uniqid();
-        echo "la resposabilite est  choisie"."<br>";
-        echo "defense: ".$_POST['defense'];
-        echo "<br>";
-        echo $lim3=$_POST['lim3'];
-        echo "<br>";
-        echo $franch3=$_POST['franch3'];
-        echo "<br>";
-        echo $brute3=$_POST['brute3'];
-        echo "<br>";
-        echo $prorata3=$_POST['prorata3'];
-        echo "<br>";
+        //echo "la resposabilite est  choisie"."<br>";
+        //echo "defense: ".$_POST['defense'];
+        //echo "<br>";
+        /*echo*/ $lim3=$_POST['lim3'];
+        //echo "<br>";
+        /*echo*/ $franch3=$_POST['franch3'];
+        //echo "<br>";
+        /*echo*/ $brute3=$_POST['brute3'];
+        //echo "<br>";
+        /*echo*/ $prorata3=$_POST['prorata3'];
+        //echo "<br>";
 
         $usdao3=new ContenirDao();
         $us3=new Contenir($unikIdDEF,$_POST['lim3'],$_POST['franch3'], $_POST['brute3'],$_POST['prorata3'],3, $_POST['idPolice']);
@@ -224,11 +250,11 @@ if ($c7==1)
         $ok3=$usdao3->insererContenir($us3);
         if($ok3==true)
         {
-            echo 'defense donnees insere'."<br>";
+            //echo 'defense donnees insere'."<br>";
         }
         else
         {
-            echo " defense donnee non inserer"."<br>";
+            //echo " defense donnee non inserer"."<br>";
         }
     }
 
@@ -238,17 +264,17 @@ if ($c7==1)
     if (isset($_POST['incendie']))
     {
         $unikIdINC=uniqid();
-        echo "l'incendie est choisie"."<br>";
-        echo "incendie: ".$_POST['incendie'];
-        echo "<br>";
-        echo $lim4=$_POST['lim4'];
-        echo "<br>";
-        echo $franch4=$_POST['franch4'];
-        echo "<br>";
-        echo $brute4=$_POST['brute4'];
-        echo "<br>";
-        echo $prorata4=$_POST['prorata4'];
-        echo "<br>";
+        //echo "l'incendie est choisie"."<br>";
+        //echo "incendie: ".$_POST['incendie'];
+        //echo "<br>";
+        /*echo*/ $lim4=$_POST['lim4'];
+        //echo "<br>";
+        /*echo*/ $franch4=$_POST['franch4'];
+        //echo "<br>";
+        /*echo*/ $brute4=$_POST['brute4'];
+        //echo "<br>";
+        /*echo*/ $prorata4=$_POST['prorata4'];
+        //echo "<br>";
 
         $usdao4=new ContenirDao();
         $us4=new Contenir($unikIdINC,$_POST['lim4'],$_POST['franch4'], $_POST['brute4'],$_POST['prorata4'],4, $_POST['idPolice']);
@@ -256,11 +282,11 @@ if ($c7==1)
         $ok4=$usdao4->insererContenir($us4);
         if($ok4==true)
         {
-            echo 'incendie donnees insere'."<br>";
+            //echo 'incendie donnees insere'."<br>";
         }
         else
         {
-            echo " incendie donnee non inserer"."<br>";
+            //echo " incendie donnee non inserer"."<br>";
         }
     }
 
@@ -270,28 +296,28 @@ if ($c7==1)
     if (isset($_POST['vol']))
     {
         $unikIdVol=uniqid();
-        echo "lE VOL est  choisie"."<br>";
-        echo "vol: ".$_POST['vol'];
-        echo "<br>";
-        echo $lim5=$_POST['lim5'];
-        echo "<br>";
-        echo $franch5=$_POST['franch5'];
-        echo "<br>";
-        echo $brute5=$_POST['brute5'];
-        echo "<br>";
-        echo $prorata5=$_POST['prorata5'];
-        echo "<br>";
+        //echo "lE VOL est  choisie"."<br>";
+        //echo "vol: ".$_POST['vol'];
+        //echo "<br>";
+        /*echo*/ $lim5=$_POST['lim5'];
+        //echo "<br>";
+        /*echo*/ $franch5=$_POST['franch5'];
+        //echo "<br>";
+        /*echo*/ $brute5=$_POST['brute5'];
+        //echo "<br>";
+        /*echo*/ $prorata5=$_POST['prorata5'];
+        //echo "<br>";
 
           $usdao5=new ContenirDao();
           $us5=new Contenir($unikIdVol,$_POST['lim5'],$_POST['franch5'], $_POST['brute5'],$_POST['prorata5'],5, $_POST['idPolice']);
           $ok5=$usdao5->insererContenir($us5);
           if($ok5==true)
           {
-              echo 'vol donnees insere'."<br>";
+             // echo 'vol donnees insere'."<br>";
           }
           else
           {
-              echo " vol donnee non inserer"."<br>";
+             // echo " vol donnee non inserer"."<br>";
           }
 
     }
@@ -302,28 +328,28 @@ if ($c7==1)
     if (isset($_POST['bris']))
     {
         $unikIdBRIS=uniqid();
-        echo "lE bris est  choisie";
-        echo "bris: ".$_POST['bris'];
-        echo "<br>";
-        echo $lim6=$_POST['lim6'];
-        echo "<br>";
+        //echo "lE bris est  choisie";
+        //echo "bris: ".$_POST['bris'];
+        //echo "<br>";
+        /*echo*/ $lim6=$_POST['lim6'];
+       // echo "<br>";
         echo $franch6=$_POST['franch6'];
-        echo "<br>";
-        echo $brute6=$_POST['brute6'];
-        echo "<br>";
-        echo $prorata6=$_POST['prorata6'];
-        echo "<br>";
+        //echo "<br>";
+        /*echo*/ $brute6=$_POST['brute6'];
+        //echo "<br>";
+        /*echo*/ $prorata6=$_POST['prorata6'];
+        //echo "<br>";
 
         $usdao6=new ContenirDao();
         $us6=new Contenir($unikIdBRIS,$_POST['lim6'],$_POST['franch6'], $_POST['brute6'],$_POST['prorata6'],6, $_POST['idPolice']);
         $ok6=$usdao6->insererContenir($us6);
           if($ok6==true)
           {
-              echo 'bris donnees insere'."<br>";
+            //  echo 'bris donnees insere'."<br>";
           }
           else
           {
-              echo " bris donnee non inserer"."<br>";
+            //  echo " bris donnee non inserer"."<br>";
           }
 
     }
@@ -335,17 +361,17 @@ if ($c7==1)
     if (isset($_POST['TierceCom']))
     {
         $unikICOM=uniqid();
-        echo "la tierce complete est choisie est  choisie";
-        echo "tierce: ".$_POST['TierceCom'];
-        echo "<br>";
-        echo $lim7=$_POST['lim7'];
-        echo "<br>";
-        echo $franch7=$_POST['franch7'];
-        echo "<br>";
-        echo $brute7=$_POST['brute7'];
-        echo "<br>";
-        echo $prorata7=$_POST['prorata7'];
-        echo "<br>";
+        //echo "la tierce complete est choisie est  choisie";
+        //echo "tierce: ".$_POST['TierceCom'];
+        //echo "<br>";
+        /*echo*/ $lim7=$_POST['lim7'];
+        //echo "<br>";
+        /*echo*/ $franch7=$_POST['franch7'];
+        //echo "<br>";
+        /*echo*/ $brute7=$_POST['brute7'];
+        //echo "<br>";
+        /*echo*/ $prorata7=$_POST['prorata7'];
+        //echo "<br>";
 
         $usdao7=new ContenirDao();
         $us7=new Contenir($unikICOM,$_POST['lim7'],$_POST['franch7'], $_POST['brute7'],$_POST['prorata7'],7, $_POST['idPolice']);
@@ -353,38 +379,38 @@ if ($c7==1)
              $ok7=$usdao7->insererContenir($us7);
              if($ok7==true)
              {
-                 echo 'tierce tmc donnees insere'."<br>";
+                // echo 'tierce tmc donnees insere'."<br>";
              }
              else
              {
-                 echo " tierce tmc donnee non inserer"."<br>";
+                // echo " tierce tmc donnee non inserer"."<br>";
              }
     }
     if (isset($_POST['TierceCol']))
     {
         $unikIdCOL=uniqid();
-        echo "la tierce collision est choisie est  choisie";
-        echo "tierce Collision: ".$_POST['TierceCol'];
-        echo "<br>";
-        echo $lim7=$_POST['lim7'];
-        echo "<br>";
-        echo $franch7=$_POST['franch7'];
-        echo "<br>";
-        echo $brute7=$_POST['brute7'];
-        echo "<br>";
-        echo $prorata7=$_POST['prorata7'];
-        echo "<br>";
+        //echo "la tierce collision est choisie est  choisie";
+        //echo "tierce Collision: ".$_POST['TierceCol'];
+        //echo "<br>";
+        /*echo*/ $lim7=$_POST['lim7'];
+        //echo "<br>";
+        /*echo*/ $franch7=$_POST['franch7'];
+        //echo "<br>";
+        /*echo*/ $brute7=$_POST['brute7'];
+        //echo "<br>";
+        /*echo*/ $prorata7=$_POST['prorata7'];
+        //echo "<br>";
                  $usdao7=new ContenirDao();
                  $us7=new Contenir($unikIdCOL,$_POST['lim7'],$_POST['franch7'], $_POST['brute7'],$_POST['prorata7'],8, $_POST['idPolice']);
 
                  $ok7=$usdao7->insererContenir($us7);
                  if($ok7==true)
                   {
-                      echo 'tierce collision donnees insere'."<br>";
+                    //  echo 'tierce collision donnees insere'."<br>";
                   }
                   else
                   {
-                      echo " tierce collision donnee non inserer"."<br>";
+                    //  echo " tierce collision donnee non inserer"."<br>";
                   }
 
     }
@@ -395,18 +421,18 @@ if ($c7==1)
 //-----------------------------
     if (isset($_POST['avance']))
     {
-        echo $unikIdAV=uniqid();
-        echo "l'avance est  choisie"."<br>";
-        echo "avance: ".$_POST['avance'];
-        echo "<br>";
-        echo $lim8=$_POST['lim8'];
-        echo "<br>";
-        echo $franch8=$_POST['franch8'];
-        echo "<br>";
-        echo $brute8=$_POST["brute8"];
-        echo "<br>";
-        echo $prorata8=$_POST['prorata8'];
-        echo "<br>";
+        /*echo*/ $unikIdAV=uniqid();
+        //echo "l'avance est  choisie"."<br>";
+        //echo "avance: ".$_POST['avance'];
+        //echo "<br>";
+        /*echo*/ $lim8=$_POST['lim8'];
+        ///echo "<br>";
+        /*echo*/ $franch8=$_POST['franch8'];
+        //echo "<br>";
+        /*echo*/ $brute8=$_POST["brute8"];
+        //echo "<br>";
+        /*echo*/ $prorata8=$_POST['prorata8'];
+        //echo "<br>";
 
         if($_POST['avance']=='AR_opt1')
         {
@@ -417,11 +443,11 @@ if ($c7==1)
             $ok8=$usdao8->insererContenir($us8);
             if($ok8==true)
                 {
-                    echo 'AR_opt1 donnees insere'."<br>";
+                   // echo 'AR_opt1 donnees insere'."<br>";
                 }
             else
                 {
-                    echo " AR_opt1 donnee non inserer"."<br>";
+                   // echo " AR_opt1 donnee non inserer"."<br>";
                 }
         }
         if($_POST['avance']=='AR_opt2')
@@ -433,11 +459,11 @@ if ($c7==1)
             $ok8=$usdao8->insererContenir($us8);
             if($ok8==true)
                 {
-                    echo 'AR_opt2 donnees insere'."<br>";
+                   // echo 'AR_opt2 donnees insere'."<br>";
                 }
             else
                 {
-                    echo " AR_opt2 donnee non inserer"."<br>";
+                  //  echo " AR_opt2 donnee non inserer"."<br>";
                 }
         }
         if($_POST['avance']=='AR_opt3')
@@ -449,11 +475,11 @@ if ($c7==1)
            $ok8=$usdao8->insererContenir($us8);
             if($ok8==true)
                 {
-                    echo 'AR_opt3 donnees insere'."<br>";
+                   // echo 'AR_opt3 donnees insere'."<br>";
                 }
             else
                 {
-                    echo " AR_opt3 donnee non inserer"."<br>";
+                   // echo " AR_opt3 donnee non inserer"."<br>";
                 }
         }
 
@@ -465,19 +491,19 @@ if ($c7==1)
     if (isset($_POST['personne']))
     {
         $unikIdPERS=uniqid();
-        echo "la personne est  choisie";
-        echo "<br>";
-        echo "<br>";
-        echo "personne: ".$_POST['personne'];
-        echo "<br>";
-        echo $lim9=$_POST['lim9'];
-        echo "<br>";
-        echo $franch9=$_POST['franch9'];
-        echo "<br>";
-        echo $brute9=$_POST['brute9'];
-        echo "<br>";
-        echo $prorata9=$_POST['prorata9'];
-        echo "<br>";
+        //echo "la personne est  choisie";
+        //echo "<br>";
+        //echo "<br>";
+        //echo "personne: ".$_POST['personne'];
+        //echo "<br>";
+        /*echo*/ $lim9=$_POST['lim9'];
+        //echo "<br>";
+        /*echo*/ $franch9=$_POST['franch9'];
+        //echo "<br>";
+        /*echo*/ $brute9=$_POST['brute9'];
+        //echo "<br>";
+        /*echo*/ $prorata9=$_POST['prorata9'];
+        //echo "<br>";
 
         if($_POST['personne']=='PT_opt1')
         {
@@ -487,11 +513,11 @@ if ($c7==1)
             $ok9=$usdao9->insererContenir($us9);
             if($ok9==true)
             {
-                echo 'PT_opt1 donnees insere'."<br>";
+                //echo 'PT_opt1 donnees insere'."<br>";
             }
             else
             {
-                echo " PT_opt1 donnee non inserer"."<br>";
+               // echo " PT_opt1 donnee non inserer"."<br>";
             }
         }
         if($_POST['personne']=='PT_opt2')
@@ -503,11 +529,11 @@ if ($c7==1)
             $ok9=$usdao9->insererContenir($us9);
             if($ok9==true)
             {
-                echo 'PT_opt2 donnees insere'."<br>";
+               // echo 'PT_opt2 donnees insere'."<br>";
             }
             else
             {
-                echo " PT_opt2 donnee non inserer"."<br>";
+              //  echo " PT_opt2 donnee non inserer"."<br>";
             }
 
         }
@@ -519,10 +545,10 @@ if ($c7==1)
             $ok9=$usdao9->insererContenir($us9);
             if($ok9==true)
             {
-                echo 'PT_opt3 donnees insere'."<br>";
+               // echo 'PT_opt3 donnees insere'."<br>";
             }
             else
-            {
+            {//
                 echo " PT_opt3 donnee non inserer"."<br>";
             }
         }
@@ -535,31 +561,32 @@ if ($c7==1)
     if (isset($_POST['assistance']))
     {
         $unikIdAUT=uniqid();
-        echo "la auto est  choisie";
-        echo "<br>";
-        echo "auto: ".$_POST['assistance'];
-        echo "<br>";
-        echo $lim10=$_POST['lim10'];
-        echo "<br>";
-        echo $franch10=$_POST['franch10'];
-        echo "<br>";
-        echo $brute10=$_POST['brute10'];
-        echo "<br>";
-        echo $prorata10=$_POST['prorata10'];
-        echo "<br>";
+        //echo "la auto est  choisie";
+        //echo "<br>";
+        //echo "auto: ".$_POST['assistance'];
+        //echo "<br>";
+        /*echo*/ $lim10=$_POST['lim10'];
+        //echo "<br>";
+        /*echo*/ $franch10=$_POST['franch10'];
+        //echo "<br>";
+        /*echo*/ $brute10=$_POST['brute10'];
+        //echo "<br>";
+        /*echo*/ $prorata10=$_POST['prorata10'];
+        //echo "<br>";
 
         $usdao10=new ContenirDao();
             $us10=new Contenir($unikIdAUT,$_POST['lim10'],$_POST['franch10'], $_POST['brute10'],$_POST['prorata10'],15, $_POST['idPolice']);
             $ok10=$usdao10->insererContenir($us10);
             if($ok10==true)
             {
-                echo ' assistance donnees insere'."<br>";
+               // echo ' assistance donnees insere'."<br>";
             }
             else
             {
-                echo "  assistance donnee non inserer"."<br>";
+              //  echo "  assistance donnee non inserer"."<br>";
             }
     }
+    echo('<img src="../../img/loading.gif" style="margin-left: 46%;margin-top:15%">');
     print "
     <!doctype html>
     <html lang=\"en\">

@@ -41,7 +41,7 @@
         <main class="mdl-layout__content error-content">
             <div class="mdl-content">
                 <h1 class="error-message">Requete incorrecte !</h1>
-                <p class='error-text'>Veuillez vous assurer que tous les de votre formulaire portant le signe<span style='color:red'>*</span><br> sont bien remplis avant de faire votre validation</p>
+                <p class='error-text'>Veuillez vous assurer que tous votre URL et les donées que vous essayez de transmettre <br>sont correctes.</p>
                 <div class="retour-content">
                     <a href="/saham-app/view/user/accueil.php">RETOUR</a>
                 </div>

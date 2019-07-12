@@ -1337,6 +1337,11 @@
             $('#alert-garanties').fadeOut(1000)
         })
         $( "#tabs" ).tabs();
+
+        var marques_voitures = ['FIAT','BMW','ACURA','FORD','HOLDEN','HONDA','GHYUNDAI','ISUZU','KIA','LEXUS','NISSAN','RENAULT','SEAT','CHEVROLET','CITROEN','DACIA','INFINITI','MAZDA','MITSUBISHI','PEUGEOT','SUBARU','TOYOTA','VOLSWAGEN']
+        $('#marque').autocomplete({
+            source: marques_voitures
+        })
    
     })
 </script>

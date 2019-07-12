@@ -93,6 +93,14 @@
             font-size: 22px;
             padding-top:0 !important
         }
+        #continue-validation{
+            padding: 5px;
+            width: 24%;
+            margin: auto;
+            border: none;
+            background: #062945;
+            color: #f7ba00;
+        }
         
     </style>
 </head><!--end header-->
@@ -1324,6 +1332,20 @@
         </div>
     </div><!--garanties-->
 
+    <div class="card modal" id='no-attestation'><!--épuisement de stock d'attestation-->
+            <!--div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div-->
+            <div class="card-body">
+            <div>
+                <div class="modal-content" style='height: 183px !important;width: 27% !important;text-align:center !important'>
+                        <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
+                        <p id='empty-msg'></p>      
+                        <button id='continue-validation'>Continuer</button>                 
+                    </div>
+                </div>
+            </div>
+        </div><!--épuisement de stock d'attestation-->
+
+
 
     <form id="hidden-form">
         <select name="" id="vertes-attestations" style="display:none !important">
@@ -1362,7 +1384,6 @@
 <script>
 
 $(document).ready(function(){
-// $("#creationEtat").prop('disabled', true);
     var attestationsVertes = [];
     var attestationsJaunes = [];
     var attestationsCedeao = [];
@@ -1386,6 +1407,26 @@ $(document).ready(function(){
         }
         return exist
     }
+    var vertes = pushAttestations('#vertes-attestations option',attestationsVertes);
+    var jaunes = pushAttestations('#jaunes-attestations option',attestationsJaunes);
+    var cedeao = pushAttestations('#cedeao-attestations option',attestationsCedeao);
+
+    console.log(vertes)
+    console.log(jaunes)
+    console.log(cedeao)
+
+        if(jaunes.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations jaunes dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
+        if(vertes.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations jaunes dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
+        if(cedeao.length<10){
+            $('#empty-msg').text('Vous avez moins de 10 attestations cedeao dans votre stock merci de passer vos commandes.')
+            $('#no-attestation').fadeIn()
+        }
     function getExist(assertion){
         if(assertion=="ok"){}else if(assertion=="non"){
             alert("Seuls les numéros d'attestation affichés vous sont autorisés.")
@@ -1430,7 +1471,9 @@ $(document).ready(function(){
         }
     })
 
+
     $(function() {
+      
         $("#attestation-verte").autocomplete({
             source: pushAttestations('#vertes-attestations option',attestationsVertes)
         });
@@ -1440,8 +1483,13 @@ $(document).ready(function(){
         $("#attesta").autocomplete({
             source: pushAttestations('#cedeao-attestations option',attestationsCedeao )
         });
-
     });
+    $('.close').on('click',function(){
+        $('#no-attestation').fadeOut()
+    })
+    $('#continue-validation').on('click',function(){
+        $('#no-attestation').fadeOut()
+    })
 })
   </script>
 

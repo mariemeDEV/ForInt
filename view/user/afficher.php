@@ -115,7 +115,7 @@
             width:99% !important
         }
         .modal-content{
-            height: 429px !important;
+            height: 360px !important;
             width: 45% !important
         }
         .btn-lg{
@@ -144,9 +144,29 @@
             position: relative !important;
             top: 2px !important;
         }
-        .annulation-label{
+        .annulation-label{ 
             position: relative !important;
             top: 52px !important
+        }
+        #policeNum{
+            border: none !important;
+            position: relative !important;
+            top: -30px !important;
+            left: 304px !important;
+            font-weight: bold;
+            color: green;
+            font-size: 12px;
+        }
+        tr:nth-child(even) button {
+            background: #ffffff;
+            border:none !important;
+            cursor:pointer;
+        }
+        tr:nth-child(odd) button {
+            background:#f2f2f2;
+            border:none !important;
+            cursor:pointer;
+
         }
      
     </style>
@@ -219,16 +239,18 @@
                             <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                         </td> ";
                         if($row[7]=="En cours"){
-                            echo "<td style='background:#00800070;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                            echo "<td style='background:#00800070;text-align:center;font-weight:bold'>En cours...</td>";
                         }else if($row[7]=="Annule"){
-                            echo "<td style='background:#ff000087;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                            echo "<td style='background:#ff000087;text-align:center;font-weight:bold'>Annulé</td>";
                         }else if($row[7]=="A annuler"){
-                            echo "<td style='background:#ffa50085;text-align:center;font-weight:bold'>".$row[7]."</td>";
+                            echo "<td style='background:#ffa50085;text-align:center;font-weight:bold'>A annuler</td>";
                         }
                         echo
                             "<td>
-                                <button style=\"border:none;background:#ffffff\"class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\" id=\"delete-icon\">delete</i></button>
+                                <button class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\" id=\"delete-icon\">delete</i></button>
                                 <input type=\"text\" class=\"souscript-date\" value='$row[2]' style=\"display:none\">
+                                <input type=\"text\" value='$row[1]' style=\"display:none\" id=\"numPol\">
+                                <input type=\"text\" value='$row[8]  $row[9]' style=\"display:none\" id=\"prenom-nom\">
                             </td>                        
                     </tr>";
                     }
@@ -246,15 +268,19 @@
                         <!--h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3-->
                         <span class="close">&times;</span>
                         <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
-                        <p style='position: relative;top: 26px;font-weight: bold;font-weight: bold;color: #062944;'><span style='color:red'>*</span>Etes-vous sure de vouloir annuler la police :<p class='policeNum'></p> </p>
+                        <p style='position: relative;top: 26px;font-weight: bold;font-weight: bold;color: #062944;'><span style='color:red'>*</span>Vous êtes sur le point d'annuler la police :<input type='text' id='policeNum'></p>
                         <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
-                            <div class="form-group inline">
+                            <div class="form-group inline" style='display:none'>
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
                                 <input type ="text"  name="police" id="pol" required style="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style='display:none'>
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Code intermédiaire</label>
                                 <input type ="text"  name="intermediaire" id="code" required style="">
+                            </div>
+                            <div class="form-group inline">
+                                <label for="dtp_input2">Prénom/Nom intermediaire</label>
+                                <input type ="text" id='pnomNom'>
                             </div>
                             <div class="form-group">
                                 <label for="Motif d'annulation">Motif d'annulation</label>
@@ -284,19 +310,19 @@
             <div class="card-header"><h3>Demande d'annulation</h3></div>
             <div class="card-body">
             <div>
-                <div class="modal-content">
+                <div class="modal-content" style='height: 262px !important'>
                         <span class="close">&times;</span>
                         <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
                         <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
-                            <div class="form-group inline">
+                            <div class="form-group inline" style='display:none !important'>
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
                                 <input type ="text"  name="police" id="polDemande" required style="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style='display:none !important'>
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Code intermédiaire</label>
                                 <input type ="text"  name="intermediaire" id="codeDemande" required style="">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style='position:relative;top:48px !important'>
                                 <label for="Motif d'annulation">Motif d'annulation</label>
                                 <select class="form-control" id="motifDemande" name="motif">
                                 <option>Erreur sur date effet</option>
@@ -392,17 +418,20 @@
             var current_date      = ((date.getFullYear() + '-' + (date.getMonth()+1) + '-' +  date.getDate()));
             var police            = ($(this).find('.delete-btn').val());
             var int               = $('#mat_int').val();
+            var numPolice         = ($(this).find('#numPol').val());
+            var prenomNom         = ($(this).find('#prenom-nom').val())
         //Souscription datant de la journée
         if ((new Date(date_souscription)) > (new Date(current_date)) ) {
             $('#pol').val(police);
             $('#code').val(int);
             $('#date_debut_contrat').val(date_souscription);
             $('#annulation_modal').fadeIn();
+            $('#policeNum').val(numPolice)
+            $('#pnomNom').val(prenomNom)
         }
         //Souscription antérieure
         else {
             $('#polDemande').val(police);
-            $('.policeNum').text('ok');
             $('#codeDemande').val(int);
             $('#date_debut').val(date_souscription);
             $('#demande_modal').fadeIn();
@@ -416,7 +445,7 @@
                 var etat       = $(this).find("td").eq(5).html(); 
                 var deleteIcon = $(this).find("td").eq(5).find('i');
                 deleteIcon.removeClass('material-icons')
-                if(etat =='Annule'){
+                if(etat =='Annulé'){
                     var delete_btn=$(this).find("td").eq(6)
                     $(delete_btn).unbind()
                     $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#062944");
@@ -433,17 +462,14 @@
                 }
         })
     </script>
-
-    <script>
-        $('.close').on('click',function(){
-            $('#intermediaire_modal,#addUserModal,#annulation_modal,#demande_modal,#message_modal,#annul_demande_modal').fadeOut()
-        })
-    </script>
     <script>
         $(window).on('click',function(event){
             if (event.target == $('#intermediaire_modal')) {
-                $('#intermediaire_modal,#addUserModal,#annulation_modal').fadeOut()
+                $('#intermediaire_modal,#addUserModal,#annulation_modal,#message_modal,#demande_modal,#annul_demande_modal').fadeOut()
             }
+        })
+        $('.close').on('click',function(){
+            $('#intermediaire_modal,#addUserModal,#annulation_modal,#message_modal,#demande_modal,#annul_demande_modal').fadeOut()
         })
     </script>
     </body>
