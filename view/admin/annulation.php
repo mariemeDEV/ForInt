@@ -95,7 +95,7 @@
 
     </head>
 
-    <body onchange="CalculeBC()">
+    <body>
         <!--header-->
         <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
             <?php include "header.php";?>

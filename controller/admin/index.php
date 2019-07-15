@@ -52,6 +52,8 @@ require_once '../../mapping/Attestation.php';
 require_once '../../model/AttestationDao.php';
 require_once '../../mapping/Annulation.php';
 require_once '../../model/AnnulationsDao.php';
+require_once '../../model/CommandesDao.php';
+
 
 
 $choix=null;
@@ -132,9 +134,6 @@ if(isset($_GET['action']))
             $resultat   = $usPolao->listPoliceAdmn($pol);
             $cpt1       = $resultat->rowCount();
             require_once('../../view/admin/afficher.php');
-        break;
-        case 'extraireProduction' : 
-            $a = "ok";
         break;
         case 'lister':
                 $usInt         = new IntermediaireDao();
@@ -522,12 +521,20 @@ if(isset($_GET['action']))
         $annulations    = $annulationsDao->getAnnulations();
             require_once '../../view/admin/annulation.php';
         break;
+        case 'commandes' :
+            $commandesDAO = new CommandesDao();
+            $commandes = $commandesDAO->getCommandes();
+            require_once '../../view/admin/commandes.php';
+        break;
         case 'affectations' :
             $type           = new TypeAttestationDao();
             $attestationDao = new AttestationDao();
             $types          = $type->listTypes();
             $matricule      = $_GET['mat'];
             require_once '../../view/admin/affectations.php';
+        break;
+        case 'demande_att' :
+            require_once '../../view/admin/demande_att.php';
         break;
         default:
             require_once '../../view/error.php';

@@ -1430,7 +1430,6 @@ $(document).ready(function(){
     function getExist(assertion){
         if(assertion=="ok"){}else if(assertion=="non"){
             alert("Seuls les numéros d'attestation affichés vous sont autorisés.")
-            // $("#attestationsForm").trigger("reset");
         }
     }
 

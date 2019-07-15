@@ -22,7 +22,8 @@ class CommandesDao extends DBao
                 '".$c->getMatricule_intermediaire()."',
                 '".$c->getNombre_attestation_verte()."',
                 '".$c->getNombre_attestation_jaune()."',
-                '".$c->getNombre_attestation_cedeao()."'
+                '".$c->getNombre_attestation_cedeao()."',
+                '".$c->getEtat_commande()."'
             )"
         );
         return $sql->execute();
@@ -32,6 +33,11 @@ class CommandesDao extends DBao
         var_dump($e->getMessage());
     }
 
+    }
+
+    public function getCommandes(){
+        $sql = "SELECT * FROM commandes";
+        return $this->executeSELECT($sql);
     }
 
 }

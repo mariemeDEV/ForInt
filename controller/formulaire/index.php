@@ -659,8 +659,8 @@ if(isset($_GET['action']))
             {
                 $limdef=number_format($ligne9['lim_gant']);
                 $franchdef=number_format($ligne9['franchise']);
-                $brutedef=number_format($ligne9['prime_brute']);
-                $proratadef=number_format($ligne9['prime_prorata']);
+                $brutedef=number_format(intval($ligne9['prime_brute']));
+                $proratadef=number_format(intval($ligne9['prime_prorata']));
             }
         }
         else{
@@ -2109,13 +2109,13 @@ if(isset($_POST['action'])){
         break;
         case 'valider_commande' :
         if(!isset($_POST['nj'])){
-            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],0,$_POST['nv'],$_POST['nc']);
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],0,$_POST['nv'],$_POST['nc'],"En attente");
         }else if(!isset($_POST['nv'])){
-            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],0,$_POST['nc']);
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],0,$_POST['nc'],"En attente");
         }else if(!isset($_POST['nc'])){
-            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],0);
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],0,"En attente");
         }else{
-            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],$_POST['nc']);
+            $commande = new commandes(date("Y/m/d"),$_SESSION['matricule'],$_POST['nj'],$_POST['nv'],$_POST['nc'],"En attente");
         }
             $commandeDAO = new CommandesDao();
             $commandeDAO->insererCommandes($commande);

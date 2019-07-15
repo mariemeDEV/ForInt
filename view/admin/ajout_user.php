@@ -66,7 +66,7 @@
             top: -3px;
             left: 14em;
             z-index: 3;
-            left: 26em;
+            left: 18em;
         }
         .container ul li{
             padding: 1em;
@@ -139,7 +139,7 @@
 
     </head>
 
-    <body onchange="CalculeBC()">
+    <body>
         <!--header-->
         <div class="mdl-layout mdl-js-layout  mdl-layout--fixed-header">
             <?php include "header.php";?>
@@ -281,9 +281,7 @@
                         <?php if($choix==2) echo"<button class=\"btn btn-indigo\"  value=\"modif\" name=\"action\">Modifer <i class=\"fa fa-paper-plane-o ml-1\"></i></button>" ;
 
                         ?>
-
                         <!--button type="reset" value="Annuler" name="annuler" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">ANNULER</button-->
-
                     </div>
 
                     </form>
@@ -296,6 +294,7 @@
                     <li><a href="./?action=dotations">Consultation dotations</a></li>
                     <li><a href="./?action=annulations">Consultation annulations</a></li>
                     <li><a id="myBtn">Extraire production</a></li>
+                    <li><a  href="./?action=commandes">Géstion des commandes</a></li>
                     <li><a id="add_new_intermediaire">Nouvel intérmédiaire</a></li>
                 </ul>
           <h1 class="ajout-title">Géstion des utilisateurs</h1>
