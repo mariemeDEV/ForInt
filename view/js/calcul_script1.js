@@ -1708,12 +1708,14 @@ function CalculeBC(){
         var franch_9=0;
         console.log(parseInt(places))
         var primebrute_9=parseInt(places)*1200;
+
         var primebrute_prorata_9=parseInt(primebrute_9*(taux/100));
         document.getElementById('lim10').value=lim_gant_ck9;
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value= primebrute_9;
+
+        document.getElementById('PrimePersonne').value= primebrute_prorata_9;
     }
     if(document.getElementById('Checkbox9').options[2].selected === true)
     {
@@ -1725,7 +1727,7 @@ function CalculeBC(){
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value= primebrute_9;
+        document.getElementById('PrimePersonne').value= primebrute_prorata_9;
     }
     if(document.getElementById('Checkbox9').options[3].selected === true)
     {
@@ -1750,7 +1752,7 @@ function CalculeBC(){
         document.getElementById('franch10').value=franch_9;
         document.getElementById('brute10').value=primebrute_9;
         document.getElementById('prorata10').value=primebrute_prorata_9;
-        document.getElementById('PrimePersonne').value= primebrute_9;
+        document.getElementById('PrimePersonne').value= primebrute_prorata_9;
     }
    if(genre_v==6){
         $("#Checkbox9").prop('disabled',true);

@@ -107,7 +107,7 @@
               
           <h1 class="ajout-title">Gestion des annulations</h1>
           <hr>
-            <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%;margin-left:-142px;"><!--Datatable-->
+            <table id="annulationsData" class="table dataTab table-striped table-bordered" style="width:100%;margin-left:-122px;"><!--Datatable-->
                 <thead>
                     <tr>
                         <th>Numéro police</th>

@@ -53,7 +53,9 @@ class PoliceDao extends DBao
     }
 
     public function uptadePolice(Police $us){
-      $sql="UPDATE police SET attestation='".$us->getAttestation()."',validation='".$us->getValidation()."' WHERE id_police='".$us->getIdPolice()."'";
+    //$us= new Police($_POST['idPolice'],$valueNumP,$datePolice,$numFacture,$attestation,1,'En cours','','','','','','','');
+
+      $sql="UPDATE police SET num_police='".$us->getNumPolice()."',date_police='".$us->getDatePolice()."',numFacture='".$us->getNumFacture()."',attestation='".$us->getAttestation()."',validation='".$us->getValidation()."' WHERE id_police='".$us->getIdPolice()."'";
       return $this->executeMAJ($sql);
     }
     

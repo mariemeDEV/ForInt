@@ -1525,7 +1525,6 @@ $(document).ready(function(){
         });
 
     });
-
     
     $(".more-garanties").on('click',function(){
         $('#alert-garanties').fadeIn(1000)

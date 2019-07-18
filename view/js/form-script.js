@@ -35,7 +35,6 @@ $(window, document, undefined).ready(function() {
   });
 
   $(document).ready(function(){
-  
     $('#close_modal').click(function() {
         $('#update_modal').css('display','none')
         $('#assure-infos,#hidden-caracteristiques').css('display','inline-block')

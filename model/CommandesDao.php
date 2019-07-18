@@ -39,5 +39,14 @@ class CommandesDao extends DBao
         $sql = "SELECT * FROM commandes";
         return $this->executeSELECT($sql);
     }
+    public function getCommande($id){
+        $sql = "SELECT * FROM commandes WHERE id_commande=$id";
+        return $this->executeSELECT($sql);
+    }
+    public function cancelCommande($id){
+        $sql="UPDATE commandes SET etat_commande='Annule' WHERE id_commande=$id";
+        return $this->executeMAJ($sql);
+
+    }
 
 }

@@ -41,7 +41,6 @@ else
   }
 
 /**********************LES VALEURS DU VEHICULE ***********************************/
-
 $marque=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['marque'],FILTER_SANITIZE_STRING));
 $type=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['type_vehicule'],FILTER_SANITIZE_STRING));
 $immatriculation=preg_replace("#[^A-Za-z0-9- ]#", "",filter_var($_POST['immatriculation'],FILTER_SANITIZE_STRING));

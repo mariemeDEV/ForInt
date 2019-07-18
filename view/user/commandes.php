@@ -119,7 +119,7 @@
         th{
             width: 400px;
             padding: 15px;
-            background: #f7ba00;
+            background: #f9d281;
             color: #062945;
             font-weight: bold;
         }

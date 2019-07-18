@@ -661,6 +661,26 @@ if(isset($_POST['action']))
                 }
                 require_once('../../view/admin/demande.php');
             break;
+            case 'Generer Commande':
+            $commandeDAO = new CommandesDao();
+            $commande = $commandeDAO->getCommande($_POST['id_com']);
+            while($row=$commande->fetch()){
+                $id            = $row[0];
+                $date_commande = $row[1];
+                $intermediaire = $row[2];
+                $n_vertes      = $row[3];
+                $n_jaunes      = $row[4];
+                $n_cedeao      = $row[5];
+                $etat          = $row[6];
+            }
+                require_once('../../view/admin/fiche_commande.php');
+            break;
+            case 'Annuler Commande' :
+                $commandeDAO = new CommandesDao();
+                $commandeDAO->cancelCommande($_POST['id_commande']);
+                $commandes = $commandeDAO->getCommandes();
+                require_once '../../view/admin/commandes.php';
+            break;
             default :
                 require_once '../../view/error.php';
             break;

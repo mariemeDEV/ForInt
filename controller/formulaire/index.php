@@ -2105,7 +2105,7 @@ if(isset($_POST['action'])){
             require_once 'postUpdate.php';    
         break;
         case 'Valider Contrat':
-        require_once 'postUpdateAssurance.php';    
+            require_once 'postUpdateAssurance.php';    
         break;
         case 'valider_commande' :
         if(!isset($_POST['nj'])){
