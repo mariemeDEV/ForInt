@@ -26,6 +26,11 @@
         <link rel="stylesheet" href="../../view/style/style_2.css">
         <link rel="stylesheet" href="../../view/style/accueil.css">
 
+        <style>
+            .demo-card-square{
+                border: 2px solid #062945;
+            }
+        </style>
     </head>
     <body ♥ id="acceuil">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">

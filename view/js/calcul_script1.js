@@ -11,12 +11,12 @@ function numberWithCommas(x) {
 
 function CalculeBC(){
     var varDate       = null;
-    var puissance     = document.getElementById('puissance').value
-    var cylindre      = document.getElementById('cylindre').value
-    var valeur_venale = document.getElementById('val_venale').value
-    var valeur_neuve  = document.getElementById('val_neuve').value
-    var mois          = document.getElementById('duree').value
-    var places        = document.getElementById('places').value
+    var puissance     = $('#puissance').val()
+    var cylindre      = $('#cylindre').val()
+    var valeur_venale = $('#val_venale').val()
+    var valeur_neuve  = $('#val_neuve').val()
+    var mois          = $('#duree').val()
+    var places        = $('#places').val()
     var valeurVenale  = parseFloat(valeur_venale.replace(/[^\d\.]/g,''))
     var valeurNeuve   = parseFloat(valeur_neuve.replace(/[^\d\.]/g,''))
 
@@ -25,9 +25,9 @@ function CalculeBC(){
         $('#hidden-caracteristiques').fadeOut(1000)
         $('#valeursModal').delay(3000).fadeOut('slow')
         $('#hidden-caracteristiques').delay(3000).fadeIn('slow')
-        document.getElementById('val_venale').value=''
-        document.getElementById('val_venale').autofocus
-        document.getElementById('date_debut').valueAsDate = new Date()
+        $('#val_venale').val('')
+        $('#val_venale').autofocus()
+        $('#date_debut').valueAsDate = new Date()
     }
     var genre_v       = document.getElementById('categorie').value
     var x             = document.getElementById("energie").selectedIndex
@@ -39,15 +39,15 @@ function CalculeBC(){
         nrj="Diesel"
     }
  
-    document.getElementById("nom_conducteur").value    = document.getElementById("nom_assure").value
-    document.getElementById("prenom_conducteur").value = document.getElementById("prenom_assure").value
-    var xD   = document.getElementById("date_debut").value
-    var xF   = document.getElementById("date_fin").value
-    var xMEC = document.getElementById("mec").value
-    document.getElementById("nom_conducteur").value    = document.getElementById("nom_assure").value
-    document.getElementById("prenom_conducteur").value = document.getElementById("prenom_assure").value
+    $("#nom_conducteur").val($("#nom_assure").val())
+    $("#prenom_conducteur").val($("#prenom_assure").val())
+    var xD   = $("#date_debut").val()
+    var xF   = $("#date_fin").val()
+    var xMEC = $("#mec").val()
+    $("#nom_conducteur").val($("#nom_assure").val())
+    $("#prenom_conducteur").val($("#prenom_assure").value)
 
-    //date choisie
+//date choisie
         var DateDebut = xD.substring(0, 10)
         var DateFin   = xF.substring(0, 10)
         var ynew3     = new Date(DateDebut)
@@ -88,26 +88,27 @@ function CalculeBC(){
         document.getElementById("date_fin").value =inputYear;
         document.getElementById("demo").innerHTML ="<strong>Date Echeance : </strong>"+day+"/"+month+"/"+years;
     
-        //------------diffrence années---------------------------------------
+//------------diffrence années---------------------------------------
             var ynew   = new Date(xMEC);
             var DiffAn = Number((ynew2.getTime() - ynew.getTime()) / 31536000000).toFixed(0);
         
-            //------------ faiencee années---------------------------------------
+//------------ faiencee années---------------------------------------
             var newDate=ynew2;
             newDate.setUTCMonth(newDate.getUTCMonth()+3);
             var mec    = document.getElementById('mec').value;
             var today1 = new Date();
             var today2 = today1.getFullYear();
             var annee = Number(DiffAn)+1;
-       
-    var nrj   = document.getElementById('energie').value;
-    var nrjSelected
-    var charge_utile=document.getElementById('charge').value;
+
+//Type d'énèrgie
+            var nrj   = document.getElementById('energie').value;
+            var nrjSelected
+            var charge_utile=document.getElementById('charge').value;
 
 
     //------------------------DETERMINATION  DU GENRE DE VEHICULE------------------
 
-//
+//Catégorie 1
     if(genre_v==1)
     {
         $('#sel1,#chiffre3').prop('disabled', false)
@@ -126,6 +127,8 @@ function CalculeBC(){
         document.getElementById("pack").options[0].selected=true;
         document.getElementById("charge").options[0].selected=true;
     }
+
+//Catégorie 2
     if (genre_v==2)
     {
         $('#sel1,#chiffre3').prop('disabled', false)
@@ -147,13 +150,14 @@ function CalculeBC(){
         $('#cylindreCol').fadeIn();
         $('#PrimeAuto').val('0')
 
-
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
         var places=document.getElementById('places').value;
 
         document.getElementById("pack").options[0].selected=true;
     }
+
+//Catégorie 3
     if (genre_v==3)
     {
         $('#sel1,#chiffre3').prop('disabled', false)
@@ -177,6 +181,8 @@ function CalculeBC(){
         document.getElementById("places1").disabled=true;
         document.getElementById("pack").options[0].selected=true;
     }
+
+//Catégorie 4
     if (genre_v==4)
     {
         $('#sel1,#chiffre3').prop('disabled', false)
@@ -195,6 +201,8 @@ function CalculeBC(){
         $('#PrimeAuto').val('0')
    
     }
+
+//Catégorie 5
     if (genre_v==5)
     {
         $('#sel1,#chiffre3').prop('disabled', false)
@@ -275,6 +283,7 @@ function CalculeBC(){
        
     }
 
+//Different de catégorie 5
     if(genre_v !=5)
     {
         document.getElementById("Checkbox3").disabled = false;
@@ -300,16 +309,19 @@ function CalculeBC(){
         $('#attesta').prop('disabled',false);
 
     }
+
+//Différent de catégorie 2
     if(genre_v !=2)
     {
         document.getElementById("Checkbox3").disabled = false;
-        // $("#places").fadeIn();
         $("#places1").fadeOut();
         $("#placeSup").fadeOut();
         document.getElementById("places").disabled=false;
         document.getElementById("places1").disabled=true;
         var places=document.getElementById('places').value;
     }
+
+//Différent de catégorie 6
     if(genre_v!=6){
         document.getElementById("Checkbox101").checked = false;
     }
@@ -317,6 +329,8 @@ function CalculeBC(){
 
     /******************************TEST SUR LES PACK****************************************/
     var pack=document.getElementById("pack").value;
+
+//Catégorie 6 et packs
     if(genre_v==6)
     {
         $('#sel1,#chiffre3').prop('disabled', true)
@@ -441,7 +455,9 @@ function CalculeBC(){
             var primebrute_prorata_1=parseInt(primebrute_1*(taux/100));
         }
 
-//Catégorie 2 
+//-----------------------------------------Catégorie, type d'énérgie et puissance---------------------------//
+
+//categorie 2
         if(genre_v==2){
             var placeSup=(document.getElementById('placeSup').value)*4852;
             console.log(places+' '+varDate + ' ' + puissance + ' '+ cylindre+' '+valeur_venale+' '+valeur_neuve+' '+genre_v+' '+mois+' '+nrj+' '+charge_utile+' '+placeSup)
@@ -662,6 +678,8 @@ function CalculeBC(){
             }
             var primebrute_prorata_1=parseInt(primebrute_1*(taux/100)+placeSup);
         }
+
+//Catégorie 3
         if(genre_v==3){
             if(nrj=='essence'){
                 if(charge_utile=='Moins de 3,5T'){
@@ -799,6 +817,8 @@ function CalculeBC(){
             }
             var primebrute_prorata_1=parseInt(primebrute_1*(taux/100));
         }
+
+//Catégorie 5
         if(genre_v==5)
         {
             if(cylindre<=49)
@@ -1447,7 +1467,6 @@ function CalculeBC(){
             document.getElementById('brute9').value=0;
             document.getElementById('prorata9').value=0;
             document.getElementById('PrimeAvance').value=0;
-
         }
         else
         {
@@ -1527,8 +1546,6 @@ function CalculeBC(){
                 document.getElementById("Checkbox8").disabled = true;
                 document.getElementById("Checkbox8").options[0].selected=true;
             }
-
-
         }
         else
         {
@@ -1836,12 +1853,7 @@ function CalculeBC(){
 //------------------calcul de la prime nette--------------------------------------
     var totalPN=parseInt(primeProrataTotal-totalBC-totalRC);
     document.getElementById('totalPN').value  = totalPN;
-    document.getElementById('totalPN1').value = totalPN;
-
-    // ------------------------FIN CALCUL DES Checkbox-------------------------------
-
-
- 
+    document.getElementById('totalPN1').value = totalPN; 
 
     //---------------------calcul du fond de garantie-----------------------
     var totalFG=parseInt((primebrute_prorata_1-totalBC)*(2.5/100))
