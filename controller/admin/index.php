@@ -586,7 +586,7 @@ if(isset($_POST['action']))
                 require_once('../../view/admin/etats.php');
             break;
             case 'Valider dotation':
-            echo($_POST['intermediaire']);
+           // echo($_POST['intermediaire']);
                 $matIntermediaire = $_POST['intermediaire'];
                 $type           = new TypeAttestationDao();
                 $attestationDao = new AttestationDao();
@@ -623,7 +623,7 @@ if(isset($_POST['action']))
                        // var_dump( $attestationDao->insertDotation($attestationCedeao));
                     }
                 }
-              //  require_once '../../view/admin/affectations.php'';
+                require_once '../../view/admin/dotation-succes.php';
             break;
             case 'excelIntermediaire':
                // echo('ok');

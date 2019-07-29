@@ -126,7 +126,7 @@ class AttestationDao extends DBao{
                 '".$attestation->getEtat_sortie()."'
             )"
         );
-        echo "Insertion effectuée";
+      //  echo "Insertion effectuée";
         return $sql->execute();
     }
     catch(Exception $e) {

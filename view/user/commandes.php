@@ -123,6 +123,9 @@
             color: #062945;
             font-weight: bold;
         }
+        .dataBody{
+            font-size: 12px !important
+        }
     </style>
     </head>
     <body ♥ id="acceuil">
@@ -200,7 +203,7 @@
                         <th>Etat actuel</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class='dataBody'>
                     <?php
                         while($row=$attestations->fetch()){
                             $type_attestation = $row[1];
