@@ -42,7 +42,7 @@
                 <h1 class="success-message">Succés !</h1>
                 <p class='success-text'>Votre commande a étè bien prise en compte,<br> merci de vous rapprocher auprés de nos agents pour recupérer vos attestations ou appelez nous au <br><b>33 825 20 14 </b>pour obtenir un rendez-vous</p>
                 <div class="retour-content">
-                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
+                    <a href="/forint/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>

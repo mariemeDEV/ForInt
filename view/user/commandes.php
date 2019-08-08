@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
     <title>For-Int</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -64,6 +65,7 @@
         .validDotation{
             padding: 12px;
             width: 107px;
+            border-radius:15px !important
         }
         .commande{
             position: relative;
@@ -77,6 +79,7 @@
             font-size: 14px;
             text-align: center;
             cursor: pointer;
+            border-radius:15px !important
         }
         .close-command{
             position: relative;
@@ -198,6 +201,7 @@
             <table id="commandes-tab" class="table table-bordered table-stripted commandes-table">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Numéro attestation</th>
                         <th>Type attestation</th>
                         <th>Etat actuel</th>
@@ -205,11 +209,14 @@
                 </thead>
                 <tbody class='dataBody'>
                     <?php
+                        $cp=0;
                         while($row=$attestations->fetch()){
+                            $cp+=1;
                             $type_attestation = $row[1];
                             $etat_sortie      = $row[2];
                             echo'
                             <tr>
+                                <td>'.$cp.'</td>
                                 <td>'.$row[0].'</td>';
                                 if($type_attestation=="1"){
                                     echo '<td style="background:#99dc65;">Verte</td>';

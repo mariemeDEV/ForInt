@@ -7,6 +7,7 @@
     <title>Document</title>
      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
      <link rel="stylesheet" hrref="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -21,6 +22,7 @@
     }
 </style>
 
+<a href="../../controller/formulaire/?action=affi"><i class="material-icons">arrow_back</i>Retour</a>
 <table id="productionTab" class="display" style="width:100%;font-size:12px">
         <thead>
             <tr>
@@ -29,7 +31,6 @@
                 <th>NUMÉRO ATTESTATION</th>
                 <th>NUMÉRO FACTURE</th>
                 <th>MATRICULE INTERMÉDIAIRE</th>
-              
                 <th>NOM ASSURÉ</th>
                 <th>PRÉNOM ASSURÉ</th>
                 <th>NOM CONDUCTEUR</th>
@@ -43,6 +44,7 @@
                 <th>DATE DE MISE EN CIRCULATION</th>
                 <th>VALEUR VÉNALE</th>
                 <th>VALEUR À NEUVE</th>
+                <th>CATEGORIE</th>
                 <th>GARANTIES</th>
                 <th>RÉCUCTION MAJORATION RC</th>
                 <th>BONUS RC</th>
@@ -52,6 +54,8 @@
                 <th>ACCESSOIRES</th>
                 <th>TAXES</th>
                 <th>FGA</th>
+                <th>PRIME NETTE</th>
+                <th>COMMISSION</th>
                 <th>PRIME TOTALE</th>
             </tr>
         </thead>
@@ -78,6 +82,7 @@
             <td>$row[18]</td>
             <td>$row[19]</td>
             <td>$row[20]</td>
+            <td>$row[32]</td>
             <td>$row[21]</td>
             <td>$row[22]</td>
             <td>$row[23]</td>
@@ -87,7 +92,9 @@
             <td>$row[27]</td>
             <td>$row[28]</td>
             <td>$row[29]</td>
-            <td>$row[30]</td> 
+            <td>".number_format($row[30])."  FCFA</td> 
+            <td>".number_format(($row[30]*20)/100)."  FCFA</td> 
+            <td>$row[31]</td>
         </tr>";
         }
         ?>
@@ -107,7 +114,7 @@
             dom: 'Bfrtip',
             buttons: [
                 'excelHtml5',
-                'csvHtml5',
+               // 'csvHtml5',
             ]
         } );
     } );

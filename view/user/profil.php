@@ -64,7 +64,7 @@ else {
                     <div class=\"mdl-cell mdl-cell--12-col\" id='errorMSG' >
                     <div class=\"col-lg-8\" style='padding-left: 25%'>
                         <div class=\"alert alert-danger\" role=\"alert\" >
-                            <h6>Les mots de passes ne sont pas conformes</h6>
+                            <h6>Les mots de passe ne sont pas conformes</h6>
                         </div>
                     </div>
                     </div>";
@@ -131,15 +131,7 @@ else {
                             </div>
                             <div style="padding-left: 50%">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg passWord" data-toggle="modal" data-target="#myModal" style="    background: #f7ba00;
-    color: #062945 !important;
-    padding: 5px;
-    position: relative;
-    top: 208px;
-    left: -461px;
-    border-radius: 0;
-    font-size: 11px;
-">
+                                <button type="button" class="btn btn-primary btn-lg passWord" data-toggle="modal" data-target="#myModal" style="background: #f7ba00;color: #062945 !important;padding: 5px;position: relative;top: 208px;left: -461px;border-radius: 0;font-size: 11px;">
                                     Modifier Mot de passe
                                 </button>
                             </div>
@@ -167,7 +159,7 @@ else {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Modifier mon mot de passe : mote de passe actuel <span style='color:green !important'>"saham"</span></h4>
+                    <h4 class="modal-title" id="myModalLabel">Modifier mon mot de passe : mot de passe actuel <span style='color:green !important'>"saham"</span></h4>
                 </div>
                 <div class="modal-body">
                 <form method="post" action="../../controller/intermediaire/index.php">
@@ -186,16 +178,13 @@ else {
 
 </div>
 
-
-
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
     var test =  setTimeout(function()
     {
-        document.getElementById('errorMSG').style.display = "none";
-    },10000);
+        document.getElementById('errorMSG').style.display = "none";},10000);
 </script>
 </body>
 

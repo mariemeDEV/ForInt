@@ -265,7 +265,7 @@
                                                 <div class="form-group">
                                                     <!--<strong>Date Effet</strong>-->
                                                     <label style="margin-right: 1%;font-family: Times New Roman;font-size: 14px;position: absolute;top: 10px;">Date effet<span style="color: red">*</span>:</label>  
-                                                    <input  type ="date" onchange="CalculeBC();checkDate()" name="date_debut" class="form-control" id="date_debut" title="Date Effet" style="width: 60%;height:2em;font-size: 15px;font-family: Times New Roman;margin-left:78px;margin-top: 5px;padding-left:30px !important;border-radius:.25rem;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;" data-toggle="popover" title="Popover Header" data-content="Date non valide" data-trigger="focus" value="">
+                                                    <input  type ="date" onchange="CalculeBC();checkDate()" name="date_debut" class="form-control" id="date_debut" title="Date Effet" style="width: 60%;height:2em;font-size: 15px;font-family: Times New Roman;margin-left:78px;margin-top: 5px;padding-left:30px !important;border-radius:.25rem;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;" data-toggle="popover" title="Popover Header" data-content="Date non valide" data-trigger="focus">
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->    
                                             <div class="col-lg-6"><!-- debut col-lg-6 -->

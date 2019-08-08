@@ -108,7 +108,7 @@ class AttestationDao extends DBao{
     public function insertDotation(Attestation $attestation){
 
        try {
-        $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
+        $dns="mysql:host=127.0.0.1;dbname=forint";
         $user="root";
         $password="";
         $pdo = new PDO($dns, $user, $password);

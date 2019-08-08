@@ -887,8 +887,8 @@ if ($c7==1)
        <title>Document</title>
        <script>
        function redict(){
-       var a ='http://saham-app.com/controller/formulaire/?action=lister1&opli=$unikId';
-       window.location.href='http://saham-app.com/controller/formulaire/?action=valider';
+       var a ='http://forint.com/controller/formulaire/?action=lister1&opli=$unikId';
+       window.location.href='http://forint.com/controller/formulaire/?action=valider';
        window.open(a);
 
        }
@@ -901,7 +901,7 @@ if ($c7==1)
        ";
 }
 else{
-    header('Location: http://saham-app.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
+    header('Location: http://forint.com/controller/formulaire/?action=valider&r=1&opli='.$unikId.'');
 }
 
 //--------------------------------

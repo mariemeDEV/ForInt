@@ -107,7 +107,7 @@
               
           <h1 class="ajout-title">Gestion des annulations</h1>
           <hr>
-            <table id="commandesData" class="table dataTab table-striped table-bordered" style="width:100%;margin-left:-13px;"><!--Datatable-->
+            <table id="commandesData" class="table dataTab table-striped table-bordered" style="width:100%;margin-left:-13px;margin-top: 77px;"><!--Datatable-->
                 <thead>
                     <tr>
                         <th>Id commande</th>

@@ -106,7 +106,7 @@
         }
         .close{
             position: relative;
-            top: -20px;
+            top: -64px;
             z-index: 1;
             left: 526px;
             color: #f7bb3d;
@@ -130,6 +130,7 @@
             top: 24px;
             z-index: 3;
             padding: 13px;
+            border-radius:15px !important
         }
         .form-group{
             position:relative !important;
@@ -200,7 +201,7 @@
                                 <input type ="date"  name="fin" id="mec" required style="">
                             </div>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input type="submit" name="action" value="EXTRAIRE" class="btn btn-primary btn-lg">
+                                <input type="submit" name="action" value="EXTRAIRE" class="btn btn-primary btn-lg" style='border-radius:15px !important'>
                             </div>
                         </form>
                     </div>
@@ -215,11 +216,13 @@
                     <tr>
                         <th>#</th>
                         <th>Numero Police</th>
-                        <th>Date debut contrat</th>
+                        <th>Début contrat</th>
                         <th>Date Echeance</th>
                         <th>Assure</th>
                         <th>Conditions particuliéres</th>
                         <th>Etat de la production</th>
+                        <th>Prime (FCFA)</th>
+                        <th>Commission Production(FCFA)</th>
                         <th>Annuler</th>
                     </tr>
                 </thead>
@@ -228,7 +231,7 @@
                     $cp=0;
                     while($row=$resultat->fetch())
                     {
-                        $cp+=1;
+                    $cp+=1;
                     echo "<tr>
                         <th scope=\"row\">$cp</th>                         
                         <td>$row[1]</td>
@@ -238,6 +241,9 @@
                         <td style='text-align: center;'>
                             <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                         </td> ";
+                        "<td style='text-align: center;'>
+                            <a href='../../controller/formulaire/?action=lister&id=$row[6]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
+                        </td> ";
                         if($row[7]=="En cours"){
                             echo "<td style='background:#00800070;text-align:center;font-weight:bold'>En cours...</td>";
                         }else if($row[7]=="Annule"){
@@ -245,12 +251,36 @@
                         }else if($row[7]=="A annuler"){
                             echo "<td style='background:#ffa50085;text-align:center;font-weight:bold'>A annuler</td>";
                         }
+                        //Si on est en catégorie 4, la commission s'élève à 6% de la prime nette
+                        if($row[11]==4){
+                            if($row[7]=="En cours"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format($row[10])."</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format(($row[10]*6)/100)."</td>";
+                            }else if($row[7]=="Annule"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                            }else if($row[7]=="A annuler"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                        }
+                        //Si non, la commission s'élève à 20% dfe la prime nette
+                        }else{
+                            if($row[7]=="En cours"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format($row[10])."</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format(($row[10]*20)/100)."</td>";
+                            }else if($row[7]=="Annule"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                            }else if($row[7]=="A annuler"){
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
+                            }
+                        }
                         echo
                             "<td>
                                 <button class=\"delete-btn\" value='$row[0]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px\" id=\"delete-icon\">delete</i></button>
                                 <input type=\"text\" class=\"souscript-date\" value='$row[2]' style=\"display:none\">
                                 <input type=\"text\" value='$row[1]' style=\"display:none\" id=\"numPol\">
-                                <input type=\"text\" value='$row[8]  $row[9]' style=\"display:none\" id=\"prenom-nom\">
                             </td>                        
                     </tr>";
                     }
@@ -259,6 +289,9 @@
                 </tfoot>                
                 <tfoot>
             </table>
+            <!--div class="row">
+                <p>Commission totale : 25.000</p>
+            </div-->
 
             <div class="card modal" id='annulation_modal'><!--Annulation contrat-->
             <div class="card-header"><h3>Annuler la production</h3></div>
@@ -266,10 +299,11 @@
             <div>
                 <div class="modal-content">
                         <!--h3 style='color: #062944;font-weight:bold;text-align:center !important'>Extraction production</h3-->
+                        <p>Vous etes sur le point d'annuler cette production.</p>
                         <span class="close">&times;</span>
                         <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
-                        <p style='position: relative;top: 26px;font-weight: bold;font-weight: bold;color: #062944;'><span style='color:red'>*</span>Vous êtes sur le point d'annuler la police :<input type='text' id='policeNum'></p>
-                        <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -28px;" id="annulation-form">
+                        <p style='position: relative;top:-10px;font-weight: bold;font-weight: bold;color: #062944;'><span style='color:red'>*</span>Vous êtes sur le point d'annuler la police :<input type='text' id='policeNum'></p>
+                        <form method="POST" action="../../controller/formulaire/index.php" style="margin-top: -58px;" id="annulation-form">
                             <div class="form-group inline" style='display:none'>
                                 <label for="dtp_input2" class=" control-label" title="Mise en circulation" >Numéro police</label>
                                 <input type ="text"  name="police" id="pol" required style="">
@@ -296,7 +330,7 @@
                             </div>
                             <input type="text" value='' id='date_debut_contrat' style='display:none' name='date_souscription'>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input  name="action"  type="submit" value="Valider Annulation" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation' style='margin-top:6px !important'>
+                                <input  name="action"  type="submit" value="Valider Annulation" class="btn btn-primary btn-lg annulation-validate" id='confirm_annulation' style='margin-top:6px !important;border-radius:15px !important'>
                             </div>
                         </form>
                         <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
@@ -310,6 +344,7 @@
             <div class="card-header"><h3>Demande d'annulation</h3></div>
             <div class="card-body">
             <div>
+            <p style='background: #8cc33e;width: 24%;position: relative;left: 370px;z-index: 1;top: 69px;'>Vous etes sur le point d'annuler cette production.</p>
                 <div class="modal-content" style='height: 262px !important'>
                         <span class="close">&times;</span>
                         <input type="text" value=<?php echo '"'.$mat.'"'?> style="display:none !important" id='mat_int'>
@@ -332,11 +367,12 @@
                                     <option>Refus client</option>
                                     <option>Doublons</option>
                                     <option>Erreur de saisie</option>
+                                    <option>Autre</option>
                                 </select>
                             </div>
                             <input type="text" value='' id='date_debut' style='display:none' name='date_souscription'>
                             <div style="text-align: center;margin: 0 auto;">
-                                <input  name="action"  type="submit" value="Valider Demande" class="btn btn-primary btn-lg annulation-validate" id='' style='margin-top:66px !important'>
+                                <input  name="action"  type="submit" value="Valider Demande" class="btn btn-primary btn-lg annulation-validate" id='' style='margin-top:66px !important;border-radius:15px !important'>
                             </div>
                         </form>
                         <!--p>NB: Notez que l'annulattion d'une prduction est irreversible, merci de vous rassurer que vous désirez vraiment faire l''annulation</p-->
@@ -346,7 +382,7 @@
         </div><!--Annulation contrat-->
 
         <div class="card modal" id='message_modal'><!--Annulation d'un contrat-->
-            <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Demande d'annulation</h3></div>
+            <div class="card-header" style='width: 26% !important;text-align:center !important;position: relative;top: 56px;'><h3 style='font-size:13px'>Annulation</h3></div>
             <div class="card-body">
             <div>
                 <div class="modal-content" style='height: 158px !important;width: 27% !important;text-align:center !important'>
@@ -420,6 +456,8 @@
             var int               = $('#mat_int').val();
             var numPolice         = ($(this).find('#numPol').val());
             var prenomNom         = ($(this).find('#prenom-nom').val())
+            console.log(date_souscription)
+            console.log(current_date )
         //Souscription datant de la journée
         if ((new Date(date_souscription)) > (new Date(current_date)) ) {
             $('#pol').val(police);
@@ -441,21 +479,22 @@
     </script>
 
     <script>
+    //Affichages en fonction de léetat de la production
             $(document).find('#usersData tr').each(function() {
                 var etat       = $(this).find("td").eq(5).html(); 
                 var deleteIcon = $(this).find("td").eq(5).find('i');
                 deleteIcon.removeClass('material-icons')
                 if(etat =='Annulé'){
-                    var delete_btn=$(this).find("td").eq(6)
+                    var delete_btn=$(this).find("td").eq(8)
                     $(delete_btn).unbind()
-                    $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#062944");
+                    $(this).find("td").eq(8).find('i, #delete-icon').css("color", "#062944");
                     delete_btn.on('click',function(){
                         $('#message_modal').fadeIn();
                     })
                 }else if(etat == 'A annuler'){
-                    var delete_btn=$(this).find("td").eq(6)
+                    var delete_btn=$(this).find("td").eq(8)
                     $(delete_btn).unbind()
-                    $(this).find("td").eq(6).find('i, #delete-icon').css("color", "#ffa500");
+                    $(this).find("td").eq(8).find('i, #delete-icon').css("color", "#ffa500");
                     delete_btn.on('click',function(){
                         $('#annul_demande_modal').fadeIn();
                     })

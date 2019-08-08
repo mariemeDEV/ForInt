@@ -82,6 +82,7 @@
             color: #062945 !important;
             background: #f7ba00;
             padding: 8px;
+            border-radius:15px !important
         }
         .card-body input{
             border: 1px solid #ffffff !important;
@@ -294,7 +295,7 @@
                     <li><a href="./?action=dotations">Consultation dotations</a></li>
                     <li><a href="./?action=annulations">Consultation annulations</a></li>
                     <li><a id="myBtn">Extraire production</a></li>
-                    <li><a  href="./?action=commandes">Géstion des commandes</a></li>
+                    <li><a href="./?action=commandes">Géstion des commandes</a></li>
                     <li><a id="add_new_intermediaire">Nouvel intérmédiaire</a></li>
                 </ul>
           <h1 class="ajout-title">Géstion des utilisateurs</h1>
@@ -331,25 +332,48 @@
                                 <td>$row[4]</td>
                                 <td>$row[5]</td>
                                 <td style='text-align: center'>
-                                    <a href='./?action=afficher&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DÉTAILS</button></a>
+                                    <a href='#'><button class='btn btn-md extraire_prod' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>PRODUCTION<input type=\"text\" value='$row[0]' style=\"display:none\" class=\"hiddenMat\"></button></a>
                                 </td>
                                 <td style='text-align: center'>
-                                    <a href='./?action=affectations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer'>DOTATION</button></a>
+                                    <a href='./?action=affectations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>DOTATION</button></a>
                                 </td>
                                 <td style='text-align: center'>
                                     <a style='padding-right:16px' href='./?action=modif&mat=$row[0]&prenom=$row[1]&nom=$row[2]&adresse=$row[3]&telephone=$row[4]&email=$row[5]' onclick='if(!confirm(\"voulez - vous Modifier ? \")) return false;'><i class=\"fa fa-edit prefix blue-text\"></i></a>/
-                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=1'! onclick='if(!confirm(\"voulez - vous Activer ? \")) return false;'><i class=\"fa fa-unlock prefix blue-text\"></i></a>/
+                                    <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=1'! onclick='if(!confirm(\"voulez - vous Activer ? \")) return false;'><i class=\"fa fa-unlock prefix blue-text\"></i></a>
                                     <a style='padding-right:16px' href='./?action=activer&mat=$row[0]&act=0' onclick='if(!confirm(\"voulez - vous Desactiver ? \")) return false;'><i class=\"fa fa-lock prefix red-text\"></i></a>
                                 </td>
                             </tr>";
                         }
-
                     ?>
                 </tbody>
                 </tfoot>                
                 <tfoot>
-
             </table>
+
+            <div class="modal" id='prod_intermediaire_modal'><!--extraction pour un intermédiaire-->
+            <!--div class="modal-content" style="width: 45% !important"-->
+            <div class="card" style="width:42%;margin:auto  ">
+                <div class="card-header" style="background:#062944;"><span class="close" style="position:relative;top:-64px;top: -16px;color: #f7bb3d !important;">&times;</span><h3 style="color:#f7bb3d">Extraction production</h3></div>
+                <div class="card-body">
+                <form method="post" action="../../controller/admin/index.php" style="margin-top:-2px;margin-left: 160px;">
+                    <div class="form-group inline" style="width: 65%" >
+                        <label for="dtp_input2" class=" control-label" title="Mise en circulation" style="margin-left: -23%;">Période Début</label>
+                        <input type ="date"  name="debut" id="mec" required style="width: 136%;margin-left: -23%;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;margin-bottom: 11%;">
+                    </div>
+                    <div class="form-group" style="width: 65%">
+                        <label for="dtp_input2" class=" control-label" title="Mise en circulation" style="margin-left: -23%;">Période Fin</label>
+                        <input type ="date"  name="fin" id="mec" required style="width: 136%;margin-left: -23%;border: 1px solid #ffffff !important;border-bottom: 1px solid #062944 !important;margin-bottom: 11%;">
+                    </div>
+                    <!-- ./?action=afficher&mat=$row[0]-->
+                    <div style="text-align: center;margin: 0 auto;">
+                        <input type="submit" name="action" value="afficher" class="btn btn-primary btn-lg" style="background: #062944;color: #f7bb3d !important; margin-left:-121px;">
+                        <input type="text" value='' style='display:none !important' name='hidden_mat' id='hidden-matricule'>
+                    </div>
+                </form>
+                </div>
+            <!--/div-->
+            </div>
+        </div><!--extraction pour un intermédiaire-->
         </div>
         <!--container-->
 
@@ -400,6 +424,26 @@
             if (event.target == $('#intermediaire_modal')) {
                 $('#intermediaire_modal,#addUserModal').fadeOut()
             }
+        })
+    </script>
+    <script>
+        /*var cell = $('#usersData tr').find('td').eq(6)
+        cell.on('click', function(){
+            var hiddenMat =  ($(this).find('.hiddenMat').val())
+            alert(hiddenMat)
+        })*/
+    </script>
+    <script>
+        $('.extraire_prod').on('click',function(){
+            var hiddenMat =  ($(this).find('.hiddenMat').val())
+            $('#hidden-matricule').val(hiddenMat)
+           // alert($('#hidden-matricule').val())
+            $('#prod_intermediaire_modal').fadeIn()
+           
+        })
+        $('.close').on('click',function(){
+            $('#prod_intermediaire_modal').fadeOut()
+          
         })
     </script>
     </body>

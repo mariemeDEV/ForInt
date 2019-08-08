@@ -42,7 +42,7 @@
                 <h1 class="success-message">Succés !</h1>
                 <p class='success-text'>Votre demande d'annulation sera prise en charge par le support Saham Assurance,<br>Cordialement</p>
                 <div class="retour-content">
-                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
+                    <a href="/forint/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>

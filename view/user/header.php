@@ -18,7 +18,7 @@
         <a class=\"mdl-navigation__link\" href=\"../../controller/formulaire/?action=afficher\">Consulter mes projets</a>
         <a class=\"mdl-navigation__link\" href=\"../../controller/formulaire/?action=passer\">Commande d'attestation</a>
         <a class=\"mdl-navigation__link\" href=\"../../controller/formulaire/?action=garanties\">Voir mes garanties</a>
-        <a href='../../controller/intermediaire?action=disconnect' class=\"mdl-button mdl-js-button mdl-button--raised mdl-button--accent\" style=\"margin:auto !important\">DECONNECTER<i class=\"material-icons\">account_circle</i></a>    
+        <a href='../../controller/intermediaire?action=disconnect' class=\"mdl-button mdl-js-button mdl-button--raised mdl-button--accent\" style=\"margin:auto !important;border-radius:15px\">DECONNECTER<i class=\"material-icons\">account_circle</i></a>    
     </nav>";
     ?>
 </div>

@@ -42,7 +42,7 @@
                 <h1 class="success-message">Succés !</h1>
                 <p class='success-text'>Votre production a étè annulée avec succés,<br>Cordialement</p>
                 <div class="retour-content">
-                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
+                    <a href="/forint/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>

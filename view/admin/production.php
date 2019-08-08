@@ -24,7 +24,7 @@
 <table id="productionTab" class="display" style="width:100%;font-size:12px">
         <thead>
             <tr>
-            <th>NUMÉRO POLICE</th>
+                <th>NUMÉRO POLICE</th>
                 <th>DATE DE CRÉATION</th>
                 <th>NUMÉRO ATTESTATION</th>
                 <th>NUMÉRO ATTESTATION CEDEAO</th>

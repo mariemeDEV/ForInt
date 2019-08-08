@@ -43,7 +43,7 @@
                 <h1 class="error-message">Requete incorrecte !</h1>
                 <p class='error-text'>Veuillez vous assurer que tous votre URL et les donées que vous essayez de transmettre <br>sont correctes.</p>
                 <div class="retour-content">
-                    <a href="/saham-app/view/user/accueil.php">RETOUR</a>
+                    <a href="/forint/view/user/accueil.php">RETOUR</a>
                 </div>
             </div>
         </main>

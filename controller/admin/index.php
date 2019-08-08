@@ -8,18 +8,18 @@ session_start();
 //echo $hash = password_hash('saham',PASSWORD_BCRYPT);
 //echo $_SESSION['matricule'];
 
-/*if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
+if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
-    header ('location: http://saham-app.com/');
+    header ('location: http://forint/');
 }
 if(time()- $_SESSION['timestamp']>1440)
 {
     echo"<script>alert('15 Minutes over!');</script>";
     unset($_SESSION['username'],$_SESSION['password'],$_SESSION['matricule']);
-    header ('location: http://saham-app.com/');
+    header ('location: http://forint/');
     exit;
 }
-else {
+/*else {
     $_SESSION['timestamp'] = time(); //set new timestamp
 }
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
@@ -107,13 +107,6 @@ if(isset($_GET['action']))
             $activaction=$usdao->activedUser($int);
             $resultat=$usdao->listUser();
             require_once('../../view/admin/ajout_user.php');
-        break;
-        case 'afficher':
-            $i_dao             = new IntermediaireDao();
-            $intermediaire     = new Intermediaire($_GET['mat'],'','','','','');
-            $resultat          = $i_dao->getContrats($intermediaire);
-            $intermediaireData = $i_dao->getUserByMat($_GET['mat']);
-            require_once('../../view/admin/afficher.php');
         break;
         case 'unvalidate':
             $usPolao=new PoliceDao();
@@ -574,7 +567,7 @@ if(isset($_POST['action']))
             // require_once'../../view/admin/ajout_user.php';
             break;
                 case 'excel':
-                $debut       = new DateTime($_POST['debut']);
+                $debut     = new DateTime($_POST['debut']);
                 $fin       = new DateTime($_POST['fin']);
                 $matricule = $_SESSION['matricule'];
                 $interval  = $debut->diff($fin);
@@ -625,9 +618,11 @@ if(isset($_POST['action']))
                 }
                 require_once '../../view/admin/dotation-succes.php';
             break;
-            case 'excelIntermediaire':
-               // echo('ok');
-            break;
+            case 'afficher':
+                $i_dao             = new IntermediaireDao();
+                $resultat = $i_dao->getAllProductByInt($_POST['hidden_mat'],$_POST['debut'],$_POST['fin']);
+                require_once('../../view/admin/afficher.php');
+        break;
             case 'Annuler Police' :
             echo($_SESSION['matricule']);
             //echo($_POST ['numero_police']);

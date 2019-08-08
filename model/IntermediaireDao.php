@@ -67,4 +67,27 @@ class IntermediaireDao extends Dbao{
         return $this->executeSELECT($sql);
     }
 
+    public function getAllProductByInt(int $matricule,$debut,$fin)
+    {
+        $stop_date = date('Y-m-d H:i:s', strtotime($fin . ' +1 day'));
+        $sql="SELECT p.num_police,p.date_police ,att.numero_attestation,a.id_assure,
+            a.nom_assure , a.prenom_assure,a.tel_assure,a.adresse_assure,vh.categorie_vehicule_id_cat,vh.immatriculation,vh.date_mec,pg.date_debut,pg.date_fin,
+            dp.prime_nette,dp.prime_totale,p.etat,group_concat(g.libelle_garantie),pg.duree,rm.pourcentageBC,rm.bonus_rc,rm.pourcentageRC,rm.reduc_com
+            FROM police p
+            JOIN intermediaire i ON (i.matricule=p.intermediaire_matricule) 
+            JOIN assure a ON (a.id_assure=p.id_police)
+            JOIN periode_garantie pg ON (pg.id_periode=p.id_police)
+            JOIN decompte_prime dp ON (dp.id_dp=p.id_police)
+            JOIN attestation att ON(p.attestation=att.numero_attestation)
+            JOIN vehicule vh ON(p.vehicule_id_vehicule=vh.id_vehicule)
+            JOIN contenir ct ON (ct.police_id_police=p.id_police)
+            JOIN garantie g ON (g.id_garantie=ct.garantie_id_garantie)
+            JOIN red_maj rm ON (rm.id_red_maj               = p.id_police)
+            WHERE p.date_police BETWEEN '".$debut."' AND '".$stop_date."'".
+            "AND  i.matricule = $matricule AND p.validation=1 AND  p.etat = 'En cours'
+            GROUP BY p.num_police ORDER by p.date_police DESC";
+        return $this->executeSELECT($sql);
+    }
+
+
 }

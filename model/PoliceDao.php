@@ -17,7 +17,7 @@ class PoliceDao extends DBao
     {
 
             try {
-                $dns="mysql:host=127.0.0.1;dbname=saham_app_1";
+                $dns="mysql:host=127.0.0.1;dbname=forint";
                 $user="root";
                 $password="";
                 $pdo = new PDO($dns, $user, $password);
@@ -74,7 +74,7 @@ class PoliceDao extends DBao
      * @return PDOStatement
      */
     public function listPolice(int $intermediaireId){
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat  from police p
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat from police p
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
               JOIN intermediaire i on (p.intermediaire_matricule=i.matricule) 
@@ -84,11 +84,13 @@ class PoliceDao extends DBao
 
     public function listPolicePreformant(int $p)
     {
-        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat,i.prenom,i.nom   from police pp
+        $sql="SELECT p.id_police, p.num_police, g.date_debut, g.date_fin, a.nom_assure, a.prenom_assure,p.validation,p.etat,i.prenom,i.nom,d.prime_nette,v.categorie_vehicule_id_cat from police pp
               JOIN police p on (pp.id_police=p.id_police) 
               JOIN periode_garantie g on(g.id_periode=p.periode_garantie_id_periode) 
               JOIN assure a on (p.assure_id_assure=a.id_assure) 
               JOIN intermediaire i on (p.intermediaire_matricule=i.matricule) 
+              JOIN decompte_prime d on(p.decompte_prime_id_dp=d.id_dp)
+              JOIN vehicule v on(p.vehicule_id_vehicule=v.id_vehicule)
               where i.matricule=".$p." AND p.validation=1 ORDER by p.date_police DESC ";
         return $this->executeSELECT($sql);
     }
@@ -193,6 +195,7 @@ class PoliceDao extends DBao
      */
     public function getAllProductByInt(int $matricule,$debut,$fin)
     {
+        $stop_date = date('Y-m-d H:i:s', strtotime($fin . ' +1 day'));
         $sql="SELECT p.num_police,p.date_police ,att.numero_attestation,p.numFacture ,
             i.matricule,i.nom,i.prenom,
             a.nom_assure , a.prenom_assure ,
@@ -201,8 +204,8 @@ class PoliceDao extends DBao
             v.marque,v.immatriculation,v.genre,v.date_mec,v.valeur_neuve,v.valeur_venale,
             group_concat(g.libelle_garantie) ,
             rm.pourcentageBC,rm.bonus_rc,rm.pourcentageRC,rm.reduc_com,
-            dp.prime_nette,dp.accessoire,dp.taxe,dp.fond_garantie,dp.prime_totale
-            from police p
+            dp.prime_nette,dp.accessoire,dp.taxe,dp.fond_garantie,dp.prime_nette,dp.prime_totale,vh.categorie_vehicule_id_cat
+            FROM police p
             JOIN intermediaire i ON (i.matricule=p.intermediaire_matricule) 
             JOIN assure a ON (a.id_assure=p.id_police)
             JOIN conducteur_vehicule cv ON (cv.id_cond=p.id_police)
@@ -213,8 +216,9 @@ class PoliceDao extends DBao
             JOIN contenir ct ON (ct.police_id_police=p.id_police)
             JOIN garantie g ON (g.id_garantie=ct.garantie_id_garantie)
             JOIN attestation att ON(p.attestation=att.numero_attestation)
-            WHERE p.date_police BETWEEN '".$debut."' AND '".$fin."'".
-            "AND  i.matricule    = $matricule AND p.validation=1
+            JOIN vehicule vh ON(p.vehicule_id_vehicule=vh.id_vehicule)
+            WHERE p.date_police BETWEEN '".$debut."' AND '".$stop_date."'".
+            "AND  i.matricule = $matricule AND p.validation=1 AND  p.etat = 'En cours'
             GROUP BY p.num_police ORDER by p.date_police DESC";
         return $this->executeSELECT($sql);
     }
@@ -282,7 +286,7 @@ class PoliceDao extends DBao
      * @param String $numPolice
      */
     public function annulerPolice(String $numPolice, Annulation $annulation){
-        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $dns      = "mysql:host=127.0.0.1;dbname=forint";
         $user     = "root";
         $password = "";
         try{
@@ -312,7 +316,7 @@ class PoliceDao extends DBao
      * @param String $numPolice
      */
     public function demanderAnnulation(String $numPolice,Annulation $annulation){
-        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $dns      = "mysql:host=127.0.0.1;dbname=forint";
         $user     = "root";
         $password = "";
         try{
@@ -339,7 +343,7 @@ class PoliceDao extends DBao
     }
 
     public function annulerDevis($numPolice){
-        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $dns      = "mysql:host=127.0.0.1;dbname=forint";
         $user     = "root";
         $password = "";
         try{
@@ -363,7 +367,7 @@ class PoliceDao extends DBao
     }
 
     public function deletePolice(String $numPolice,int $mat){
-        $dns      = "mysql:host=127.0.0.1;dbname=saham_app_1";
+        $dns      = "mysql:host=127.0.0.1;dbname=forint";
         $user     = "root";
         $password = "";
         try{
