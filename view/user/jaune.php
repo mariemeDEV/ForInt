@@ -11,17 +11,17 @@
         .b3{
             position: absolute;
             left: 16em !important;
-            top: 309px;
+            top: 276px;
         }
         .b1{
             position: absolute;
             left:7em;
-            top: 308px;
+            top: 257px;
         }
         .b2{
             position: absolute;
             left: 38em;
-            top: 309px;
+            top: 279px;
         }
     </style>
 </head>

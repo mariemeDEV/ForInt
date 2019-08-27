@@ -51,7 +51,6 @@ function CalculeBC(){
         var DateDebut = xD.substring(0, 10)
         var DateFin   = xF.substring(0, 10)
         var ynew3     = new Date(DateDebut)
-
       
         var ynew1     = new Date(DateFin);
         var andif     = ynew3-ynew1;
@@ -92,7 +91,7 @@ function CalculeBC(){
             var ynew   = new Date(xMEC);
             var DiffAn = Number((ynew2.getTime() - ynew.getTime()) / 31536000000).toFixed(0);
         
-//------------ faiencee années---------------------------------------
+//------------ faience années---------------------------------------
             var newDate=ynew2;
             newDate.setUTCMonth(newDate.getUTCMonth()+3);
             var mec    = document.getElementById('mec').value;
@@ -199,7 +198,6 @@ function CalculeBC(){
         document.getElementById("places").disabled=true;
         document.getElementById("places1").disabled=false;
         $('#PrimeAuto').val('0')
-   
     }
 
 //Catégorie 5
@@ -429,13 +427,11 @@ function CalculeBC(){
                 var lim_gant_ck1='ILLIMITE' // garantie
                 var franch_1=0;             //franchise
                 var primebrute_1=45181;     //prime brute
-
             }
             if (puissance==7 || puissance==8 ||puissance==9 ||  puissance==10){
                 var lim_gant_ck1='ILLIMITE' // garantie
                 var franch_1=0;             //franchise
                 var primebrute_1=51078;     //prime brute
-
             }
             if (puissance==11 || puissance==12 || puissance==13 || puissance==14){
                 var lim_gant_ck1='ILLIMITE' // garantie
@@ -2004,8 +2000,6 @@ $('#afficherPopup').on('click', function(){
     return false;
 });
 
-
-
 $('#nom_assure,#prenom_assure,#adresse_assure,#tel,#email_assure,#puissance,#val_neuve,#val_venale,#places,#mec,#energie,#categorie,#genre,#marque,#type,#immatriculation').keyup(function(){
     $(this).val($(this).val().toUpperCase())
 })
@@ -2016,7 +2010,6 @@ $('body').keyup(function(e) {
     $( "#energie").val("essence");
     }
  });
-
 
 function checkDate(){
     var xD              = $('#date_debut').val();

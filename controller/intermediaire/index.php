@@ -38,6 +38,7 @@ if(isset($_GET['action']))
             }
             require_once('../../view/user/profil.php');
         break;
+       
         default:
             require_once('../../view/error.php');
         break;
@@ -71,7 +72,6 @@ if(isset($_POST['action'])){
                           else
                           {
                               if ($mail==$email && password_verify($mdp, $password))  {
-                                  echo("ça rentre<br>");
                                 //   echo($password);
                                 //   $hash = '$2y$07$BCryptRequires22Chrcte/VlQH0piJtjXl.0t1XkA8pw9dMXTpOq';
                                 //     if (password_verify($_POST['mdp'], $password)) {

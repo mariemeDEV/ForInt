@@ -22,7 +22,8 @@
         .ajout-title{
             position: relative;
             top: 98px;
-            left: 15px
+            left: -105px;
+
         }
         hr{
             width: 9%;
@@ -30,7 +31,7 @@
             border-top: 2px solid #062945;
             position: absolute;
             top: 134px;
-            left: 138px
+            left: 24px
         }
         .dataTab{
             position: relative;
@@ -300,7 +301,7 @@
                 </ul>
           <h1 class="ajout-title">Géstion des utilisateurs</h1>
           <hr>
-            <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%">
+            <table id="usersData" class="table dataTab table-striped table-bordered" style="width:100%;width: 100%;position: relative;left: -125px;">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -311,6 +312,7 @@
                         <th>Téléphone</th>
                         <th>E-mail</th>
                         <th>Consulter</th>
+                        <th>Extraire</th>
                         <th>Attestations</th>
                         <th>Modif/Act/Desact</th>
                     </tr>
@@ -331,8 +333,11 @@
                                 <td>$row[3]</td>
                                 <td>$row[4]</td>
                                 <td>$row[5]</td>
+                                <td>
+                                    <a href='./?action=prod&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>CONSULTATION</button></a>
+                                </td>
                                 <td style='text-align: center'>
-                                    <a href='#'><button class='btn btn-md extraire_prod' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>PRODUCTION<input type=\"text\" value='$row[0]' style=\"display:none\" class=\"hiddenMat\"></button></a>
+                                    <a href='#'><button class='btn btn-md extraire_prod' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>EXTRACTION<input type=\"text\" value='$row[0]' style=\"display:none\" class=\"hiddenMat\"></button></a>
                                 </td>
                                 <td style='text-align: center'>
                                     <a href='./?action=affectations&mat=$row[0]'><button class='btn btn-md' style='background:#062843;padding:7px !important;color: #f7bb3d !important;cursor:pointer;border-radius:15px !important'>DOTATION</button></a>
@@ -425,13 +430,6 @@
                 $('#intermediaire_modal,#addUserModal').fadeOut()
             }
         })
-    </script>
-    <script>
-        /*var cell = $('#usersData tr').find('td').eq(6)
-        cell.on('click', function(){
-            var hiddenMat =  ($(this).find('.hiddenMat').val())
-            alert(hiddenMat)
-        })*/
     </script>
     <script>
         $('.extraire_prod').on('click',function(){

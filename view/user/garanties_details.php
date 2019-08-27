@@ -139,6 +139,7 @@
         <?php include "header.php"; ?>
         <main class="mdl-layout__content">
             <h1 class='top-title'>LES GARANTIES</h1>
+            <p style="display: block;position: relative;top: 43px;left: 629px;color: green;font-weight: bold;font-size: 18px;">Numéro de l'assistance : <span class='blinking'>800 00 40 40</span></p>
             <hr></hr>
             <div class="card command-card">
                 <div class="card-header command-header">Garanties</div>
@@ -463,6 +464,13 @@
                 alert('inforlations')
             })
         })
+    </script>
+    <script>
+        function blinker() {
+            $('.blinking').fadeOut(1000);
+            $('.blinking').fadeIn(1000);
+        }
+        setInterval(blinker, 1000);
     </script>
     </body>
 

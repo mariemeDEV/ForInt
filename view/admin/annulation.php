@@ -126,28 +126,29 @@
                 <tbody>
                 <?php
                     while($row=$annulations->fetch()){
-                      echo '<tr> 
-                        <td>'.$row[0].'</td>
-                        <td>'.$row[1].'</td>
-                        <td>'.$row[2].$row[3].'</td>
-                        <td>'.$row[4].'</td>
-                        <td>'.$row[6].'</td>';
-                        if($row[7]=='A annuler'){
-                            echo '<td style="background:#ff000087">A annuler</td>';
-                        }else if($row[7]=='Annule'){
-                            echo '<td style="background:#ffa50085">Annulé</td>';
-                        }
-                        echo '<td>'.$row[8].'</td>
-                        <td>'.$row[9].'</td>
-                        <td>'.$row[5].'</td>';
-                        echo
-                        "<td>
-                            <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[10]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
-                        </td>
-                        <td>
-                            <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[10]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
-                        </td>
-                    </tr>";
+                        echo '<tr> 
+                            <td>'.$row[0].'</td>
+                            <td>'.$row[1].'</td>
+                            <td>'.$row[2].$row[3].'</td>
+                            <td>'.$row[4].'</td>
+                            <td>'.$row[6].'</td>';
+                            if($row[7]=='A annuler'){
+                                echo '<td style="background:#ff000087">A annuler</td>';
+                            }else if($row[7]=='Annule'){
+                                echo '<td style="background:#ffa50085">Annulé</td>';
+                            }
+                            echo '<td>'.$row[8].'</td>
+                            <td>'.$row[9].'</td>
+                            <td>'.$row[5].'</td>';
+                            echo
+                            "<td>
+                                <button style=\"border:none;background:#ffffff\" class=\"delete-btn\" value='$row[10]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"delete-contrat\">delete</i></button>
+                            </td>
+                            <td>
+                                <button style=\"border:none;background:#ffffff\" class=\"cp-btn\" value='$row[10]' name='$row[1]'><i class=\"material-icons\" style=\"color:#b71a23 !important;margin-left:21px;cursor:pointer\" id=\"dossier\">folder</i></button>
+                                <input type=\"text\" value='$row[1]' style=\"display:none\" class=\"int-matricule\">
+                            </td>
+                        </tr>";
                     }
                 ?>
                 </tbody><!--Datatable-->
@@ -192,6 +193,7 @@
                             <span class="close" style='position: relative;left: 155px;top: -27px;'>&times;</span>
                             <form method="POST" action="../../controller/admin/index.php">
                                 <input type="text" name='numero_police' id='pol_folder'>
+                                <input type="text" name='mat-intermediaire' id='int-mat' style='display:none !important'>
                                 <div style="text-align: center;margin: 0 auto;">
                                     <input  name="action"  type="submit" value="Generer Demande" class="btn btn-primary btn-md annulation-validate" id='' style='margin-top:6px !important'>
                                 </div>
@@ -219,6 +221,7 @@
 
         $('.cp-btn').on('click', function(){
             var contrat = $(this).val()
+            var mat     = $(this)
             $('#folder_modal').fadeIn();
             $('#pol_folder').val(contrat)
         })
@@ -226,6 +229,11 @@
         $(document).find('#annulationsData tr').each(function(){
             var etat       = $(this).find("td").eq(5).html(); 
             var delete_btn = $(this).find("td").eq(9)
+            var folder_btn = $(this).find("td").eq(10)
+            folder_btn.on('click',function(){
+                var int_mat = $(this).find('.int-matricule').val()
+                $('#int-mat').val(int_mat)
+            })
             delete_btn.on('click',function(){
                 if(etat=='Annulé'){
                     $('#annul_demande').fadeIn();

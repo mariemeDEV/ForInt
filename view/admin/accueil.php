@@ -55,7 +55,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
         </div>
     </main>
 </div>
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>

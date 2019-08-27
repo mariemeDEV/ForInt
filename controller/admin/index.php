@@ -8,7 +8,7 @@ session_start();
 //echo $hash = password_hash('saham',PASSWORD_BCRYPT);
 //echo $_SESSION['matricule'];
 
-if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
+/*if (!isset($_SESSION['username']) && !isset($_SESSION['password']))
 {
     header ('location: http://forint/');
 }
@@ -18,7 +18,7 @@ if(time()- $_SESSION['timestamp']>1440)
     unset($_SESSION['username'],$_SESSION['password'],$_SESSION['matricule']);
     header ('location: http://forint/');
     exit;
-}
+}*/
 /*else {
     $_SESSION['timestamp'] = time(); //set new timestamp
 }
@@ -529,9 +529,14 @@ if(isset($_GET['action']))
         case 'demande_att' :
             require_once '../../view/admin/demande_att.php';
         break;
+        case 'prod':
+            $i_dao             = new IntermediaireDao();
+            $resultat = $i_dao->getAllProduct($_GET['mat']);
+            require_once('../../view/admin/consultation_prod.php');
+        break;
         default:
             require_once '../../view/error.php';
-            break;
+        break;
     }
 }
 
@@ -636,7 +641,7 @@ if(isset($_POST['action']))
                 $annulation    = $annulationDao->getAnnulation($_POST['numero_police']);
                 $assure        = $annulationDao->getAssure($_POST['numero_police']);
                 $primeNette    = $annulationDao->getPN($_POST['numero_police']);
-                $intermediaire = $intermediaireDao->getUserByMat($_SESSION['matricule']);
+                $intermediaire = $intermediaireDao->getUserByMat($_POST['mat-intermediaire']);
                 while($row=$annulation->fetch()){
                     $police = $row[1];
                     $effet  = $row[5];

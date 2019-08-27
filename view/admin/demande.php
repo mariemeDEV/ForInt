@@ -24,8 +24,9 @@
         }
         .title-top{
             position: relative;
-            top: -105px;
+            top: -81px;
             left: 285px;
+            text-decoration:underline
         }
         hr{
             position: relative;
@@ -36,6 +37,21 @@
         .img-content{
             position: relative;
             top: -121px;
+        }
+        .sing-demandeur{
+            position: relative;
+            top: 174px;
+            left: 68px;
+        }
+        .sign-demandeur{
+            position: relative;
+            top: 220px;
+            left: 49px
+        }
+        .sign-agence{
+            position: relative;
+            left: 57em;
+            top:204px
         }
     </style>
 </head>
@@ -48,15 +64,15 @@
         </div>
 
           <h1 class="title-top">DEMANDE D'ANNULATION</h1>
-          <hr>
+          
 
-          <div class="container" style='margin:0 !important;    margin: 0 !important;position: relative;top: -83px;'>
+          <div class="container demandeur-affiliation" style='margin:0 !important;    margin: 0 !important;position: relative;top:16px;'>
             <div class="row" style='padding-bottom: 10px;'>Date de la demande : <?php echo $effet; ?></div>
             <div class="row" style='padding-bottom: 10px;'>Service : <?php echo 'Automobile'; ?></div>
             <div class="row">Demandeur : <?php echo $mat_int.'   '.$prenom_int.'   '.$nom_int ; ?></div>
           </div>
 
-            <table id="demandeData" class="table dataTab table-bordered" style="width:100%">
+            <table id="demandeData" class="table dataTab table-bordered" style="width:100%;position: relative;top: 118px;left: 54px;">
                
                 <tbody>                  
                  <?php
@@ -102,8 +118,8 @@
                 <tfoot>
             </table>
             <div class="row">
-                <div class="col-md-6">Signature du demandeur</div>
-                <div class="col-md-6" style="position: relative;left: 57em;top: -10px;">Signature du supérieur hiérarchique</div>
+                <div class="col-md-6 sign-demandeur">Signature du demandeur</div>
+                <div class="col-md-6 sign-agence">Signature du supérieur hiérarchique</div>
 
             </div>
             </div>

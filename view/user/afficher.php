@@ -169,6 +169,24 @@
             cursor:pointer;
 
         }
+        .total-row{
+            width: 30%;
+            height: 51px;
+            float: right;
+            margin-right: 21px;
+            border: 1px dotted #062944;
+            margin-top: -18px;
+            border-radius: 9px;
+        }
+        .total-row p{
+            padding-top: 15px;
+            padding-left:25px;
+            font-size: 18px;
+            color: #b71a23;
+        }
+        #total-val{
+            color:green
+        }
      
     </style>
 
@@ -229,6 +247,7 @@
                 <tbody>
                 <?php
                     $cp=0;
+                  
                     while($row=$resultat->fetch())
                     {
                     $cp+=1;
@@ -255,7 +274,7 @@
                         if($row[11]==4){
                             if($row[7]=="En cours"){
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format($row[10])."</td>";
-                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format(($row[10]*6)/100)."</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center' class='commission-cell' >".number_format(($row[10]*6)/100)."</td>";
                             }else if($row[7]=="Annule"){
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
@@ -263,11 +282,11 @@
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
                         }
-                        //Si non, la commission s'élève à 20% dfe la prime nette
+                        //Si non, la commission s'élève à 20% de la prime nette
                         }else{
                             if($row[7]=="En cours"){
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format($row[10])."</td>";
-                                echo "<td style='font-weight:bold;color:green;text-align: center'>".number_format(($row[10]*20)/100)."</td>";
+                                echo "<td style='font-weight:bold;color:green;text-align: center' class='commission-cell'>".number_format(($row[10]*20)/100)."</td>";
                             }else if($row[7]=="Annule"){
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
                                 echo "<td style='font-weight:bold;color:green;text-align: center'>0</td>";
@@ -284,14 +303,15 @@
                             </td>                        
                     </tr>";
                     }
+                    //echo($total_com);
                        ?>
                 </tbody>
                 </tfoot>                
                 <tfoot>
             </table>
-            <!--div class="row">
-                <p>Commission totale : 25.000</p>
-            </div-->
+            <div class="row total-row">
+                <p>Com. total : <span class="divide" id="total-val"> </span> (francs cfa)</p>
+            </div>
 
             <div class="card modal" id='annulation_modal'><!--Annulation contrat-->
             <div class="card-header"><h3>Annuler la production</h3></div>
@@ -326,6 +346,7 @@
                                     <option>Refus client</option>
                                     <option>Doublons</option>
                                     <option>Erreur de saisie</option>
+                                    <option>Autre</option>
                                 </select>
                             </div>
                             <input type="text" value='' id='date_debut_contrat' style='display:none' name='date_souscription'>
@@ -415,12 +436,26 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../view/js/number-divider.min.js"></script>
     <script src="../../view/js/form-script.js"></script>
     <script>
         $(document).ready(function() {
             $('#usersData').DataTable();
             $("#usersData_filter").find('input').focus()
         } );
+    </script>
+    <script>
+        var totalCommissions = parseFloat(0)
+        $("#usersData tr").each(function(){
+            var value = $(this).find('.commission-cell').html();
+            if(value!=undefined){
+                //console.log(parseFloat(value.replace(',','')))
+                var commission = value.replace(',','')
+                totalCommissions += parseFloat(commission)
+            }
+        })
+        //console.log(totalCommissions)
+        $(document).find('#total-val').append(totalCommissions.toString())
     </script>
     <script>
         $('#add_new_intermediaire').on('click',function(){
@@ -456,8 +491,8 @@
             var int               = $('#mat_int').val();
             var numPolice         = ($(this).find('#numPol').val());
             var prenomNom         = ($(this).find('#prenom-nom').val())
-            console.log(date_souscription)
-            console.log(current_date )
+            //console.log(date_souscription)
+            //console.log(current_date )
         //Souscription datant de la journée
         if ((new Date(date_souscription)) > (new Date(current_date)) ) {
             $('#pol').val(police);
