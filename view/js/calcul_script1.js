@@ -142,7 +142,7 @@ function CalculeBC(){
         $("#labelPack").fadeOut();
         $("#pack").fadeOut();
         $("#labelChargeUtile").fadeIn();
-        $("#charge").append('<option value="Break" selected>Break</option>');
+        //$("#charge").append('<option value="Break" selected>Break</option>');
         $("#charge").fadeIn();
         $("#places1").fadeIn();
         $("#placeSup").fadeIn();
@@ -485,7 +485,7 @@ function CalculeBC(){
                     }
                     if (puissance>=15 || puissance==16 || puissance==17 || puissance==18 || puissance==19 || puissance==20 || puissance==21 || puissance==22 || puissance==23)
                     {
-                        var lim_gant_ck1='ILLIMITE' // garantie
+                        var lim_gant_ck1='ILLIMITE' // garantiegenre_v==4
                         var franch_1=0;             //franchise
                         var primebrute_1=146969;     //prime brute
                     }
@@ -917,7 +917,7 @@ function CalculeBC(){
                     }
                     if (puissance>=8 && puissance<=10)
                     {
-                        var primebrute_1=23302;    //prime brute
+                        var primebrute_1=17162;    //prime brute
                     }
 
                 }

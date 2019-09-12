@@ -404,7 +404,7 @@
                                         <li>Incendie</li>
                                         <li>Vol</li>
                                         <li>Bris de glaces</li>
-                                        <li>Tierce complète</li>
+                                        <li>Tierce collision</li>
                                         <li>Individuelle personnes transportées</li>
                                         <li>Assistance / Remorquage gratuit 24h/24 - 7j/7</li>
                                         <li>

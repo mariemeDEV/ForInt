@@ -469,6 +469,7 @@
                                                 <p></p>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <select class="custom-select col-lg-12" style="height: 30px;font-size: 15px;font-family: Times New Roman;margin-top:-89px;border-radius:0 !important;margin-left:0 !important;border:1px solid #bbcedc" onchange="CalculeBC()" id="charge" name="charge">
+                                                        <option value="Break">Break</option>
                                                         <option value="Moins de 3,5T">Moins de 3,5T</option>
                                                         <option value="Plus de 3,5T">Plus de 3,5T</option>
                                                     </select>
@@ -1341,7 +1342,7 @@
                                         <li>Incendie</li>
                                         <li>Vol</li>
                                         <li>Bris de glaces</li>
-                                        <li>Tierce complète</li>
+                                        <li>Tierce collision</li>
                                         <li>Individuelle personnes transportées</li>
                                         <li>Assistance / Remorquage gratuit 24h/24 - 7j/7</li>
                                         <li>
@@ -1452,10 +1453,7 @@ $(document).ready(function(){
     var vertes = pushAttestations('#vertes-attestations option',attestationsVertes);
     var jaunes = pushAttestations('#jaunes-attestations option',attestationsJaunes);
     var cedeao = pushAttestations('#cedeao-attestations option',attestationsCedeao);
-
-    console.log(vertes)
-    console.log(jaunes)
-    console.log(cedeao)
+ 
 
         if(jaunes.length<10){
             $('#empty-msg').text('Vous avez moins de 10 attestations jaunes dans votre stock merci de passer vos commandes.')
