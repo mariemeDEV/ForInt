@@ -261,7 +261,7 @@
                             <a href='../../controller/formulaire/?action=lister&id=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                         </td> ";
                         "<td style='text-align: center;'>
-                            <a href='../../controller/formulaire/?action=lister&id=$row[6]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
+                            <a href='../../controller/formulaire/?action=lister&matricule=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a>
                         </td> ";
                         if($row[7]=="En cours"){
                             echo "<td style='background:#00800070;text-align:center;font-weight:bold'>En cours...</td>";

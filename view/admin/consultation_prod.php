@@ -24,16 +24,17 @@
 <table id="productionTab" class="display" style="width:100%;font-size:12px">
         <thead>
             <tr>
-                <th>NUMÉRO POLICE</th>
+                <th>CODE POLICE</th>
                 <th>DATE DE CRÉATION</th>
                 <th>NUMÉRO ATTESTATION</th>
-                <th>NUMÉRO FACTURE</th>
+                <th>MATRICULE ASSURE</th>
                 <th>MATRICULE INTERMÉDIAIRE</th>
                 <th>NOM ASSURÉ</th>
                 <th>PRÉNOM ASSURÉ</th>
                 <th>IMMATRICULATION</th>
                 <th>GARANTIES</th>
                 <th>PRIME TOTALE</th>
+                <th>CP</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +52,7 @@
             <td>$row[10]</td>
             <td>$row[17]</td>
             <td>$row[15]</td>
+            <td><a href='../../controller/admin/?action=lister&matricule=$row[4]&opli=$row[0]'<i class=\"material-icons\" style=\"color:#062944 !important\">print</i></a></td>
         </tr>";
         }
         ?>

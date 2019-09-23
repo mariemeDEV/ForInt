@@ -463,12 +463,13 @@
                                                 </div><!-- /input-group -->
                                             </div><!-- /.col-lg-6 -->
                                             <br><br><br>
-                                            <div class="col-lg-6" style="left: 274px !important;top:-17px !important">
+                                            <div class="col-lg-6" style="left: 274px !important;top:-17px !i mportant">
                                              <input type="text" style="display:none !important;font-size: 15px;font-family: Times New Roman;margin-right:1%;position:relative;top:15px !important;left: -273px;width: 519px;margin-left:0 !important" name="pack" class="form-control" placeholder="Charge" title="Genre" aria-describedby="sizing-addon1" id="genre2" disabled>
                                                 <label style="display:none !important; margin-right: 1%;font-family: Times New Roman;font-size: 14px;position:relative;top:-76px;width: 245px;" id="labelChargeUtile">Charge utile</label>
                                                 <p></p>
                                                 <div class="input-group">       <!-- debut input-group -->
                                                     <select class="custom-select col-lg-12" style="height: 30px;font-size: 15px;font-family: Times New Roman;margin-top:-89px;border-radius:0 !important;margin-left:0 !important;border:1px solid #bbcedc" onchange="CalculeBC()" id="charge" name="charge">
+                                                        <option value="NULL">Charge utile</option>
                                                         <option value="Break">Break</option>
                                                         <option value="Moins de 3,5T">Moins de 3,5T</option>
                                                         <option value="Plus de 3,5T">Plus de 3,5T</option>

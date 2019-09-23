@@ -319,6 +319,7 @@
                 </thead>
                 <tbody>
                     <?php
+                 
                         while($row=$resultat->fetch())
                         {
                             if($row[8]==0)

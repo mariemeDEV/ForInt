@@ -116,6 +116,7 @@ $nom_chauffeur=preg_replace("#[^a-zA-Z- ]#", "",filter_var($_POST['nom_conducteu
 $categorie=$_POST['categorie'];
 //echo $categorie."<br>";
 $Vehdao=new VehiculeDao();
+
 $usVeh=new Vehicule($unikId,$marque,$type,$immatriculation,$puissance,$energie,$charge_utile,$places,$genre,$chassis,$cylindre,$date_mec,$valeur_neuve,$valeur_venale,$nom_chauffeur,$categorie);
 $Vdao=new VehiculeDao('','','','','','','','','','','','','','','',$categorie);
 $voiture=new Vehicule();

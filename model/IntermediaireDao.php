@@ -36,6 +36,7 @@ class IntermediaireDao extends Dbao{
         $sql="select * from intermediaire  WHERE `role`=2";
         return $this->executeSELECT($sql);
     }
+  
     public  function getInterByMat(Intermediaire $us){
         $sql="SELECT * from intermediaire where matricule='".$us->getMatricule()."'";
 
@@ -91,7 +92,7 @@ class IntermediaireDao extends Dbao{
 
     public function getAllProduct(int $matricule)
     {
-        $sql="SELECT p.num_police,p.date_police ,att.numero_attestation,a.id_assure,i.matricule,
+        $sql="SELECT p.id_police,p.date_police ,att.numero_attestation,a.id_assure,i.matricule,
             a.nom_assure , a.prenom_assure,a.tel_assure,a.adresse_assure,vh.categorie_vehicule_id_cat,vh.immatriculation,vh.date_mec,pg.date_debut,pg.date_fin,
             dp.prime_nette,dp.prime_totale,p.etat,group_concat(g.libelle_garantie),pg.duree,rm.pourcentageBC,rm.bonus_rc,rm.pourcentageRC,rm.reduc_com
             FROM police p

@@ -11,7 +11,15 @@ class VehiculeDao extends DBao
 {
     public function insererVehicule(Vehicule $us)
     {
-        
+      /*  if($us->getChargeUtile() == 'Break'){
+            $us->setChargeUtile('Break');
+        }else if($us->getChargeUtile() == 'Moins de 3,5T'){
+            $us->setChargeUtile('Moins de 3,5T');
+        }else if($us->getChargeUtile() == 'Plus de 3,5T'){
+            $us->setChargeUtile('Plus de 3,5T');
+        }else{
+            $us->setChargeUtile('NULL');
+        }*/
             $sql="INSERT INTO `vehicule` VALUES('".$us->getIdVehicule()."', '".$us->getMarque()."', '".$us->getType()."', '".$us->getImmatriculation()."','".$us->getPuissance()."',
             '".$us->getEnergie()."','".$us->getChargeUtile()."','".$us->getPlaces()."','".$us->getGenre()."', '".$us->getChassis()."', '".$us->getCylindre()."',
             '".$us->getDateMec()."', '".$us->getValeurNeuve()."','".$us->getValeurVenale()."','".$us->getNomChauffeur()."','".$us->getCategorie()."')";

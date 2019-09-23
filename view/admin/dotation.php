@@ -139,7 +139,6 @@
                         <th>Nom intermediaire</th>
                         <th>Prénom intermédiaire</th>
                         <th>Téléphone intérmédiaire</th>
-                        <th>Etat actuel</th>
                         <th>Etat sortie</th>
                         <!--th>Opération</th-->
                     </tr>
@@ -162,11 +161,7 @@
                             }
                             echo '<td>'.$row[2].'</td>';
                             echo '<td>'.$row[3].'</td>';
-                            if($etat_actuel=="attribue"){
-                                echo '<td style="background:#e4a6a0;">'.$row[5].'</td>';
-                            }else if($etat_actuel=="libre"){
-                                echo '<td style="background:#99c5e2;">'.$row[5].'</td>';
-                            }
+                       
                              echo '<td>'.$row[4].'</td>';
                              if($etat_sortie=="restante"){
                                 echo '<td style="background:#de5143;text-transform:uppercase;font-weight:bold;text-align:center !important;line-height: 0.5rem">non utilisée</td>';
