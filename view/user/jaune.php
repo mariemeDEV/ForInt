@@ -21,7 +21,7 @@
         .b2{
             position: absolute;
             left: 38em;
-            top: 279px;
+            top: 252px;
         }
     </style>
 </head>
